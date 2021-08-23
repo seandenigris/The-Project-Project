@@ -54,6 +54,13 @@ PpProject class >> statusOptions [
 	^ { self neverDoingStatus. self notDoingStatus }
 ]
 
+{ #category : 'instance creation' }
+PpProject class >> titled: aString [
+	^ self new
+		title: aString;
+		yourself
+]
+
 { #category : 'accessing' }
 PpProject >> activeChildren [
 	self flag: 'This was cut and pasted from ProjectList>>#activeProjects. We should unify. https://bitbucket.org/SeanDeNigris/the-project-project/issues/7/unify-shared-projectlist-and-project'.
