@@ -219,7 +219,11 @@ PpProject >> isComplete [
 
 { #category : 'accessing' }
 PpProject >> isComplete: aBoolean [
-	completionTimestamp := aBoolean ppAsCompletionTimestamp
+	completionTimestamp := aBoolean ppAsCompletionTimestamp.
+	
+	"Completion implies completion of subtasks, but the inverse is not true"
+	aBoolean ifFalse: [ ^ self ].
+	self allChildren do: [ :e | e isComplete ifFalse: [ e isComplete: true ] ]
 ]
 
 { #category : 'magritte' }
