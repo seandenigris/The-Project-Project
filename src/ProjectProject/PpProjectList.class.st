@@ -10,6 +10,19 @@ Class {
 	#category : 'ProjectProject-Core'
 }
 
+{ #category : 'examples' }
+PpProjectList class >> example [
+	<gtExample>
+	^ self
+		given: [ self new ]
+		when: [ :pl |
+			pl projects
+				add: PpProject exampleComplete;
+				add: PpProject exampleIncomplete.
+			pl ]
+		then: [ :pl | pl projects should haveSize: 2 ]
+]
+
 { #category : 'UI' }
 PpProjectList class >> exampleBrowser [
 	| projects browser |
@@ -29,7 +42,7 @@ PpProjectList class >> exampleBrowser [
 	(browser transmit)
 		to: #three;
 		from: #one;
-		andShow: [ :a :b | b descriptionLinks glmPresentation value: a value: nil value: b ].
+		andShow: [ :a :b | b linksDescription glmPresentation value: a value: nil value: b ].
 	browser openOn: projects.
 ]
 

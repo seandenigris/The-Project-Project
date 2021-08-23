@@ -16,6 +16,29 @@ Class {
 	#category : 'ProjectProject-Core'
 }
 
+{ #category : 'examples' }
+PpProject class >> exampleComplete [
+	<gtExample>
+	^ self
+		given: [ self exampleIncomplete title: 'something done'; yourself ]
+		when: [ :p | p isComplete: true ]
+		then: [ :p | p isComplete should equal: true ]
+]
+
+{ #category : 'examples' }
+PpProject class >> exampleIncomplete [
+	<gtExample>
+	^ self
+		given: [ ]
+		when: [ 
+			(self titled: 'something to do')
+				dueDate: Date tomorrow;
+				yourself ]
+		then: [ :p | 
+			p isComplete should equal: false.
+			p dueDate should equal: Date tomorrow ]
+]
+
 { #category : 'accessing' }
 PpProject class >> neverDoingStatus [
 	^ 'Never Doing'
