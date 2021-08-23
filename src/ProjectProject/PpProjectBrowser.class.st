@@ -1,7 +1,7 @@
 Class {
 	#name : 'PpProjectBrowser',
 	#superclass : 'GLMCompositePresentation',
-	#category : 'ProjectProject-UI'
+	#category : 'ProjectProject-UI-Morphic'
 }
 
 { #category : 'building' }
@@ -16,12 +16,12 @@ PpProjectBrowser >> compose [
 
 	browser transmit 
 		to: #list; 
- 		andShow: [ :a :b | 	self projectListsIn: a for: b ].
+ 		andShow: [ :a :b | self projectListsIn: a for: b ].
 
 	browser transmit 
 		from: #list;
 		to: #detail;
-		andShow: [ :a |	a magritte ] ]
+		andShow: [ :a |a magritte ] ]
 
 ]
 
@@ -50,7 +50,7 @@ PpProjectBrowser >> listTextFor: aProject [
 
 { #category : 'building' }
 PpProjectBrowser >> projectListsIn: container for: projectList [
-	(projectList magritteAllDescriptionsFor: #descriptionProjects)
+	(projectList magritteAllDescriptionsFor: #projectsDescription)
 		do: [ :d | 
 			container tree
 				glmAddActions;
