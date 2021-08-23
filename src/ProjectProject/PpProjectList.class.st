@@ -222,6 +222,40 @@ PpProjectList >> dueToday [
 	^ self dueBy: Date today
 ]
 
+{ #category : 'spotter' }
+PpProjectList >> gtGtSpotterFor: aStep [
+	<gtSearch>
+	^ aStep listProcessor
+		priority: 5;
+		title: 'Projects (Roots)';
+		allCandidates: [ self projects ];
+		filter: GtFilterSubstrings;
+		candidatesLimit: 7;
+		itemName: #title
+]
+
+{ #category : 'accessing' }
+PpProjectList >> gtViewOn: aView [
+
+	<gtView>
+	| tabs |
+	self flag: 'At first, we filtered out empty lists (i.e. returned empty views, but it had the side effect of caching the item list, which prevented refreshing; not sure whether empty tabs should be hidden anway'.
+	tabs := (self magritteAllDescriptionsFor: #descriptionProjects) collect: [ :desc | 
+		aView columnedTree
+			title: desc label translated;
+			priority: 25;
+			items: [ desc read: self ];
+			"itemText: [ :p | p displayText asRopedText ]; doesn't work - don't know how to convert Pharo text to GT"
+			children: #children;
+			column: 'Item' item: [ :p | p title ];
+			column: 'Due Date' item: [ :p | p dueDateDescription readToString: p ];
+			actionUpdateButtonTooltip: 'Update' ].
+		
+	^ aView composite
+		  title: 'Projects' translated;
+		  views: tabs
+]
+
 { #category : 'magritte' }
 PpProjectList >> mementoClass [
 	^ MAStraightMemento

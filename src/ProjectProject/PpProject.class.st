@@ -207,6 +207,26 @@ PpProject >> gtInspectorLinksIn: composite [
 	^ list
 ]
 
+{ #category : 'views' }
+PpProject >> gtViewOn: aView [
+
+	<gtView>
+	| tabs |
+	^ aView columnedTree
+			title: 'Steps' translated;
+			priority: 25;
+			items: [ self children ];
+			children: #children;
+			column: 'Item' 
+				icon: [ :p | 
+					BrLabel new 
+						aptitude: BrGlamorousLabelAptitude;
+						text: p title ]
+				width: 400;
+			column: 'Due Date' item: [ :p | p dueDateDescription readToString: p ];
+			actionUpdateButtonTooltip: 'Update'
+]
+
 { #category : 'testing' }
 PpProject >> isActiveDueBy: aDate [
 	^ self isComplete not and: [ self dueDate isNotNil and: [ self dueDate < aDate ] ]
