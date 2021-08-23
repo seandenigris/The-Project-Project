@@ -124,15 +124,14 @@ PpProject >> defaultStatus [
 ]
 
 { #category : 'printing' }
-PpProject >> displayString [
+PpProject >> displayStringOn: aStream [
 
-	^ String streamContents: [ :str |
-			title ifNotNil: [ str nextPutAll: self title ].
-			dueDate ifNotNil: [
-				str
-					nextPutAll: ' (Due ';
-					nextPutAll: self dueDate mmddyyyy;
-					nextPut: $) ] ]
+	title ifNotNil: [ aStream nextPutAll: self title ].
+	dueDate ifNotNil: [
+		aStream
+			nextPutAll: ' (Due ';
+			nextPutAll: self dueDate mmddyyyy;
+			nextPut: $) ]
 ]
 
 { #category : 'accessing' }
