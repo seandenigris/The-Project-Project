@@ -34,7 +34,7 @@ PpProjectList class >> exampleBrowser [
 		column: #three.
 	(browser transmit)
 		to: #one;
-		andShow: [ :a :b | b descriptionNeverDoing glmPresentation value: a value: nil value: b ].
+		andShow: [ :a :b | b neverDoingDescription glmPresentation value: a value: nil value: b ].
 	(browser transmit)
 		to: #two;
 		from: #one;
