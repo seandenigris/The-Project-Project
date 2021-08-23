@@ -1,6 +1,6 @@
 Class {
-	#name : #PpLifeHistory,
-	#superclass : #Object,
+	#name : 'PpLifeHistory',
+	#superclass : 'Object',
 	#instVars : [
 		'callLog',
 		'addressBook'
@@ -11,7 +11,7 @@ Class {
 	#category : 'ProjectProject-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpLifeHistory class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Life History Inspect')
@@ -20,38 +20,38 @@ PpLifeHistory class >> menuCommandOn: aBuilder [
 		icon: (Smalltalk ui icons iconNamed: #toolsIcon). 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpLifeHistory class >> mine [
 	^ mine ifNil: [ mine := self new ]
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpLifeHistory class >> restoreFrom: anObject [
 
 	mine := anObject.
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpLifeHistory class >> spData [
 	^ self mine
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLifeHistory >> addressBook [
 	^ addressBook ifNil: [ addressBook := Bag new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLifeHistory >> addressBook: anObject [
 	addressBook := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpLifeHistory >> callLog [
 	^ callLog ifNil: [ callLog := Bag new ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpLifeHistory >> descriptionAddressBook [
 	<magritteDescription>
 	
@@ -64,7 +64,7 @@ PpLifeHistory >> descriptionAddressBook [
 			yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpLifeHistory >> descriptionCallLog [
 	<magritteDescription>
 	

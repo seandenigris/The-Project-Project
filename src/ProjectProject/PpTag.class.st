@@ -7,8 +7,8 @@ parent children add: tag
 ```
 "
 Class {
-	#name : #PpTag,
-	#superclass : #Object,
+	#name : 'PpTag',
+	#superclass : 'Object',
 	#instVars : [
 		'name',
 		'children'
@@ -16,10 +16,10 @@ Class {
 	#classInstVars : [
 		'db'
 	],
-	#category : #'ProjectProject-Core'
+	#category : 'ProjectProject-Core'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PpTag class >> addTagNamed: aString [
 	| tag |
 	tag := self new
@@ -28,55 +28,55 @@ PpTag class >> addTagNamed: aString [
 	^ self db add: tag
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTag class >> db [
 	^ db ifNil: [ db := Bag new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTag class >> detectNamed: aString [ 
 	^ self db detect: [ :e | e name = aString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTag class >> ensureNamed: aString [ 
 	^ self db
 			detect: [ :e | e name = aString ]
 			ifNone: [ self addTagNamed: aString ]
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpTag class >> restoreFrom: anObject [
 
 	db := anObject.
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpTag class >> spData [
 	^ self db
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTag >> children [
 	^ children ifNil: [ children := OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTag >> children: anObject [
 	children := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTag >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTag >> name: aString [
 	name := aString
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpTag >> printOn: aStream [
 	aStream nextPut: $#.
 	name ifNotNil: [ aStream nextPutAll: name ]

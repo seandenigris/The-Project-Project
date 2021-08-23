@@ -1,1 +1,1 @@
-Package { #name : #ProjectProject }
+Package { #name : 'ProjectProject' }

@@ -1,6 +1,6 @@
 Class {
-	#name : #PpChecklistItem,
-	#superclass : #Object,
+	#name : 'PpChecklistItem',
+	#superclass : 'Object',
 	#instVars : [
 		'isComplete',
 		'description'
@@ -8,24 +8,24 @@ Class {
 	#category : 'ProjectProject-Core-Checklists'
 }
 
-{ #category : #Morphic }
+{ #category : 'Morphic' }
 PpChecklistItem >> asMorph [
 	^ PpChecklistItemMorph new
 		model: self;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpChecklistItem >> description [
 	^ description
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpChecklistItem >> description: anObject [
 	description := anObject
 ]
 
-{ #category : #'accessing-magritte' }
+{ #category : 'accessing-magritte' }
 PpChecklistItem >> descriptionDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -34,8 +34,18 @@ PpChecklistItem >> descriptionDescription [
 		yourself
 ]
 
-{ #category : #'accessing-magritte' }
-PpChecklistItem >> descriptionIsComplete [
+{ #category : 'accessing' }
+PpChecklistItem >> isComplete [
+	^ isComplete ifNil: [ false ]
+]
+
+{ #category : 'accessing' }
+PpChecklistItem >> isComplete: anObject [
+	isComplete := anObject
+]
+
+{ #category : 'accessing-magritte' }
+PpChecklistItem >> isCompleteDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
 		accessor: #isComplete;
@@ -44,17 +54,7 @@ PpChecklistItem >> descriptionIsComplete [
 		yourself
 ]
 
-{ #category : #accessing }
-PpChecklistItem >> isComplete [
-	^ isComplete ifNil: [ false ]
-]
-
-{ #category : #accessing }
-PpChecklistItem >> isComplete: anObject [
-	isComplete := anObject
-]
-
-{ #category : #printing }
+{ #category : 'printing' }
 PpChecklistItem >> printOn: aStream [
 	aStream nextPutAll: description.
 	self isComplete

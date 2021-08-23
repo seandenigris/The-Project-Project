@@ -1,16 +1,16 @@
 Class {
-	#name : #PpProjectList,
-	#superclass : #Object,
+	#name : 'PpProjectList',
+	#superclass : 'Object',
 	#instVars : [
 		'projects'
 	],
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'ProjectProject-Core'
+	#category : 'ProjectProject-Core'
 }
 
-{ #category : #UI }
+{ #category : 'UI' }
 PpProjectList class >> exampleBrowser [
 	| projects browser |
 	projects := self uniqueInstance.
@@ -33,7 +33,7 @@ PpProjectList class >> exampleBrowser [
 	browser openOn: projects.
 ]
 
-{ #category : #'world menu' }
+{ #category : 'world menu' }
 PpProjectList class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #Projects)
@@ -50,40 +50,40 @@ PpProjectList class >> menuCommandOn: aBuilder [
 					(self iconNamed: #toolsIcon) ]
 ]
 
-{ #category : #UI }
+{ #category : 'UI' }
 PpProjectList class >> openBrowser [
 	<script>
 	
 	PpProjectBrowser openOn: self uniqueInstance
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpProjectList class >> restoreFrom: anObject [
 
 	uniqueInstance := anObject.
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpProjectList class >> spData [
 	^ self uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList class >> uniqueInstance: anObject [
 	uniqueInstance := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> activeProjects [
 	^ self projects reject: [ :e | e isComplete ]
 ]
 
-{ #category : #UI }
+{ #category : 'UI' }
 PpProjectList >> add [
 	PpProject new asMagritteMorph
 		addButtons;
@@ -92,7 +92,7 @@ PpProjectList >> add [
 		openInWorld
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> allProjects [
 	| roots children |
 	roots := self projects.
@@ -100,12 +100,12 @@ PpProjectList >> allProjects [
 	^ (roots, children) asSet
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> completeProjects [
 	^ self projects select: [ :e | e isComplete ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> descriptionActive [
 	<gtInspectorPresentationOrder: 8>
 	<magritteAltFor: #descriptionProjects>
@@ -113,7 +113,7 @@ PpProjectList >> descriptionActive [
 	^ self descriptionFilteredProjects: 'Active Projects' " order: 0.01"
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> descriptionAdd [
 	<magritteActionDescription>
 	
@@ -125,7 +125,7 @@ PpProjectList >> descriptionAdd [
 			yourself
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> descriptionComplete [
 	<gtInspectorPresentationOrder: 8>
 	<magritteAltFor: #descriptionProjects>
@@ -133,7 +133,7 @@ PpProjectList >> descriptionComplete [
 	^ self descriptionFilteredProjects: 'Complete Projects' " order: 8"
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> descriptionDueToday [
 	<gtInspectorPresentationOrder: 2>
 	<magritteAltFor: #descriptionProjects>
@@ -141,7 +141,7 @@ PpProjectList >> descriptionDueToday [
 	^ self descriptionFilteredProjects: 'Due Today' " order: 2"
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> descriptionFilteredProjects: labelString [
 	^ MAToManyRelationDescription new
 		accessor: labelString asValidSelector asSymbol;
@@ -153,7 +153,7 @@ PpProjectList >> descriptionFilteredProjects: labelString [
 		yourself
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> descriptionNeverDoing [
 	<gtInspectorPresentationOrder: 6>
 	<magritteAltFor: #descriptionProjects>
@@ -161,7 +161,7 @@ PpProjectList >> descriptionNeverDoing [
 	^ self descriptionFilteredProjects: 'Never Doing' " order: 6"
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> descriptionNotDoing [
 	<gtInspectorPresentationOrder: 4>
 	<magritteAltFor: #descriptionProjects>
@@ -170,7 +170,7 @@ PpProjectList >> descriptionNotDoing [
 	^ self descriptionFilteredProjects: 'Not Doing' " order: 4"
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> descriptionOverdue [
 	<gtInspectorPresentationOrder: 1>
 	<magritteAltFor: #descriptionProjects>
@@ -179,7 +179,7 @@ PpProjectList >> descriptionOverdue [
 	^ self descriptionFilteredProjects: 'Overdue' " order: 1"
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> descriptionProjects [
 	<magritteDescription>
 	
@@ -192,7 +192,7 @@ PpProjectList >> descriptionProjects [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> dueBy: aDate [
 	"Recursive through steps"
 	^ self activeProjects
@@ -204,37 +204,37 @@ PpProjectList >> dueBy: aDate [
 			result ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> dueToday [
 	^ self dueBy: Date today
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> mementoClass [
 	^ MAStraightMemento
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> neverDoing [
 	^ self activeProjects select: [ :e | e status = PpProject neverDoingStatus ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> notDoing [
 	^ self activeProjects select: [ :e | e status = PpProject notDoingStatus ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> overdue [
 	^ self dueBy: Date yesterday
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> projects [
 	^ projects ifNil: [ projects := OrderedCollection new ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PpProjectList >> projects: anObject [
 	projects := anObject
 ]

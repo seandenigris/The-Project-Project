@@ -1,6 +1,6 @@
-Extension { #name : #False }
+Extension { #name : 'False' }
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 False >> ppAsCompletionTimestamp [
 	^ nil
 ]
