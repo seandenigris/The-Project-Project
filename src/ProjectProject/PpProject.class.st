@@ -165,6 +165,16 @@ PpProject >> displayStringOn: aStream [
 ]
 
 { #category : 'accessing' }
+PpProject >> displayText [
+	^ self isComplete
+			ifTrue: [ 
+				self displayString asText
+					addAttribute: TextEmphasis struckOut;
+					yourself ]
+			ifFalse: [ self displayString ]
+]
+
+{ #category : 'accessing' }
 PpProject >> dueDate [
 	^ dueDate
 ]
