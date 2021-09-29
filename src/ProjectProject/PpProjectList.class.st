@@ -208,8 +208,8 @@ PpProjectList >> gtViewOn: aView [
 			items: [ desc read: self ];
 			"itemText: [ :p | p displayText asRopedText ]; doesn't work - don't know how to convert Pharo text to GT"
 			children: #children;
-			column: 'Item' item: [ :p | p title ];
-			column: 'Due Date' item: [ :p | p dueDateDescription readToString: p ];
+			column: 'Item' text: [ :p | p title ];
+			column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
 			actionUpdateButtonTooltip: 'Update' ].
 		
 	^ aView composite
