@@ -2,8 +2,8 @@
 PpPhoneCall new maEdit
 "
 Class {
-	#name : 'PpPhoneCall',
-	#superclass : 'Object',
+	#name : #PpPhoneCall,
+	#superclass : #Object,
 	#instVars : [
 		'participants',
 		'notes',
@@ -13,7 +13,7 @@ Class {
 	#category : 'ProjectProject-Core'
 }
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpPhoneCall >> descriptionEnd [
 	<magritteDescription>
 	
@@ -24,7 +24,7 @@ PpPhoneCall >> descriptionEnd [
 			yourself
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpPhoneCall >> descriptionNotes [
 	<magritteDescription>
 	
@@ -37,7 +37,7 @@ PpPhoneCall >> descriptionNotes [
 			yourself
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpPhoneCall >> descriptionParticipants [
 	<magritteDescription>
 	
@@ -50,7 +50,7 @@ PpPhoneCall >> descriptionParticipants [
 			yourself
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpPhoneCall >> descriptionStart [
 	<magritteDescription>
 	
@@ -61,37 +61,37 @@ PpPhoneCall >> descriptionStart [
 			yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpPhoneCall >> end [
 	^ end
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpPhoneCall >> end: anObject [
 	end := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpPhoneCall >> notes [
 	^ notes
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpPhoneCall >> notes: anObject [
 	notes := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpPhoneCall >> participants [
 	^ participants
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpPhoneCall >> participants: anObject [
 	participants := anObject
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 PpPhoneCall >> printOn: aStream [
 	aStream
 		nextPutAll: 'Phone call'.
@@ -108,12 +108,12 @@ PpPhoneCall >> printOn: aStream [
 				separatedBy: [ aStream crlf ] ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpPhoneCall >> start [
 	^ start
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpPhoneCall >> start: anObject [
 	start := anObject
 ]

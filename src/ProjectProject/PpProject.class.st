@@ -1,6 +1,6 @@
 Class {
-	#name : 'PpProject',
-	#superclass : 'Object',
+	#name : #PpProject,
+	#superclass : #Object,
 	#instVars : [
 		'title',
 		'dueDate',
@@ -16,7 +16,7 @@ Class {
 	#category : 'ProjectProject-Core'
 }
 
-{ #category : 'examples' }
+{ #category : #examples }
 PpProject class >> exampleComplete [
 	<gtExample>
 	^ self
@@ -25,7 +25,7 @@ PpProject class >> exampleComplete [
 		then: [ :p | p isComplete should equal: true ]
 ]
 
-{ #category : 'examples' }
+{ #category : #examples }
 PpProject class >> exampleIncomplete [
 	<gtExample>
 	^ self
@@ -39,51 +39,51 @@ PpProject class >> exampleIncomplete [
 			p dueDate should equal: Date tomorrow ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject class >> neverDoingStatus [
 	^ 'Never Doing'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject class >> notDoingStatus [
 	^ 'Not Doing'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject class >> statusOptions [
 	^ { self neverDoingStatus. self notDoingStatus }
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 PpProject class >> titled: aString [
 	^ self new
 		title: aString;
 		yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> activeChildren [
 	self flag: 'This was cut and pasted from ProjectList>>#activeProjects. We should unify. https://bitbucket.org/SeanDeNigris/the-project-project/issues/7/unify-shared-projectlist-and-project'.
 	^ self children reject: [ :e | e isComplete ]
 ]
 
-{ #category : 'enumeration' }
+{ #category : #enumeration }
 PpProject >> allChildren [
 	^ self children, (self children flatCollect: [ :child | child allChildren ])
 ]
 
-{ #category : 'enumeration' }
+{ #category : #enumeration }
 PpProject >> allProjects [
 	^ PpProjectList uniqueInstance allProjects
 ]
 
-{ #category : 'enumeration' }
+{ #category : #enumeration }
 PpProject >> allProjectsDo: aBlock [
 	aBlock value: self.
 	self children do: [ :child | child allProjectsDo: aBlock ]
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PpProject >> browseSupportMaterials [
 
 	| folder template |
@@ -97,17 +97,17 @@ PpProject >> browseSupportMaterials [
 	folder open
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> children [
 	^ children ifNil: [ children := OrderedCollection new ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> children: anObject [
 	children := anObject
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpProject >> childrenDescription [
 	<magritteDescription>
 	<gtInspectorPresentationOrder: 10>
@@ -133,27 +133,27 @@ PpProject >> childrenDescription [
 		yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> completionTimestamp: timestamp [
 	completionTimestamp := timestamp
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> context [
 	^ context
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> context: anObject [
 	context := anObject
 ]
 
-{ #category : 'status' }
+{ #category : #status }
 PpProject >> defaultStatus [
 	^ self class neverDoingStatus
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 PpProject >> displayStringOn: aStream [
 
 	title ifNotNil: [ aStream nextPutAll: self title ].
@@ -164,7 +164,7 @@ PpProject >> displayStringOn: aStream [
 			nextPut: $) ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> displayText [
 	^ self isComplete
 			ifTrue: [ 
@@ -174,17 +174,17 @@ PpProject >> displayText [
 			ifFalse: [ self displayString ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> dueDate [
 	^ dueDate
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> dueDate: anObject [
 	dueDate := anObject
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpProject >> dueDateDescription [
 	<magritteDescription>
 	
@@ -197,7 +197,7 @@ PpProject >> dueDateDescription [
 			yourself
 ]
 
-{ #category : 'GT' }
+{ #category : #GT }
 PpProject >> gtInspectorLinksIn: composite [
 
 	| list |
@@ -217,7 +217,7 @@ PpProject >> gtInspectorLinksIn: composite [
 	^ list
 ]
 
-{ #category : 'views' }
+{ #category : #views }
 PpProject >> gtViewOn: aView [
 
 	<gtView>
@@ -237,17 +237,17 @@ PpProject >> gtViewOn: aView [
 			actionUpdateButtonTooltip: 'Update'
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PpProject >> isActiveDueBy: aDate [
 	^ self isComplete not and: [ self dueDate isNotNil and: [ self dueDate < aDate ] ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> isComplete [
 	^ completionTimestamp isNotNil
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> isComplete: aBoolean [
 	completionTimestamp := aBoolean ppAsCompletionTimestamp.
 	
@@ -256,7 +256,7 @@ PpProject >> isComplete: aBoolean [
 	self allChildren do: [ :e | e isComplete ifFalse: [ e isComplete: true ] ]
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpProject >> isCompleteDescription [
 	<magritteDescription>
 	
@@ -269,17 +269,17 @@ PpProject >> isCompleteDescription [
 			yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> links [
 	^ links ifNil: [ links := OrderedCollection new ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> links: anObject [
 	links := anObject
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpProject >> linksDescription [
 	<magritteDescription>
 	<gtInspectorPresentationOrder: 20>
@@ -294,17 +294,17 @@ PpProject >> linksDescription [
 		yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> note [
 	^ note
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> note: anObject [
 	note := anObject
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpProject >> noteDescription [
 	<magritteDescription>
 	^ MAMemoDescription new
@@ -314,23 +314,23 @@ PpProject >> noteDescription [
 			yourself
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 PpProject >> printOn: aStream [
 	aStream nextPutAll: 'Project: '.
 	aStream nextPutAll: self displayString
 ]
 
-{ #category : 'status' }
+{ #category : #status }
 PpProject >> status [
 	^ status ifNil: [ status := self defaultStatus ]
 ]
 
-{ #category : 'status' }
+{ #category : #status }
 PpProject >> status: aStatus [
 	status := aStatus
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpProject >> statusDescription [
 	<magritteDescription>
 	^ MASingleOptionDescription new
@@ -345,17 +345,17 @@ PpProject >> statusDescription [
 			yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> supportMaterials [
 	^ supportMaterials
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> supportMaterials: anObject [
 	supportMaterials := anObject
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpProject >> supportMaterialsDescription [
 	<magritteDescription>
 	<gtInspectorPresentationOrder: 25>
@@ -370,7 +370,7 @@ PpProject >> supportMaterialsDescription [
 			yourself
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpProject >> supportMaterialsMOEDescription [
 	<magritteDescription>
 	<gtInspectorPresentationOrder: 25>
@@ -397,17 +397,17 @@ PpProject >> supportMaterialsMOEDescription [
 		yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> tags [
 	^ tags ifNil: [ tags := Bag new ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> tags: anObject [
 	tags := anObject
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpProject >> tagsDescription [
 	<magritteDescription>
 	^ MAMultipleOptionDescription new
@@ -424,17 +424,17 @@ PpProject >> tagsDescription [
 			yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> title [
 	^ title
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpProject >> title: anObject [
 	title := anObject
 ]
 
-{ #category : 'magritte' }
+{ #category : #magritte }
 PpProject >> titleDescription [
 	<magritteDescription>
 	^ MAStringDescription new

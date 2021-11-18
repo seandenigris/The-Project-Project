@@ -1,10 +1,10 @@
 Class {
-	#name : 'PpProjectBrowser',
-	#superclass : 'GLMCompositePresentation',
+	#name : #PpProjectBrowser,
+	#superclass : #GLMCompositePresentation,
 	#category : 'ProjectProject-UI-Morphic'
 }
 
-{ #category : 'building' }
+{ #category : #building }
 PpProjectBrowser >> compose [
 	self tabulator with: [ :browser |
 		browser
@@ -25,7 +25,7 @@ PpProjectBrowser >> compose [
 
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 PpProjectBrowser >> doesProject: project matchFilterString: text [
 	| source isBlock | 
 	isBlock := text first = $[. 
@@ -38,7 +38,7 @@ PpProjectBrowser >> doesProject: project matchFilterString: text [
 				evaluate ] on: Exception do: [ true ]
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 PpProjectBrowser >> listTextFor: aProject [
 	^ aProject isComplete
 			ifTrue: [ 
@@ -48,7 +48,7 @@ PpProjectBrowser >> listTextFor: aProject [
 			ifFalse: [ aProject displayString ]
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 PpProjectBrowser >> projectListsIn: container for: projectList [
 	(projectList magritteAllDescriptionsFor: #projectsDescription)
 		do: [ :d | 

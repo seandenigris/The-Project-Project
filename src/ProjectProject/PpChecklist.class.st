@@ -1,6 +1,6 @@
 Class {
-	#name : 'PpChecklist',
-	#superclass : 'Object',
+	#name : #PpChecklist,
+	#superclass : #Object,
 	#instVars : [
 		'title',
 		'items'
@@ -11,7 +11,7 @@ Class {
 	#category : 'ProjectProject-Core-Checklists'
 }
 
-{ #category : 'adding' }
+{ #category : #adding }
 PpChecklist class >> addFromClipboard [
 	"This is an easy way to create a new checklist, because one can make the list anywhere text can be typed (e.g. a playground, text editor, browser URL bar lol). Just put each item on a separate line and copy to the system clipboard"
 	
@@ -19,7 +19,7 @@ PpChecklist class >> addFromClipboard [
 	^ self pad add: (self new addAllFromClipboard)
 ]
 
-{ #category : 'world menu' }
+{ #category : #'world menu' }
 PpChecklist class >> menuCommandOn: aBuilder [ 
 	"Add a custom menu item to the world menu"	
 	<worldMenu> 
@@ -32,27 +32,27 @@ PpChecklist class >> menuCommandOn: aBuilder [
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklist class >> pad [
 	^ Pad ifNil: [ Pad := OrderedCollection new ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklist class >> pad: anObject [
 	Pad := anObject
 ]
 
-{ #category : 'persistence' }
+{ #category : #persistence }
 PpChecklist class >> restoreFrom: anObject [
 	self pad: anObject.
 ]
 
-{ #category : 'persistence' }
+{ #category : #persistence }
 PpChecklist class >> spData [
 	^ self pad
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PpChecklist >> addAllFromClipboard [
 	| itemsString |
 	itemsString := Clipboard clipboardText asString.
@@ -64,12 +64,12 @@ PpChecklist >> addAllFromClipboard [
 		self items add: item ]
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PpChecklist >> addItemNamed: aString [
 	^ self items add: (PpChecklistItem new description: aString; yourself)
 ]
 
-{ #category : 'Magritte' }
+{ #category : #Magritte }
 PpChecklist >> descriptionItems [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
@@ -78,7 +78,7 @@ PpChecklist >> descriptionItems [
 		yourself
 ]
 
-{ #category : 'Magritte' }
+{ #category : #Magritte }
 PpChecklist >> descriptionView [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -86,17 +86,17 @@ PpChecklist >> descriptionView [
 		yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklist >> items [
 	^ items ifNil: [ items := OrderedCollection new ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklist >> items: anObject [
 	items := anObject
 ]
 
-{ #category : 'viewing' }
+{ #category : #viewing }
 PpChecklist >> morphOpen [
 	| panel win scrollpane |
 	scrollpane := GeneralScrollPane new.
@@ -119,7 +119,7 @@ PpChecklist >> morphOpen [
 	win extent:  559.0@457.0
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 PpChecklist >> printOn: aStream [
 	title
 		ifNotNil: [ aStream nextPutAll: title ]
@@ -128,12 +128,12 @@ PpChecklist >> printOn: aStream [
 			items printElementsOn: aStream ].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklist >> title [
 	^ title
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklist >> title: anObject [
 	title := anObject
 ]

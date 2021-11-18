@@ -1,6 +1,6 @@
 Class {
-	#name : 'PpChecklistItemMorph',
-	#superclass : 'ComposableModel',
+	#name : #PpChecklistItemMorph,
+	#superclass : #ComposableModel,
 	#instVars : [
 		'checkbox',
 		'textField'
@@ -8,7 +8,7 @@ Class {
 	#category : 'ProjectProject-Core-Checklists'
 }
 
-{ #category : 'specs' }
+{ #category : #specs }
 PpChecklistItemMorph class >> defaultSpec [
 <spec>
 	^ SpecLayout composed
@@ -18,7 +18,7 @@ PpChecklistItemMorph class >> defaultSpec [
 		yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklistItemMorph >> buildWithSpecLayout: layout [
 	| result |
 	result := super buildWithSpecLayout: layout.
@@ -29,35 +29,35 @@ PpChecklistItemMorph >> buildWithSpecLayout: layout [
 		yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklistItemMorph >> checkbox [
 	^ checkbox
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklistItemMorph >> checkbox: anObject [
 	checkbox := anObject
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PpChecklistItemMorph >> initializePresenter [
 	checkbox whenActivatedDo: [ self strikeOutText ].
 	checkbox whenDeactivatedDo: [ self unstrikeText ]
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PpChecklistItemMorph >> initializeWidgets [
 
 	checkbox := self newCheckBox.
 	textField := "self newText "TextMorph new asSpecAdapter.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklistItemMorph >> model: aPpChecklistItem [
 	self text: aPpChecklistItem description asText
 ]
 
-{ #category : 'emphasizing' }
+{ #category : #emphasizing }
 PpChecklistItemMorph >> strikeOutText [
 	"There is a bug in TextModel which ignores text attribute changes unless the string also changes. Otherwise, this method would be a simple one-liner."
 	| originalText |
@@ -67,27 +67,27 @@ PpChecklistItemMorph >> strikeOutText [
 		text: (originalText addAttribute: TextEmphasis struckOut)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklistItemMorph >> text [
 	^ self textField "text "morph contents
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklistItemMorph >> text: aText [
 	self textField "text: "morph contents: aText
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklistItemMorph >> textField [
 	^ textField
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PpChecklistItemMorph >> textField: anObject [
 	textField := anObject
 ]
 
-{ #category : 'emphasizing' }
+{ #category : #emphasizing }
 PpChecklistItemMorph >> unstrikeText [
 	"There is a bug in TextModel which ignores text attribute changes unless the string also changes. Otherwise, this method would be a simple one-liner."
 	| originalText |
