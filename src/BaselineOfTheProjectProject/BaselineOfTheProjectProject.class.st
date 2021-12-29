@@ -38,9 +38,9 @@ BaselineOfTheProjectProject >> baseline: spec [
 			baseline: 'TrackingNumbers' with: [
 				spec repository: 'github://seandenigris/Tracking-St' ].
 		spec
-			package: #'Spec-PolyWidgets' with: [
+			"package: #'Spec-PolyWidgets' with: [
 				spec
-					repository: 'http://smalltalkhub.com/mc/SeanDeNigris/SeansOutbox/main/' ];
+					repository: 'http://smalltalkhub.com/mc/SeanDeNigris/SeansOutbox/main/' ];"
 			package: #ProjectProject with: [
-				spec requires: #('BookmarkMagic' 'ExternalWebBrowser' 'Magritte' 'Mocketry' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence' 'Spec-PolyWidgets' 'TrackingNumbers'). ]. ].
+				spec requires: #('BookmarkMagic' 'ExternalWebBrowser' 'Magritte' 'Mocketry' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence' "'Spec-PolyWidgets'" 'TrackingNumbers'). ]. ].
 ]
