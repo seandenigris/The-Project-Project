@@ -7,7 +7,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : 'ProjectProject-Core'
+	#category : #'ProjectProject-Core'
 }
 
 { #category : #examples }
@@ -215,6 +215,14 @@ PpProjectList >> gtViewOn: aView [
 	^ aView composite
 		  title: 'Projects' translated;
 		  views: tabs
+]
+
+{ #category : #accessing }
+PpProjectList >> maGtFormFor: aView [
+	"Deprioritize this view because it is not very useful and super slow"
+	
+	^ (super maGtFormFor: aView)
+		priority: 500
 ]
 
 { #category : #magritte }

@@ -13,7 +13,7 @@ Class {
 		'context',
 		'supportMaterials'
 	],
-	#category : 'ProjectProject-Core'
+	#category : #'ProjectProject-Core'
 }
 
 { #category : #examples }
@@ -223,18 +223,18 @@ PpProject >> gtViewOn: aView [
 	<gtView>
 	| tabs |
 	^ aView columnedTree
-			title: 'Steps' translated;
-			priority: 25;
-			items: [ self children ];
-			children: #children;
-			column: 'Item' 
-				icon: [ :p | 
-					BrLabel new 
-						aptitude: BrGlamorousLabelAptitude;
-						text: p title ]
-				width: 400;
-			column: 'Due Date' item: [ :p | p dueDateDescription readToString: p ];
-			actionUpdateButtonTooltip: 'Update'
+		title: 'Steps' translated;
+		priority: 25;
+		items: [ self children ];
+		children: #children;
+		column: 'Item' 
+			icon: [ :p | 
+				BrLabel new 
+					aptitude: BrGlamorousLabelAptitude;
+					text: p title ]
+			width: 400;
+		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
+		actionUpdateButtonTooltip: 'Update'
 ]
 
 { #category : #testing }
@@ -416,7 +416,7 @@ PpProject >> tagsDescription [
 		priority: 250;
 		default: Bag new;
 		options: PpTag db;
-		morphicClass: MATokenCompletionMorph;
+		morphicClass: MAMorphicTokenCompletion;
 		extensible: true;
 		initializer: [ :text | PpTag ensureNamed: text ];
 		"			readonly;
