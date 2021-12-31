@@ -8,7 +8,7 @@ Class {
 	#classInstVars : [
 		'mine'
 	],
-	#category : 'ProjectProject-Core'
+	#category : #'ProjectProject-Core'
 }
 
 { #category : #'as yet unclassified' }
@@ -38,7 +38,7 @@ PpLifeHistory class >> spData [
 
 { #category : #accessing }
 PpLifeHistory >> addressBook [
-	^ addressBook ifNil: [ addressBook := Bag new ]
+	^ addressBook ifNil: [ MpAddressBook default ]
 ]
 
 { #category : #accessing }
