@@ -48,13 +48,16 @@ PpEventLog >> gtGtSpotterEventsOn: aStep [
 ]
 
 { #category : #accessing }
-PpEventLog >> gtSpotterNewEventOn: aStep [
-	<gtSearch>
+PpEventLog >> gtSpotterNew: aClass on: aStep [
+
+	| typeName |
+	typeName := (aClass name allButFirst: 2) normalizeCamelCase.
+
 	aStep listProcessor
-		title: 'New Event';
+		title: 'New ', typeName;
 		priority: 50;
-		itemName: [ :input | 'Create new event: ', input ];
-		previewObject: [ :input | PpEvent new title: input; yourself ];
+		itemName: [ :input | 'Create new ', typeName asLowercase, ': ', input ];
+		previewObject: [ :input | aClass new title: input; yourself ];
 		wantsToDisplayOnEmptyQuery: false;
 		filter: GtNullFilter
 			item: [ :filter :context | 
@@ -63,7 +66,15 @@ PpEventLog >> gtSpotterNewEventOn: aStep [
 					e title = context textTrimmed ].
 				isExisting ifFalse: [ 
 					filter value: context textTrimmed ] ];
-		send: [ :input :spotterStep | self events add: (PpEvent new title: input; yourself) ]
+		send: [ :input :spotterStep | self events add: (aClass new title: input; yourself) ].
+]
+
+{ #category : #accessing }
+PpEventLog >> gtSpotterNewEventOn: aStep [
+	<gtSearch>
+	
+	PpEvent allSubclassesDo: [ :cls |
+		self gtSpotterNew: cls on: aStep ]
 ]
 
 { #category : #accessing }
