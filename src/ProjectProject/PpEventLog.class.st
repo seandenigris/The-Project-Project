@@ -44,7 +44,8 @@ PpEventLog >> gtGtSpotterEventsOn: aStep [
 		allCandidates: [ self events ];
 		filter: GtFilterSubstrings;
 		candidatesLimit: 7;
-		itemName:[ :e | e printString ] 
+		itemName:[ :e | e printString ];
+		wantsToDisplayOnEmptyQuery: true
 ]
 
 { #category : #accessing }
@@ -73,7 +74,7 @@ PpEventLog >> gtSpotterNew: aClass on: aStep [
 PpEventLog >> gtSpotterNewEventOn: aStep [
 	<gtSearch>
 	
-	PpEvent allSubclassesDo: [ :cls |
+	PpEvent withAllSubclassesDo: [ :cls |
 		self gtSpotterNew: cls on: aStep ]
 ]
 
@@ -81,10 +82,6 @@ PpEventLog >> gtSpotterNewEventOn: aStep [
 PpEventLog >> gtSpotterProcessorsFor: aSpotterStep [
 	
 	^ super gtSpotterProcessorsFor: aSpotterStep
-]
-
-{ #category : #accessing }
-PpEventLog >> gtSpotterProcessorsFora: a [
 ]
 
 { #category : #accessing }
