@@ -10,6 +10,18 @@ Class {
 	#category : #'ProjectProject-Core'
 }
 
+{ #category : #persistence }
+PpEventLog class >> restoreFrom: anObject [
+
+	uniqueInstance := anObject.
+]
+
+{ #category : #persistence }
+PpEventLog class >> spData [
+
+	^ uniqueInstance
+]
+
 { #category : #accessing }
 PpEventLog class >> uniqueInstance [
 
