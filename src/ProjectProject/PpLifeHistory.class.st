@@ -38,12 +38,24 @@ PpLifeHistory class >> spData [
 
 { #category : #accessing }
 PpLifeHistory >> addressBook [
-	^ addressBook ifNil: [ MpAddressBook default ]
+	^ self maLazyInstVarUsing: self addressBookDescription
 ]
 
 { #category : #accessing }
 PpLifeHistory >> addressBook: anObject [
 	addressBook := anObject
+]
+
+{ #category : #accessing }
+PpLifeHistory >> addressBookDescription [
+	<magritteDescription>
+	
+	^ MAToOneRelationDescription new
+			accessor: #addressBook;
+			priority: 200;
+			default: MpAddressBook default;
+			classes: { MpAddressBook };
+			yourself
 ]
 
 { #category : #'as yet unclassified' }
@@ -52,20 +64,7 @@ PpLifeHistory >> callLog [
 ]
 
 { #category : #'as yet unclassified' }
-PpLifeHistory >> descriptionAddressBook [
-	<magritteDescription>
-	
-	^ MAToManyRelationDescription new
-			accessor: #addressBook;
-			label: 'Address Book';
-			priority: 200;
-			default: Bag new;
-			classes: { MpPerson };
-			yourself
-]
-
-{ #category : #'as yet unclassified' }
-PpLifeHistory >> descriptionCallLog [
+PpLifeHistory >> callLogDescription [
 	<magritteDescription>
 	
 	^ MAToManyRelationDescription new
