@@ -7,6 +7,12 @@ Class {
 	#category : #'ProjectProject-Core'
 }
 
+{ #category : #examples }
+PpPhoneCall class >> example [
+	<gtExample>
+	^ self examplePointInTime
+]
+
 { #category : #printing }
 PpPhoneCall >> printOn: aStream [
 	aStream

@@ -25,32 +25,6 @@ PpEvent class >> examplePointInTime [
 		then: [ :evt | evt startDate should equal: '4/5/2021' asDate ]
 ]
 
-{ #category : #magritte }
-PpEvent >> descriptionNotes [
-	<magritteDescription>
-	
-	^ MAToManyRelationDescription new
-			accessor: #notes;
-			label: 'Notes';
-			priority: 200;
-			default: OrderedCollection new;
-			classes: { PpNote };
-			yourself
-]
-
-{ #category : #magritte }
-PpEvent >> descriptionParticipants [
-	<magritteDescription>
-	
-	^ MAMultipleOptionDescription new
-			accessor: #participants;
-			label: 'Participants';
-			priority: 100;
-			default: OrderedCollection new;
-			options: PpLifeHistory mine addressBook;
-			yourself
-]
-
 { #category : #accessing }
 PpEvent >> endDate [
 	^ self maLazyInstVarUsing: self endDateDescription
@@ -119,14 +93,41 @@ PpEvent >> notes: anObject [
 	notes := anObject
 ]
 
+{ #category : #magritte }
+PpEvent >> notesDescription [
+	<magritteDescription>
+	
+	^ MAToManyRelationDescription new
+			accessor: #notes;
+			label: 'Notes';
+			priority: 200;
+			default: OrderedCollection new;
+			classes: { PpNote };
+			yourself
+]
+
 { #category : #accessing }
 PpEvent >> participants [
-	^ participants
+	^ self maLazyInstVarUsing: self participantsDescription
 ]
 
 { #category : #accessing }
 PpEvent >> participants: anObject [
 	participants := anObject
+]
+
+{ #category : #magritte }
+PpEvent >> participantsDescription [
+	<magritteDescription>
+	
+	^ MAMultipleOptionDescription new
+			accessor: #participants;
+			label: 'Participants';
+			priority: 100;
+			default: OrderedCollection new;
+			options: MpAddressBook default contacts;
+			shouldCacheDefault: true;
+			yourself
 ]
 
 { #category : #accessing }
