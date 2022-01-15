@@ -131,6 +131,31 @@ PpEvent >> participantsDescription [
 ]
 
 { #category : #accessing }
+PpEvent >> printOn: aStream [
+	self title 
+		ifNotNil: [ :str |
+			aStream
+				nextPutAll: str;
+				space ]
+		ifNil: [ aStream nextPutAll: (self className allButFirst: 2) normalizeCamelCase ].
+	self startDate ifNotNil: [ :sDate |
+		aStream
+			nextPutAll: ' on ';
+			nextPutAll: sDate mmddyyyy ].
+	self participants ifNotNil: [ :people |
+		aStream nextPutAll: ' with '.
+		people
+			do: [ :e | aStream print: e name ]
+			separatedBy: [ aStream nextPutAll: ', ' ] ].
+		notes isEmptyOrNil ifFalse: [ 
+			aStream
+				nextPutAll: ': '.
+			notes
+				do: [ :n | aStream nextPutAll: n text asString ]
+				separatedBy: [ aStream crlf ] ]
+]
+
+{ #category : #accessing }
 PpEvent >> startDate [
 	^ self maLazyInstVarUsing: self startDateDescription
 ]
