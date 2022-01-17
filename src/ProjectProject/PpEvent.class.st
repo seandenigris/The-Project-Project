@@ -77,9 +77,10 @@ PpEvent >> location: aString [
 PpEvent >> locationDescription [
 
 	<magritteDescription>
-	^ MAStringDescription new
+	^ MASingleOptionDescription new
 		  name: #location;
 		  accessor: #location;
+		  options: MpAddressBook default organizations;
 		  yourself
 ]
 
@@ -142,6 +143,10 @@ PpEvent >> printOn: aStream [
 		aStream
 			nextPutAll: ' on ';
 			nextPutAll: sDate mmddyyyy ].
+	self location ifNotNil: [ :loc |
+		aStream
+			nextPutAll: ' at ';
+			print: loc ].
 	self participants ifNotNil: [ :people |
 		aStream nextPutAll: ' with '.
 		people
