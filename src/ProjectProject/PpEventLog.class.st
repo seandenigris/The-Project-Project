@@ -37,7 +37,7 @@ PpEventLog class >> uniqueInstance: anObject [
 { #category : #accessing }
 PpEventLog >> events [
 
-	^ events ifNil: [ events := SortedCollection sortUsing: #startDate ascending ]
+	^ events ifNil: [ events := SortedCollection sortUsing: #startDate ascending undefinedFirst ]
 ]
 
 { #category : #accessing }
