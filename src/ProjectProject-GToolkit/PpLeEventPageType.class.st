@@ -66,7 +66,7 @@ PpLeEventPageType >> databaseKey [
 { #category : #accessing }
 PpLeEventPageType >> event [
 	self eventID ifNil: [ ^ nil ].
-	^ PpEventLog uniqueInstance events detect: [ :e | e uuid = self eventID ]
+	^ self eventLog events detect: [ :e | e uuid = self eventID ]
 ]
 
 { #category : #accessing }
@@ -79,6 +79,11 @@ PpLeEventPageType >> eventID [
 PpLeEventPageType >> eventID: anObject [
 
 	eventID := anObject
+]
+
+{ #category : #accessing }
+PpLeEventPageType >> eventLog [
+	^ PpEventLog uniqueInstance
 ]
 
 { #category : #comparing }
