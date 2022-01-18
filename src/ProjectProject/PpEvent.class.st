@@ -20,8 +20,13 @@ Class {
 PpEvent class >> examplePointInTime [
 	<gtExample>
 	^ self
-		given: []
-		when: [ PpEvent new startDate: '4/5/2021' asDate; yourself ]
+		given: [ PpEvent new ]
+		when: [ :result |
+			result participants add: MpPerson exampleDumbledore.
+			result 
+				title: 'Meeting';
+				startDate: '4/5/2021' asDate; 	
+				yourself ]
 		then: [ :evt | evt startDate should equal: '4/5/2021' asDate ]
 ]
 

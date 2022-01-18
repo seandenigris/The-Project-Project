@@ -15,6 +15,16 @@ PpLeEventPageType class >> eventID: aUUID page: aLePage [
 		page: aLePage 
 ]
 
+{ #category : #examples }
+PpLeEventPageType class >> example [
+	<gtExample>
+	| log page |
+	log := PpEventLog example.
+	page := LePage ppEventID: log events first ensureUUID.
+	page type stub eventLog willReturn: log.
+	^ page
+]
+
 { #category : #accessing }
 PpLeEventPageType class >> leJsonV3AttributeMapping [
 

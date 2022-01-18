@@ -10,6 +10,17 @@ Class {
 	#category : #'ProjectProject-Core'
 }
 
+{ #category : #examples }
+PpEventLog class >> example [
+	<gtExample>
+	^ self
+		given: [ self new ]
+		when: [ :result | 
+			result events add: PpEvent examplePointInTime.
+			result ]
+		then: [ :result | result events should haveSize: 1 ]
+]
+
 { #category : #persistence }
 PpEventLog class >> restoreFrom: anObject [
 
