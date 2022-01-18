@@ -6,8 +6,5 @@ Class {
 
 { #category : #accessing }
 PpLeEventSnippetBuilder >> text [
-	self ensureSnippetOfClass: QuLeCitedTextSnippet.
-	^ self snippet
-		sourceID: self parent type eventID;
-		yourself
+	^ self ensureSnippetOfClass: PpLeTranscriptLineSnippet
 ]
