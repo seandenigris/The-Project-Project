@@ -8,6 +8,12 @@ Class {
 }
 
 { #category : #accessing }
+PpLeTranscriptLineSnippet class >> empty [
+	"Needed because superclass returns a vanilla text snippet"
+	^ self new
+]
+
+{ #category : #accessing }
 PpLeTranscriptLineSnippet class >> leJsonV4AttributeMapping [
 	^ super leJsonV4AttributeMapping
 		add: (#lineID -> #lineID);
