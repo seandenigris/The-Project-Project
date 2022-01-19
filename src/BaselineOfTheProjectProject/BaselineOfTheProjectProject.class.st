@@ -43,4 +43,24 @@ BaselineOfTheProjectProject >> baseline: spec [
 					repository: 'http://smalltalkhub.com/mc/SeanDeNigris/SeansOutbox/main/' ];"
 			package: #ProjectProject with: [
 				spec requires: #('BookmarkMagic' 'ExternalWebBrowser' 'Magritte' 'Mocketry' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence' "'Spec-PolyWidgets'" 'TrackingNumbers'). ]. ].
+				
+	spec for: #GToolkit do: [ 
+		spec package: 'ProjectProject-GToolkit' with: [ spec requires: #(ProjectProject) ] ]
+]
+
+{ #category : #accessing }
+BaselineOfTheProjectProject >> customProjectAttributes [
+
+	^ self isGTImage
+			ifTrue: [ #(GToolkit) ]
+			ifFalse: [ #(notGToolkit) ].
+			
+	"This is just for code generation purposes. To have an effect, it needs to be on the instance-side, but that could hide problems in other baselines because DeNigrisPreferences is not guaranteed to be loaded"
+]
+
+{ #category : #testing }
+BaselineOfTheProjectProject >> isGTImage [
+	
+	^ RPackageOrganizer default packageNames anySatisfy: [ :pn | pn beginsWith: 'Lepiter-' ].
+	"Implementation note: used to check for GToolkit prefix, but P7 has a GToolkit-Examples package. Lepiter, OTOH, could only be loaded in a GT image"
 ]

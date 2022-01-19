@@ -7,11 +7,6 @@ Class {
 	#category : #'ProjectProject-GToolkit'
 }
 
-{ #category : #'instance creation' }
-PpLeTranscriptLineSnippet class >> empty [ 
-	^ self new
-]
-
 { #category : #accessing }
 PpLeTranscriptLineSnippet class >> leJsonV4AttributeMapping [
 	^ super leJsonV4AttributeMapping
