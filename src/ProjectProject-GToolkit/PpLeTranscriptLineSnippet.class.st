@@ -36,14 +36,3 @@ PpLeTranscriptLineSnippet >> lineID: anObject [
 
 	lineID := anObject
 ]
-
-{ #category : #accessing }
-PpLeTranscriptLineSnippet >> source [
-	self flag: 'Does a transcript line need to know its event? If so, it''s available from the page'.
-	self sourceID ifNil: [ ^ nil ].
-	
-	^ self
-		detectSourceWithUuid: self sourceID 
-		ifFound: #yourself
-		ifNone: [ nil ]
-]
