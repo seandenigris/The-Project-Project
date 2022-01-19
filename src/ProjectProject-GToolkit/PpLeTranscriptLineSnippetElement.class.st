@@ -3,7 +3,9 @@ Class {
 	#superclass : #LeTextCoderSnippetElement,
 	#instVars : [
 		'snippetToolbar',
-		'sourceLabel'
+		'sourceLabel',
+		'speakerLabel',
+		'speakerChooser'
 	],
 	#category : #'ProjectProject-GToolkit'
 }
@@ -43,14 +45,14 @@ PpLeTranscriptLineSnippetElement >> initialize [
 PpLeTranscriptLineSnippetElement >> newSearchButton [
 
 	^ GtSpotterDropdownButtonStencil new
-		valuable: [ self snippetViewModel snippetModel ];
+		valuable: [ self snippetViewModel snippetModel page type event participants ];
 		icon: BrGlamorousVectorIcons search;
 		spotterModelDo: [ :sm |
 			sm announcer
 				when: GtSpotterActOn
 				do: [ :evt | 
-					self snippetViewModel snippetModel sourceID: evt element ensureUUID.
-					self onSourceChanged.
+					speakerLabel text: evt element.
+					self editorElement requestFocus.
 					evt actedUpon: true. ] ];
 		create
 ]
@@ -62,6 +64,15 @@ PpLeTranscriptLineSnippetElement >> onSnippetViewModelChanged [
 ]
 
 { #category : #accessing }
+PpLeTranscriptLineSnippetElement >> onSnippetViewModelFocused: aBoolean [
+
+	aBoolean ifFalse: [ ^ self ].
+	
+	self flag: 'waiting for help on shortcut actions via Discord'.
+	"speakerChooser requestFocus."
+]
+
+{ #category : #accessing }
 PpLeTranscriptLineSnippetElement >> snippetContent [
 	| result |
 	result := BrHorizontalPane new
@@ -70,11 +81,19 @@ PpLeTranscriptLineSnippetElement >> snippetContent [
 		alignCenterLeft;
 		cellSpacing: 5;
 		vFitContent.
+		
+	speakerChooser := self newSearchButton
+		"addShortcut: Character space asShortcut;"
+		yourself.
+		
+	speakerLabel := BrEditor new 
+		aptitude: BrGlamorousEditorAptitude new;
+		hFitContent;
+		vFitContent.
 	
 	^ result
-		addChild: (BrEditor new aptitude: BrGlamorousEditorAptitude new;"aptitude: BrGlamorousLabelAptitude;
-			beSmallSize;"
-			text: 'hi'; hFitContent; vFitContent);
+		addChild: speakerChooser;
+		addChild: speakerLabel;
 		addChild: self editorElement;
 		yourself
 ]
