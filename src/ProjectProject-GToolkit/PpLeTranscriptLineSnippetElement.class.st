@@ -5,7 +5,8 @@ Class {
 		'snippetToolbar',
 		'sourceLabel',
 		'speakerLabel',
-		'speakerChooser'
+		'speakerChooser',
+		'positionLabel'
 	],
 	#category : #'ProjectProject-GToolkit'
 }
@@ -51,9 +52,10 @@ PpLeTranscriptLineSnippetElement >> newSearchButton [
 			sm announcer
 				when: GtSpotterActOn
 				do: [ :evt | 
-					self editorElement requestFocus.
+					self snippetViewModel snippetModel line speaker: evt element.
 					self onSnippetViewModelChanged.
-					evt actedUpon: true. ] ];
+					evt actedUpon: true.
+					self editorElement requestFocus ] ];
 		create
 ]
 
@@ -61,6 +63,7 @@ PpLeTranscriptLineSnippetElement >> newSearchButton [
 PpLeTranscriptLineSnippetElement >> onSnippetViewModelChanged [
 	"self onSourceChanged."
 	super onSnippetViewModelChanged.
+	positionLabel text: self snippetViewModel positionDisplayText.
 	speakerLabel text: self snippetViewModel speakerDisplayText.
 ]
 
@@ -70,7 +73,6 @@ PpLeTranscriptLineSnippetElement >> onSnippetViewModelFocused: aBoolean [
 	aBoolean ifFalse: [ ^ self ].
 	
 	self flag: 'waiting for help on shortcut actions via Discord'.
-	"speakerChooser requestFocus."
 ]
 
 { #category : #accessing }
@@ -83,6 +85,10 @@ PpLeTranscriptLineSnippetElement >> snippetContent [
 		cellSpacing: 5;
 		vFitContent.
 		
+	positionLabel := BrLabel new
+		aptitude: BrGlamorousLabelAptitude new;
+		yourself.
+	
 	speakerChooser := self newSearchButton
 		"addShortcut: Character space asShortcut;"
 		yourself.
@@ -93,6 +99,7 @@ PpLeTranscriptLineSnippetElement >> snippetContent [
 		vFitContent.
 	
 	^ result
+		addChild: positionLabel;
 		addChild: speakerChooser;
 		addChild: speakerLabel;
 		addChild: self editorElement;

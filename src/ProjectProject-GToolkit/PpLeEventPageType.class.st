@@ -21,6 +21,7 @@ PpLeEventPageType class >> example [
 	| log page |
 	log := PpEventLog example.
 	page := LePage ppEventID: log events first ensureUUID.
+	page database: LeDatabase new.
 	page type stub eventLog willReturn: log.
 	^ page
 ]

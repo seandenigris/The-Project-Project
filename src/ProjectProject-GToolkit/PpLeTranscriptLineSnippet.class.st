@@ -1,9 +1,6 @@
 Class {
 	#name : #PpLeTranscriptLineSnippet,
 	#superclass : #LeTextSnippet,
-	#instVars : [
-		'lineID'
-	],
 	#category : #'ProjectProject-GToolkit'
 }
 
@@ -16,8 +13,8 @@ PpLeTranscriptLineSnippet class >> empty [
 { #category : #accessing }
 PpLeTranscriptLineSnippet class >> leJsonV4AttributeMapping [
 	^ super leJsonV4AttributeMapping
-		add: (#lineID -> #lineID);
-		yourself 
+		"add: (#lineID -> #lineID);
+		yourself "
 ]
 
 { #category : #accessing }
@@ -37,30 +34,36 @@ PpLeTranscriptLineSnippet >> event [
 ]
 
 { #category : #accessing }
+PpLeTranscriptLineSnippet >> gtViewLineFor: aView [
+	<gtView>
+	self line ifNil: [ ^ aView empty ].
+	^ aView forward
+		title: 'Line';
+		priority: 2;
+		object: [ self line ];
+		view: #gtRawFor:
+]
+
+{ #category : #accessing }
+PpLeTranscriptLineSnippet >> gtViewLineOn: aView [
+]
+
+{ #category : #accessing }
 PpLeTranscriptLineSnippet >> line [
 
-	^ self event transcript detect: [ :e | e contentSnippetID = self uid ]
-]
-
-{ #category : #accessing }
-PpLeTranscriptLineSnippet >> lineID [
-
-	^ lineID
-]
-
-{ #category : #accessing }
-PpLeTranscriptLineSnippet >> lineID: anObject [
-
-	lineID := anObject
+	^ self event transcript 
+		detect: [ :e | e contentSnippetID = self uid ] 
+		ifNone: [ nil ]
 ]
 
 { #category : #accessing }
 PpLeTranscriptLineSnippet >> parent: anObject [
 	super parent: anObject.
-	self lineID ifNotNil: [ ^ self ].
+	self line ifNotNil: [ ^ self ].
 	self page type event transcript add: (PpTranscriptLine new
 		contentSnippetID: self uid;
-		yourself)
+		position: DateAndTime now;
+		yourself).
 ]
 
 { #category : #accessing }
