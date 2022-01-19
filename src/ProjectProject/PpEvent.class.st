@@ -130,7 +130,7 @@ PpEvent >> participantsDescription [
 			accessor: #participants;
 			label: 'Participants';
 			priority: 100;
-			default: OrderedCollection new;
+			default: MpEntityCollection new;
 			options: MpAddressBook default contacts;
 			shouldCacheDefault: true;
 			yourself
