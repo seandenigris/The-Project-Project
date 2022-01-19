@@ -22,7 +22,9 @@ PpEvent class >> examplePointInTime [
 	^ self
 		given: [ PpEvent new ]
 		when: [ :result |
-			result participants add: MpPerson exampleDumbledore.
+			result participants 
+				add: MpPerson exampleDumbledore;
+				add: MpPerson exampleHarryPotter.
 			result 
 				title: 'Meeting';
 				startDate: '4/5/2021' asDate; 	
