@@ -4,21 +4,27 @@ Class {
 	#instVars : [
 		'position',
 		'speaker',
-		'contents'
+		'contentSnippetID'
 	],
 	#category : #'ProjectProject-Core'
 }
 
 { #category : #accessing }
-PpTranscriptLine >> contents [
+PpTranscriptLine >> contentSnippetID [
 
-	^ contents
+	^ contentSnippetID
 ]
 
 { #category : #accessing }
-PpTranscriptLine >> contents: anObject [
+PpTranscriptLine >> contentSnippetID: aUUID [
 
-	contents := anObject
+	contentSnippetID := aUUID
+]
+
+{ #category : #accessing }
+PpTranscriptLine >> contents [
+
+	^ contents
 ]
 
 { #category : #accessing }

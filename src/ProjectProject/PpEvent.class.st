@@ -11,7 +11,8 @@ Class {
 		'notes',
 		'participants',
 		'title',
-		'location'
+		'location',
+		'transcript'
 	],
 	#category : #'ProjectProject-Core'
 }
@@ -223,4 +224,9 @@ PpEvent >> titleDescription [
 		  name: #title;
 		  accessor: #title;
 		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PpEvent >> transcript [
+	^ transcript ifNil: [ transcript := SortedCollection sortUsing: #position ascending undefinedFirst ]
 ]

@@ -32,6 +32,17 @@ PpLeTranscriptLineSnippet >> asSnippetViewModel [
 ]
 
 { #category : #accessing }
+PpLeTranscriptLineSnippet >> event [
+	^ self page type event
+]
+
+{ #category : #accessing }
+PpLeTranscriptLineSnippet >> line [
+
+	^ self event transcript detect: [ :e | e contentSnippetID = self uid ]
+]
+
+{ #category : #accessing }
 PpLeTranscriptLineSnippet >> lineID [
 
 	^ lineID
@@ -41,4 +52,18 @@ PpLeTranscriptLineSnippet >> lineID [
 PpLeTranscriptLineSnippet >> lineID: anObject [
 
 	lineID := anObject
+]
+
+{ #category : #accessing }
+PpLeTranscriptLineSnippet >> parent: anObject [
+	super parent: anObject.
+	self lineID ifNotNil: [ ^ self ].
+	self page type event transcript add: (PpTranscriptLine new
+		contentSnippetID: self uid;
+		yourself)
+]
+
+{ #category : #accessing }
+PpLeTranscriptLineSnippet >> speaker: aPerson [
+	self line speaker: aPerson
 ]

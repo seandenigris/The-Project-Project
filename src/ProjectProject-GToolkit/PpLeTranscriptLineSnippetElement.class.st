@@ -51,8 +51,8 @@ PpLeTranscriptLineSnippetElement >> newSearchButton [
 			sm announcer
 				when: GtSpotterActOn
 				do: [ :evt | 
-					speakerLabel text: evt element.
 					self editorElement requestFocus.
+					self onSnippetViewModelChanged.
 					evt actedUpon: true. ] ];
 		create
 ]
@@ -61,6 +61,7 @@ PpLeTranscriptLineSnippetElement >> newSearchButton [
 PpLeTranscriptLineSnippetElement >> onSnippetViewModelChanged [
 	"self onSourceChanged."
 	super onSnippetViewModelChanged.
+	speakerLabel text: self snippetViewModel speakerDisplayText.
 ]
 
 { #category : #accessing }
