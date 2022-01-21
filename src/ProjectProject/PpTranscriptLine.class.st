@@ -22,6 +22,11 @@ PpTranscriptLine >> contentSnippetID: aUUID [
 ]
 
 { #category : #accessing }
+PpTranscriptLine >> lepiterDatabase [
+	^ LeDatabasesRegistry defaultPrimaryDatabase
+]
+
+{ #category : #accessing }
 PpTranscriptLine >> position [
 
 	^ position
@@ -46,7 +51,7 @@ PpTranscriptLine >> printOn: aStream [
 { #category : #accessing }
 PpTranscriptLine >> snippet [
 
-	^ LeDatabasesRegistry defaultPrimaryDatabase blockWithUID: self contentSnippetID
+	^ self lepiterDatabase blockWithUID: self contentSnippetID
 ]
 
 { #category : #accessing }
