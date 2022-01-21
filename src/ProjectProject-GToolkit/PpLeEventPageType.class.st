@@ -18,10 +18,19 @@ PpLeEventPageType class >> eventID: aUUID page: aLePage [
 { #category : #examples }
 PpLeEventPageType class >> example [
 	<gtExample>
+	^ self exampleEmptyPage
+		addSnippet: PpLeTranscriptLineSnippet exampleDumbledore;
+		addSnippet: PpLeTranscriptLineSnippet exampleHarryPotter;
+		yourself
+]
+
+{ #category : #examples }
+PpLeEventPageType class >> exampleEmptyPage [
+	<gtExample>
 	| log page |
 	log := PpEventLog example.
 	page := LePage ppEventID: log events first ensureUUID.
-	page database: LeDatabase new.
+	LeDatabase new addPage: page.
 	page type stub eventLog willReturn: log.
 	^ page
 ]

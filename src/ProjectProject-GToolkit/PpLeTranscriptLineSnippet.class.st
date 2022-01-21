@@ -10,6 +10,32 @@ PpLeTranscriptLineSnippet class >> empty [
 	^ self new
 ]
 
+{ #category : #examples }
+PpLeTranscriptLineSnippet class >> exampleDumbledore [
+	<gtExample>
+	
+	| page result |
+	page := PpLeEventPageType exampleEmptyPage.
+	result := self empty.
+	page addSnippet: result.
+	result line speaker: page type event participants first.
+	result text: 'To the well-organized mind, death is but the next great adventure.' asRopedText.
+	^ result
+]
+
+{ #category : #examples }
+PpLeTranscriptLineSnippet class >> exampleHarryPotter [
+	<gtExample>
+	
+	| page result |
+	page := PpLeEventPageType exampleEmptyPage.
+	result := self empty.
+	page addSnippet: result.
+	result line speaker: page type event participants first.
+	result text: 'I don''t want to be rude or anything, but—this isn''t a great time for me to have a house elf in my bedroom.' asRopedText.
+	^ result
+]
+
 { #category : #accessing }
 PpLeTranscriptLineSnippet class >> leJsonV4AttributeMapping [
 	^ super leJsonV4AttributeMapping
