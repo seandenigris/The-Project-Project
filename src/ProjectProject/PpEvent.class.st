@@ -230,3 +230,8 @@ PpEvent >> titleDescription [
 PpEvent >> transcript [
 	^ transcript ifNil: [ transcript := QuTranscript new ]
 ]
+
+{ #category : #accessing }
+PpEvent >> transcriptLepiterPage [
+	^ LePage quTranscriptOwner: self.
+]
