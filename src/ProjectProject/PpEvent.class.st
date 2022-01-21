@@ -228,5 +228,5 @@ PpEvent >> titleDescription [
 
 { #category : #'as yet unclassified' }
 PpEvent >> transcript [
-	^ transcript ifNil: [ transcript := SortedCollection sortUsing: #position ascending undefinedFirst ]
+	^ transcript ifNil: [ transcript := QuTranscript new ]
 ]
