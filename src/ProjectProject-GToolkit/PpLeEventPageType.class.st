@@ -4,6 +4,9 @@ Class {
 	#instVars : [
 		'eventID'
 	],
+	#classVars : [
+		'ModelReferenceBuilder'
+	],
 	#category : #'ProjectProject-GToolkit'
 }
 
@@ -27,11 +30,15 @@ PpLeEventPageType class >> example [
 { #category : #examples }
 PpLeEventPageType class >> exampleEmptyPage [
 	<gtExample>
-	| log page |
+	| log page event |
 	log := PpEventLog example.
-	page := LePage ppEventID: log events first ensureUUID.
+	event := log events first.
+	page := LePage ppEventID: event ensureUUID.
 	LeDatabase new addPage: page.
-	page type stub eventLog willReturn: log.
+	page type stub modelReference willReturn: (MADummyObjectUIDReferenceForTesting new
+		source: log events;
+		uid: event uuid;
+		yourself).
 	^ page
 ]
 
@@ -55,7 +62,7 @@ PpLeEventPageType class >> leJsonV4AttributeMapping [
 
 	^ super leJsonV4AttributeMapping
 		add: (#eventID -> #eventID);
-		add: (#dynabookModelReference -> #dynabookModelReference);
+		add: (#modelReference -> #modelReference);
 		yourself
 
 ]
@@ -64,6 +71,17 @@ PpLeEventPageType class >> leJsonV4AttributeMapping [
 PpLeEventPageType class >> leJsonV4Name [
 
 	^ 'ppEventPage'
+]
+
+{ #category : #accessing }
+PpLeEventPageType class >> modelReferenceBuilder [
+	^ ModelReferenceBuilder
+]
+
+{ #category : #accessing }
+PpLeEventPageType class >> modelReferenceBuilder: aValuable [
+	"aValuable - returns anMAObjectUIDReference"
+	ModelReferenceBuilder := aValuable
 ]
 
 { #category : #comparing }
@@ -85,19 +103,9 @@ PpLeEventPageType >> databaseKey [
 ]
 
 { #category : #accessing }
-PpLeEventPageType >> dynabookModelReference [
-
-	^ DbObjectUIDReference new
-		sourceClass: #PpEventLog;
-		collectionGetter: #events;
-		uid: self eventID;
-		yourself
-]
-
-{ #category : #accessing }
 PpLeEventPageType >> event [
 	self eventID ifNil: [ ^ nil ].
-	^ self eventLog events detect: [ :e | e uuid = self eventID ]
+	^ self modelReference object
 ]
 
 { #category : #accessing }
@@ -112,11 +120,6 @@ PpLeEventPageType >> eventID: anObject [
 	eventID := anObject
 ]
 
-{ #category : #accessing }
-PpLeEventPageType >> eventLog [
-	^ PpEventLog uniqueInstance
-]
-
 { #category : #comparing }
 PpLeEventPageType >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
@@ -127,6 +130,14 @@ PpLeEventPageType >> hash [
 { #category : #'api - testing' }
 PpLeEventPageType >> isPpEventPageType [
 	^ true
+]
+
+{ #category : #accessing }
+PpLeEventPageType >> modelReference [
+
+	^ self class modelReferenceBuilder value
+		uid: self eventID;
+		yourself
 ]
 
 { #category : #printing }
