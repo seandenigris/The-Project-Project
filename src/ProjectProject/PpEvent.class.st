@@ -1,8 +1,8 @@
 Class {
 	#name : #PpEvent,
 	#superclass : #Object,
-	#traits : 'QuTLeCitable + MATPropertyOwner',
-	#classTraits : 'QuTLeCitable classTrait + MATPropertyOwner classTrait',
+	#traits : 'MATPropertyOwner',
+	#classTraits : 'MATPropertyOwner classTrait',
 	#instVars : [
 		'endDate',
 		'startDate',
