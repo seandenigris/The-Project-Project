@@ -55,6 +55,7 @@ PpLeEventPageType class >> leJsonV4AttributeMapping [
 
 	^ super leJsonV4AttributeMapping
 		add: (#eventID -> #eventID);
+		add: (#dynabookModelReference -> #dynabookModelReference);
 		yourself
 
 ]
@@ -81,6 +82,16 @@ PpLeEventPageType >> databaseKey [
 	"Answer the attribute used to index a page of the receiver's type in the database."
 
 	^ self eventID
+]
+
+{ #category : #accessing }
+PpLeEventPageType >> dynabookModelReference [
+
+	^ DbObjectUIDReference new
+		sourceClass: #PpEventLog;
+		collectionGetter: #events;
+		uid: self eventID;
+		yourself
 ]
 
 { #category : #accessing }
