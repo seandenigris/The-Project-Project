@@ -226,12 +226,12 @@ PpEvent >> titleDescription [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
-PpEvent >> transcript [
-	^ transcript ifNil: [ transcript := QuTranscript new ]
-]
-
 { #category : #accessing }
-PpEvent >> transcriptLepiterPage [
-	^ LePage quTranscriptOwner: self.
+PpEvent >> transcript [
+	^ self 
+		propertyAt: #transcript
+		ifAbsentPut: [ 
+			QuTranscript new
+				model: self;
+				yourself ]
 ]
