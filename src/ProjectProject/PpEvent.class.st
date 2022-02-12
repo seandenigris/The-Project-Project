@@ -92,6 +92,13 @@ PpEvent >> locationDescription [
 		  yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PpEvent >> newPlayer [
+	^ self hasRecording
+		ifTrue: [ self ensureRecording newPlayer ]
+		ifFalse: [ LlLivePlayer new ]
+]
+
 { #category : #accessing }
 PpEvent >> notes [
 	^ notes
