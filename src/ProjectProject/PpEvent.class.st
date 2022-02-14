@@ -92,13 +92,6 @@ PpEvent >> locationDescription [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
-PpEvent >> newPlayer [
-	^ self hasRecording
-		ifTrue: [ self ensureRecording newPlayer ]
-		ifFalse: [ PpLivePlayer new ]
-]
-
 { #category : #accessing }
 PpEvent >> notes [
 	^ notes
@@ -235,6 +228,8 @@ PpEvent >> titleDescription [
 
 { #category : #accessing }
 PpEvent >> transcript [
+	
+	self hasRecording ifTrue: [ ^ self ensureRecording transcript ].
 	^ self 
 		propertyAt: #transcript
 		ifAbsentPut: [ 
