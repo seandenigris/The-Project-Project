@@ -96,7 +96,7 @@ PpEvent >> locationDescription [
 PpEvent >> newPlayer [
 	^ self hasRecording
 		ifTrue: [ self ensureRecording newPlayer ]
-		ifFalse: [ LlLivePlayer new ]
+		ifFalse: [ PpLivePlayer new ]
 ]
 
 { #category : #accessing }

@@ -1,10 +1,10 @@
 Class {
-	#name : #LlLivePlayer,
+	#name : #PpLivePlayer,
 	#superclass : #Object,
 	#category : #'ProjectProject-Core'
 }
 
 { #category : #accessing }
-LlLivePlayer >> currentPosition [
+PpLivePlayer >> currentPosition [
 	^ DateAndTime now
 ]
