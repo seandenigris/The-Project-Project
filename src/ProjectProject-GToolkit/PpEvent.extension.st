@@ -10,7 +10,7 @@ PpEvent class >> exampleTranscriptEmptyPage [
 				event := log events first.
 				page := LePage quTranscriptOwner: event.
 				LeDatabase new addPage: page.
-				page type stub modelReference willReturn: (MADummyObjectUIDReferenceForTesting new
+				page type stub subjectModelReference willReturn: (MADummyObjectUIDReferenceForTesting new
 					source: log events;
 					uid: event uuid;
 					yourself).
