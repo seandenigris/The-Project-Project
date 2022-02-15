@@ -234,6 +234,6 @@ PpEvent >> transcript [
 		propertyAt: #transcript
 		ifAbsentPut: [ 
 			QuTranscript new
-				model: self;
+				subjectModel: self;
 				yourself ]
 ]
