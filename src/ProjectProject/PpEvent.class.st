@@ -72,6 +72,19 @@ PpEvent >> endTimeDescription [
 ]
 
 { #category : #accessing }
+PpEvent >> gtViewTranscriptFor: aView [
+	<gtView>
+
+	(self hasProperty: #transcript) ifFalse: [ ^ aView empty ].
+	
+	^ aView forward
+		title: 'Transcript' translated;
+		priority: 65;
+		object: [ self transcript ];
+		view: #gtLiveFor:.
+]
+
+{ #category : #accessing }
 PpEvent >> location [
 	^ self maLazyInstVarUsing: self locationDescription
 ]
