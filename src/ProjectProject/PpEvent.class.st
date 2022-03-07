@@ -84,6 +84,18 @@ PpEvent >> gtViewTranscriptFor: aView [
 		view: #gtLiveFor:.
 ]
 
+{ #category : #testing }
+PpEvent >> isPast [
+	self endDate ifNil: [ 
+		self startDate < Date today ifTrue: [ ^ true ].
+		self startDate > Date today ifTrue: [ ^ false ] ].
+	self endDate < Date today ifTrue: [ ^ true ].
+	self endDate > Date today ifTrue: [ ^ false ].
+	^ self endTime 
+			ifNotNil: [ self endTime < DateAndTime now asTime ]
+			ifNil: [ self startTime < DateAndTime now asTime ]
+]
+
 { #category : #accessing }
 PpEvent >> location [
 	^ self maLazyInstVarUsing: self locationDescription
