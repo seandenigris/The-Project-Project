@@ -16,7 +16,7 @@ TheProjectProjectDB class >> schema [
 			BookmarkMagicDB.
 			PpChecklist.
 			PpEventLog.
-			PpLifeHistory.
+			PpInventory.
 			PpProjectList.
 			PpTag.
 			QuoteMeDB.
