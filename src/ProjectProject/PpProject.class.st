@@ -218,6 +218,33 @@ PpProject >> gtInspectorLinksIn: composite [
 	^ list
 ]
 
+{ #category : #accessing }
+PpProject >> gtSpotterNewProjectFor: aStep [
+	
+]
+
+{ #category : #accessing }
+PpProject >> gtSpotterNewStepFor: aStep [
+	<gtSearch>
+	aStep listProcessor
+		title: 'New Step';
+		priority: 50;
+		itemName: [ :input | 'Create new step: ', input ];
+		previewObject: [ :input | PpProject new title: input; yourself ];
+		wantsToDisplayOnEmptyQuery: false;
+		filter: GtNullFilter
+			item: [ :filter :aContext | 
+				| isExisting |
+				isExisting := self children anySatisfy: [ :e | 
+					e title = aContext textTrimmed ].
+				isExisting ifFalse: [ 
+					filter value: aContext textTrimmed ] ];
+		send: [ :input :spotterStep | 
+			| result |
+			result := PpProject new title: input; yourself.
+			self children add: result ]
+]
+
 { #category : #views }
 PpProject >> gtViewOn: aView [
 

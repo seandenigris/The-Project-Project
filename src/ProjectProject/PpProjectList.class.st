@@ -109,6 +109,26 @@ PpProjectList >> addDescription [
 			yourself
 ]
 
+{ #category : #accessing }
+PpProjectList >> gtSpotterNewProjectFor: aStep [
+	<gtSearch>
+	aStep listProcessor
+		title: 'New Project';
+		priority: 50;
+		itemName: [ :input | 'Create new project: ', input ];
+		previewObject: [ :input | PpProject new title: input; yourself ];
+		wantsToDisplayOnEmptyQuery: false;
+		filter: GtNullFilter
+			item: [ :filter :context | 
+				| isExisting |
+				isExisting := self projects anySatisfy: [ :e | 
+					e title = context textTrimmed ].
+				isExisting ifFalse: [ 
+					filter value: context textTrimmed ] ];
+		send: [ :input :spotterStep | 
+			PpProject new title: input; yourself ]
+]
+
 { #category : #magritte }
 PpProjectList >> mementoClass [
 	^ MAStraightMemento
