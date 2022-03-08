@@ -11,7 +11,8 @@ Class {
 		'status',
 		'completionTimestamp',
 		'context',
-		'supportMaterials'
+		'supportMaterials',
+		'requirements'
 	],
 	#category : #'ProjectProject-Core'
 }
@@ -318,6 +319,18 @@ PpProject >> noteDescription [
 PpProject >> printOn: aStream [
 	aStream nextPutAll: 'Project: '.
 	aStream nextPutAll: self displayString
+]
+
+{ #category : #accessing }
+PpProject >> requirements [
+
+	^ requirements ifNil: [ requirements := Bag new ]
+]
+
+{ #category : #accessing }
+PpProject >> requirements: anObject [
+
+	requirements := anObject
 ]
 
 { #category : #status }
