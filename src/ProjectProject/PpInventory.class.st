@@ -10,6 +10,18 @@ Class {
 	#category : #'ProjectProject-Core'
 }
 
+{ #category : #persistence }
+PpInventory class >> restoreFrom: anObject [
+
+	UniqueInstance := anObject
+]
+
+{ #category : #persistence }
+PpInventory class >> spData [
+
+	^ UniqueInstance
+]
+
 { #category : #'instance creation' }
 PpInventory class >> uniqueInstance [
 	^ UniqueInstance ifNil: [ UniqueInstance := self new ]
