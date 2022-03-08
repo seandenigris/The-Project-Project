@@ -387,7 +387,7 @@ PpProject >> statusDescription [
 
 { #category : #accessing }
 PpProject >> supportMaterials [
-	^ supportMaterials
+	^ self maLazyInstVarUsing: self supportMaterialsDescription
 ]
 
 { #category : #accessing }
