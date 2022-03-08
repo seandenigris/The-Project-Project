@@ -86,14 +86,16 @@ PpEvent >> gtViewTranscriptFor: aView [
 
 { #category : #testing }
 PpEvent >> isPast [
-	self endDate ifNil: [ 
-		self startDate < Date today ifTrue: [ ^ true ].
-		self startDate > Date today ifTrue: [ ^ false ] ].
-	self endDate < Date today ifTrue: [ ^ true ].
-	self endDate > Date today ifTrue: [ ^ false ].
+	self endDate 
+		ifNil: [ 
+			self startDate < Date today ifTrue: [ ^ true ].
+			self startDate > Date today ifTrue: [ ^ false ] ]
+		ifNotNil: [ :ed |
+			ed < Date today ifTrue: [ ^ true ].
+			ed > Date today ifTrue: [ ^ false ] ].
 	^ self endTime 
 			ifNotNil: [ self endTime < DateAndTime now asTime ]
-			ifNil: [ self startTime < DateAndTime now asTime ]
+			ifNil: [ false ]
 ]
 
 { #category : #accessing }
