@@ -128,7 +128,7 @@ PpReadOnlyProjectList >> maGtFormFor: aView [
 	"Deprioritize this view because it is not very useful and super slow"
 	
 	^ (super maGtFormFor: aView)
-		priority: 500
+		priority: 190
 ]
 
 { #category : #accessing }
