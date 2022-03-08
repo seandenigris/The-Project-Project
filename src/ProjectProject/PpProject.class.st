@@ -123,7 +123,7 @@ PpProject >> childrenDescription [
 		default: OrderedCollection new;
 		beOrdered;
 		glmPresentation: #list;
-		options: self allProjects;
+		options: self allProjects projects;
 		morphicClass: MATokenCompletionMorph;
 		initializer: [ :s | 
 			PpProject new

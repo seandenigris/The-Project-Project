@@ -9,7 +9,6 @@ Class {
 
 { #category : #magritte }
 PpReadOnlyProjectList >> activeDescription [
-	<maGtView>
 	<magritteAltFor: #projectsDescription>
 	
 	^ self filteredProjectsDescription: 'Active Projects'
@@ -70,7 +69,7 @@ PpReadOnlyProjectList >> dueTodayDescription [
 
 { #category : #magritte }
 PpReadOnlyProjectList >> filteredProjectsDescription: labelString [
-	^ MAToManyRelationDescription new
+	^ MAToOneRelationDescription new
 		accessor: labelString asValidSelector asSymbol;
 		label: labelString;
 		gtView: [ :aView :desc :me |
@@ -79,7 +78,8 @@ PpReadOnlyProjectList >> filteredProjectsDescription: labelString [
 				items: [ (desc read: me) projects ];
 				children: [ :proj | proj activeChildren ] ];
 		"default: Bag new;"
-			beReadOnly;
+		classes: PpReadOnlyProjectList;
+		beReadOnly;
 		group: 'Projects';
 		yourself
 ]
