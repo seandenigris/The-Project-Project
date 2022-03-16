@@ -34,6 +34,17 @@ PpEvent class >> examplePointInTime [
 ]
 
 { #category : #accessing }
+PpEvent >> allEventsDo: aBlock [
+	aBlock value: self.
+	self children do: [ :child | child allEventsDo: aBlock ]
+]
+
+{ #category : #accessing }
+PpEvent >> children [
+	^ self propertyAt: #children ifAbsentPut: [ OrderedCollection new ]
+]
+
+{ #category : #accessing }
 PpEvent >> endDate [
 	^ self maLazyInstVarUsing: self endDateDescription
 ]
@@ -69,6 +80,41 @@ PpEvent >> endTimeDescription [
 	^ MATimeDescription new
 		  accessor: #endTime;
 		  yourself
+]
+
+{ #category : #accessing }
+PpEvent >> events [
+	^ self children
+]
+
+{ #category : #accessing }
+PpEvent >> gtSpotterNew: aClass on: aStep [
+
+	| typeName |
+	typeName := (aClass name allButFirst: 2) normalizeCamelCase.
+
+	aStep listProcessor
+		title: 'New ', typeName;
+		priority: 50;
+		itemName: [ :input | 'Create new ', typeName asLowercase, ': ', input ];
+		previewObject: [ :input | aClass new title: input; yourself ];
+		wantsToDisplayOnEmptyQuery: false;
+		filter: GtNullFilter
+			item: [ :filter :context | 
+				| isExisting |
+				isExisting := self events anySatisfy: [ :e | 
+					e title = context textTrimmed ].
+				isExisting ifFalse: [ 
+					filter value: context textTrimmed ] ];
+		send: [ :input :spotterStep | self events add: (aClass new title: input; yourself) ].
+]
+
+{ #category : #accessing }
+PpEvent >> gtSpotterNewEventOn: aStep [
+	<gtSearch>
+	
+	PpEvent withAllSubclassesDo: [ :cls |
+		self gtSpotterNew: cls on: aStep ]
 ]
 
 { #category : #accessing }
@@ -263,4 +309,9 @@ PpEvent >> transcript [
 			QuTranscript new
 				subjectModel: self;
 				yourself ]
+]
+
+{ #category : #'as yet unclassified' }
+PpEvent >> transcript: aQuTranscript [
+	self propertyAt: #transcript putRemovingNil: aQuTranscript
 ]

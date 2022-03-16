@@ -46,6 +46,12 @@ PpEventLog class >> uniqueInstance: anObject [
 ]
 
 { #category : #accessing }
+PpEventLog >> allEventsDo: aBlock [
+
+	^ self events do: [ :e | e allEventsDo: aBlock ]
+]
+
+{ #category : #accessing }
 PpEventLog >> events [
 
 	^ events ifNil: [ events := SortedCollection sortUsing: #startDate ascending undefinedFirst ]
