@@ -25,6 +25,8 @@ BaselineOfTheProjectProject >> baseline: spec [
 					repository: 'github://seandenigris/Magritte' ];
 			baseline: 'Mocketry' with: [
 				spec repository: 'github://dionisiydk/Mocketry' ];
+			baseline: 'ObjectiveLepiter' with: [
+				spec repository: 'github://seandenigris/Objective-Lepiter' ];
 			baseline: 'PharoEnhancements' with: [
 				spec repository: 'github://seandenigris/Pharo-Enhancements' ];
 			baseline: 'QuoteMe' with: [
@@ -45,7 +47,7 @@ BaselineOfTheProjectProject >> baseline: spec [
 				spec requires: #('BookmarkMagic' 'ExternalWebBrowser' 'Magritte' 'Mocketry' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence' "'Spec-PolyWidgets'" 'TrackingNumbers'). ]. ].
 				
 	spec for: #GToolkit do: [ 
-		spec package: 'ProjectProject-GToolkit' with: [ spec requires: #(ProjectProject) ] ]
+		spec package: 'ProjectProject-GToolkit' with: [ spec requires: #(ObjectiveLepiter ProjectProject) ] ]
 ]
 
 { #category : #accessing }
