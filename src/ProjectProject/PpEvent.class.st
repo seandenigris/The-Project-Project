@@ -1,8 +1,8 @@
 Class {
 	#name : #PpEvent,
 	#superclass : #Object,
-	#traits : 'MATPropertyOwner',
-	#classTraits : 'MATPropertyOwner classTrait',
+	#traits : 'MATPropertyOwner + (QuTTranscriptable @ {#traitTranscript->#transcript})',
+	#classTraits : 'MATPropertyOwner classTrait + QuTTranscriptable classTrait',
 	#instVars : [
 		'endDate',
 		'startDate',
@@ -303,15 +303,5 @@ PpEvent >> titleDescription [
 PpEvent >> transcript [
 	
 	self hasRecording ifTrue: [ ^ self ensureRecording transcript ].
-	^ self 
-		propertyAt: #transcript
-		ifAbsentPut: [ 
-			QuTranscript new
-				subjectModel: self;
-				yourself ]
-]
-
-{ #category : #'as yet unclassified' }
-PpEvent >> transcript: aQuTranscript [
-	self propertyAt: #transcript putRemovingNil: aQuTranscript
+	^ self traitTranscript
 ]
