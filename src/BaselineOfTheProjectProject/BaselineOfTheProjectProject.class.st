@@ -25,8 +25,6 @@ BaselineOfTheProjectProject >> baseline: spec [
 					repository: 'github://seandenigris/Magritte' ];
 			baseline: 'Mocketry' with: [
 				spec repository: 'github://dionisiydk/Mocketry' ];
-			baseline: 'ObjectiveLepiter' with: [
-				spec repository: 'github://seandenigris/Objective-Lepiter' ];
 			baseline: 'PharoEnhancements' with: [
 				spec repository: 'github://seandenigris/Pharo-Enhancements' ];
 			baseline: 'QuoteMe' with: [
@@ -43,6 +41,8 @@ BaselineOfTheProjectProject >> baseline: spec [
 			"package: #'Spec-PolyWidgets' with: [
 				spec
 					repository: 'http://smalltalkhub.com/mc/SeanDeNigris/SeansOutbox/main/' ];"
+			baseline: 'ObjectiveLepiter' with: [
+				spec repository: 'github://seandenigris/Objective-Lepiter' ];
 			package: #ProjectProject with: [
 				spec requires: #('BookmarkMagic' 'ExternalWebBrowser' 'Magritte' 'Mocketry' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence' "'Spec-PolyWidgets'" 'TrackingNumbers'). ]. ].
 				
