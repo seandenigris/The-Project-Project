@@ -11,7 +11,7 @@ Class {
 PpReadOnlyProjectList >> activeDescription [
 	<magritteAltFor: #projectsDescription>
 	
-	^ self filteredProjectsDescription: 'Active Projects'
+	^ self filteredProjectsDescription: #activeProjectsList
 ]
 
 { #category : #accessing }
@@ -33,7 +33,7 @@ PpReadOnlyProjectList >> completeDescription [
 	<gtInspectorPresentationOrder: 8>
 	<magritteAltFor: #projectsDescription>
 	
-	^ self filteredProjectsDescription: 'Complete Projects' " order: 8"
+	^ self filteredProjectsDescription: #complete
 ]
 
 { #category : #accessing }
@@ -64,14 +64,17 @@ PpReadOnlyProjectList >> dueTodayDescription [
 	<gtInspectorPresentationOrder: 2>
 	<magritteAltFor: #projectsDescription>
 	
-	^ self filteredProjectsDescription: 'Due Today' " order: 2"
+	^ self filteredProjectsDescription: #dueToday
 ]
 
 { #category : #magritte }
-PpReadOnlyProjectList >> filteredProjectsDescription: labelString [
+PpReadOnlyProjectList >> filteredProjectsDescription: aSelector [
+	| label |
+	label := aSelector normalizeCamelCase capitalized.
+	(aSelector endsWith: 'List') ifTrue: [ label:= label allButLast: ' List' size ].
 	^ MAToOneRelationDescription new
-		accessor: labelString asValidSelector asSymbol;
-		label: labelString;
+		accessor: aSelector;
+		label: label;
 		gtView: [ :aView :desc :me |
 			aView tree
 				priority: 8;
@@ -89,11 +92,11 @@ PpReadOnlyProjectList >> gtGtSpotterFor: aStep [
 	<gtSearch>
 	^ aStep listProcessor
 		priority: 5;
-		title: 'Projects (Roots)';
-		allCandidates: [ self projects ];
+		title: 'Projects';
+		allCandidates: [ self allProjectsList projects ];
 		filter: GtFilterSubstrings;
 		candidatesLimit: 7;
-		itemName: #title
+		itemName: [ :e | e title ] 
 ]
 
 { #category : #magritte }
@@ -141,7 +144,7 @@ PpReadOnlyProjectList >> neverDoingDescription [
 	<gtInspectorPresentationOrder: 6>
 	<magritteAltFor: #projectsDescription>
 	
-	^ self filteredProjectsDescription: 'Never Doing' " order: 6"
+	^ self filteredProjectsDescription: #neverDoing
 ]
 
 { #category : #private }
@@ -162,7 +165,7 @@ PpReadOnlyProjectList >> notDoingDescription [
 	<magritteAltFor: #projectsDescription>
 	<magritteDescription>
 	
-	^ self filteredProjectsDescription: 'Not Doing' " order: 4"
+	^ self filteredProjectsDescription: #notDoing
 ]
 
 { #category : #accessing }
@@ -176,7 +179,7 @@ PpReadOnlyProjectList >> overdueDescription [
 	<magritteAltFor: #projectsDescription>
 	<magritteDescription>
 	
-	^ self filteredProjectsDescription: 'Overdue' " order: 1"
+	^ self filteredProjectsDescription: #overdue
 ]
 
 { #category : #accessing }
