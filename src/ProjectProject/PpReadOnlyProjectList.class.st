@@ -15,12 +15,12 @@ PpReadOnlyProjectList >> activeDescription [
 ]
 
 { #category : #accessing }
-PpReadOnlyProjectList >> activeProjects [
+PpReadOnlyProjectList >> activeProjectsList [
 	^ self newFromProjectsBlock: [ self projects reject: [ :e | e isComplete ] ]
 ]
 
 { #category : #accessing }
-PpReadOnlyProjectList >> allProjects [
+PpReadOnlyProjectList >> allProjectsList [
 	^ self newFromProjectsBlock: [ 
 		| roots children |
 		roots := self projects.
@@ -37,7 +37,7 @@ PpReadOnlyProjectList >> completeDescription [
 ]
 
 { #category : #accessing }
-PpReadOnlyProjectList >> completeProjects [
+PpReadOnlyProjectList >> completeProjectsList [
 	^ self newFromProjectsBlock: [ self projects select: [ :e | e isComplete ] ]
 ]
 
@@ -45,7 +45,7 @@ PpReadOnlyProjectList >> completeProjects [
 PpReadOnlyProjectList >> dueBy: aDate [
 	"Recursive through steps"
 	^ self newFromProjectsBlock: [ 
-		self activeProjects projects
+		self activeProjectsList projects
 			inject: OrderedCollection new
 			into: [ :result :root |
 				root allProjectsDo: [ :e |
@@ -96,13 +96,13 @@ PpReadOnlyProjectList >> gtGtSpotterFor: aStep [
 		itemName: #title
 ]
 
-{ #category : #accessing }
+{ #category : #magritte }
 PpReadOnlyProjectList >> gtMagritteFor: aView [
 	^ aView empty
 ]
 
-{ #category : #accessing }
-PpReadOnlyProjectList >> gtViewOn: aView [
+{ #category : #'gt-views' }
+PpReadOnlyProjectList >> gtViewFor: aView [
 
 	<gtView>
 	| tabs |
@@ -123,7 +123,7 @@ PpReadOnlyProjectList >> gtViewOn: aView [
 		  views: tabs
 ]
 
-{ #category : #accessing }
+{ #category : #magritte }
 PpReadOnlyProjectList >> maGtFormFor: aView [
 	"Deprioritize this view because it is not very useful and super slow"
 	
@@ -133,7 +133,7 @@ PpReadOnlyProjectList >> maGtFormFor: aView [
 
 { #category : #accessing }
 PpReadOnlyProjectList >> neverDoing [
-	^ self newFromProjectsBlock: [ self activeProjects projects select: [ :e | e status = PpProject neverDoingStatus ] ]
+	^ self newFromProjectsBlock: [ self activeProjectsList projects select: [ :e | e status = PpProject neverDoingStatus ] ]
 ]
 
 { #category : #magritte }
@@ -144,7 +144,7 @@ PpReadOnlyProjectList >> neverDoingDescription [
 	^ self filteredProjectsDescription: 'Never Doing' " order: 6"
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 PpReadOnlyProjectList >> newFromProjectsBlock: aBlock [
 	^ PpReadOnlyProjectList new
 		projects: aBlock value;
@@ -153,7 +153,7 @@ PpReadOnlyProjectList >> newFromProjectsBlock: aBlock [
 
 { #category : #accessing }
 PpReadOnlyProjectList >> notDoing [
-	^ self newFromProjectsBlock: [ self activeProjects projects select: [ :e | e status = PpProject notDoingStatus ] ]
+	^ self newFromProjectsBlock: [ self activeProjectsList projects select: [ :e | e status = PpProject notDoingStatus ] ]
 ]
 
 { #category : #magritte }

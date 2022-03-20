@@ -75,7 +75,8 @@ PpProject >> allChildren [
 
 { #category : #enumeration }
 PpProject >> allProjects [
-	^ PpProjectList uniqueInstance allProjects
+	"For option description"
+	^ PpProjectList uniqueInstance allProjectsList projects
 ]
 
 { #category : #enumeration }
@@ -123,7 +124,7 @@ PpProject >> childrenDescription [
 		default: OrderedCollection new;
 		beOrdered;
 		glmPresentation: #list;
-		options: self allProjects projects;
+		options: self allProjectsList projects;
 		morphicClass: MATokenCompletionMorph;
 		initializer: [ :s | 
 			PpProject new
@@ -216,11 +217,6 @@ PpProject >> gtInspectorLinksIn: composite [
 			actions add: action ].
 		actions ].
 	^ list
-]
-
-{ #category : #accessing }
-PpProject >> gtSpotterNewProjectFor: aStep [
-	
 ]
 
 { #category : #accessing }
