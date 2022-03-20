@@ -110,18 +110,6 @@ PpProjectList >> addDescription [
 ]
 
 { #category : #accessing }
-PpProjectList >> gtGtSpotterFor: aStep [
-	<gtSearch>
-	^ aStep listProcessor
-		priority: 5;
-		title: 'Projects';
-		allCandidates: [ self allProjectsList projects ];
-		filter: GtFilterSubstrings;
-		candidatesLimit: 7;
-		itemName: [ :e | e title ] 
-]
-
-{ #category : #accessing }
 PpProjectList >> gtSpotterNewProjectFor: aStep [
 	<gtSearch>
 	aStep listProcessor
