@@ -199,6 +199,14 @@ PpProject >> dueDateDescription [
 			yourself
 ]
 
+{ #category : #accessing }
+PpProject >> gtDisplayText [
+	| result |
+	result := self displayString asRopedText.
+	self isComplete ifTrue: [ result strikethrough ].
+	^ result.
+]
+
 { #category : #GT }
 PpProject >> gtInspectorLinksIn: composite [
 
@@ -242,7 +250,7 @@ PpProject >> gtSpotterNewStepFor: aStep [
 ]
 
 { #category : #views }
-PpProject >> gtViewOn: aView [
+PpProject >> gtViewFor: aView [
 
 	<gtView>
 	| tabs |
@@ -252,10 +260,7 @@ PpProject >> gtViewOn: aView [
 		items: [ self children ];
 		children: #children;
 		column: 'Item' 
-			icon: [ :p | 
-				BrLabel new 
-					aptitude: BrGlamorousLabelAptitude;
-					text: p title ]
+			text: [ :e | e gtDisplayText ]
 			width: 400;
 		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
 		actionUpdateButtonTooltip: 'Update'

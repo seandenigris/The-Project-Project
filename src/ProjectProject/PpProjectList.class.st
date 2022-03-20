@@ -110,6 +110,18 @@ PpProjectList >> addDescription [
 ]
 
 { #category : #accessing }
+PpProjectList >> gtGtSpotterFor: aStep [
+	<gtSearch>
+	^ aStep listProcessor
+		priority: 5;
+		title: 'Projects';
+		allCandidates: [ self allProjectsList projects ];
+		filter: GtFilterSubstrings;
+		candidatesLimit: 7;
+		itemName: [ :e | e title ] 
+]
+
+{ #category : #accessing }
 PpProjectList >> gtSpotterNewProjectFor: aStep [
 	<gtSearch>
 	aStep listProcessor
@@ -125,8 +137,10 @@ PpProjectList >> gtSpotterNewProjectFor: aStep [
 					e title = context textTrimmed ].
 				isExisting ifFalse: [ 
 					filter value: context textTrimmed ] ];
-		send: [ :input :spotterStep | 
-			PpProject new title: input; yourself ]
+		send: [ :input :spotterStep |
+			| result |
+			result := PpProject new title: input; yourself.
+			self projects add: result  ]
 ]
 
 { #category : #magritte }
