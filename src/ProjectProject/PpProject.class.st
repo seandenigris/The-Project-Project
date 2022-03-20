@@ -124,7 +124,7 @@ PpProject >> childrenDescription [
 		default: OrderedCollection new;
 		beOrdered;
 		glmPresentation: #list;
-		options: self allProjectsList projects;
+		options: self allProjects;
 		morphicClass: MATokenCompletionMorph;
 		initializer: [ :s | 
 			PpProject new
