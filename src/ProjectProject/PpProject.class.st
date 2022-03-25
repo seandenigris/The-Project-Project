@@ -1,6 +1,8 @@
 Class {
 	#name : #PpProject,
 	#superclass : #Object,
+	#traits : 'MATPropertyOwner',
+	#classTraits : 'MATPropertyOwner classTrait',
 	#instVars : [
 		'title',
 		'dueDate',
