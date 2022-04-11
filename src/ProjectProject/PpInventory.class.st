@@ -36,6 +36,29 @@ PpInventory >> addItemNamed: aString [
 ]
 
 { #category : #accessing }
+PpInventory >> gtSearchTransactionsFor: aStep [
+	<gtSearch>
+	^ aStep listProcessor
+		title: 'Items';
+		priority: 2;
+		allCandidates: [ self items ];
+		itemName: #displayString;
+		matchSubstrings
+]
+
+{ #category : #views }
+PpInventory >> gtViewItemsOn: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Items' translated;
+		priority: 5;
+		items: [ self items ];
+		column: 'Name' text: #name;
+		column: 'Location' text: [ :e | e location displayString ];
+		yourself.
+]
+
+{ #category : #accessing }
 PpInventory >> items [
 	^ items ifNil: [ items := SortedCollection sortUsing: #name ascending ]
 ]

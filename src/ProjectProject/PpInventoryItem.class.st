@@ -4,7 +4,8 @@ Class {
 	#traits : 'MATPropertyOwner',
 	#classTraits : 'MATPropertyOwner classTrait',
 	#instVars : [
-		'name'
+		'name',
+		'location'
 	],
 	#category : #'ProjectProject-Core'
 }
@@ -15,6 +16,26 @@ PpInventoryItem class >> named: aString [
 	^ self new
 		name: aString;
 		yourself
+]
+
+{ #category : #accessing }
+PpInventoryItem >> displayStringOn: aStream [
+	aStream
+		nextPutAll: name;
+		nextPutAll: ' @ ';
+		display: location
+]
+
+{ #category : #accessing }
+PpInventoryItem >> location [
+
+	^ location
+]
+
+{ #category : #accessing }
+PpInventoryItem >> location: anObject [
+
+	location := anObject
 ]
 
 { #category : #accessing }
@@ -33,5 +54,7 @@ PpInventoryItem >> name: anObject [
 PpInventoryItem >> printOn: aStream [
 	aStream
 		nextPutAll: name;
+		nextPutAll: ' @ ';
+		print: location;
 		nextPutAll: ' (Inventory Item)'
 ]

@@ -17,6 +17,7 @@ TheProjectProjectDB class >> schema [
 			PpChecklist.
 			PpEventLog.
 			PpInventory.
+			PpLocation.
 			PpProjectList.
 			PpTag.
 			QuoteMeDB.
