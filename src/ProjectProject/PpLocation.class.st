@@ -2,7 +2,8 @@ Class {
 	#name : #PpLocation,
 	#superclass : #Object,
 	#instVars : [
-		'name'
+		'name',
+		'children'
 	],
 	#classVars : [
 		'DB'
@@ -35,6 +36,21 @@ PpLocation class >> restoreFrom: anObject [
 PpLocation class >> spData [
 
 	^ DB.
+]
+
+{ #category : #accessing }
+PpLocation >> addChildNamed: aString [
+
+	| child |
+	child := self class new
+		name: aString;
+		yourself.
+	^ self children add: child
+]
+
+{ #category : #accessing }
+PpLocation >> children [
+	^ children ifNil: [ children := Bag new ]
 ]
 
 { #category : #accessing }
