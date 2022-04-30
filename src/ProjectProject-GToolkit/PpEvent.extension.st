@@ -17,3 +17,8 @@ PpEvent class >> exampleTranscriptEmptyPage [
 					page ]
 		then: [ :page | page "children should haveSize: 1" ]
 ]
+
+{ #category : #'*ProjectProject-GToolkit' }
+PpEvent >> newLepiterPage [
+	^ LePage quTranscriptOwner: self
+]
