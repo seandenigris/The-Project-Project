@@ -121,6 +121,6 @@ PpEventLog >> gtViewEventsOn: aView [
 		priority: 5;
 		items: [ self events ];
 		column: 'Date' text: [ :e | e startDate ifNil: [ '' ] ] width: 125;
-		column: 'Event' text: [ :e | e printString ];
+		column: 'Event' text: [ :e | e displayString ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
