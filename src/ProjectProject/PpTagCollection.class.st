@@ -60,13 +60,12 @@ PpTagCollection >> gtSpotterNewOrgFor: aStep [
 { #category : #accessing }
 PpTagCollection >> tags [
 
-	^ tags ifNil: [ tags := Bag new ]
+	^ tags ifNil: [ tags := SortedCollection sortUsing: #name ascending  ]
 ]
 
 { #category : #accessing }
-PpTagCollection >> tags: anObject [
-
-	tags := anObject
+PpTagCollection >> tags: aCollection [
+	tags := aCollection
 ]
 
 { #category : #accessing }
