@@ -13,47 +13,30 @@ Class {
 		'name',
 		'children'
 	],
-	#classInstVars : [
-		'db'
-	],
 	#category : 'ProjectProject-Core'
 }
 
-{ #category : #private }
-PpTag class >> addTagNamed: aString [
-	| tag |
-	tag := self new
-		name: aString;
-		yourself.
-	^ self db add: tag
-]
-
 { #category : #accessing }
 PpTag class >> db [
-	^ db ifNil: [ db := Bag new ]
-]
-
-{ #category : #accessing }
-PpTag class >> detectNamed: aString [ 
-	^ self db detect: [ :e | e name = aString ]
+	^ PpTagCollection uniqueInstance
 ]
 
 { #category : #accessing }
 PpTag class >> ensureNamed: aString [ 
-	^ self db
+	^ self db tags
 			detect: [ :e | e name = aString ]
-			ifNone: [ self addTagNamed: aString ]
+			ifNone: [ self db addTagNamed: aString ]
 ]
 
 { #category : #persistence }
 PpTag class >> restoreFrom: anObject [
 
-	db := anObject.
+	PpTagCollection uniqueInstance: anObject.
 ]
 
 { #category : #persistence }
 PpTag class >> spData [
-	^ self db
+	^ PpTagCollection uniqueInstance
 ]
 
 { #category : #accessing }
