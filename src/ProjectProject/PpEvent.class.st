@@ -280,6 +280,12 @@ PpEvent >> startTimeDescription [
 ]
 
 { #category : #accessing }
+PpEvent >> tags [
+
+	^ self propertyAt: #tags ifAbsentPut: PpTagCollection new
+]
+
+{ #category : #accessing }
 PpEvent >> title [
 	^ self maLazyInstVarUsing: self titleDescription
 ]
