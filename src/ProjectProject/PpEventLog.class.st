@@ -1,9 +1,6 @@
 Class {
 	#name : #PpEventLog,
-	#superclass : #Object,
-	#instVars : [
-		'events'
-	],
+	#superclass : #PpReadOnlyEventLog,
 	#classInstVars : [
 		'uniqueInstance'
 	],
@@ -46,38 +43,6 @@ PpEventLog class >> uniqueInstance: anObject [
 ]
 
 { #category : #accessing }
-PpEventLog >> allEventsDo: aBlock [
-
-	^ self events do: [ :e | e allEventsDo: aBlock ]
-]
-
-{ #category : #accessing }
-PpEventLog >> events [
-
-	^ events ifNil: [ events := SortedCollection sortUsing: #startDate ascending undefinedFirst ]
-]
-
-{ #category : #accessing }
-PpEventLog >> events: anObject [
-
-	events := anObject
-]
-
-{ #category : #accessing }
-PpEventLog >> gtGtSpotterEventsOn: aStep [
-	"Adapted from GT superclass"
-	<gtSearch>
-	^ aStep listProcessor
-		priority: 5;
-		title: 'Events';
-		allCandidates: [ self events ];
-		filter: GtFilterSubstrings;
-		candidatesLimit: 7;
-		itemName:[ :e | e printString ];
-		wantsToDisplayOnEmptyQuery: true
-]
-
-{ #category : #accessing }
 PpEventLog >> gtSpotterNew: aClass on: aStep [
 
 	| typeName |
@@ -105,22 +70,4 @@ PpEventLog >> gtSpotterNewEventOn: aStep [
 	
 	PpEvent withAllSubclassesDo: [ :cls |
 		self gtSpotterNew: cls on: aStep ]
-]
-
-{ #category : #accessing }
-PpEventLog >> gtSpotterProcessorsFor: aSpotterStep [
-	
-	^ super gtSpotterProcessorsFor: aSpotterStep
-]
-
-{ #category : #accessing }
-PpEventLog >> gtViewEventsOn: aView [
-	<gtView>
-	^ aView columnedList
-		title: 'Events' translated;
-		priority: 5;
-		items: [ self events ];
-		column: 'Date' text: [ :e | e startDate ifNil: [ '' ] ] width: 125;
-		column: 'Event' text: [ :e | e displayString ];
-		actionUpdateButtonTooltip: 'Update'.
 ]
