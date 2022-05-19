@@ -23,12 +23,17 @@ PpTagCollection class >> uniqueInstance: anObject [
 ]
 
 { #category : #accessing }
+PpTagCollection >> addTag: aPpTag [
+	^ self tags add: aPpTag
+]
+
+{ #category : #accessing }
 PpTagCollection >> addTagNamed: aString [
 	| tag |
 	tag := PpTag new
 		name: aString;
 		yourself.
-	^ self tags add: tag
+	^ self addTag: tag
 ]
 
 { #category : #accessing }
@@ -39,7 +44,20 @@ PpTagCollection >> ensureNamed: aString [
 ]
 
 { #category : #accessing }
-PpTagCollection >> gtSpotterNewOrgFor: aStep [
+PpTagCollection >> gtGtSpotterTagsFor: aStep [
+	<gtSearch>
+	
+	^ aStep listProcessor
+		priority: 5;
+		title: 'Tags';
+		allCandidates: [ self tags ];
+		filter: GtFilterSubstrings;
+		candidatesLimit: 7;
+		itemName:[ :aTag | aTag name ].		
+]
+
+{ #category : #accessing }
+PpTagCollection >> gtSpotterNewTagFor: aStep [
 	<gtSearch>
 	aStep listProcessor
 		title: 'New tag';
@@ -55,6 +73,12 @@ PpTagCollection >> gtSpotterNewOrgFor: aStep [
 				isExisting ifFalse: [ 
 					filter value: context textTrimmed ] ];
 		send: [ :newName :spotterStep | self ensureNamed: newName ]
+]
+
+{ #category : #accessing }
+PpTagCollection >> printOn: aStream [
+	aStream nextPutAll: 'Tags: '.
+	self tags printElementsOn: aStream
 ]
 
 { #category : #accessing }
