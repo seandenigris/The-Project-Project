@@ -7,7 +7,7 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Inventories'
 }
 
 { #category : #persistence }
@@ -36,7 +36,7 @@ PpInventory >> addItemNamed: aString [
 ]
 
 { #category : #accessing }
-PpInventory >> gtSearchTransactionsFor: aStep [
+PpInventory >> gtSearchItemsFor: aStep [
 	<gtSearch>
 	^ aStep listProcessor
 		title: 'Items';
@@ -44,6 +44,25 @@ PpInventory >> gtSearchTransactionsFor: aStep [
 		allCandidates: [ self items ];
 		itemName: #displayString;
 		matchSubstrings
+]
+
+{ #category : #accessing }
+PpInventory >> gtSearchNewItemFor: aStep [
+	<gtSearch>
+	aStep listProcessor
+		title: 'Add item';
+		priority: 80;
+		itemName: [ :input | 'Add item: ', input ];
+		previewObject: [ :input | PpInventoryItem named: input trimBoth ];
+		wantsToDisplayOnEmptyQuery: false;
+		filter: GtNullFilter
+			item: [ :filter :context | 
+				| isExisting |
+				isExisting := self items anySatisfy: [ :e | 
+					e name = context textTrimmed ].
+				isExisting not  ifTrue: [ 
+					filter value: context textTrimmed ] ];
+		send: [ :newName :spotterStep | self addItemNamed: newName ]
 ]
 
 { #category : #views }
@@ -55,7 +74,8 @@ PpInventory >> gtViewItemsOn: aView [
 		items: [ self items ];
 		column: 'Name' text: #name;
 		column: 'Location' text: [ :e | e location displayString ];
-		yourself.
+		yourself;
+		actionUpdateButton
 ]
 
 { #category : #accessing }

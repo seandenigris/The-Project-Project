@@ -8,7 +8,7 @@ Class {
 	#classVars : [
 		'DB'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Inventories'
 }
 
 { #category : #accessing }
