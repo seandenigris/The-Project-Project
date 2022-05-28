@@ -12,30 +12,22 @@ Class {
 }
 
 { #category : #accessing }
-PpLocation class >> db [
-
-	^ DB ifNil: [ DB := SortedCollection sortUsing: #name ascending ].
-]
-
-{ #category : #accessing }
-PpLocation class >> dbEnsureNamed: aString [
-	| result |
-	result := self new
-	name: aString;
-	yourself.
-	^ self db add: result
+PpLocation class >> named: aString [
+	^ self new
+		name: aString;
+		yourself
 ]
 
 { #category : #persistence }
 PpLocation class >> restoreFrom: anObject [
 
-	DB := anObject.
+	PpLocationList restoreFrom:anObject.
 ]
 
 { #category : #persistence }
 PpLocation class >> spData [
 
-	^ DB.
+	^ PpLocationList spData
 ]
 
 { #category : #accessing }
