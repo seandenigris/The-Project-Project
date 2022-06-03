@@ -88,36 +88,6 @@ PpEvent >> events [
 ]
 
 { #category : #accessing }
-PpEvent >> gtSpotterNew: aClass on: aStep [
-
-	| typeName |
-	typeName := (aClass name allButFirst: 2) normalizeCamelCase.
-
-	aStep listProcessor
-		title: 'New ', typeName;
-		priority: 50;
-		itemName: [ :input | 'Create new ', typeName asLowercase, ': ', input ];
-		previewObject: [ :input | aClass new title: input; yourself ];
-		wantsToDisplayOnEmptyQuery: false;
-		filter: GtNullFilter
-			item: [ :filter :context | 
-				| isExisting |
-				isExisting := self events anySatisfy: [ :e | 
-					e title = context textTrimmed ].
-				isExisting ifFalse: [ 
-					filter value: context textTrimmed ] ];
-		send: [ :input :spotterStep | self events add: (aClass new title: input; yourself) ].
-]
-
-{ #category : #accessing }
-PpEvent >> gtSpotterNewEventOn: aStep [
-	<gtSearch>
-	
-	PpEvent withAllSubclassesDo: [ :cls |
-		self gtSpotterNew: cls on: aStep ]
-]
-
-{ #category : #accessing }
 PpEvent >> gtViewTranscriptFor: aView [
 	<gtView>
 

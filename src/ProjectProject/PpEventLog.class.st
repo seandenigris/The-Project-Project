@@ -52,7 +52,7 @@ PpEventLog >> gtSpotterNew: aClass on: aStep [
 		title: 'New ', typeName;
 		priority: 50;
 		itemName: [ :input | 'Create new ', typeName asLowercase, ': ', input ];
-		previewObject: [ :input | aClass new title: input; yourself ];
+		previewObject: [ :input | aClass fromString: input ];
 		wantsToDisplayOnEmptyQuery: false;
 		filter: GtNullFilter
 			item: [ :filter :context | 
@@ -61,7 +61,7 @@ PpEventLog >> gtSpotterNew: aClass on: aStep [
 					e title = context textTrimmed ].
 				isExisting ifFalse: [ 
 					filter value: context textTrimmed ] ];
-		send: [ :input :spotterStep | self events add: (aClass new title: input; yourself) ].
+		send: [ :input :spotterStep | self events add: (aClass fromString: input) ].
 ]
 
 { #category : #accessing }

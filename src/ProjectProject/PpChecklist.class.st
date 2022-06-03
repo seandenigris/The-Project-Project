@@ -8,7 +8,7 @@ Class {
 	#classVars : [
 		'Pad'
 	],
-	#category : 'ProjectProject-Core-Checklists'
+	#category : #'ProjectProject-Core-Checklists'
 }
 
 { #category : #adding }
@@ -54,9 +54,11 @@ PpChecklist class >> spData [
 
 { #category : #adding }
 PpChecklist >> addAllFromClipboard [
-	| itemsString |
+	| itemsString lines |
 	itemsString := Clipboard clipboardText asString.
-	itemsString lines do: [ :e |
+	lines := itemsString lines.
+	self title: lines first.
+	lines allButFirst do: [ :e |
 		| item |
 		item := PpChecklistItem new
 			description: e trimBoth;
