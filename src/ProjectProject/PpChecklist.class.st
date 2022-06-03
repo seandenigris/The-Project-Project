@@ -71,23 +71,6 @@ PpChecklist >> addItemNamed: aString [
 	^ self items add: (PpChecklistItem new description: aString; yourself)
 ]
 
-{ #category : #Magritte }
-PpChecklist >> descriptionItems [
-	<magritteDescription>
-	^ MAToManyRelationDescription new
-		accessor: #items;
-		classes: { PpChecklistItem };
-		yourself
-]
-
-{ #category : #Magritte }
-PpChecklist >> descriptionView [
-	<magritteActionDescription>
-	^ MAActionDescription new
-		action: #morphOpen;
-		yourself
-]
-
 { #category : #accessing }
 PpChecklist >> items [
 	^ items ifNil: [ items := OrderedCollection new ]
@@ -96,6 +79,15 @@ PpChecklist >> items [
 { #category : #accessing }
 PpChecklist >> items: anObject [
 	items := anObject
+]
+
+{ #category : #Magritte }
+PpChecklist >> itemsDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		accessor: #items;
+		classes: { PpChecklistItem };
+		yourself
 ]
 
 { #category : #viewing }
@@ -138,4 +130,20 @@ PpChecklist >> title [
 { #category : #accessing }
 PpChecklist >> title: anObject [
 	title := anObject
+]
+
+{ #category : #Magritte }
+PpChecklist >> titleDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		accessor: #title;
+		yourself
+]
+
+{ #category : #Magritte }
+PpChecklist >> viewDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		action: #morphOpen;
+		yourself
 ]
