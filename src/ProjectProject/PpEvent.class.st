@@ -33,6 +33,24 @@ PpEvent class >> examplePointInTime [
 		then: [ :evt | evt startDate should equal: '4/5/2021' asDate ]
 ]
 
+{ #category : #'instance creation' }
+PpEvent class >> fromString: aString [
+
+	| tokens title date |
+	tokens := aString findTokens: Character separators.
+	title := [
+		date := Date fromString: tokens first.
+		(aString allButFirst: tokens first size) trimLeft
+	]
+		on: Error 
+		do: [ aString ].
+		
+	^ self new
+		title: title;
+		startDate: date;
+		yourself
+]
+
 { #category : #accessing }
 PpEvent >> allEventsDo: aBlock [
 	aBlock value: self.
