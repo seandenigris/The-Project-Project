@@ -101,6 +101,16 @@ PpEvent >> gtViewTranscriptFor: aView [
 ]
 
 { #category : #testing }
+PpEvent >> isInProgress [
+	
+	self isPast ifTrue: [ ^ false ].
+	self startDate ifNil: [ ^ false ].
+	self startDate > Date today ifTrue: [ ^ false ].
+	self startTime > Time now ifTrue: [ ^ false ].
+	^ true
+]
+
+{ #category : #testing }
 PpEvent >> isPast [
 	self endDate 
 		ifNil: [ 
