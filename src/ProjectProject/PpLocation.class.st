@@ -1,6 +1,8 @@
 Class {
 	#name : #PpLocation,
 	#superclass : #Object,
+	#traits : 'MATPropertyOwner',
+	#classTraits : 'MATPropertyOwner classTrait',
 	#instVars : [
 		'name',
 		'children'
@@ -45,10 +47,48 @@ PpLocation >> children [
 	^ children ifNil: [ children := Bag new ]
 ]
 
+{ #category : #'as yet unclassified' }
+PpLocation >> children: aCollection [ 
+	children := aCollection
+]
+
+{ #category : #accessing }
+PpLocation >> childrenDescription [
+	<magritteDescription>
+	
+	^ MAToManyRelationDescription new
+		accessor: #children;
+		priority: 200;
+		default: Bag new;
+		classes: { PpLocation };
+		gtSearchSource: (MessageSend receiver: self selector: #list); 
+		yourself
+]
+
 { #category : #accessing }
 PpLocation >> displayStringOn: aStream [
 
 	aStream nextPutAll: name
+]
+
+{ #category : #accessing }
+PpLocation >> distanceFrom: rhs [
+	^ self geoLocation distanceFrom: rhs geoLocation
+]
+
+{ #category : #accessing }
+PpLocation >> geoLocation [
+	^ self propertyAt: #geoLocation ifAbsent: [ nil ]
+]
+
+{ #category : #accessing }
+PpLocation >> geoLocation: aPpGeoLocation [
+	^ self propertyAt: #geoLocation put: aPpGeoLocation
+]
+
+{ #category : #accessing }
+PpLocation >> list [
+	^ PpLocationList uniqueInstance
 ]
 
 { #category : #accessing }

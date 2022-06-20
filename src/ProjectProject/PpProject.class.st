@@ -358,9 +358,9 @@ PpProject >> requirements [
 ]
 
 { #category : #accessing }
-PpProject >> requirements: anObject [
+PpProject >> requirements: aCollection [
 
-	requirements := anObject
+	requirements := aCollection
 ]
 
 { #category : #status }
