@@ -405,7 +405,6 @@ PpProject >> supportMaterialsDescription [
 	
 	^ MAToManyRelationDescription new
 			accessor: #supportMaterials;
-			label: 'Support Materials';
 			priority: 650;
 			default: OrderedCollection new;
 			classes: RlResource allSubclasses;
