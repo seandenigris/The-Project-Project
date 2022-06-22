@@ -6,19 +6,59 @@ One way ([via howtogeek](https://www.howtogeek.com/252070/how-do-you-find-a-comp
 Class {
 	#name : #PpLocationRequirement,
 	#superclass : #Object,
+	#instVars : [
+		'location'
+	],
 	#category : #'ProjectProject-Core'
 }
 
 { #category : #accessing }
 PpLocationRequirement >> isSatisfied [
-	| currentLocation loc distance tolerance |
+	| currentLocation distance tolerance |
 	currentLocation := '/Applications/Utilities/CoreLocationCLI' asSuCommand
 		outputDecoder: [ :str | 
 			PpGeoLocation fromCoreLocationCLIOutput: str ];
 		output.
 		
-	loc := PpLocation allInstances detect: [ :e | e name = 'home' ].
-	distance := loc distanceFrom: currentLocation.
+	distance := self location distanceFrom: currentLocation.
 	tolerance := 200. "feet"
 	^ distance < tolerance
+]
+
+{ #category : #accessing }
+PpLocationRequirement >> location [
+
+	^ location
+]
+
+{ #category : #accessing }
+PpLocationRequirement >> location: anObject [
+
+	location := anObject
+]
+
+{ #category : #accessing }
+PpLocationRequirement >> locationDescription [
+	<magritteDescription>
+	
+	^ MAToOneRelationDescription new
+			accessor: #location;
+			priority: 650;
+			classes: { PpLocation };
+			gtSearchSource: [ self locationOptions ];
+			yourself
+]
+
+{ #category : #accessing }
+PpLocationRequirement >> locationOptions [
+	^ PpLocationList uniqueInstance
+]
+
+{ #category : #accessing }
+PpLocationRequirement >> printOn: aStream [
+
+	aStream
+		nextPut: $@;
+		print: self location;
+		nextPutAll: ' requirement'
 ]
