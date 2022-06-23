@@ -20,6 +20,11 @@ PpReadOnlyProjectList >> activeProjectsList [
 ]
 
 { #category : #accessing }
+PpReadOnlyProjectList >> allProjects [
+	^ self allProjectsList projects
+]
+
+{ #category : #accessing }
 PpReadOnlyProjectList >> allProjectsList [
 	^ self newFromProjectsBlock: [ 
 		| roots children |
