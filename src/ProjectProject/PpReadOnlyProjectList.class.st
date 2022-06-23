@@ -28,12 +28,17 @@ PpReadOnlyProjectList >> allProjectsList [
 		(roots, children) asSet ]
 ]
 
+{ #category : #accessing }
+PpReadOnlyProjectList >> asOrderedCollection [
+	^ self projects
+]
+
 { #category : #magritte }
 PpReadOnlyProjectList >> completeDescription [
 	<gtInspectorPresentationOrder: 8>
 	<magritteAltFor: #projectsDescription>
 	
-	^ self filteredProjectsDescription: #complete
+	^ self filteredProjectsDescription: #completeProjectsList
 ]
 
 { #category : #accessing }
@@ -114,7 +119,7 @@ PpReadOnlyProjectList >> gtViewFor: aView [
 		aView columnedTree
 			title: desc label translated;
 			priority: 25;
-			items: [ (desc read: self) projects ];
+			items: [ (desc read: self) asOrderedCollection ];
 			"itemText: [ :p | p displayText asRopedText ]; doesn't work - don't know how to convert Pharo text to GT"
 			children: #children;
 			column: 'Item' text: [ :p | p title ];
