@@ -200,12 +200,13 @@ PpEvent >> participants: anObject [
 PpEvent >> participantsDescription [
 	<magritteDescription>
 	
-	^ MAMultipleOptionDescription new
+	^ MAToManyRelationDescription new
 			accessor: #participants;
 			label: 'Participants';
 			priority: 100;
+			kind: MpEntityCollection;
 			default: MpEntityCollection new;
-			options: MpAddressBook default contacts;
+			gtSearchSource: MpAddressBook default;
 			shouldCacheDefault: true;
 			yourself
 ]
