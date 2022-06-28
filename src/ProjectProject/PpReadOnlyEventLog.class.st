@@ -16,7 +16,7 @@ PpReadOnlyEventLog >> allEventsDo: aBlock [
 { #category : #accessing }
 PpReadOnlyEventLog >> events [
 
-	^ events ifNil: [ events := SortedCollection sortUsing: #startDate ascending undefinedFirst ]
+	^ events ifNil: [ events := SortedCollection sortUsing: #startDate descending undefinedFirst ]
 ]
 
 { #category : #accessing }
