@@ -182,7 +182,7 @@ PpReadOnlyProjectList >> neverDoingDescription [
 { #category : #private }
 PpReadOnlyProjectList >> newFromProjectsBlock: aBlock [
 	^ PpReadOnlyProjectList new
-		projects: aBlock value;
+		projects: aBlock value asArray;
 		yourself
 ]
 
