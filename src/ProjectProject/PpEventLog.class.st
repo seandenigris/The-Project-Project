@@ -46,7 +46,7 @@ PpEventLog class >> uniqueInstance: anObject [
 PpEventLog >> gtSpotterNew: aClass on: aStep [
 
 	| typeName |
-	typeName := (aClass name allButFirst: 2) normalizeCamelCase.
+	typeName := (aClass name allButFirst: 'Pp' size) normalizeCamelCase.
 
 	aStep listProcessor
 		title: 'New ', typeName;

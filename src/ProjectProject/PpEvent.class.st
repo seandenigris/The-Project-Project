@@ -218,7 +218,7 @@ PpEvent >> printOn: aStream [
 			aStream
 				nextPutAll: str;
 				space ]
-		ifNil: [ aStream nextPutAll: (self className allButFirst: 2) normalizeCamelCase ].
+		ifNil: [ aStream nextPutAll: (self className allButFirst: 'Pp' size) normalizeCamelCase ].
 	self startDate ifNotNil: [ :sDate |
 		aStream
 			nextPutAll: ' on ';
