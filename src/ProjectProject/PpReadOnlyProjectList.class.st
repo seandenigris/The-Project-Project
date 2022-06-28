@@ -21,16 +21,15 @@ PpReadOnlyProjectList >> activeProjectsList [
 
 { #category : #accessing }
 PpReadOnlyProjectList >> allProjects [
-	^ self allProjectsList projects
+	| roots children |
+	roots := self projects.
+	children := (self projects flatCollect: [ :p | p allChildren ]).
+	^ (roots, children) asSet
 ]
 
 { #category : #accessing }
 PpReadOnlyProjectList >> allProjectsList [
-	^ self newFromProjectsBlock: [ 
-		| roots children |
-		roots := self projects.
-		children := (self projects flatCollect: [ :p | p allChildren ]).
-		(roots, children) asSet ]
+	^ self newFromProjectsBlock: [ self allProjects ]
 ]
 
 { #category : #accessing }
@@ -98,7 +97,7 @@ PpReadOnlyProjectList >> filteredProjectsDescription: aSelector [
 ]
 
 { #category : #spotter }
-PpReadOnlyProjectList >> gtGtSpotterFor: aStep [
+PpReadOnlyProjectList >> gtGtSpotterAllProjectsFor: aStep [
 	<gtSearch>
 	^ aStep listProcessor
 		priority: 5;
@@ -111,11 +110,34 @@ PpReadOnlyProjectList >> gtGtSpotterFor: aStep [
 
 { #category : #magritte }
 PpReadOnlyProjectList >> gtMagritteFor: aView [
+	"Suppress GT4Magritte's form view"
 	^ aView empty
 ]
 
 { #category : #'gt-views' }
-PpReadOnlyProjectList >> gtViewFor: aView [
+PpReadOnlyProjectList >> gtViewNextActionsFor: aView [
+
+	<gtView>
+	| tabs |
+	self flag: 'At first, we filtered out empty lists (i.e. returned empty views, but it had the side effect of caching the item list, which prevented refreshing; not sure whether empty tabs should be hidden anway'.
+	tabs := (self magritteAllDescriptionsFor: #projectsDescription) collect: [ :desc | 
+		aView columnedTree
+			title: desc label translated;
+			priority: 25;
+			items: [ (desc read: self) asOrderedCollection ];
+			"itemText: [ :p | p displayText asRopedText ]; doesn't work - don't know how to convert Pharo text to GT"
+			children: #children;
+			column: 'Item' text: [ :p | p title ];
+			column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
+			actionUpdateButtonTooltip: 'Update' ].
+		
+	^ aView composite
+		  title: 'Projects' translated;
+		  views: tabs
+]
+
+{ #category : #'gt-views' }
+PpReadOnlyProjectList >> gtViewProjectsFor: aView [
 
 	<gtView>
 	| tabs |
@@ -162,6 +184,15 @@ PpReadOnlyProjectList >> newFromProjectsBlock: aBlock [
 	^ PpReadOnlyProjectList new
 		projects: aBlock value;
 		yourself
+]
+
+{ #category : #accessing }
+PpReadOnlyProjectList >> nextActionsList [
+	^ self newFromProjectsBlock: [ 
+		| roots children |
+		roots := self projects.
+		children := (self projects flatCollect: [ :p | p allChildren ]).
+		(roots, children) asSet ]
 ]
 
 { #category : #accessing }
