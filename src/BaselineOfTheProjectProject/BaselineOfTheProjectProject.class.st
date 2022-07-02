@@ -20,9 +20,7 @@ BaselineOfTheProjectProject >> baseline: spec [
 			baseline: 'ExternalWebBrowser' with: [
 				spec repository: 'github://seandenigris/Pharo-Web-Browser' ];
 			baseline: 'Magritte' with: [
-				spec
-					loads: #('Magritte-GT');
-					repository: 'github://seandenigris/Magritte' ];
+				spec repository: 'github://seandenigris/Magritte' ];
 			baseline: 'Mocketry' with: [
 				spec repository: 'github://dionisiydk/Mocketry' ];
 			baseline: 'PharoEnhancements' with: [
