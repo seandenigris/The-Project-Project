@@ -1,7 +1,7 @@
 Class {
 	#name : #PpProjectBrowser,
-	#superclass : #GLMCompositePresentation,
-	#category : 'ProjectProject-UI-Morphic'
+	#superclass : #SpPresenter,
+	#category : #'ProjectProject-UI-Morphic'
 }
 
 { #category : #building }

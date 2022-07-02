@@ -1,11 +1,11 @@
 Class {
 	#name : #PpChecklistItemMorph,
-	#superclass : #ComposableModel,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'checkbox',
 		'textField'
 	],
-	#category : 'ProjectProject-Core-Checklists'
+	#category : #'ProjectProject-Core-Checklists'
 }
 
 { #category : #specs }
