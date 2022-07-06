@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'events'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Events'
 }
 
 { #category : #accessing }
