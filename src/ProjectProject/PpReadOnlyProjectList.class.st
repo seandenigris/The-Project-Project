@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'projects'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Projects'
 }
 
 { #category : #magritte }
@@ -34,6 +34,11 @@ PpReadOnlyProjectList >> allProjectsList [
 
 { #category : #accessing }
 PpReadOnlyProjectList >> asOrderedCollection [
+	^ self projects
+]
+
+{ #category : #'project compatibility' }
+PpReadOnlyProjectList >> children [
 	^ self projects
 ]
 
@@ -118,22 +123,15 @@ PpReadOnlyProjectList >> gtMagritteFor: aView [
 PpReadOnlyProjectList >> gtViewNextActionsFor: aView [
 
 	<gtView>
-	| tabs |
-	self flag: 'At first, we filtered out empty lists (i.e. returned empty views, but it had the side effect of caching the item list, which prevented refreshing; not sure whether empty tabs should be hidden anway'.
-	tabs := (self magritteAllDescriptionsFor: #projectsDescription) collect: [ :desc | 
-		aView columnedTree
-			title: desc label translated;
-			priority: 25;
-			items: [ (desc read: self) asOrderedCollection ];
-			"itemText: [ :p | p displayText asRopedText ]; doesn't work - don't know how to convert Pharo text to GT"
+	^ aView columnedTree
+		title: 'Next Actions' translated;
+		priority: 15;
+		items: [ self nextActionsList projects ];
+		"itemText: [ :p | p displayText asRopedText ]; doesn't work - don't know how to convert Pharo text to GT"
 			children: #children;
 			column: 'Item' text: [ :p | p title ];
 			column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
-			actionUpdateButtonTooltip: 'Update' ].
-		
-	^ aView composite
-		  title: 'Projects' translated;
-		  views: tabs
+			actionUpdateButtonTooltip: 'Update'.
 ]
 
 { #category : #'gt-views' }

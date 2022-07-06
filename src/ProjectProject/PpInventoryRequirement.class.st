@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'item'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Projects'
 }
 
 { #category : #accessing }

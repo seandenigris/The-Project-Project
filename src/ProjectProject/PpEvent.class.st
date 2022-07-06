@@ -14,7 +14,7 @@ Class {
 		'location',
 		'transcript'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Events'
 }
 
 { #category : #examples }
@@ -206,8 +206,7 @@ PpEvent >> participantsDescription [
 			priority: 100;
 			kind: MpEntityCollection;
 			default: MpEntityCollection new;
-			gtSearchSource: MpAddressBook default;
-			shouldCacheDefault: true;
+			gtSearchSource: (MessageSend receiver: MpAddressBook selector: #uniqueInstance);
 			yourself
 ]
 

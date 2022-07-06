@@ -1,10 +1,12 @@
 Class {
 	#name : #PpProjectList,
 	#superclass : #PpReadOnlyProjectList,
+	#traits : 'PpTProjectContainer',
+	#classTraits : 'PpTProjectContainer classTrait',
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Projects'
 }
 
 { #category : #examples }
@@ -112,23 +114,29 @@ PpProjectList >> addDescription [
 { #category : #accessing }
 PpProjectList >> gtSpotterNewProjectFor: aStep [
 	<gtSearch>
+	self gtSpotterNewProjectIn: self labeled: 'project' for: aStep
+]
+
+{ #category : #'private-spotter' }
+PpProjectList >> gtSpotterNewProjectIn: aPpProjectList labeled: aString for: aStep [
+	
 	aStep listProcessor
-		title: 'New Project';
+		title: 'New ', aString;
 		priority: 50;
-		itemName: [ :input | 'Create new project: ', input ];
+		itemName: [ :input | 'Create new ', aString, ': ', input ];
 		previewObject: [ :input | PpProject new title: input; yourself ];
 		wantsToDisplayOnEmptyQuery: false;
 		filter: GtNullFilter
 			item: [ :filter :context | 
 				| isExisting |
-				isExisting := self projects anySatisfy: [ :e | 
+				isExisting := aPpProjectList children anySatisfy: [ :e | 
 					e title = context textTrimmed ].
 				isExisting ifFalse: [ 
 					filter value: context textTrimmed ] ];
 		send: [ :input :spotterStep |
 			| result |
 			result := PpProject new title: input; yourself.
-			self projects add: result  ]
+			self children add: result  ]
 ]
 
 { #category : #magritte }

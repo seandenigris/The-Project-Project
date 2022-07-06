@@ -1,8 +1,8 @@
 Class {
 	#name : #PpProject,
 	#superclass : #Object,
-	#traits : 'MATPropertyOwner',
-	#classTraits : 'MATPropertyOwner classTrait',
+	#traits : 'MATPropertyOwner + PpTProjectContainer',
+	#classTraits : 'MATPropertyOwner classTrait + PpTProjectContainer classTrait',
 	#instVars : [
 		'title',
 		'dueDate',
@@ -16,7 +16,7 @@ Class {
 		'supportMaterials',
 		'requirements'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Projects'
 }
 
 { #category : #examples }
@@ -118,21 +118,21 @@ PpProject >> childrenDescription [
 	self
 		flag:
 			'The problem is the child''s due date. See https://gitlab.com/SeanDeNigris/The-Project-Project/issues/3'.
-	^ MAMultipleOptionDescription new
+	^ MAToManyRelationDescription new
 		accessor: #children;
 		label: 'Steps';
 		priority: 300;
 		display: [ :e | e displayString ];
 		default: OrderedCollection new;
 		beOrdered;
-		glmPresentation: #list;
-		options: self allProjects;
-		morphicClass: MATokenCompletionMorph;
+		kind: OrderedCollection;
+		classes: PpProject allSubclasses;
+		gtSearchSource: (MessageSend receiver: PpProjectList selector: #uniqueInstance);
+		morphicClass: MAMorphicTokenCompletion;
 		initializer: [ :s | 
 			PpProject new
 				title: s;
 				yourself ];
-		extensible: true;
 		reference: self magritteDescription;
 		yourself
 ]
@@ -232,23 +232,10 @@ PpProject >> gtInspectorLinksIn: composite [
 { #category : #accessing }
 PpProject >> gtSpotterNewStepFor: aStep [
 	<gtSearch>
-	aStep listProcessor
-		title: 'New Step';
-		priority: 50;
-		itemName: [ :input | 'Create new step: ', input ];
-		previewObject: [ :input | PpProject new title: input; yourself ];
-		wantsToDisplayOnEmptyQuery: false;
-		filter: GtNullFilter
-			item: [ :filter :aContext | 
-				| isExisting |
-				isExisting := self children anySatisfy: [ :e | 
-					e title = aContext textTrimmed ].
-				isExisting ifFalse: [ 
-					filter value: aContext textTrimmed ] ];
-		send: [ :input :spotterStep | 
-			| result |
-			result := PpProject new title: input; yourself.
-			self children add: result ]
+	self 
+		gtSpotterNewProjectIn: PpProjectList uniqueInstance 
+		labeled: 'step' 
+		for: aStep
 ]
 
 { #category : #views }
@@ -321,7 +308,6 @@ PpProject >> linksDescription [
 		default: OrderedCollection new;
 		readOnly;
 		classes: {ZnUrl} , RlResource allSubclasses;
-		glmPresentation: #list;
 		yourself
 ]
 
@@ -408,7 +394,6 @@ PpProject >> supportMaterialsDescription [
 			priority: 650;
 			default: OrderedCollection new;
 			classes: RlResource allSubclasses;
-			glmPresentation: #list;
 			yourself
 ]
 
@@ -435,7 +420,6 @@ PpProject >> supportMaterialsMOEDescription [
 				onAnswer: [ :e | e ];
 				openInWindow ];
 		options: RlResourceLibrary uniqueInstance resources;
-		glmPresentation: #list;
 		yourself
 ]
 

@@ -4,7 +4,7 @@ PpPhoneCall new maEdit
 Class {
 	#name : #PpPhoneCall,
 	#superclass : #PpEvent,
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Events'
 }
 
 { #category : #examples }

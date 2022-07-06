@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'location'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Projects'
 }
 
 { #category : #accessing }
@@ -45,7 +45,7 @@ PpLocationRequirement >> locationDescription [
 			accessor: #location;
 			priority: 650;
 			classes: { PpLocation };
-			gtSearchSource: [ self locationOptions ];
+			gtSearchSource: (MessageSend receiver: self selector: #locationOptions);
 			yourself
 ]
 

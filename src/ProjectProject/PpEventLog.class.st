@@ -4,7 +4,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Core-Events'
 }
 
 { #category : #examples }
