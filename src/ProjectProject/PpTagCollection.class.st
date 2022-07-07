@@ -76,6 +76,11 @@ PpTagCollection >> gtSpotterNewTagFor: aStep [
 ]
 
 { #category : #accessing }
+PpTagCollection >> includes: aPpTag [ 
+	^ self tags includes: aPpTag
+]
+
+{ #category : #accessing }
 PpTagCollection >> printOn: aStream [
 	aStream nextPutAll: 'Tags: '.
 	self tags printElementsOn: aStream

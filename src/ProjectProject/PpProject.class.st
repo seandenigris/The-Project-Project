@@ -1,12 +1,11 @@
 Class {
 	#name : #PpProject,
-	#superclass : #Object,
+	#superclass : #PpAbstractProjectContainer,
 	#traits : 'MATPropertyOwner + PpTProjectContainer',
 	#classTraits : 'MATPropertyOwner classTrait + PpTProjectContainer classTrait',
 	#instVars : [
 		'title',
 		'dueDate',
-		'children',
 		'note',
 		'links',
 		'tags',
@@ -14,7 +13,8 @@ Class {
 		'completionTimestamp',
 		'context',
 		'supportMaterials',
-		'requirements'
+		'requirements',
+		'parents'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
@@ -72,19 +72,16 @@ PpProject >> activeChildren [
 
 { #category : #enumeration }
 PpProject >> allChildren [
-	^ self children, (self children flatCollect: [ :child | child allChildren ])
+	| roots branches |
+	roots := self children.
+	branches := self children flatCollect: [ :p | p allChildren ].
+	^ (roots, branches) asSet.
 ]
 
 { #category : #enumeration }
 PpProject >> allProjects [
 	"For option description"
-	^ PpProjectList uniqueInstance allProjectsList projects
-]
-
-{ #category : #enumeration }
-PpProject >> allProjectsDo: aBlock [
-	aBlock value: self.
-	self children do: [ :child | child allProjectsDo: aBlock ]
+	^ PpProjectList uniqueInstance allChildrenList projects
 ]
 
 { #category : #actions }
@@ -102,8 +99,15 @@ PpProject >> browseSupportMaterials [
 ]
 
 { #category : #accessing }
+PpProject >> childLinks [
+
+	^ PpProjectList uniqueInstance links select: [ :link |
+		link project = self ]
+]
+
+{ #category : #accessing }
 PpProject >> children [
-	^ children ifNil: [ children := OrderedCollection new ]
+	^ self childLinks collect: #dependency
 ]
 
 { #category : #accessing }
@@ -113,28 +117,17 @@ PpProject >> children: anObject [
 
 { #category : #magritte }
 PpProject >> childrenDescription [
-	<magritteDescription>
-	<gtInspectorPresentationOrder: 10>
-	self
-		flag:
-			'The problem is the child''s due date. See https://gitlab.com/SeanDeNigris/The-Project-Project/issues/3'.
-	^ MAToManyRelationDescription new
-		accessor: #children;
-		label: 'Steps';
+	
+	self flag: 'The problem is the child''s due date. See https://gitlab.com/SeanDeNigris/The-Project-Project/issues/3'.
+	^ super childrenDescription
 		priority: 300;
-		display: [ :e | e displayString ];
-		default: OrderedCollection new;
-		beOrdered;
-		kind: OrderedCollection;
-		classes: PpProject allSubclasses;
-		gtSearchSource: (MessageSend receiver: PpProjectList selector: #uniqueInstance);
-		morphicClass: MAMorphicTokenCompletion;
-		initializer: [ :s | 
-			PpProject new
-				title: s;
-				yourself ];
 		reference: self magritteDescription;
 		yourself
+]
+
+{ #category : #accessing }
+PpProject >> childrenLabel [
+	^ 'Steps'
 ]
 
 { #category : #accessing }
@@ -238,23 +231,6 @@ PpProject >> gtSpotterNewStepFor: aStep [
 		for: aStep
 ]
 
-{ #category : #views }
-PpProject >> gtViewFor: aView [
-
-	<gtView>
-	| tabs |
-	^ aView columnedTree
-		title: 'Steps' translated;
-		priority: 25;
-		items: [ self children ];
-		children: #children;
-		column: 'Item' 
-			text: [ :e | e gtDisplayText ]
-			width: 400;
-		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
-		actionUpdateButtonTooltip: 'Update'
-]
-
 { #category : #testing }
 PpProject >> isActiveDueBy: aDate [
 	^ self isComplete not and: [ self dueDate isNotNil and: [ self dueDate < aDate ] ]
@@ -347,6 +323,11 @@ PpProject >> requirements [
 PpProject >> requirements: aCollection [
 
 	requirements := aCollection
+]
+
+{ #category : #accessing }
+PpProject >> rootChildren [
+	^ self children
 ]
 
 { #category : #status }
