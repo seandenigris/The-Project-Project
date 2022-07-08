@@ -1,10 +1,15 @@
 Trait {
-	#name : #PpTProjectContainer,
+	#name : #PpTMutableProjectContainer,
 	#category : #'ProjectProject-Core-Projects'
 }
 
 { #category : #accessing }
-PpTProjectContainer >> gtSpotterNewProjectIn: aPpProjectList labeled: aString for: aStep [
+PpTMutableProjectContainer >> addChild: aPpProject [
+	self subclassResponsibility
+]
+
+{ #category : #accessing }
+PpTMutableProjectContainer >> gtSpotterNewChildIn: aPpProjectList labeled: aString for: aStep [
 	
 	aStep listProcessor
 		title: 'New ', aString;
@@ -13,14 +18,14 @@ PpTProjectContainer >> gtSpotterNewProjectIn: aPpProjectList labeled: aString fo
 		previewObject: [ :input | PpProject new title: input; yourself ];
 		wantsToDisplayOnEmptyQuery: false;
 		filter: GtNullFilter
-			item: [ :filter :context | 
+			item: [ :filter :cntxt | 
 				| isExisting |
-				isExisting := aPpProjectList children anySatisfy: [ :e | 
-					e title = context textTrimmed ].
+				isExisting := aPpProjectList rootChildren anySatisfy: [ :e | 
+					e title = cntxt textTrimmed ].
 				isExisting ifFalse: [ 
-					filter value: context textTrimmed ] ];
+					filter value: cntxt textTrimmed ] ];
 		send: [ :input :spotterStep |
 			| result |
 			result := PpProject new title: input; yourself.
-			self children add: result  ]
+			self addChild: result  ]
 ]

@@ -2,19 +2,19 @@ Class {
 	#name : #PpAbstractProjectContainer,
 	#superclass : #Object,
 	#instVars : [
-		'children'
+		'masterList'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
 
 { #category : #accessing }
 PpAbstractProjectContainer >> activeChildrenList [
-	^ self newFromProjectsBlock: [ self rootChildren reject: [ :e | e isComplete ] ]
+	^ self newFromChildrenBlock: [ self rootChildren reject: [ :e | e isComplete ] ]
 ]
 
 { #category : #magritte }
 PpAbstractProjectContainer >> activeDescription [
-	<magritteAltFor: #projectsDescription>
+	<magritteAltFor: #childrenDescription>
 	
 	^ self filteredProjectsDescription: #activeChildrenList
 ]
@@ -27,22 +27,12 @@ PpAbstractProjectContainer >> allChildren [
 { #category : #enumeration }
 PpAbstractProjectContainer >> allChildrenDo: aBlock [
 	aBlock value: self.
-	self children do: [ :child | child allChildrenDo: aBlock ]
+	self rootChildren do: [ :child | child allChildrenDo: aBlock ]
 ]
 
 { #category : #accessing }
 PpAbstractProjectContainer >> allChildrenList [
-	^ self newFromProjectsBlock: [ self allChildren ]
-]
-
-{ #category : #'project compatibility' }
-PpAbstractProjectContainer >> children [
-	^ children ifNil: [ children := OrderedCollection new ]
-]
-
-{ #category : #accessing }
-PpAbstractProjectContainer >> children: aCollection [
-	children := aCollection
+	^ self newFromChildrenBlock: [ self allChildren ]
 ]
 
 { #category : #magritte }
@@ -50,7 +40,7 @@ PpAbstractProjectContainer >> childrenDescription [
 	<magritteDescription>
 	
 	^ MAToManyRelationDescription new
-		accessor: #children;
+		accessor: #allChildren;
 		label: 'All Projects';
 		priority: 100;
 		default: Bag new;
@@ -71,7 +61,7 @@ PpAbstractProjectContainer >> childrenLabel [
 
 { #category : #accessing }
 PpAbstractProjectContainer >> completeChildrenList [
-	^ self newFromProjectsBlock: [ self rootChildren select: [ :e | e isComplete ] ]
+	^ self newFromChildrenBlock: [ self rootChildren select: [ :e | e isComplete ] ]
 ]
 
 { #category : #magritte }
@@ -82,6 +72,29 @@ PpAbstractProjectContainer >> completeDescription [
 	^ self filteredProjectsDescription: #completeChildrenList
 ]
 
+{ #category : #accessing }
+PpAbstractProjectContainer >> dependencyLinks [
+	^ self masterList dependencyLinks
+]
+
+{ #category : #accessing }
+PpAbstractProjectContainer >> dueBy: aDate [
+	self subclassResponsibility
+]
+
+{ #category : #accessing }
+PpAbstractProjectContainer >> dueToday [
+	^ self dueBy: Date today
+]
+
+{ #category : #magritte }
+PpAbstractProjectContainer >> dueTodayDescription [
+	<gtInspectorPresentationOrder: 2>
+	<magritteAltFor: #childrenDescription>
+	
+	^ self filteredProjectsDescription: #dueToday
+]
+
 { #category : #magritte }
 PpAbstractProjectContainer >> filteredProjectsDescription: aSelector [
 	| label |
@@ -90,16 +103,37 @@ PpAbstractProjectContainer >> filteredProjectsDescription: aSelector [
 	^ MAToOneRelationDescription new
 		accessor: aSelector;
 		label: label;
-		gtView: [ :aView :desc :me |
-			aView tree
-				priority: 8;
-				items: [ (desc read: me) children ];
-				children: [ :proj | proj activeChildren ] ];
 		"default: Bag new;"
-		classes: PpReadOnlyProjectList;
+		classes: PpProjectsSnapshot;
 		beReadOnly;
 		group: 'Projects';
 		yourself
+]
+
+{ #category : #spotter }
+PpAbstractProjectContainer >> gtGtSpotterAllProjectsFor: aStep [
+	<gtSearch>
+	^ aStep listProcessor
+		priority: 5;
+		title: 'Projects';
+		allCandidates: [ self allChildrenList allChildren ];
+		filter: GtFilterSubstrings;
+		candidatesLimit: 7;
+		itemName: #gtDisplayText
+]
+
+{ #category : #'gt-views' }
+PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
+
+	<gtView>
+	^ aView columnedTree
+		title: 'Next Actions' translated;
+		priority: 15;
+		items: [ self nextActionsList allChildren ];
+		children: #rootChildren;
+		column: 'Item' text: #gtDisplayText;
+		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
+		actionUpdateButtonTooltip: 'Update'.
 ]
 
 { #category : #'gt-views' }
@@ -113,7 +147,7 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 			title: desc label translated;
 			priority: 25;
 			items: [ (desc read: self) asOrderedCollection ];
-			children: #children;
+			children: #rootChildren;
 			column: 'Item' text: [ :p | p gtDisplayText ];
 			column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
 			actionUpdateButtonTooltip: 'Update' ].
@@ -123,11 +157,71 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 		  views: tabs
 ]
 
+{ #category : #accessing }
+PpAbstractProjectContainer >> masterList [
+
+	^ masterList
+]
+
+{ #category : #accessing }
+PpAbstractProjectContainer >> masterList: anObject [
+
+	masterList := anObject
+]
+
+{ #category : #accessing }
+PpAbstractProjectContainer >> neverDoing [
+	^ self newFromChildrenBlock: [ self activeChildrenList allChildren select: [ :e | e status = PpProject neverDoingStatus ] ]
+]
+
+{ #category : #magritte }
+PpAbstractProjectContainer >> neverDoingDescription [
+	<gtInspectorPresentationOrder: 6>
+	<magritteAltFor: #childrenDescription>
+	
+	^ self filteredProjectsDescription: #neverDoing
+]
+
 { #category : #private }
-PpAbstractProjectContainer >> newFromProjectsBlock: aBlock [
-	^ PpReadOnlyProjectList new
-		projects: aBlock value asArray;
+PpAbstractProjectContainer >> newFromChildrenBlock: aBlock [
+	^ PpProjectsSnapshot new
+		rootChildren: aBlock value asArray;
+		masterList: self masterList;
 		yourself
+]
+
+{ #category : #accessing }
+PpAbstractProjectContainer >> nextActionsList [
+	^ self newFromChildrenBlock: [ 
+		self allChildren select: [ :e | self shouldBeImplemented ] ]
+]
+
+{ #category : #accessing }
+PpAbstractProjectContainer >> notDoing [
+	^ self newFromChildrenBlock: [ self activeChildrenList allChildren select: [ :e | e status = PpProject notDoingStatus ] ]
+]
+
+{ #category : #magritte }
+PpAbstractProjectContainer >> notDoingDescription [
+	<gtInspectorPresentationOrder: 4>
+	<magritteAltFor: #childrenDescription>
+	<magritteDescription>
+	
+	^ self filteredProjectsDescription: #notDoing
+]
+
+{ #category : #accessing }
+PpAbstractProjectContainer >> overdue [
+	^ self dueBy: Date yesterday
+]
+
+{ #category : #magritte }
+PpAbstractProjectContainer >> overdueDescription [
+	<gtInspectorPresentationOrder: 1>
+	<magritteAltFor: #childrenDescription>
+	<magritteDescription>
+	
+	^ self filteredProjectsDescription: #overdue
 ]
 
 { #category : #accessing }

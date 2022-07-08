@@ -50,7 +50,7 @@ PpProjectBrowser >> listTextFor: aProject [
 
 { #category : #building }
 PpProjectBrowser >> projectListsIn: container for: projectList [
-	(projectList magritteAllDescriptionsFor: #projectsDescription)
+	(projectList magritteAllDescriptionsFor: #childrenDescription)
 		do: [ :d | 
 			container tree
 				glmAddActions;

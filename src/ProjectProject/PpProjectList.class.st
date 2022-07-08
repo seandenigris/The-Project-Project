@@ -1,8 +1,11 @@
 Class {
 	#name : #PpProjectList,
-	#superclass : #PpReadOnlyProjectList,
-	#traits : 'PpTProjectContainer',
-	#classTraits : 'PpTProjectContainer classTrait',
+	#superclass : #PpProjectsSnapshot,
+	#traits : 'PpTMutableProjectContainer',
+	#classTraits : 'PpTMutableProjectContainer classTrait',
+	#instVars : [
+		'dependencyLinks'
+	],
 	#classInstVars : [
 		'uniqueInstance'
 	],
@@ -15,11 +18,11 @@ PpProjectList class >> example [
 	^ self
 		given: [ self new ]
 		when: [ :pl |
-			pl projects
-				add: PpProject exampleComplete;
-				add: PpProject exampleIncomplete.
+			pl
+				addChild: PpProject exampleComplete;
+				addChild: PpProject exampleIncomplete.
 			pl ]
-		then: [ :pl | pl projects should haveSize: 2 ]
+		then: [ :pl | pl allChildren should haveSize: 2 ]
 ]
 
 { #category : #UI }
@@ -95,8 +98,23 @@ PpProjectList >> add [
 	PpProject new asMagritteMorph
 		addButtons;
 		addWindow;
-		onAnswer: [ :newProject | self projects add: newProject ];
+		onAnswer: [ :newProject | self allChildren add: newProject ];
 		openInWorld
+]
+
+{ #category : #accessing }
+PpProjectList >> addChild: aPpProject [
+	self rootChildren add: aPpProject
+]
+
+{ #category : #accessing }
+PpProjectList >> addChild: aProject to: parentProject [
+	| link |
+	link := PpProjectDependency 
+		project: parentProject 
+		dependsOn: aProject.
+	self dependencyLinks add: link.
+	self addChild: aProject
 ]
 
 { #category : #magritte }
@@ -112,31 +130,19 @@ PpProjectList >> addDescription [
 ]
 
 { #category : #accessing }
-PpProjectList >> gtSpotterNewProjectFor: aStep [
-	<gtSearch>
-	self gtSpotterNewProjectIn: self labeled: 'project' for: aStep
+PpProjectList >> dependencyLinks [
+	^ dependencyLinks ifNil: [ dependencyLinks := Bag new ]
 ]
 
-{ #category : #'private-spotter' }
-PpProjectList >> gtSpotterNewProjectIn: aPpProjectList labeled: aString for: aStep [
-	
-	aStep listProcessor
-		title: 'New ', aString;
-		priority: 50;
-		itemName: [ :input | 'Create new ', aString, ': ', input ];
-		previewObject: [ :input | PpProject new title: input; yourself ];
-		wantsToDisplayOnEmptyQuery: false;
-		filter: GtNullFilter
-			item: [ :filter :context | 
-				| isExisting |
-				isExisting := aPpProjectList children anySatisfy: [ :e | 
-					e title = context textTrimmed ].
-				isExisting ifFalse: [ 
-					filter value: context textTrimmed ] ];
-		send: [ :input :spotterStep |
-			| result |
-			result := PpProject new title: input; yourself.
-			self children add: result  ]
+{ #category : #accessing }
+PpProjectList >> gtSpotterNewChildFor: aStep [
+	<gtSearch>
+	self gtSpotterNewChildIn: self labeled: 'project' for: aStep
+]
+
+{ #category : #accessing }
+PpProjectList >> masterList [
+	^ self
 ]
 
 { #category : #magritte }

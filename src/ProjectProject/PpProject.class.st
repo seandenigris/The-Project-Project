@@ -1,8 +1,8 @@
 Class {
 	#name : #PpProject,
 	#superclass : #PpAbstractProjectContainer,
-	#traits : 'MATPropertyOwner + PpTProjectContainer',
-	#classTraits : 'MATPropertyOwner classTrait + PpTProjectContainer classTrait',
+	#traits : 'MATPropertyOwner + PpTMutableProjectContainer',
+	#classTraits : 'MATPropertyOwner classTrait + PpTMutableProjectContainer classTrait',
 	#instVars : [
 		'title',
 		'dueDate',
@@ -14,7 +14,7 @@ Class {
 		'context',
 		'supportMaterials',
 		'requirements',
-		'parents'
+		'dependencyLinks'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
@@ -65,23 +65,16 @@ PpProject class >> titled: aString [
 ]
 
 { #category : #accessing }
-PpProject >> activeChildren [
-	self flag: 'This was cut and pasted from ProjectList>>#activeProjects. We should unify. https://bitbucket.org/SeanDeNigris/the-project-project/issues/7/unify-shared-projectlist-and-project'.
-	^ self children reject: [ :e | e isComplete ]
+PpProject >> addChild: aPpProject [
+	self masterList addChild: aPpProject to: self
 ]
 
 { #category : #enumeration }
 PpProject >> allChildren [
 	| roots branches |
-	roots := self children.
-	branches := self children flatCollect: [ :p | p allChildren ].
+	roots := self rootChildren.
+	branches := self rootChildren flatCollect: [ :p | p allChildren ].
 	^ (roots, branches) asSet.
-]
-
-{ #category : #enumeration }
-PpProject >> allProjects [
-	"For option description"
-	^ PpProjectList uniqueInstance allChildrenList projects
 ]
 
 { #category : #actions }
@@ -96,23 +89,6 @@ PpProject >> browseSupportMaterials [
 		command := template format: { #source -> e file fullName. #target -> folder fullName } asDictionary.
 		LibC system: command ].
 	folder open
-]
-
-{ #category : #accessing }
-PpProject >> childLinks [
-
-	^ PpProjectList uniqueInstance links select: [ :link |
-		link project = self ]
-]
-
-{ #category : #accessing }
-PpProject >> children [
-	^ self childLinks collect: #dependency
-]
-
-{ #category : #accessing }
-PpProject >> children: anObject [
-	children := anObject
 ]
 
 { #category : #magritte }
@@ -202,31 +178,11 @@ PpProject >> gtDisplayText [
 	^ result.
 ]
 
-{ #category : #GT }
-PpProject >> gtInspectorLinksIn: composite [
-
-	| list |
-	list := composite list.
-	list dynamicActionsOnSelection: [ :pres |
-		| actions |
-		actions := OrderedCollection new.
-		pres selection magritteActionDescriptions do: [ :desc |
-			| action |
-			action := GLMGenericAction new
-				action: [ pres selection perform: desc selector ];
-				title: desc label;
-				shortcut: desc label first lowercase;
-				yourself.
-			actions add: action ].
-		actions ].
-	^ list
-]
-
 { #category : #accessing }
-PpProject >> gtSpotterNewStepFor: aStep [
+PpProject >> gtSpotterNewChildFor: aStep [
 	<gtSearch>
 	self 
-		gtSpotterNewProjectIn: PpProjectList uniqueInstance 
+		gtSpotterNewChildIn: PpProjectList uniqueInstance 
 		labeled: 'step' 
 		for: aStep
 ]
@@ -327,7 +283,13 @@ PpProject >> requirements: aCollection [
 
 { #category : #accessing }
 PpProject >> rootChildren [
-	^ self children
+	^ self rootChildrenLinks collect: #dependency
+]
+
+{ #category : #private }
+PpProject >> rootChildrenLinks [
+	^ self dependencyLinks select: [ :link |
+		link project = self ]
 ]
 
 { #category : #status }
