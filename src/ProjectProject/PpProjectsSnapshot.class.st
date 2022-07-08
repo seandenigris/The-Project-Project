@@ -21,12 +21,12 @@ PpProjectsSnapshot >> asOrderedCollection [
 PpProjectsSnapshot >> childrenDescription [
 	<magritteDescription>
 	
-	^ MAToManyRelationDescription new
-			label: 'Projects (roots)';
-			priority: 100;
-			default: Bag new;
-			classes: { PpProject };
-			yourself
+	^ super childrenDescription
+		label: 'Projects (roots)';
+		priority: 100;
+		default: Bag new;
+		classes: { PpProject };
+		yourself
 ]
 
 { #category : #accessing }
@@ -63,7 +63,7 @@ PpProjectsSnapshot >> maGtFormFor: aView [
 
 { #category : #accessing }
 PpProjectsSnapshot >> rootChildren [
-	^ children ifNil: [ children := OrderedCollection new ]
+	^ children ifNil: [ children := Array new ]
 ]
 
 { #category : #accessing }

@@ -149,3 +149,8 @@ PpProjectList >> masterList [
 PpProjectList >> mementoClass [
 	^ MAStraightMemento
 ]
+
+{ #category : #accessing }
+PpProjectList >> rootChildren [
+	^ children ifNil: [ children := Set new ]
+]

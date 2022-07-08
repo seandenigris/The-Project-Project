@@ -99,7 +99,11 @@ PpAbstractProjectContainer >> dueTodayDescription [
 PpAbstractProjectContainer >> filteredProjectsDescription: aSelector [
 	| label |
 	label := aSelector normalizeCamelCase capitalized.
-	(aSelector endsWith: 'List') ifTrue: [ label:= label allButLast: ' List' size ].
+	(aSelector endsWith: 'List') ifTrue: [ 
+		| suffixLength |
+		suffixLength := ' List' size.
+		(label includesSubstring: 'Children') ifTrue: [ suffixLength := suffixLength + ' Children' size ].
+		label := label allButLast: suffixLength ].
 	^ MAToOneRelationDescription new
 		accessor: aSelector;
 		label: label;

@@ -148,6 +148,13 @@ PpProject >> displayText [
 ]
 
 { #category : #accessing }
+PpProject >> dueBy: aDate [
+	
+	^ self newFromChildrenBlock: [ 
+		self activeChildrenList rootChildren ]
+]
+
+{ #category : #accessing }
 PpProject >> dueDate [
 	^ dueDate
 ]
