@@ -120,7 +120,7 @@ PpAbstractProjectContainer >> gtGtSpotterAllProjectsFor: aStep [
 	^ aStep listProcessor
 		priority: 5;
 		title: 'Projects';
-		allCandidates: [ self allChildrenList allChildren ];
+		allCandidates: [ self masterList allChildren ];
 		filter: GtFilterSubstrings;
 		candidatesLimit: 7;
 		itemName: #gtDisplayText
