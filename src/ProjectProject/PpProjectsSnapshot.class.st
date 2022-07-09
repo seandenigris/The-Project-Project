@@ -53,6 +53,37 @@ PpProjectsSnapshot >> gtMagritteFor: aView [
 	^ aView empty
 ]
 
+{ #category : #accessing }
+PpProjectsSnapshot >> gtViewGraphFor: aView [
+	<gtView>
+	| nodes |
+	nodes := self allChildren asOrderedCollection 
+		add: self; 
+		yourself.
+	^ aView mondrian
+		title: 'Graph';
+		painting: [ :m |
+			m nodes
+				stencil: [ :obj | 
+					BlTextElement new
+						text: obj gtDisplayText;
+						background: Color white;
+						margin: (BlInsets all: 20);
+						padding: (BlInsets all: 5);
+						effect:
+							(BlGaussianShadowEffect
+								color: (Color gray alpha: 0.5)
+								width: 5
+								offset: 0 @ 0);
+						yourself ];
+				with: nodes.
+			m edges 
+				connect: (nodes reject: [ :n | n rootChildren isEmpty]) 
+				fromAll: [ :n | n rootChildren ].
+			m layout horizontalTree.
+			m ]
+]
+
 { #category : #magritte }
 PpProjectsSnapshot >> maGtFormFor: aView [
 	"Deprioritize this view because it is not very useful and super slow"
