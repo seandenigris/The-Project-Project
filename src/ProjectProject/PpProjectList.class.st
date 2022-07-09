@@ -18,11 +18,16 @@ PpProjectList class >> example [
 	^ self
 		given: [ self new ]
 		when: [ :pl |
+			| multiStep |
+			multiStep := PpProject exampleComplete.
 			pl
-				addChild: PpProject exampleComplete;
+				addChild: multiStep;
+				addChild: PpProject exampleIncomplete to: multiStep;
 				addChild: PpProject exampleIncomplete.
 			pl ]
-		then: [ :pl | pl allChildren should haveSize: 2 ]
+		then: [ :pl | 
+			pl rootChildren should haveSize: 2.
+			pl allChildren should haveSize: 3 ]
 ]
 
 { #category : #UI }
@@ -132,7 +137,7 @@ PpProjectList >> addDescription [
 
 { #category : #accessing }
 PpProjectList >> dependencyLinks [
-	^ dependencyLinks ifNil: [ dependencyLinks := Bag new ]
+	^ dependencyLinks ifNil: [ dependencyLinks := Set new ]
 ]
 
 { #category : #accessing }

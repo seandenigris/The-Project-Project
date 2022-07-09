@@ -74,7 +74,9 @@ PpAbstractProjectContainer >> completeDescription [
 
 { #category : #accessing }
 PpAbstractProjectContainer >> dependencyLinks [
-	^ self masterList dependencyLinks
+	^ self masterList 
+		ifNil: [ #() ]
+		ifNotNil: [ :ml | ml dependencyLinks ]
 ]
 
 { #category : #accessing }
