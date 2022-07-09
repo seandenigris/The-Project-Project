@@ -191,7 +191,7 @@ PpAbstractProjectContainer >> neverDoingDescription [
 { #category : #private }
 PpAbstractProjectContainer >> newFromChildrenBlock: aBlock [
 	^ PpProjectsSnapshot new
-		rootChildren: aBlock value asArray;
+		allChildren: aBlock value asArray;
 		masterList: self masterList;
 		yourself
 ]

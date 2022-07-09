@@ -136,6 +136,11 @@ PpProjectList >> addDescription [
 ]
 
 { #category : #accessing }
+PpProjectList >> allChildren [
+	^ children ifNil: [ children := Set new ]
+]
+
+{ #category : #accessing }
 PpProjectList >> dependencyLinks [
 	^ dependencyLinks ifNil: [ dependencyLinks := Set new ]
 ]
@@ -154,9 +159,4 @@ PpProjectList >> masterList [
 { #category : #magritte }
 PpProjectList >> mementoClass [
 	^ MAStraightMemento
-]
-
-{ #category : #accessing }
-PpProjectList >> rootChildren [
-	^ children ifNil: [ children := Set new ]
 ]

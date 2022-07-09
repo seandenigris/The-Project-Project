@@ -9,7 +9,12 @@ Class {
 
 { #category : #accessing }
 PpProjectsSnapshot >> allChildren [
-	^ children
+	^ children ifNil: [ children := Array new ]
+]
+
+{ #category : #accessing }
+PpProjectsSnapshot >> allChildren: aCollection [
+	children := aCollection
 ]
 
 { #category : #accessing }
@@ -94,10 +99,7 @@ PpProjectsSnapshot >> maGtFormFor: aView [
 
 { #category : #accessing }
 PpProjectsSnapshot >> rootChildren [
-	^ children ifNil: [ children := Array new ]
-]
-
-{ #category : #accessing }
-PpProjectsSnapshot >> rootChildren: aCollection [
-	children := aCollection
+	^ self allChildren select: [ :c | 
+		self dependencyLinks noneSatisfy: [ :link |
+			link dependency = c ] ]
 ]
