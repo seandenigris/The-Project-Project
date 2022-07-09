@@ -227,7 +227,8 @@ PpProject >> gtViewGraphFor: aView [
 				connect: (nodes reject: [ :n | n rootChildren isEmpty]) 
 				fromAll: [ :n | n rootChildren ].
 			m layout horizontalTree.
-			m ]
+			m ];
+		actionUpdateButton
 ]
 
 { #category : #testing }
