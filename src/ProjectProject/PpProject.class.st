@@ -66,7 +66,7 @@ PpProject class >> titled: aString [
 
 { #category : #accessing }
 PpProject >> addChild: aPpProject [
-	self masterList addChild: aPpProject to: self
+	^ self masterList addChild: aPpProject to: self
 ]
 
 { #category : #enumeration }

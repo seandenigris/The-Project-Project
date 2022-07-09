@@ -104,7 +104,8 @@ PpProjectList >> add [
 
 { #category : #accessing }
 PpProjectList >> addChild: aPpProject [
-	self rootChildren add: aPpProject
+	aPpProject masterList: self.
+	^ self rootChildren add: aPpProject
 ]
 
 { #category : #accessing }
@@ -114,7 +115,7 @@ PpProjectList >> addChild: aProject to: parentProject [
 		project: parentProject 
 		dependsOn: aProject.
 	self dependencyLinks add: link.
-	self addChild: aProject
+	^ self addChild: aProject
 ]
 
 { #category : #magritte }
