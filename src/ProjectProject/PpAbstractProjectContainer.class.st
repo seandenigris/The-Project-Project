@@ -115,7 +115,7 @@ PpAbstractProjectContainer >> filteredProjectsDescription: aSelector [
 ]
 
 { #category : #spotter }
-PpAbstractProjectContainer >> gtGtSpotterAllProjectsFor: aStep [
+PpAbstractProjectContainer >> gtGtSpotterAllChildrenFor: aStep [
 	<gtSearch>
 	^ aStep listProcessor
 		priority: 5;
