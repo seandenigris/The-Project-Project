@@ -186,6 +186,13 @@ PpProject >> gtDisplayText [
 ]
 
 { #category : #accessing }
+PpProject >> gtGtSpotterAllChildrenFor: aStep [
+	
+	^ (super gtGtSpotterAllChildrenFor: aStep)
+		send: [ :result | self addChild: result ]
+]
+
+{ #category : #accessing }
 PpProject >> gtSpotterNewChildFor: aStep [
 	<gtSearch>
 	self 
