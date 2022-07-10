@@ -44,7 +44,7 @@ PpLocation >> addChildNamed: aString [
 
 { #category : #accessing }
 PpLocation >> children [
-	^ children ifNil: [ children := Bag new ]
+	^ self maLazyInstVarUsing: self childrenDescription
 ]
 
 { #category : #'as yet unclassified' }
@@ -60,7 +60,7 @@ PpLocation >> childrenDescription [
 		accessor: #children;
 		priority: 200;
 		default: Bag new;
-		classes: { PpLocation };
+		classes: PpLocation withAllSubclasses;
 		gtSearchSource: (MessageSend receiver: self selector: #list); 
 		yourself
 ]

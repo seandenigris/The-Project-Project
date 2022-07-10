@@ -39,6 +39,18 @@ PpInventoryItem >> location: anObject [
 ]
 
 { #category : #accessing }
+PpInventoryItem >> locationDescription [
+	<magritteDescription>
+	
+	^ MAToOneRelationDescription new
+			accessor: #location;
+			priority: 200;
+			gtSearchSource: (MessageSend receiver: PpLocation selector: #list);
+			classes: PpLocation withAllSubclasses;
+			yourself
+]
+
+{ #category : #accessing }
 PpInventoryItem >> name [
 
 	^ name
@@ -48,6 +60,16 @@ PpInventoryItem >> name [
 PpInventoryItem >> name: anObject [
 
 	name := anObject
+]
+
+{ #category : #accessing }
+PpInventoryItem >> nameDescription [
+	<magritteDescription>
+	
+	^ MAStringDescription new
+			accessor: #name;
+			priority: 100;
+			yourself
 ]
 
 { #category : #accessing }

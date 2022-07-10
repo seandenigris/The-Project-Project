@@ -202,7 +202,6 @@ PpEvent >> participantsDescription [
 	
 	^ MAToManyRelationDescription new
 			accessor: #participants;
-			label: 'Participants';
 			priority: 100;
 			kind: MpEntityCollection;
 			default: MpEntityCollection new;
