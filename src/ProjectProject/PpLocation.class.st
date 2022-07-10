@@ -14,6 +14,11 @@ Class {
 }
 
 { #category : #accessing }
+PpLocation class >> list [
+	^ PpLocationList uniqueInstance
+]
+
+{ #category : #accessing }
 PpLocation class >> named: aString [
 	^ self new
 		name: aString;
