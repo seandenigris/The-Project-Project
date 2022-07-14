@@ -73,7 +73,7 @@ PpProject >> addChild: aPpProject [
 PpProject >> allChildren [
 	| roots branches |
 	roots := self rootChildren.
-	branches := self rootChildren flatCollect: [ :p | p allChildren ].
+	branches := roots flatCollect: [ :p | p allChildren ].
 	^ (roots, branches) asSet.
 ]
 
