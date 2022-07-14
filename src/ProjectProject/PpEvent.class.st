@@ -36,18 +36,26 @@ PpEvent class >> examplePointInTime [
 { #category : #'instance creation' }
 PpEvent class >> fromString: aString [
 
-	| tokens title date |
+	| tokens title date prefixSize time |
 	tokens := aString findTokens: Character separators.
-	title := [
+	prefixSize := 0.
+	[
 		date := Date fromString: tokens first.
-		(aString allButFirst: tokens first size) trimLeft
+		prefixSize := tokens first size + 1.
+		tokens second = '@' 
+			ifTrue: [ 
+				time := tokens third asTime.
+				prefixSize := prefixSize + tokens third size + 3 ].
 	]
 		on: Error 
 		do: [ aString ].
 		
+	title := (aString allButFirst: prefixSize) trimLeft.
+		
 	^ self new
 		title: title;
 		startDate: date;
+		startTime: time;
 		yourself
 ]
 
