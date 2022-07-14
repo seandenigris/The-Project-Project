@@ -384,32 +384,6 @@ PpProject >> supportMaterialsDescription [
 			yourself
 ]
 
-{ #category : #magritte }
-PpProject >> supportMaterialsMOEDescription [
-	<magritteDescription>
-	<gtInspectorPresentationOrder: 25>
-	^ MAMultipleOptionDescription new
-		accessor: #supportMaterials;
-		label: 'Materials';
-		priority: 650;
-		default: OrderedCollection new;
-		morphicClass: MATokenCompletionMorph;
-		readOnly;
-		extensible: true;
-		initializer: [ :text | 
-			| resource |
-			"This doesn't work because #openInWindow below returns immediately, making the window the initialized 'resource'!"
-			resource := LlPhysicalResource new
-				description: text;
-				yourself.
-			resource asMagritteMorph
-				addButtons;
-				onAnswer: [ :e | e ];
-				openInWindow ];
-		options: RlResourceLibrary uniqueInstance resources;
-		yourself
-]
-
 { #category : #accessing }
 PpProject >> tags [
 	^ tags ifNil: [ tags := Bag new ]

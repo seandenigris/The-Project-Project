@@ -234,8 +234,3 @@ PpAbstractProjectContainer >> overdueDescription [
 PpAbstractProjectContainer >> rootChildren [
 	self subclassResponsibility
 ]
-
-{ #category : #accessing }
-PpAbstractProjectContainer >> rooteChildren [
-	self subclassResponsibility
-]
