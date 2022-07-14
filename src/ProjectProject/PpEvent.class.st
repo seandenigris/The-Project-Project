@@ -205,6 +205,7 @@ PpEvent >> participantsDescription [
 			priority: 100;
 			kind: MpEntityCollection;
 			default: MpEntityCollection new;
+			classes: MpRelatableEntity allSubclasses;
 			gtSearchSource: (MessageSend receiver: MpAddressBook selector: #uniqueInstance);
 			yourself
 ]
