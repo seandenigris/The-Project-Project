@@ -110,7 +110,7 @@ PpProjectList >> add [
 { #category : #accessing }
 PpProjectList >> addChild: aPpProject [
 	aPpProject masterList: self.
-	^ self rootChildren add: aPpProject
+	^ self allChildren add: aPpProject
 ]
 
 { #category : #accessing }
