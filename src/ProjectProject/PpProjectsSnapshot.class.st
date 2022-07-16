@@ -52,12 +52,6 @@ PpProjectsSnapshot >> dueBy: aDate [
 				result ] ]
 ]
 
-{ #category : #magritte }
-PpProjectsSnapshot >> gtMagritteFor: aView [
-	"Suppress GT4Magritte's form view, which is slow and not particularly useful for project lists"
-	^ aView empty
-]
-
 { #category : #accessing }
 PpProjectsSnapshot >> gtViewGraphFor: aView [
 	<gtView>
@@ -94,7 +88,7 @@ PpProjectsSnapshot >> maGtFormFor: aView [
 	"Deprioritize this view because it is not very useful and super slow"
 	
 	^ (super maGtFormFor: aView)
-		priority: 190
+		priority: 105
 ]
 
 { #category : #accessing }
