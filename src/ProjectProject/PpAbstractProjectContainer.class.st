@@ -14,7 +14,7 @@ PpAbstractProjectContainer >> activeChildrenList [
 
 { #category : #magritte }
 PpAbstractProjectContainer >> activeDescription [
-	<magritteAltFor: #childrenDescription>
+	"<magritteAltFor: #childrenDescription>"
 	
 	^ self filteredProjectsDescription: #activeChildrenList
 ]
@@ -66,8 +66,7 @@ PpAbstractProjectContainer >> completeChildrenList [
 
 { #category : #magritte }
 PpAbstractProjectContainer >> completeDescription [
-	<gtInspectorPresentationOrder: 8>
-	<magritteAltFor: #childrenDescription>
+	"<magritteAltFor: #childrenDescription>"
 	
 	^ self filteredProjectsDescription: #completeChildrenList
 ]
@@ -91,8 +90,7 @@ PpAbstractProjectContainer >> dueToday [
 
 { #category : #magritte }
 PpAbstractProjectContainer >> dueTodayDescription [
-	<gtInspectorPresentationOrder: 2>
-	<magritteAltFor: #childrenDescription>
+	"<magritteAltFor: #childrenDescription>"
 	
 	^ self filteredProjectsDescription: #dueToday
 ]
@@ -182,8 +180,7 @@ PpAbstractProjectContainer >> neverDoing [
 
 { #category : #magritte }
 PpAbstractProjectContainer >> neverDoingDescription [
-	<gtInspectorPresentationOrder: 6>
-	<magritteAltFor: #childrenDescription>
+	"<magritteAltFor: #childrenDescription>"
 	
 	^ self filteredProjectsDescription: #neverDoing
 ]
@@ -209,9 +206,8 @@ PpAbstractProjectContainer >> notDoing [
 
 { #category : #magritte }
 PpAbstractProjectContainer >> notDoingDescription [
-	<gtInspectorPresentationOrder: 4>
-	<magritteAltFor: #childrenDescription>
-	<magritteDescription>
+	"<magritteAltFor: #childrenDescription>"
+	"<magritteDescription>"
 	
 	^ self filteredProjectsDescription: #notDoing
 ]
@@ -223,9 +219,8 @@ PpAbstractProjectContainer >> overdue [
 
 { #category : #magritte }
 PpAbstractProjectContainer >> overdueDescription [
-	<gtInspectorPresentationOrder: 1>
-	<magritteAltFor: #childrenDescription>
-	<magritteDescription>
+	"<magritteAltFor: #childrenDescription>
+	<magritteDescription>"
 	
 	^ self filteredProjectsDescription: #overdue
 ]
