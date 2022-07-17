@@ -148,8 +148,7 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 	<gtView>
 	| tabs |
 	self flag: 'At first, we filtered out empty lists (i.e. returned empty views, but it had the side effect of caching the item list, which prevented refreshing; not sure whether empty tabs should be hidden anway'.
-	tabs := #().
-	(self magritteAllDescriptionsFor: #childrenDescription) collect: [ :desc | 
+	tabs := (self magritteAllDescriptionsFor: #childrenDescription) collect: [ :desc | 
 		aView columnedTree
 			title: desc label translated;
 			priority: 25;
