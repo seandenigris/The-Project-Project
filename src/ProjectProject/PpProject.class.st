@@ -276,7 +276,6 @@ PpProject >> links: anObject [
 { #category : #magritte }
 PpProject >> linksDescription [
 	<magritteDescription>
-	<gtInspectorPresentationOrder: 20>
 	^ MAToManyRelationDescription new
 		accessor: #links;
 		label: 'Links';
@@ -353,12 +352,10 @@ PpProject >> statusDescription [
 		accessor: #status;
 		label: 'Status';
 		priority: 250;
-		morphicClass: MADropListMorph;
+		morphicClass: MAMorphicDropList;
 		options: self class statusOptions;
 		default: self defaultStatus;
-		"			readonly;
-"
-			yourself
+		yourself
 ]
 
 { #category : #accessing }
@@ -374,13 +371,14 @@ PpProject >> supportMaterials: anObject [
 { #category : #magritte }
 PpProject >> supportMaterialsDescription [
 	<magritteDescription>
-	<gtInspectorPresentationOrder: 25>
 	
 	^ MAToManyRelationDescription new
 			accessor: #supportMaterials;
 			priority: 650;
-			default: OrderedCollection new;
-			classes: RlResource allSubclasses;
+			default: Bag new;
+			classes: RlResource withAllSubclasses;
+			morphicClass: MAMorphicTokenCompletion;
+			gtSearchSource: (MessageSend receiver: RlResourceLibrary selector: #uniqueInstance);
 			yourself
 ]
 
