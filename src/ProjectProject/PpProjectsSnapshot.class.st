@@ -24,13 +24,9 @@ PpProjectsSnapshot >> asOrderedCollection [
 
 { #category : #magritte }
 PpProjectsSnapshot >> childrenDescription [
-	<magritteDescription>
 	
 	^ super childrenDescription
-		label: 'Projects (roots)';
-		priority: 100;
-		default: Bag new;
-		classes: { PpProject };
+		default: Array new;
 		yourself
 ]
 

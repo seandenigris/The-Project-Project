@@ -40,12 +40,12 @@ PpAbstractProjectContainer >> childrenDescription [
 	<magritteDescription>
 	
 	^ MAToManyRelationDescription new
-		accessor: #allChildren;
-		label: 'All Projects';
+		accessor: #rootChildren;
+		beReadOnly;
+		label: 'Children';
 		priority: 100;
-		default: Bag new;
-		classes: PpProject allSubclasses;
-		gtSearchSource: (MessageSend receiver: PpProjectList selector: #uniqueInstance);
+		classes: PpProject withAllSubclasses;
+		gtSearchSource: (MessageSend receiver: self selector: #masterList);
 		morphicClass: MAMorphicTokenCompletion;
 		initializer: [ :s | 
 			PpProject new

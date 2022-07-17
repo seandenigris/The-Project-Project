@@ -94,11 +94,8 @@ PpProject >> browseSupportMaterials [
 { #category : #magritte }
 PpProject >> childrenDescription [
 	
-	self flag: 'The problem is the child''s due date. See https://gitlab.com/SeanDeNigris/The-Project-Project/issues/3'.
+	self flag: 'The problem is the child''s due date. See https://github.com/seandenigris/The-Project-Project/issues/15'.
 	^ super childrenDescription
-		priority: 300;
-		reference: self magritteDescription;
-		yourself
 ]
 
 { #category : #accessing }

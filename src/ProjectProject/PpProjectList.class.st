@@ -141,6 +141,14 @@ PpProjectList >> allChildren [
 ]
 
 { #category : #accessing }
+PpProjectList >> childrenDescription [
+	
+	^ super childrenDescription
+		default: Set new;
+		yourself
+]
+
+{ #category : #accessing }
 PpProjectList >> dependencyLinks [
 	^ dependencyLinks ifNil: [ dependencyLinks := Set new ]
 ]
