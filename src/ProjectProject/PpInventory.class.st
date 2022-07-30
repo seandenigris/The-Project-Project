@@ -73,9 +73,12 @@ PpInventory >> gtViewItemsOn: aView [
 		priority: 5;
 		items: [ self items ];
 		column: 'Name' text: #name;
-		column: 'Location' text: [ :e | e location displayString ];
-		yourself;
-		actionUpdateButton
+		column: 'Location' text: [ :e | 
+			e location
+				ifNotNil: #displayString
+				ifNil: [ '' ] ];
+		actionUpdateButton;
+		yourself
 ]
 
 { #category : #accessing }
