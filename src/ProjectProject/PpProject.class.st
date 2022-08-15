@@ -10,11 +10,11 @@ Class {
 		'links',
 		'tags',
 		'status',
-		'completionTimestamp',
 		'context',
 		'supportMaterials',
 		'requirements',
-		'dependencyLinks'
+		'dependencyLinks',
+		'statusTimestamp'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
@@ -43,18 +43,13 @@ PpProject class >> exampleIncomplete [
 ]
 
 { #category : #accessing }
-PpProject class >> neverDoingStatus [
-	^ 'Never Doing'
-]
-
-{ #category : #accessing }
-PpProject class >> notDoingStatus [
-	^ 'Not Doing'
+PpProject class >> inactiveStatus [
+	^ PpInactiveStatus new
 ]
 
 { #category : #accessing }
 PpProject class >> statusOptions [
-	^ { self neverDoingStatus. self notDoingStatus }
+	^ PpStatus allSubclasses collect: #new
 ]
 
 { #category : #'instance creation' }
@@ -105,7 +100,7 @@ PpProject >> childrenLabel [
 
 { #category : #accessing }
 PpProject >> completionTimestamp: timestamp [
-	completionTimestamp := timestamp
+	statusTimestamp := timestamp
 ]
 
 { #category : #accessing }
@@ -120,7 +115,7 @@ PpProject >> context: anObject [
 
 { #category : #status }
 PpProject >> defaultStatus [
-	^ self class neverDoingStatus
+	^ PpInboxStatus new
 ]
 
 { #category : #printing }
@@ -235,15 +230,19 @@ PpProject >> isActiveDueBy: aDate [
 
 { #category : #accessing }
 PpProject >> isComplete [
-	^ completionTimestamp isNotNil
+	^ self status isKindOf: PpCompleteStatus
 ]
 
 { #category : #accessing }
 PpProject >> isComplete: aBoolean [
-	completionTimestamp := aBoolean ppAsCompletionTimestamp.
+
+	aBoolean
+		ifTrue: [ 
+			self status: PpCompleteStatus new ]
+		ifFalse: [
+			statusTimestamp := nil.
+			^ self "Completion implies completion of subtasks, but the inverse is not true" ].
 	
-	"Completion implies completion of subtasks, but the inverse is not true"
-	aBoolean ifFalse: [ ^ self ].
 	self allChildren do: [ :e | e isComplete ifFalse: [ e isComplete: true ] ]
 ]
 
@@ -339,7 +338,10 @@ PpProject >> status [
 
 { #category : #status }
 PpProject >> status: aStatus [
-	status := aStatus
+	status := aStatus.
+	
+	"Pharo's Date offset support is fatally broken. See [Pharo Issue 12147: Date>>#= fooled by daylight savings time](https://pharo.fogbugz.com/default.asp?12147)"
+	self completionTimestamp: DateAndTime now translateToUTC.
 ]
 
 { #category : #magritte }

@@ -175,7 +175,7 @@ PpAbstractProjectContainer >> masterList: anObject [
 
 { #category : #accessing }
 PpAbstractProjectContainer >> neverDoing [
-	^ self newFromChildrenBlock: [ self activeChildrenList allChildren select: [ :e | e status = PpProject neverDoingStatus ] ]
+	^ self newFromChildrenBlock: [ self activeChildrenList allChildren select: [ :e | e status = PpProject inactiveStatus ] ]
 ]
 
 { #category : #magritte }
@@ -197,19 +197,6 @@ PpAbstractProjectContainer >> newFromChildrenBlock: aBlock [
 PpAbstractProjectContainer >> nextActionsList [
 	^ self newFromChildrenBlock: [ 
 		self allChildren select: [ :e | self shouldBeImplemented ] ]
-]
-
-{ #category : #accessing }
-PpAbstractProjectContainer >> notDoing [
-	^ self newFromChildrenBlock: [ self activeChildrenList allChildren select: [ :e | e status = PpProject notDoingStatus ] ]
-]
-
-{ #category : #magritte }
-PpAbstractProjectContainer >> notDoingDescription [
-	"<magritteAltFor: #childrenDescription>"
-	"<magritteDescription>"
-	
-	^ self filteredProjectsDescription: #notDoing
 ]
 
 { #category : #accessing }
