@@ -79,6 +79,24 @@ PpProjectsSnapshot >> gtViewGraphFor: aView [
 			m ]
 ]
 
+{ #category : #views }
+PpProjectsSnapshot >> gtViewInboxFor: aView [
+
+	<gtView>
+	^ aView list
+		title: 'Captured' translated;
+		priority: 15;
+		items: [ self inboxList allChildren ];
+		children: #rootChildren;
+		actionUpdateButtonTooltip: 'Update'.
+]
+
+{ #category : #accessing }
+PpProjectsSnapshot >> inboxList [
+	^ self newFromChildrenBlock: [ 
+		self allChildren select: [ :e | e status isInbox ] ]
+]
+
 { #category : #magritte }
 PpProjectsSnapshot >> maGtFormFor: aView [
 	"Deprioritize this view because it is not very useful and super slow"
