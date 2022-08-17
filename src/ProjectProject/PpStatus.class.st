@@ -1,6 +1,9 @@
 Class {
 	#name : #PpStatus,
 	#superclass : #Object,
+	#instVars : [
+		'timestamp'
+	],
 	#classInstVars : [
 		'label'
 	],
@@ -17,14 +20,14 @@ PpStatus class >> label: aString [
 	label := aString
 ]
 
-{ #category : #comparing }
-PpStatus >> = rhs [
-	^ self class = rhs class
+{ #category : #testing }
+PpStatus >> isInactive [
+	^ false
 ]
 
-{ #category : #comparing }
-PpStatus >> hash [
-	^ self class hash
+{ #category : #testing }
+PpStatus >> isInbox [
+	^ false
 ]
 
 { #category : #accessing }
@@ -34,4 +37,16 @@ PpStatus >> printOn: aStream [
 		nextPutAll: self class label;
 		space;
 		nextPutAll: 'Status'
+]
+
+{ #category : #accessing }
+PpStatus >> timestamp [
+
+	^ timestamp
+]
+
+{ #category : #accessing }
+PpStatus >> timestamp: anObject [
+
+	timestamp := anObject
 ]
