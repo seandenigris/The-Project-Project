@@ -9,12 +9,11 @@ Class {
 		'note',
 		'links',
 		'tags',
-		'status',
 		'context',
 		'supportMaterials',
 		'requirements',
 		'dependencyLinks',
-		'statusTimestamp'
+		'log'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
@@ -24,7 +23,7 @@ PpProject class >> exampleComplete [
 	<gtExample>
 	^ self
 		given: [ self exampleIncomplete title: 'something done'; yourself ]
-		when: [ :p | p isComplete: true ]
+		when: [ :p | p beComplete ]
 		then: [ :p | p isComplete should equal: true ]
 ]
 
@@ -72,6 +71,14 @@ PpProject >> allChildren [
 	^ (roots, branches) asSet.
 ]
 
+{ #category : #accessing }
+PpProject >> beComplete [
+
+	self status: PpCompleteStatus new.
+	
+	self allChildren do: [ :e | e isComplete ifFalse: [ e beComplete ] ]
+]
+
 { #category : #actions }
 PpProject >> browseSupportMaterials [
 
@@ -96,11 +103,6 @@ PpProject >> childrenDescription [
 { #category : #accessing }
 PpProject >> childrenLabel [
 	^ 'Steps'
-]
-
-{ #category : #accessing }
-PpProject >> completionTimestamp: timestamp [
-	statusTimestamp := timestamp
 ]
 
 { #category : #accessing }
@@ -233,19 +235,6 @@ PpProject >> isComplete [
 	^ self status isKindOf: PpCompleteStatus
 ]
 
-{ #category : #accessing }
-PpProject >> isComplete: aBoolean [
-
-	aBoolean
-		ifTrue: [ 
-			self status: PpCompleteStatus new ]
-		ifFalse: [
-			statusTimestamp := nil.
-			^ self "Completion implies completion of subtasks, but the inverse is not true" ].
-	
-	self allChildren do: [ :e | e isComplete ifFalse: [ e isComplete: true ] ]
-]
-
 { #category : #magritte }
 PpProject >> isCompleteDescription [
 	<magritteDescription>
@@ -254,8 +243,7 @@ PpProject >> isCompleteDescription [
 			accessor: #isComplete;
 			label: 'Complete';
 			priority: 150;
-			default: false;
-			beRequired;
+			beReadOnly;
 			yourself
 ]
 
@@ -280,6 +268,18 @@ PpProject >> linksDescription [
 		readOnly;
 		classes: {ZnUrl} , RlResource allSubclasses;
 		yourself
+]
+
+{ #category : #accessing }
+PpProject >> log [
+
+	^ log ifNil: [ log := OrderedCollection new ]
+]
+
+{ #category : #accessing }
+PpProject >> log: aCollection [
+
+	log := aCollection
 ]
 
 { #category : #accessing }
@@ -333,15 +333,18 @@ PpProject >> rootChildrenLinks [
 
 { #category : #status }
 PpProject >> status [
-	^ status ifNil: [ status := self defaultStatus ]
+	^ self log
+		ifNotEmpty: [ :lg | lg last ]
+		ifEmpty: [ self defaultStatus ]
 ]
 
 { #category : #status }
 PpProject >> status: aStatus [
-	status := aStatus.
 	
 	"Pharo's Date offset support is fatally broken. See [Pharo Issue 12147: Date>>#= fooled by daylight savings time](https://pharo.fogbugz.com/default.asp?12147)"
-	self completionTimestamp: DateAndTime now translateToUTC.
+	aStatus timestamp: DateAndTime now translateToUTC.
+	
+	self log add: aStatus
 ]
 
 { #category : #magritte }
