@@ -9,13 +9,14 @@ PpTMutableProjectContainer >> addChild: aPpProject [
 ]
 
 { #category : #accessing }
-PpTMutableProjectContainer >> gtSpotterNewChildIn: aPpProjectList labeled: aString for: aStep [
+PpTMutableProjectContainer >> gtSpotterNew: aClass in: aPpProjectList for: aStep [
 	
 	aStep listProcessor
-		title: 'New ', aString;
+		title: 'New ', aClass label;
 		priority: 50;
-		itemName: [ :input | 'Create new ', aString, ': ', input ];
-		previewObject: [ :input | PpProject new title: input; yourself ];
+		itemName: [ :input | 'New ', aClass label, ': ', input ];
+		previewObject: [ :input | aClass fromString: input ];
+		"allCandidates: [ MpAddressBook uniqueInstance contacts ];"
 		wantsToDisplayOnEmptyQuery: false;
 		filter: GtNullFilter
 			item: [ :filter :cntxt | 
@@ -26,6 +27,17 @@ PpTMutableProjectContainer >> gtSpotterNewChildIn: aPpProjectList labeled: aStri
 					filter value: cntxt textTrimmed ] ];
 		send: [ :input :spotterStep |
 			| result |
-			result := PpProject new title: input; yourself.
+			result := aClass fromString: input.
 			self addChild: result  ]
+]
+
+{ #category : #accessing }
+PpTMutableProjectContainer >> gtSpotterNewChildFor: aStep [
+	<gtSearch>
+	
+	PpProject withAllSubclassesDo: [ :cls |
+		self 
+			gtSpotterNew: cls 
+			in: self masterList
+			for: aStep ]
 ]

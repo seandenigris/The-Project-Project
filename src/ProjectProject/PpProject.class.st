@@ -12,7 +12,6 @@ Class {
 		'context',
 		'supportMaterials',
 		'requirements',
-		'dependencyLinks',
 		'log'
 	],
 	#category : #'ProjectProject-Core-Projects'
@@ -184,15 +183,6 @@ PpProject >> gtGtSpotterAllChildrenFor: aStep [
 	
 	^ (super gtGtSpotterAllChildrenFor: aStep)
 		send: [ :result | self addChild: result ]
-]
-
-{ #category : #accessing }
-PpProject >> gtSpotterNewChildFor: aStep [
-	<gtSearch>
-	self 
-		gtSpotterNewChildIn: PpProjectList uniqueInstance 
-		labeled: 'step' 
-		for: aStep
 ]
 
 { #category : #accessing }

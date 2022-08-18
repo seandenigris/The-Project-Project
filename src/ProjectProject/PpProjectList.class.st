@@ -154,12 +154,6 @@ PpProjectList >> dependencyLinks [
 ]
 
 { #category : #accessing }
-PpProjectList >> gtSpotterNewChildFor: aStep [
-	<gtSearch>
-	self gtSpotterNewChildIn: self labeled: 'project' for: aStep
-]
-
-{ #category : #accessing }
 PpProjectList >> masterList [
 	^ self
 ]
