@@ -154,6 +154,13 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 			children: #rootChildren;
 			column: 'Item' text: [ :p | p gtDisplayText ];
 			column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
+			itemContextMenuStencil: [ :element :item | 
+				BrGlamorousSimpleContextMenuContent new
+					items: {'Revert'
+								-> [ :e | element phlow fireUpdateWish ].
+							'Checkout'
+								-> [ :e | element phlow fireUpdateWish ]};
+					yourself ];
 			actionUpdateButtonTooltip: 'Update' ].
 		
 	^ aView composite
