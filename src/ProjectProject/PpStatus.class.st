@@ -20,6 +20,18 @@ PpStatus class >> label: aString [
 	label := aString
 ]
 
+{ #category : #comparing }
+PpStatus >> = rhs [
+
+	^ self class = rhs class and: [ self timestamp = rhs timestamp ]
+]
+
+{ #category : #comparing }
+PpStatus >> hash [
+
+	^ self class hash bitXor: self timestamp hash
+]
+
 { #category : #testing }
 PpStatus >> isInactive [
 	^ false
