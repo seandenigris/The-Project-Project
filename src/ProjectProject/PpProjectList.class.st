@@ -118,7 +118,8 @@ PpProjectList >> addChild: aProject to: parentProject [
 	| link |
 	link := PpProjectDependency 
 		project: parentProject 
-		dependsOn: aProject.
+		dependsOn: aProject
+		in: self.
 	self dependencyLinks add: link.
 	^ self addChild: aProject
 ]

@@ -3,17 +3,19 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'project',
-		'dependency'
+		'dependency',
+		'masterList'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
 
 { #category : #accessing }
-PpProjectDependency class >> project: aPpProject dependsOn: anotherPpProject [
+PpProjectDependency class >> project: aPpProject dependsOn: anotherPpProject in: aPpProjectList [
 
 	^ self new
 		project: aPpProject;
 		dependency: anotherPpProject;
+		masterList: aPpProjectList;
 		yourself
 ]
 
@@ -42,6 +44,18 @@ PpProjectDependency >> hash [
 ]
 
 { #category : #accessing }
+PpProjectDependency >> masterList [
+
+	^ masterList
+]
+
+{ #category : #accessing }
+PpProjectDependency >> masterList: anObject [
+
+	masterList := anObject
+]
+
+{ #category : #accessing }
 PpProjectDependency >> printOn: aStream [
 
 	aStream 
@@ -62,4 +76,9 @@ PpProjectDependency >> project [
 PpProjectDependency >> project: anObject [
 
 	project := anObject
+]
+
+{ #category : #accessing }
+PpProjectDependency >> unlink [
+	self masterList dependencyLinks remove: self
 ]
