@@ -40,9 +40,19 @@ PpProject class >> exampleIncomplete [
 			p dueDate should equal: Date tomorrow ]
 ]
 
+{ #category : #'instance creation' }
+PpProject class >> fromString: aString [
+	^ self titled: aString
+]
+
 { #category : #accessing }
 PpProject class >> inactiveStatus [
 	^ PpInactiveStatus new
+]
+
+{ #category : #accessing }
+PpProject class >> label [
+	^ (self name allButFirst: 'Pp' size) normalizeCamelCase
 ]
 
 { #category : #accessing }
