@@ -41,3 +41,8 @@ PpTMutableProjectContainer >> gtSpotterNewChildFor: aStep [
 			in: self masterList
 			for: aStep ]
 ]
+
+{ #category : #accessing }
+PpTMutableProjectContainer >> masterList [
+	self explicitRequirement
+]
