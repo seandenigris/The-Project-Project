@@ -342,12 +342,19 @@ PpProject >> statusDescription [
 	<magritteDescription>
 	^ MASingleOptionDescription new
 		accessor: #status;
-		label: 'Status';
 		priority: 250;
 		morphicClass: MAMorphicDropList;
-		options: self class statusOptions;
+		options: self statusOptions;
 		default: self defaultStatus;
 		yourself
+]
+
+{ #category : #magritte }
+PpProject >> statusOptions [
+
+	^ self class statusOptions
+		add: self status; 
+		yourself.
 ]
 
 { #category : #accessing }
