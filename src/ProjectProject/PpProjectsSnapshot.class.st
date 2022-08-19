@@ -109,5 +109,5 @@ PpProjectsSnapshot >> maGtFormFor: aView [
 PpProjectsSnapshot >> rootChildren [
 	^ self allChildren select: [ :c | 
 		self dependencyLinks noneSatisfy: [ :link |
-			link dependency = c ] ]
+			(self allChildren identityIncludes: link project) and: [ link dependency = c ] ] ]
 ]
