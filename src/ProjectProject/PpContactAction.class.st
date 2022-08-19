@@ -1,6 +1,6 @@
 Class {
 	#name : #PpContactAction,
-	#superclass : #PpProject,
+	#superclass : #PpAction,
 	#instVars : [
 		'strategy',
 		'receiver'

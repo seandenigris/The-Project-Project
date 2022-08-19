@@ -225,6 +225,18 @@ PpProject >> gtViewGraphFor: aView [
 		actionUpdateButton
 ]
 
+{ #category : #initialization }
+PpProject >> initialize [
+
+	super initialize.
+	self status: self defaultStatus
+]
+
+{ #category : #testing }
+PpProject >> isAction [
+	^ false
+]
+
 { #category : #testing }
 PpProject >> isActiveDueBy: aDate [
 	^ self isComplete not and: [ self dueDate isNotNil and: [ self dueDate < aDate ] ]
