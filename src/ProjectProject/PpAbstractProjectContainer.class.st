@@ -20,6 +20,11 @@ PpAbstractProjectContainer >> activeDescription [
 ]
 
 { #category : #accessing }
+PpAbstractProjectContainer >> agendaFor: anMpPerson [
+	^ self newFromChildrenBlock: [ self allChildren select: [ :e | e person == anMpPerson ] ]
+]
+
+{ #category : #accessing }
 PpAbstractProjectContainer >> allChildren [
 	self subclassResponsibility
 ]

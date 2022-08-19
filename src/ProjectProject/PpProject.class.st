@@ -313,6 +313,11 @@ PpProject >> parents [
 	^ self parentLinks collect: #project
 ]
 
+{ #category : #accessing }
+PpProject >> person [
+	^ nil
+]
+
 { #category : #printing }
 PpProject >> printOn: aStream [
 	aStream nextPutAll: 'Project: '.

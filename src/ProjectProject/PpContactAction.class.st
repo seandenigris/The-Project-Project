@@ -35,6 +35,19 @@ PpContactAction >> addressBook [
 ]
 
 { #category : #accessing }
+PpContactAction >> completeAndWait [
+	self status: PpCompleteStatus new.
+	self parents do: [ :p |
+		| waitingFor |
+		waitingFor := PpWaitingForProject new
+			title: self title;
+			person: self receiver;
+			yourself.
+			
+		p addChild: waitingFor ]
+]
+
+{ #category : #accessing }
 PpContactAction >> defaultStatus [
 	^ PpActiveStatus new
 ]
@@ -52,6 +65,11 @@ PpContactAction >> displayStringOn: aStream [
 		aStream 
 			nextPutAll: ' re ';
 			nextPutAll: title ].
+]
+
+{ #category : #accessing }
+PpContactAction >> person [
+	^ self receiver
 ]
 
 { #category : #accessing }

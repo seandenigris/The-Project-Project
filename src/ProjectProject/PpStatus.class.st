@@ -46,7 +46,7 @@ PpStatus >> isInbox [
 PpStatus >> printOn: aStream [
 	
 	aStream
-		nextPutAll: self class label;
+		nextPutAll: self class label normalizeCamelCase;
 		space;
 		nextPutAll: 'Status'
 ]
