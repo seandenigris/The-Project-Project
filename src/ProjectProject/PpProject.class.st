@@ -302,6 +302,17 @@ PpProject >> noteDescription [
 			yourself
 ]
 
+{ #category : #private }
+PpProject >> parentLinks [
+	^ self dependencyLinks select: [ :link |
+		link dependency = self ]
+]
+
+{ #category : #accessing }
+PpProject >> parents [
+	^ self parentLinks collect: #project
+]
+
 { #category : #printing }
 PpProject >> printOn: aStream [
 	aStream nextPutAll: 'Project: '.
