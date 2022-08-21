@@ -289,6 +289,13 @@ PpProject >> isCompleteDescription [
 ]
 
 { #category : #accessing }
+PpProject >> isNextAction [
+	self isAction ifFalse: [ ^ false ].
+	self isComplete ifTrue: [ ^ false ].
+	^ self rootChildren allSatisfy: #isComplete
+]
+
+{ #category : #accessing }
 PpProject >> links [
 	^ links ifNil: [ links := OrderedCollection new ]
 ]

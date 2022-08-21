@@ -211,7 +211,7 @@ PpAbstractProjectContainer >> newFromChildrenBlock: aBlock [
 { #category : #accessing }
 PpAbstractProjectContainer >> nextActionsList [
 	^ self newFromChildrenBlock: [ 
-		self allChildren select: [ :e | e isAction and: [ e isComplete not ] ] ]
+		self allChildren select: #isNextAction ]
 ]
 
 { #category : #accessing }
