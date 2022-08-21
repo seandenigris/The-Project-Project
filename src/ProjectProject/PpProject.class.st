@@ -424,9 +424,12 @@ PpProject >> status [
 { #category : #status }
 PpProject >> status: aStatus [
 	
-	"Pharo's Date offset support is fatally broken. See [Pharo Issue 12147: Date>>#= fooled by daylight savings time](https://pharo.fogbugz.com/default.asp?12147)"
-	aStatus timestamp: DateAndTime now translateToUTC.
+	"This guard was added because Magritte was adding duplicate statuses"
+	self status = aStatus ifTrue: [ ^ self ].
 	
+	"Translate to UTC because Pharo's Date offset support is fatally broken. See [Pharo Issue 12147: Date>>#= fooled by daylight savings time](https://pharo.fogbugz.com/default.asp?12147)"
+	aStatus timestamp ifNil: [ aStatus timestamp: DateAndTime now translateToUTC ].
+
 	self log add: aStatus
 ]
 
