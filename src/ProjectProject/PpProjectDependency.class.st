@@ -44,6 +44,11 @@ PpProjectDependency >> hash [
 ]
 
 { #category : #accessing }
+PpProjectDependency >> includes: aProject [
+	^ self project = aProject or: [ self dependency = aProject ]
+]
+
+{ #category : #accessing }
 PpProjectDependency >> masterList [
 
 	^ masterList

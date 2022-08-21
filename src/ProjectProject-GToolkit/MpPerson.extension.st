@@ -4,15 +4,12 @@ Extension { #name : #MpPerson }
 MpPerson >> gtViewAgendaOn: aView [
 	<gtView>
 	
-	| agenda |
-	agenda := self projects.
-	
-	agenda allChildren ifEmpty: [ ^ aView empty ].
+	self projects allChildren ifEmpty: [ ^ aView empty ].
 	
 	^ aView forward
 		title: 'Agenda' translated;
 		priority: 55;
-		object: agenda;
+		object: [ self projects ];
 		view: #gtViewProjectsFor:;
 		actionUpdateButton
 ]

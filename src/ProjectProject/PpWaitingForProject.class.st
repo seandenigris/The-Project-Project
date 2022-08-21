@@ -1,16 +1,8 @@
 Class {
 	#name : #PpWaitingForProject,
 	#superclass : #PpProject,
-	#instVars : [
-		'person'
-	],
 	#category : #'ProjectProject-Core-Projects'
 }
-
-{ #category : #accessing }
-PpWaitingForProject >> addressBook [
-	^ MpAddressBook uniqueInstance
-]
 
 { #category : #accessing }
 PpWaitingForProject >> defaultStatus [
@@ -22,7 +14,7 @@ PpWaitingForProject >> displayStringOn: aStream [
 
 	aStream nextPutAll: 'W/F: '.
 	
-	person ifNotNil: [ aStream print: person ].
+	self waitee ifNotNil: [ :w | aStream print: w ].
 	
 	title ifNotNil: [ 
 		aStream 
@@ -31,23 +23,29 @@ PpWaitingForProject >> displayStringOn: aStream [
 ]
 
 { #category : #accessing }
-PpWaitingForProject >> person [
+PpWaitingForProject >> waitee [
 
-	^ person
+	^ self stakeholders 
+		detect: [ :e | e role = #waitee ]
+		ifFound: [ :e | e person ]
+		ifNone: [ nil ]
 ]
 
 { #category : #accessing }
-PpWaitingForProject >> person: anObject [
+PpWaitingForProject >> waitee: aPerson [
 
-	person := anObject
+	^ self stakeholders 
+		detect: [ :e | e role = #waitee ]
+		ifFound: [ :e | e person: aPerson ]
+		ifNone: [ (PpStakeholder project: self person: aPerson role: #waitee) link ]
 ]
 
 { #category : #accessing }
-PpWaitingForProject >> personDescription [
+PpWaitingForProject >> waiteeDescription [
 	<magritteDescription>
 	
 	^ MAToOneRelationDescription new
-		accessor: #person;
+		accessor: #waitee;
 		priority: 200;
 		classes: MpRelatableEntity allSubclasses;
 		gtSearchSource: (MessageSend receiver: self selector: #addressBook); 

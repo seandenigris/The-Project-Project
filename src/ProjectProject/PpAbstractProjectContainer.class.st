@@ -21,7 +21,10 @@ PpAbstractProjectContainer >> activeDescription [
 
 { #category : #accessing }
 PpAbstractProjectContainer >> agendaFor: anMpPerson [
-	^ self newFromChildrenBlock: [ self allChildren select: [ :e | e person == anMpPerson ] ]
+	^ self newFromChildrenBlock: [ 
+		self allChildren select: [ :e | 
+			e isComplete not and: [ e stakeholders anySatisfy: [ :holder |
+				holder person == anMpPerson ] ] ] ]
 ]
 
 { #category : #accessing }

@@ -12,7 +12,8 @@ Class {
 		'context',
 		'supportMaterials',
 		'requirements',
-		'log'
+		'log',
+		'stakeholders'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
@@ -70,6 +71,11 @@ PpProject class >> titled: aString [
 { #category : #accessing }
 PpProject >> addChild: aPpProject [
 	^ self masterList addChild: aPpProject to: self
+]
+
+{ #category : #accessing }
+PpProject >> addressBook [
+	^ MpAddressBook uniqueInstance
 ]
 
 { #category : #enumeration }
@@ -225,6 +231,26 @@ PpProject >> gtViewGraphFor: aView [
 		actionUpdateButton
 ]
 
+{ #category : #accessing }
+PpProject >> gtViewStakeholdersFor: aView [
+	<gtView>
+	
+	^ aView columnedList
+		title: 'Stakeholders' translated;
+		priority: 25;
+		items: [ self stakeholders asOrderedCollection ];
+		column: 'Role' 
+			text: [ :holder | holder role gtDisplayText ]
+			weight: 0.10;
+		column: 'Person' 
+			text: [ :holder | holder person gtDisplayText ]
+			weight: 0.90;
+		actionButtonIcon: BrGlamorousVectorIcons inspect
+			tooltip: 'Inspect Stakeholders'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self stakeholders ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
 { #category : #initialization }
 PpProject >> initialize [
 
@@ -325,11 +351,6 @@ PpProject >> parents [
 	^ self parentLinks collect: #project
 ]
 
-{ #category : #accessing }
-PpProject >> person [
-	^ nil
-]
-
 { #category : #printing }
 PpProject >> printOn: aStream [
 	aStream nextPutAll: 'Project: '.
@@ -357,6 +378,30 @@ PpProject >> rootChildren [
 PpProject >> rootChildrenLinks [
 	^ self dependencyLinks select: [ :link |
 		link project = self ]
+]
+
+{ #category : #accessing }
+PpProject >> stakeholders [
+
+	^ self maLazyInstVarUsing: self stakeholdersDescription
+]
+
+{ #category : #accessing }
+PpProject >> stakeholders: aSet [
+
+	stakeholders := aSet
+]
+
+{ #category : #accessing }
+PpProject >> stakeholdersDescription [
+	<magritteDescription>
+	
+	^ MAToManyRelationDescription new
+		accessor: #stakeholders;
+		priority: 200;
+		default: Set new;
+		classes: PpStakeholder;
+		yourself
 ]
 
 { #category : #status }

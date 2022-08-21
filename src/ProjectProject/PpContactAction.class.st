@@ -2,8 +2,7 @@ Class {
 	#name : #PpContactAction,
 	#superclass : #PpAction,
 	#instVars : [
-		'strategy',
-		'receiver'
+		'strategy'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
@@ -27,11 +26,6 @@ PpContactAction class >> fromString: aString [
 	^ self new
 		strategy: strategy;
 		yourself
-]
-
-{ #category : #accessing }
-PpContactAction >> addressBook [
-	^ MpAddressBook uniqueInstance
 ]
 
 { #category : #accessing }
@@ -59,29 +53,30 @@ PpContactAction >> displayStringOn: aStream [
 		aStream 
 			nextPutAll: self strategy class label;
 			space ].
-	receiver ifNotNil: [ aStream print: receiver ].
+	self receiver ifNotNil: [ aStream print: self receiver ].
 	
 	title ifNotNil: [ 
 		aStream 
-			nextPutAll: ' re ';
+			nextPutAll: ' re: ';
 			nextPutAll: title ].
-]
-
-{ #category : #accessing }
-PpContactAction >> person [
-	^ self receiver
 ]
 
 { #category : #accessing }
 PpContactAction >> receiver [
 
-	^ receiver
+	^ self stakeholders 
+		detect: [ :e | e role = #receiver ]
+		ifFound: [ :e | e person ]
+		ifNone: [ nil ]
 ]
 
 { #category : #accessing }
-PpContactAction >> receiver: anObject [
+PpContactAction >> receiver: aPerson [
 
-	receiver := anObject
+	^ self stakeholders 
+		detect: [ :e | e role = #receiver ]
+		ifFound: [ :e | e person: aPerson ]
+		ifNone: [ (PpStakeholder project: self person: aPerson role: #receiver) link ]
 ]
 
 { #category : #accessing }
