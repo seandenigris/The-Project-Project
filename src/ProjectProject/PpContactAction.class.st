@@ -9,21 +9,22 @@ Class {
 
 { #category : #'instance creation' }
 PpContactAction class >> fromString: aString [
-	| strategy personName |
+	| strategy title |
 	strategy := PpContactStrategy allSubclasses 
 		detect: [ :stratCls | 
 			aString 
 				beginsWith: stratCls label 
 				caseSensitive: false ]
 		ifFound: [ :stratCls |
-			personName := (aString allButFirst: stratCls label size) trimLeft.
+			title := (aString allButFirst: stratCls label size) trimLeft.
 			stratCls new ]
 		ifNone: [ 
-			personName := aString.
+			title := aString.
 			nil ].
 		
 	
 	^ self new
+		title: title;
 		strategy: strategy;
 		yourself
 ]
