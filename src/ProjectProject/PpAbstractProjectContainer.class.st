@@ -136,16 +136,41 @@ PpAbstractProjectContainer >> gtGtSpotterAllChildrenFor: aStep [
 
 { #category : #'gt-views' }
 PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
-
 	<gtView>
-	^ aView columnedTree
-		title: 'Next Actions' translated;
-		priority: 15;
+	
+	| tabs |
+	tabs := { aView columnedTree
+		title: 'All' translated;
+		priority: 10;
 		items: [ self nextActionsList allChildren ];
 		children: #rootChildren;
 		column: 'Item' text: #gtDisplayText;
-		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
+		column: 'Parents' text: [ :p | p parents displayString ];
 		actionUpdateButtonTooltip: 'Update'.
+		
+		aView columnedTree
+			title: '@Phone' translated;
+			priority: 20;
+			items: [ self nextActionsList allChildren select: [ :e |
+				(e isKindOf: PpContactAction) and: [ e strategy isKindOf: PpCallOnPhone ] ] ];
+			children: #rootChildren;
+			column: 'Item' text: #gtDisplayText;
+			column: 'Parents' text: [ :p | p parents displayString ];
+			actionUpdateButtonTooltip: 'Update'.
+			
+		aView columnedTree
+			title: '@Email' translated;
+			priority: 20;
+			items: [ self nextActionsList allChildren select: [ :e |
+				(e isKindOf: PpContactAction) and: [ e strategy isKindOf: PpSendEmail ] ] ];
+			children: #rootChildren;
+			column: 'Item' text: #gtDisplayText;
+			column: 'Parents' text: [ :p | p parents displayString ];
+			actionUpdateButtonTooltip: 'Update' }.
+		
+	^ aView composite
+		title: 'Next Actions' translated;
+		views: tabs
 ]
 
 { #category : #'gt-views' }
