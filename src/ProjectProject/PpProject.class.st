@@ -205,6 +205,26 @@ PpProject >> gtGtSpotterAllChildrenFor: aStep [
 ]
 
 { #category : #accessing }
+PpProject >> gtViewDependencyLinksFor: aView [
+
+	<gtView>
+	
+	^ aView list
+		title: 'Dependency Links' translated;
+		priority: 102;
+		items: [ 
+			(self dependencyLinks 
+				select: [ :link |
+					link includes: self ]) asOrderedCollection ];
+		actionButtonIcon: BrGlamorousVectorIcons inspect
+			tooltip: 'Inspect Dependency Links'
+			action: [ :aButton :aTab | aButton phlow spawnObject: (self dependencyLinks 
+				select: [ :link |
+					link includes: self ]) ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
+{ #category : #accessing }
 PpProject >> gtViewGraphFor: aView [
 	<gtView>
 	| nodes |
@@ -232,6 +252,39 @@ PpProject >> gtViewGraphFor: aView [
 			m layout horizontalTree.
 			m ];
 		actionUpdateButton
+]
+
+{ #category : #accessing }
+PpProject >> gtViewLogFor: aView [
+	<gtView>
+	
+	^ aView columnedList
+		title: 'Log' translated;
+		priority: 25;
+		items: [ self log ];
+		column: 'Status' text: [ :p | p gtDisplayText ];
+		column: 'Timestamp' text: [ :p | p timestamp printUS ];
+		actionButtonIcon: BrGlamorousVectorIcons inspect
+			tooltip: 'Inspect Log'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self log ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
+{ #category : #accessing }
+PpProject >> gtViewParentsFor: aView [
+	<gtView>
+	
+	"Don't cache parents and use in #items: below because then we won't be able to update the view"
+	self parents ifEmpty: [ ^ aView empty ].
+	
+	^ aView columnedTree
+		title: 'Parents' translated;
+		priority: 25;
+		items: [ self parents ];
+		children: #parents;
+		column: 'Item' text: [ :p | p gtDisplayText ];
+		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
+		actionUpdateButtonTooltip: 'Update'.
 ]
 
 { #category : #accessing }
