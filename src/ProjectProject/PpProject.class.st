@@ -138,6 +138,12 @@ PpProject >> defaultStatus [
 	^ PpInboxStatus new
 ]
 
+{ #category : #accessing }
+PpProject >> delete [
+
+	self masterList allChildren remove: self
+]
+
 { #category : #printing }
 PpProject >> displayStringOn: aStream [
 

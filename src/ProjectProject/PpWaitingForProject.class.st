@@ -34,7 +34,7 @@ PpWaitingForProject >> waitee [
 { #category : #accessing }
 PpWaitingForProject >> waitee: aPerson [
 
-	^ self stakeholders 
+	self stakeholders 
 		detect: [ :e | e role = #waitee ]
 		ifFound: [ :e | e person: aPerson ]
 		ifNone: [ (PpStakeholder project: self person: aPerson role: #waitee) link ]
