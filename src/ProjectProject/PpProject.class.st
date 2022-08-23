@@ -469,7 +469,7 @@ PpProject >> stakeholdersDescription [
 		accessor: #stakeholders;
 		priority: 200;
 		default: Set new;
-		classes: PpStakeholder;
+		classes: PpStakeholder withAllSubclasses;
 		yourself
 ]
 
