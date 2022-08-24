@@ -1,6 +1,6 @@
 Class {
 	#name : #PpInventoryRequirement,
-	#superclass : #Object,
+	#superclass : #PpProjectRequirement,
 	#instVars : [
 		'item'
 	],

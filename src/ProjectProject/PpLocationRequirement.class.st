@@ -5,7 +5,7 @@ One way ([via howtogeek](https://www.howtogeek.com/252070/how-do-you-find-a-comp
 "
 Class {
 	#name : #PpLocationRequirement,
-	#superclass : #Object,
+	#superclass : #PpProjectRequirement,
 	#instVars : [
 		'location'
 	],
