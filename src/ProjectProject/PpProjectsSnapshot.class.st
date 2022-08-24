@@ -57,6 +57,7 @@ PpProjectsSnapshot >> gtViewGraphFor: aView [
 		yourself.
 	^ aView mondrian
 		title: 'Graph';
+		priority: 30;
 		painting: [ :m |
 			m nodes
 				stencil: [ :obj | 
