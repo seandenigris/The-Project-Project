@@ -22,6 +22,11 @@ PpWaitingForProject >> displayStringOn: aStream [
 			nextPutAll: title ].
 ]
 
+{ #category : #testing }
+PpWaitingForProject >> isWaitingFor [
+	^ true
+]
+
 { #category : #accessing }
 PpWaitingForProject >> waitee [
 

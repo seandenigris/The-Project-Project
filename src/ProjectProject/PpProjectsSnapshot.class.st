@@ -91,6 +91,17 @@ PpProjectsSnapshot >> gtViewInboxFor: aView [
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
+{ #category : #views }
+PpProjectsSnapshot >> gtViewWaitingForFor: aView [
+
+	<gtView>
+	^ aView list
+		title: 'W/F' translated;
+		priority: 20;
+		items: [ self waitingForList allChildren ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
 { #category : #accessing }
 PpProjectsSnapshot >> inboxList [
 	^ self newFromChildrenBlock: [ 
@@ -110,4 +121,10 @@ PpProjectsSnapshot >> rootChildren [
 	^ self allChildren select: [ :c | 
 		self dependencyLinks noneSatisfy: [ :link |
 			(self allChildren identityIncludes: link project) and: [ link dependency = c ] ] ]
+]
+
+{ #category : #accessing }
+PpProjectsSnapshot >> waitingForList [
+	^ self newFromChildrenBlock: [ 
+		self allChildren select: [ :e | e isWaitingFor ] ]
 ]

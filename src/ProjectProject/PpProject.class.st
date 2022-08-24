@@ -354,6 +354,11 @@ PpProject >> isNextAction [
 	^ self rootChildren allSatisfy: #isComplete
 ]
 
+{ #category : #testing }
+PpProject >> isWaitingFor [
+	^ false
+]
+
 { #category : #accessing }
 PpProject >> links [
 	^ links ifNil: [ links := OrderedCollection new ]
