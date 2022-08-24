@@ -565,7 +565,7 @@ PpProject >> tagsDescription [
 
 { #category : #accessing }
 PpProject >> title [
-	^ title
+	^ self maLazyInstVarUsing: self titleDescription
 ]
 
 { #category : #accessing }
@@ -578,7 +578,6 @@ PpProject >> titleDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 			accessor: #title;
-			label: 'Title';
 			priority: 100;
 			default: '';
 			beRequired;
