@@ -56,10 +56,10 @@ PpContactAction >> displayStringOn: aStream [
 			space ].
 	self receiver ifNotNil: [ aStream print: self receiver ].
 	
-	title ifNotNil: [ 
+	self title ifNotNil: [ :ttl |
 		aStream 
 			nextPutAll: ' re: ';
-			nextPutAll: title ].
+			nextPutAll: ttl ].
 ]
 
 { #category : #accessing }
@@ -114,4 +114,17 @@ PpContactAction >> strategyDescription [
 		options: PpContactStrategy all;
 		default: PpContactStrategy all first;
 		yourself
+]
+
+{ #category : #accessing }
+PpContactAction >> titleDescription [
+
+	| result parents |
+	result := super titleDescription.
+	parents := self parents.
+	
+	parents size = 1
+		ifTrue: [ result default: parents atRandom title ].
+		
+	^ result
 ]
