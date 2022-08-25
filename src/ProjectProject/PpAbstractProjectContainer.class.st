@@ -139,14 +139,15 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 	<gtView>
 	
 	| tabs |
-	tabs := { aView columnedTree
-		title: 'All' translated;
-		priority: 10;
-		items: [ self nextActionsList allChildren ];
-		children: #rootChildren;
-		column: 'Item' text: #gtDisplayText;
-		column: 'Parents' text: [ :p | p parents displayString ];
-		actionUpdateButtonTooltip: 'Update'.
+	tabs := { 
+		aView columnedTree
+			title: 'All' translated;
+			priority: 10;
+			items: [ self nextActionsList allChildren ];
+			children: #rootChildren;
+			column: 'Item' text: #gtDisplayText;
+			column: 'Parents' text: [ :p | p parents displayString ];
+			actionUpdateButtonTooltip: 'Update'.
 		
 		aView columnedTree
 			title: '@Phone' translated;
@@ -170,6 +171,7 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 		
 	^ aView composite
 		title: 'Next Actions' translated;
+		priority: 10;
 		views: tabs
 ]
 
@@ -182,7 +184,6 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 	tabs := (self magritteAllDescriptionsFor: #childrenDescription) collect: [ :desc | 
 		aView columnedTree
 			title: desc label translated;
-			priority: 25;
 			items: [ (desc read: self) asOrderedCollection ];
 			children: #rootChildren;
 			column: 'Item' text: [ :p | p gtDisplayText ];
@@ -198,6 +199,7 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 		
 	^ aView composite
 		  title: self childrenLabel translated;
+		  priority: 20;
 		  views: tabs
 ]
 
