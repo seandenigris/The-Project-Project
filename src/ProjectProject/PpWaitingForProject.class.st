@@ -28,6 +28,19 @@ PpWaitingForProject >> isWaitingFor [
 ]
 
 { #category : #accessing }
+PpWaitingForProject >> titleDescription [
+
+	| result parents |
+	result := super titleDescription.
+	parents := self parents.
+	
+	parents size = 1
+		ifTrue: [ result default: parents atRandom title ].
+		
+	^ result
+]
+
+{ #category : #accessing }
 PpWaitingForProject >> waitee [
 
 	^ self stakeholders 
