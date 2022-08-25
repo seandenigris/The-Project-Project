@@ -141,7 +141,10 @@ PpProject >> defaultStatus [
 { #category : #accessing }
 PpProject >> delete [
 
-	self masterList allChildren remove: self
+	self masterList allChildren remove: self.
+	self dependencyLinks
+		select: [ :link | link includes: self ]
+		thenDo: [ :link | link unlink ]
 ]
 
 { #category : #printing }
