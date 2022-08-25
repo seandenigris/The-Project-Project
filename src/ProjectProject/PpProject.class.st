@@ -347,6 +347,19 @@ PpProject >> gtViewStakeholdersFor: aView [
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
+{ #category : #accessing }
+PpProject >> gtViewSupportMaterialsFor: aView [
+	<gtView>
+	
+	self supportMaterials ifEmpty: [ ^ aView empty ].
+	
+	^ aView list
+		title: 'Materials' translated;
+		priority: 25;
+		items: [ self supportMaterials asOrderedCollection ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
 { #category : #initialization }
 PpProject >> initialize [
 
