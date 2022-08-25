@@ -30,15 +30,16 @@ PpContactAction class >> fromString: aString [
 
 { #category : #accessing }
 PpContactAction >> completeAndWait [
+
+	| waitingFor |
 	self status: PpCompleteStatus new.
-	self parents do: [ :p |
-		| waitingFor |
-		waitingFor := PpWaitingForProject new
-			title: self title;
-			person: self receiver;
-			yourself.
+	
+	waitingFor := PpWaitingForProject new
+		title: self title;
+		waitee: self receiver;
+		yourself.
 			
-		p addChild: waitingFor ]
+	self parents do: [ :p | p addChild: waitingFor ]
 ]
 
 { #category : #accessing }
