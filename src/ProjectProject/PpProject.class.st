@@ -214,6 +214,37 @@ PpProject >> gtGtSpotterAllChildrenFor: aStep [
 ]
 
 { #category : #accessing }
+PpProject >> gtSpotterNewStakeholderFor: aStep [
+	<gtSearch>
+	
+	self flag: '
+		- Same problem as with contact actions and W/F - asked on Discord
+		- Ideally, would like a way to exclude if person already a stakeholder'.
+	
+	^ (self addressBook gtGtSpotterForPeopleFor: aStep)
+		title: 'Add stakeholder';
+		priority: 70;
+		send: [ :person :spotterStep | 
+			| holder |
+			holder := PpStakeholder project: self person: person role: nil.
+			self stakeholders add: holder ]
+		
+	"aStep listProcessor
+		title: 'New Stakeholder';
+		priority: 50;
+		itemName: [ :input | input ];
+		previewObject: [ :input | PpStakeholder fromString: input ];
+		wantsToDisplayOnEmptyQuery: false;
+		filter: GtNullFilter
+			item: [ :filter :cntxt |  
+					filter value: cntxt textTrimmed ];
+		send: [ :input :spotterStep |
+			| result |
+			result := PpStakeholder fromString: input.
+			self stakeholders add: result  ]"
+]
+
+{ #category : #accessing }
 PpProject >> gtViewDependencyLinksFor: aView [
 
 	<gtView>
@@ -478,6 +509,8 @@ PpProject >> stakeholdersDescription [
 		priority: 200;
 		default: Set new;
 		classes: PpStakeholder withAllSubclasses;
+		display: [ :e | e person fullName ];
+		gtSearchDelegateTo: self message: #gtSpotterNewStakeholderFor:;
 		yourself
 ]
 
