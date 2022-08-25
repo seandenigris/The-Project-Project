@@ -12,16 +12,6 @@ Class {
 }
 
 { #category : #accessing }
-PpStakeholder class >> organization: anOrganization person: aPerson role: titleString [
-
-	^ self new
-		organization: anOrganization;
-		person: aPerson;
-		role: titleString;
-		yourself
-]
-
-{ #category : #accessing }
 PpStakeholder class >> project: aProject person: aPerson role: titleString [
 
 	^ self new
