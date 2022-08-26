@@ -77,6 +77,14 @@ PpProject >> addChild: aPpProject [
 ]
 
 { #category : #accessing }
+PpProject >> addToMaterialsResourceLibraryLast: anInteger [
+
+	| resources |
+	resources := RlResourceLibrary uniqueInstance resources last: anInteger.
+	^ self supportMaterials addAll: resources.
+]
+
+{ #category : #accessing }
 PpProject >> addressBook [
 	^ MpAddressBook uniqueInstance
 ]
@@ -488,6 +496,12 @@ PpProject >> requirements [
 PpProject >> requirements: aCollection [
 
 	requirements := aCollection
+]
+
+{ #category : #accessing }
+PpProject >> resourceLibrary [
+
+	^ RlResourceLibrary uniqueInstance
 ]
 
 { #category : #accessing }
