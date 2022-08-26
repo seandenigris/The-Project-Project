@@ -53,6 +53,20 @@ PpProjectList class >> exampleBrowser [
 	browser openOn: projects.
 ]
 
+{ #category : #importing }
+PpProjectList class >> importAppleNotesFromClipboard [
+	"Captures lists from Apple notes of the form:
+		- do something
+		- [ ] do something else
+		
+	The second item is how Apple notes export todo items (rendered as circular checkbox in the app)"
+
+	| lineParser lines |
+	lineParser := '- ' asPParser, '[ ] ' asPParser optional, #any asPParser plus flatten ==> #third.
+	lines := Clipboard clipboardText asString lines collect: [ :e | lineParser parse: e ].
+	lines do: [ :e | self uniqueInstance addChild: (PpProject titled: e) ]
+]
+
 { #category : #'world menu' }
 PpProjectList class >> menuCommandOn: aBuilder [
 	<worldMenu>
