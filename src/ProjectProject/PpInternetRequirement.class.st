@@ -1,3 +1,6 @@
+"
+Powered by <https://github.com/sivel/speedtest-cli> (Python API)
+"
 Class {
 	#name : #PpInternetRequirement,
 	#superclass : #PpProjectRequirement,
@@ -5,13 +8,32 @@ Class {
 }
 
 { #category : #accessing }
+PpInternetRequirement >> isConnected [
+
+	| pySource |
+	pySource := 'import speedtest
+s = speedtest.Speedtest()'.
+
+	[ 
+		PBApplication uniqueInstance newCommandSourceFactory
+			source: pySource;
+			sendAndWait.
+		^ true ]
+ 	on: PBPythonError
+ 	do: [ :e | ^ false ].
+]
+
+{ #category : #accessing }
 PpInternetRequirement >> isHighSpeed [
 
-	| downloadBitsPerSecond oneHundredGb |
-	downloadBitsPerSecond := PBApplication uniqueInstance newCommandSourceFactory
-	source: 'import speedtest
+	| downloadBitsPerSecond oneHundredGb pySource |
+	
+	pySource := 'import speedtest
 s = speedtest.Speedtest()
-s.download()';
+s.download()'.
+
+	downloadBitsPerSecond := PBApplication uniqueInstance newCommandSourceFactory
+	source: pySource;
 	sendAndWait.
 	
 	"Picked at random"
