@@ -336,26 +336,6 @@ PpProject >> gtViewParentsFor: aView [
 ]
 
 { #category : #accessing }
-PpProject >> gtViewStakeholdersFor: aView [
-	<gtView>
-	
-	^ aView columnedList
-		title: 'Stakeholders' translated;
-		priority: 25;
-		items: [ self stakeholders asOrderedCollection ];
-		column: 'Role' 
-			text: [ :holder | holder role gtDisplayText ]
-			weight: 0.10;
-		column: 'Person' 
-			text: [ :holder | holder person gtDisplayText ]
-			weight: 0.90;
-		actionButtonIcon: BrGlamorousVectorIcons inspect
-			tooltip: 'Inspect Stakeholders'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self stakeholders ];
-		actionUpdateButtonTooltip: 'Update'.
-]
-
-{ #category : #accessing }
 PpProject >> gtViewSupportMaterialsFor: aView [
 	<gtView>
 	
@@ -499,6 +479,20 @@ PpProject >> requirements: aCollection [
 ]
 
 { #category : #accessing }
+PpProject >> requirementsGtViewFor: aView [
+	<gtView>
+	
+	^ aView list
+		title: 'Requirements' translated;
+		priority: 25;
+		items: [ self requirements asOrderedCollection ];
+		actionButtonIcon: BrGlamorousVectorIcons inspect
+			tooltip: 'Inspect Requirements'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self requirements ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
+{ #category : #accessing }
 PpProject >> resourceLibrary [
 
 	^ RlResourceLibrary uniqueInstance
@@ -539,6 +533,26 @@ PpProject >> stakeholdersDescription [
 		display: [ :e | e person fullName ];
 		gtSearchDelegateTo: self message: #gtSpotterNewStakeholderFor:;
 		yourself
+]
+
+{ #category : #accessing }
+PpProject >> stakeholdersGtViewFor: aView [
+	<gtView>
+	
+	^ aView columnedList
+		title: 'Stakeholders' translated;
+		priority: 25;
+		items: [ self stakeholders asOrderedCollection ];
+		column: 'Role' 
+			text: [ :holder | holder role gtDisplayText ]
+			weight: 0.10;
+		column: 'Person' 
+			text: [ :holder | holder person gtDisplayText ]
+			weight: 0.90;
+		actionButtonIcon: BrGlamorousVectorIcons inspect
+			tooltip: 'Inspect Stakeholders'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self stakeholders ];
+		actionUpdateButtonTooltip: 'Update'.
 ]
 
 { #category : #status }
