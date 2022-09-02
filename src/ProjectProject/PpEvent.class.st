@@ -253,6 +253,15 @@ PpEvent >> printOn: aStream [
 ]
 
 { #category : #accessing }
+PpEvent >> start [
+	(self startDate isNil or: [ self startTime isNil ]) ifTrue: [ ^ nil ].
+	
+	^ DateAndTime
+		date: self startDate
+		time: self startTime
+]
+
+{ #category : #accessing }
 PpEvent >> startDate [
 	^ self maLazyInstVarUsing: self startDateDescription
 ]
