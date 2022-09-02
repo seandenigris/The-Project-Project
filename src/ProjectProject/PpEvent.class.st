@@ -60,6 +60,11 @@ PpEvent class >> fromString: aString [
 ]
 
 { #category : #accessing }
+PpEvent >> addressBook [
+	^ MpAddressBook uniqueInstance
+]
+
+{ #category : #accessing }
 PpEvent >> allEventsDo: aBlock [
 	aBlock value: self.
 	self children do: [ :child | child allEventsDo: aBlock ]
@@ -214,7 +219,7 @@ PpEvent >> participantsDescription [
 			kind: MpEntityCollection;
 			default: MpEntityCollection new;
 			classes: MpRelatableEntity allSubclasses;
-			gtSearchSource: (MessageSend receiver: MpAddressBook selector: #uniqueInstance);
+			gtSearchSource: (MessageSend receiver: self selector: #addressBook);
 			yourself
 ]
 
