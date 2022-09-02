@@ -42,6 +42,11 @@ PpEventLog class >> uniqueInstance: anObject [
 	uniqueInstance := anObject
 ]
 
+{ #category : #removing }
+PpEventLog >> add: anEvent [
+	^ self events add: anEvent
+]
+
 { #category : #accessing }
 PpEventLog >> gtSpotterNew: aClass on: aStep [
 
@@ -70,4 +75,9 @@ PpEventLog >> gtSpotterNewEventOn: aStep [
 	
 	PpEvent withAllSubclassesDo: [ :cls |
 		self gtSpotterNew: cls on: aStep ]
+]
+
+{ #category : #removing }
+PpEventLog >> remove: anEvent [
+	^ self events remove: anEvent
 ]
