@@ -47,6 +47,11 @@ PpEventLog >> add: anEvent [
 	^ self events add: anEvent
 ]
 
+{ #category : #'as yet unclassified' }
+PpEventLog >> addAll: aCollection [ 
+	^ self events addAll: aCollection
+]
+
 { #category : #accessing }
 PpEventLog >> gtSpotterNew: aClass on: aStep [
 
