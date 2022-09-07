@@ -63,6 +63,14 @@ PpContactAction >> displayStringOn: aStream [
 ]
 
 { #category : #accessing }
+PpContactAction >> doIt [
+	CwMacMail new
+		newMessageTo: self receiver fullName 
+		at: self receiver emailAddresses atRandom address 
+		re: self title asFollows: ''
+]
+
+{ #category : #accessing }
 PpContactAction >> receiver [
 
 	^ self stakeholders 
