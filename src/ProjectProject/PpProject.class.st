@@ -76,7 +76,7 @@ PpProject >> addChild: aPpProject [
 	^ self masterList addChild: aPpProject to: self
 ]
 
-{ #category : #accessing }
+{ #category : #convenience }
 PpProject >> addToMaterialsResourceLibraryLast: anInteger [
 
 	| resources |
@@ -608,13 +608,23 @@ PpProject >> supportMaterials: anObject [
 PpProject >> supportMaterialsDescription [
 	<magritteDescription>
 	
+	| gtSearchSource classes |
+	gtSearchSource := PeGtCompositeSearch new.
+	gtSearchSource children 
+		add: LlLibraryItem;
+		add: self resourceLibrary.
+		
+	classes := RlResource withAllSubclasses
+		addAll: LlLibraryItem allSubclasses;
+		yourself.
+	
 	^ MAToManyRelationDescription new
 			accessor: #supportMaterials;
 			priority: 650;
 			default: Bag new;
-			classes: RlResource withAllSubclasses;
+			classes: classes;
 			morphicClass: MAMorphicTokenCompletion;
-			gtSearchSource: (MessageSend receiver: RlResourceLibrary selector: #uniqueInstance);
+			gtSearchSource: gtSearchSource;
 			yourself
 ]
 
