@@ -261,14 +261,10 @@ PpProject >> gtViewDependencyLinksFor: aView [
 		title: 'Dependency Links' translated;
 		priority: 102;
 		items: [ 
-			(self dependencyLinks 
-				select: [ :link |
-					link includes: self ]) asOrderedCollection ];
+			self myDependencyLinks asOrderedCollection ];
 		actionButtonIcon: BrGlamorousVectorIcons inspect
 			tooltip: 'Inspect Dependency Links'
-			action: [ :aButton :aTab | aButton phlow spawnObject: (self dependencyLinks 
-				select: [ :link |
-					link includes: self ]) ];
+			action: [ :aButton :aTab | aButton phlow spawnObject: self myDependencyLinks ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
@@ -427,6 +423,11 @@ PpProject >> log [
 PpProject >> log: aCollection [
 
 	log := aCollection
+]
+
+{ #category : #accessing }
+PpProject >> myDependencyLinks [
+	^ self dependencyLinks select: [ :link | link includes: self ]
 ]
 
 { #category : #accessing }
