@@ -5,6 +5,18 @@ Class {
 }
 
 { #category : #accessing }
+PpWaitingForProject class >> gtSpotterItemsFromString: aString [
+
+	| waitee |
+	waitee := MpAddressBook uniqueInstance people 
+		detectMax: [ :e | e fullName alike: aString ].
+
+	^ { self new
+		waitee: waitee;
+		yourself }
+]
+
+{ #category : #accessing }
 PpWaitingForProject >> defaultStatus [
 	^ PpWaitingForStatus new
 ]

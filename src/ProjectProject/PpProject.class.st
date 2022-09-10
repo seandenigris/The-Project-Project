@@ -56,6 +56,11 @@ PpProject class >> label [
 	^ (self name allButFirst: 'Pp' size) normalizeCamelCase
 ]
 
+{ #category : #testing }
+PpProject class >> peCanHandleFromString: aString [
+	^ true
+]
+
 { #category : #accessing }
 PpProject class >> statusOptions [
 	^ PpStatus allSubclasses collect: #new
@@ -95,6 +100,13 @@ PpProject >> allChildren [
 	roots := self rootChildren.
 	branches := roots flatCollect: [ :p | p allChildren ].
 	^ (roots, branches) asSet.
+]
+
+{ #category : #spotter }
+PpProject >> allChildrenGtSpotterFor: aStep [
+	
+	^ (super allChildrenGtSpotterFor: aStep)
+		send: [ :result | self addChild: result ]
 ]
 
 { #category : #accessing }
@@ -155,10 +167,26 @@ PpProject >> delete [
 		thenDo: [ :link | link unlink ]
 ]
 
+{ #category : #'gt-views' }
+PpProject >> dependencyLinksGtViewFor: aView [
+
+	<gtView>
+	
+	^ aView list
+		title: 'Dependency Links' translated;
+		priority: 102;
+		items: [ 
+			self myDependencyLinks asOrderedCollection ];
+		actionButtonIcon: BrGlamorousVectorIcons inspect
+			tooltip: 'Inspect Dependency Links'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self myDependencyLinks ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
 { #category : #printing }
 PpProject >> displayStringOn: aStream [
 
-	title ifNotNil: [ aStream nextPutAll: self title ].
+	self title ifNotNil: [ aStream nextPutAll: self title ].
 	dueDate ifNotNil: [
 		aStream
 			nextPutAll: ' (Due ';
@@ -215,60 +243,12 @@ PpProject >> gtDisplayText [
 ]
 
 { #category : #accessing }
-PpProject >> gtGtSpotterAllChildrenFor: aStep [
-	
-	^ (super gtGtSpotterAllChildrenFor: aStep)
-		send: [ :result | self addChild: result ]
+PpProject >> gtSpotterText [
+
+	^ self printString
 ]
 
-{ #category : #accessing }
-PpProject >> gtSpotterNewStakeholderFor: aStep [
-	<gtSearch>
-	
-	self flag: '
-		- Same problem as with contact actions and W/F - asked on Discord
-		- Ideally, would like a way to exclude if person already a stakeholder'.
-	
-	^ (self addressBook gtGtSpotterForPeopleFor: aStep)
-		title: 'Add stakeholder';
-		priority: 70;
-		send: [ :person :spotterStep | 
-			| holder |
-			holder := PpStakeholder project: self person: person role: nil.
-			self stakeholders add: holder ]
-		
-	"aStep listProcessor
-		title: 'New Stakeholder';
-		priority: 50;
-		itemName: [ :input | input ];
-		previewObject: [ :input | PpStakeholder fromString: input ];
-		wantsToDisplayOnEmptyQuery: false;
-		filter: GtNullFilter
-			item: [ :filter :cntxt |  
-					filter value: cntxt textTrimmed ];
-		send: [ :input :spotterStep |
-			| result |
-			result := PpStakeholder fromString: input.
-			self stakeholders add: result  ]"
-]
-
-{ #category : #accessing }
-PpProject >> gtViewDependencyLinksFor: aView [
-
-	<gtView>
-	
-	^ aView list
-		title: 'Dependency Links' translated;
-		priority: 102;
-		items: [ 
-			self myDependencyLinks asOrderedCollection ];
-		actionButtonIcon: BrGlamorousVectorIcons inspect
-			tooltip: 'Inspect Dependency Links'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self myDependencyLinks ];
-		actionUpdateButtonTooltip: 'Update'.
-]
-
-{ #category : #accessing }
+{ #category : #'gt-views' }
 PpProject >> gtViewGraphFor: aView [
 	<gtView>
 	| nodes |
@@ -296,52 +276,6 @@ PpProject >> gtViewGraphFor: aView [
 			m layout horizontalTree.
 			m ];
 		actionUpdateButton
-]
-
-{ #category : #accessing }
-PpProject >> gtViewLogFor: aView [
-	<gtView>
-	
-	^ aView columnedList
-		title: 'Log' translated;
-		priority: 25;
-		items: [ self log ];
-		column: 'Status' text: [ :p | p gtDisplayText ];
-		column: 'Timestamp' text: [ :p | p timestamp printUS ];
-		actionButtonIcon: BrGlamorousVectorIcons inspect
-			tooltip: 'Inspect Log'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self log ];
-		actionUpdateButtonTooltip: 'Update'.
-]
-
-{ #category : #accessing }
-PpProject >> gtViewParentsFor: aView [
-	<gtView>
-	
-	"Don't cache parents and use in #items: below because then we won't be able to update the view"
-	self parents ifEmpty: [ ^ aView empty ].
-	
-	^ aView columnedTree
-		title: 'Parents' translated;
-		priority: 25;
-		items: [ self parents ];
-		children: #parents;
-		column: 'Item' text: [ :p | p gtDisplayText ];
-		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
-		actionUpdateButtonTooltip: 'Update'.
-]
-
-{ #category : #accessing }
-PpProject >> gtViewSupportMaterialsFor: aView [
-	<gtView>
-	
-	self supportMaterials ifEmpty: [ ^ aView empty ].
-	
-	^ aView list
-		title: 'Materials' translated;
-		priority: 25;
-		items: [ self supportMaterials asOrderedCollection ];
-		actionUpdateButtonTooltip: 'Update'.
 ]
 
 { #category : #initialization }
@@ -425,6 +359,22 @@ PpProject >> log: aCollection [
 	log := aCollection
 ]
 
+{ #category : #'gt-views' }
+PpProject >> logGtViewFor: aView [
+	<gtView>
+	
+	^ aView columnedList
+		title: 'Log' translated;
+		priority: 25;
+		items: [ self log ];
+		column: 'Status' text: [ :p | p gtDisplayText ];
+		column: 'Timestamp' text: [ :p | p timestamp printUS ];
+		actionButtonIcon: BrGlamorousVectorIcons inspect
+			tooltip: 'Inspect Log'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self log ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
 { #category : #accessing }
 PpProject >> myDependencyLinks [
 	^ self dependencyLinks select: [ :link | link includes: self ]
@@ -461,9 +411,28 @@ PpProject >> parents [
 	^ self parentLinks collect: #project
 ]
 
+{ #category : #'gt-views' }
+PpProject >> parentsGtViewFor: aView [
+	<gtView>
+	
+	"Don't cache parents and use in #items: below because then we won't be able to update the view"
+	self parents ifEmpty: [ ^ aView empty ].
+	
+	^ aView columnedTree
+		title: 'Parents' translated;
+		priority: 25;
+		items: [ self parents ];
+		children: #parents;
+		column: 'Item' text: [ :p | p gtDisplayText ];
+		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
 { #category : #printing }
 PpProject >> printOn: aStream [
-	aStream nextPutAll: 'Project: '.
+	aStream 
+		nextPutAll: self className;
+		nextPutAll: ': '.
 	aStream nextPutAll: self displayString
 ]
 
@@ -479,7 +448,7 @@ PpProject >> requirements: aCollection [
 	requirements := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : #'gt-views' }
 PpProject >> requirementsGtViewFor: aView [
 	<gtView>
 	
@@ -532,11 +501,11 @@ PpProject >> stakeholdersDescription [
 		default: Set new;
 		classes: PpStakeholder withAllSubclasses;
 		display: [ :e | e person fullName ];
-		gtSearchDelegateTo: self message: #gtSpotterNewStakeholderFor:;
+		gtSearchDelegateTo: self message: #stakeholdersNewGtSpotterFor:;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'gt-views' }
 PpProject >> stakeholdersGtViewFor: aView [
 	<gtView>
 	
@@ -554,6 +523,27 @@ PpProject >> stakeholdersGtViewFor: aView [
 			tooltip: 'Inspect Stakeholders'
 			action: [ :aButton :aTab | aButton phlow spawnObject: self stakeholders ];
 		actionUpdateButtonTooltip: 'Update'.
+]
+
+{ #category : #spotter }
+PpProject >> stakeholdersNewGtSpotterFor: aStep [
+	<gtSearch>
+	
+	^ aStep listProcessor
+		title: 'New Stakeholder';
+		priority: 50;
+		itemName: [ :result | result person fullName, ' -> ', result role ];
+		previewObject: [ :result | result 
+				project: self;
+				yourself ];
+		wantsToDisplayOnEmptyQuery: false;
+		filter: (PeGtSubInstancesFilter new
+			rootClass: PpStakeholder;
+			yourself);
+		send: [ :result :spotterStep |
+			result 
+				project: self;
+				yourself ]
 ]
 
 { #category : #status }
@@ -609,10 +599,13 @@ PpProject >> supportMaterials: anObject [
 PpProject >> supportMaterialsDescription [
 	<magritteDescription>
 	
-	| gtSearchSource classes |
+	| gtSearchSource classes librarySource |
 	gtSearchSource := PeGtCompositeSearch new.
+	librarySource := PeGtDelegatedSearch 
+		to: LlLibraryItem 
+		message: #gtSpotterNewFor:.
 	gtSearchSource children 
-		add: LlLibraryItem;
+		add: librarySource;
 		add: self resourceLibrary.
 		
 	classes := RlResource withAllSubclasses
@@ -627,6 +620,19 @@ PpProject >> supportMaterialsDescription [
 			morphicClass: MAMorphicTokenCompletion;
 			gtSearchSource: gtSearchSource;
 			yourself
+]
+
+{ #category : #'gt-views' }
+PpProject >> supportMaterialsGtViewFor: aView [
+	<gtView>
+	
+	self supportMaterials ifEmpty: [ ^ aView empty ].
+	
+	^ aView list
+		title: 'Materials' translated;
+		priority: 25;
+		items: [ self supportMaterials asOrderedCollection ];
+		actionUpdateButtonTooltip: 'Update'.
 ]
 
 { #category : #accessing }

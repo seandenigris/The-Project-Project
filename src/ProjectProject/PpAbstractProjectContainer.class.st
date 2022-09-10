@@ -38,6 +38,18 @@ PpAbstractProjectContainer >> allChildrenDo: aBlock [
 	self rootChildren do: [ :child | child allChildrenDo: aBlock ]
 ]
 
+{ #category : #spotter }
+PpAbstractProjectContainer >> allChildrenGtSpotterFor: aStep [
+	<gtSearch>
+	^ aStep listProcessor
+		priority: 5;
+		title: 'Projects';
+		allCandidates: [ self masterList allChildren ];
+		filter: GtFilterSubstrings;
+		candidatesLimit: 7;
+		itemName: #gtDisplayText
+]
+
 { #category : #accessing }
 PpAbstractProjectContainer >> allChildrenList [
 	^ self newFromChildrenBlock: [ self allChildren ]
@@ -120,18 +132,6 @@ PpAbstractProjectContainer >> filteredProjectsDescription: aSelector [
 		beReadOnly;
 		group: 'Projects';
 		yourself
-]
-
-{ #category : #spotter }
-PpAbstractProjectContainer >> gtGtSpotterAllChildrenFor: aStep [
-	<gtSearch>
-	^ aStep listProcessor
-		priority: 5;
-		title: 'Projects';
-		allCandidates: [ self masterList allChildren ];
-		filter: GtFilterSubstrings;
-		candidatesLimit: 7;
-		itemName: #gtDisplayText
 ]
 
 { #category : #'gt-views' }

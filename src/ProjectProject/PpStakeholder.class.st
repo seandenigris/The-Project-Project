@@ -12,6 +12,30 @@ Class {
 }
 
 { #category : #accessing }
+PpStakeholder class >> gtSpotterItemsFromString: aString [
+
+	| receiver result nameParser parser nameAndRole |
+	
+	result := self new.
+	
+	nameParser := $@ asPParser negate starLazy flatten.
+	parser := nameParser, (#space asPParser plus, $@ asPParser, #any asPParser plus flatten ==> #third) optional.
+	nameAndRole := parser parse: aString.
+	
+	receiver := MpAddressBook uniqueInstance people 
+		detectMax: [ :e | e fullName alike: nameAndRole first ].
+	result person: receiver.
+	nameAndRole size > 1 ifTrue: [ result role: nameAndRole second ].
+	
+	^ { result }
+]
+
+{ #category : #accessing }
+PpStakeholder class >> peCanHandleFromString: aString [
+	^ true
+]
+
+{ #category : #accessing }
 PpStakeholder class >> project: aProject person: aPerson role: titleString [
 
 	^ self new

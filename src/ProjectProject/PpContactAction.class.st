@@ -7,13 +7,14 @@ Class {
 	#category : #'ProjectProject-Core-Projects'
 }
 
-{ #category : #'instance creation' }
-PpContactAction class >> fromString: aString [
-	| title result |
+{ #category : #accessing }
+PpContactAction class >> gtSpotterItemsFromString: aString [
+
+	| receiver result receiverString |
 	
 	result := self new.
 	
-	title := PpContactStrategy allSubclasses 
+	receiverString := PpContactStrategy allSubclasses 
 		detect: [ :stratCls | 
 			aString 
 				beginsWith: stratCls label 
@@ -23,9 +24,12 @@ PpContactAction class >> fromString: aString [
 			(aString allButFirst: stratCls label size) trimLeft. ]
 		ifNone: [ aString ].
 	
-	title ifNotEmpty: [ result title: title ].	
+	receiverString ifNotEmpty: [ 
+		receiver := MpAddressBook uniqueInstance people 
+			detectMax: [ :e | e fullName alike: aString ].
+		result receiver: receiver ].
 	
-	^ result
+	^ { result }
 ]
 
 { #category : #accessing }
@@ -68,6 +72,17 @@ PpContactAction >> doIt [
 		newMessageTo: self receiver fullName 
 		at: self receiver emailAddresses atRandom address 
 		re: self title asFollows: ''
+]
+
+{ #category : #accessing }
+PpContactAction >> gtSpotterText [
+
+	^ String streamContents: [ :str |
+		str 
+			<< self strategy class label
+			<< ' action: '
+			<< self displayString ].
+		
 ]
 
 { #category : #accessing }
