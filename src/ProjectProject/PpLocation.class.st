@@ -48,6 +48,15 @@ PpLocation >> addChildNamed: aString [
 ]
 
 { #category : #accessing }
+PpLocation >> allChildren [
+
+	| roots branches |
+	roots := self rootChildren.
+	branches := roots flatCollect: [ :p | p allChildren ].
+	^ (roots, branches) asSet.
+]
+
+{ #category : #accessing }
 PpLocation >> children [
 	^ self maLazyInstVarUsing: self childrenDescription
 ]
@@ -92,6 +101,25 @@ PpLocation >> geoLocation: aPpGeoLocation [
 ]
 
 { #category : #accessing }
+PpLocation >> gtSearchNewLocationFor: aStep [
+	<gtSearch>
+	aStep listProcessor
+		title: 'Add location';
+		priority: 80;
+		itemName: [ :input | '+ ', input, ' location ' ];
+		previewObject: [ :input | PpLocation named: input trimBoth ];
+		wantsToDisplayOnEmptyQuery: false;
+		filter: GtNullFilter
+			item: [ :filter :context | 
+				| isExisting |
+				isExisting := self rootChildren anySatisfy: [ :e | 
+					e name = context textTrimmed ].
+				isExisting not  ifTrue: [ 
+					filter value: context textTrimmed ] ];
+		send: [ :newName :spotterStep | self addChildNamed: newName ]
+]
+
+{ #category : #accessing }
 PpLocation >> list [
 	^ PpLocationList uniqueInstance
 ]
@@ -114,4 +142,9 @@ PpLocation >> printOn: aStream [
 	aStream
 		nextPutAll: name;
 		nextPutAll: ' location'
+]
+
+{ #category : #accessing }
+PpLocation >> rootChildren [
+	^ self children
 ]

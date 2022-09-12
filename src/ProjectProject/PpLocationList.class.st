@@ -2,7 +2,8 @@ Class {
 	#name : #PpLocationList,
 	#superclass : #Object,
 	#instVars : [
-		'locations'
+		'locations',
+		'rootChildren'
 	],
 	#classVars : [
 		'UniqueInstance'
@@ -28,11 +29,20 @@ PpLocationList class >> uniqueInstance [
 ]
 
 { #category : #accessing }
-PpLocationList >> addLocationNamed: aString [
+PpLocationList >> addChildNamed: aString [
 
 	| location |
 	location := PpLocation named: aString.
-	^ self locations add: location
+	^ self rootChildren add: location
+]
+
+{ #category : #accessing }
+PpLocationList >> allChildren [
+
+	| roots branches |
+	roots := self rootChildren.
+	branches := roots flatCollect: [ :p | p allChildren ].
+	^ (roots addAll: branches; yourself) asSet.
 ]
 
 { #category : #accessing }
@@ -41,7 +51,7 @@ PpLocationList >> gtSearchLocationsFor: aStep [
 	^ aStep listProcessor
 		title: 'Locations';
 		priority: 2;
-		allCandidates: [ self locations ];
+		allCandidates: [ self allChildren ];
 		itemName: #displayString;
 		matchSubstrings
 ]
@@ -52,17 +62,17 @@ PpLocationList >> gtSearchNewLocationFor: aStep [
 	aStep listProcessor
 		title: 'Add location';
 		priority: 80;
-		itemName: [ :input | 'Add location ', input ];
+		itemName: [ :input | '+ ', input, ' location ' ];
 		previewObject: [ :input | PpLocation named: input trimBoth ];
 		wantsToDisplayOnEmptyQuery: false;
 		filter: GtNullFilter
 			item: [ :filter :context | 
 				| isExisting |
-				isExisting := self locations anySatisfy: [ :e | 
+				isExisting := self rootChildren anySatisfy: [ :e | 
 					e name = context textTrimmed ].
 				isExisting not  ifTrue: [ 
 					filter value: context textTrimmed ] ];
-		send: [ :newName :spotterStep | self addLocationNamed: newName ]
+		send: [ :newName :spotterStep | self addChildNamed: newName ]
 ]
 
 { #category : #views }
@@ -71,7 +81,7 @@ PpLocationList >> gtViewLocationsOn: aView [
 	^ aView tree
 		title: 'Locations' translated;
 		priority: 5;
-		items: [ self locations ];
+		items: [ self rootChildren ];
 		children: #children;
 		actionUpdateButton
 ]
@@ -86,4 +96,16 @@ PpLocationList >> locations [
 PpLocationList >> locations: anObject [
 
 	locations := anObject
+]
+
+{ #category : #accessing }
+PpLocationList >> rootChildren [
+
+	^ rootChildren
+]
+
+{ #category : #accessing }
+PpLocationList >> rootChildren: anObject [
+
+	rootChildren := anObject
 ]
