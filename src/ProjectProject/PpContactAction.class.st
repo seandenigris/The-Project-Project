@@ -25,7 +25,7 @@ PpContactAction class >> gtSpotterItemsFromString: aString [
 		ifNone: [ aString ].
 	
 	receiverString ifNotEmpty: [ 
-		receiver := MpAddressBook uniqueInstance people 
+		receiver := MpAddressBook uniqueInstance contacts 
 			detectMax: [ :e | e fullName alike: aString ].
 		result receiver: receiver ].
 	

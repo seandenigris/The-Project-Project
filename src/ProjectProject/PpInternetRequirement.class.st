@@ -7,6 +7,11 @@ Class {
 	#category : #'ProjectProject-Core-Projects'
 }
 
+{ #category : #'instance creation' }
+PpInternetRequirement class >> fromString: aString [
+	^ self new
+]
+
 { #category : #accessing }
 PpInternetRequirement >> isConnected [
 

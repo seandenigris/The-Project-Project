@@ -13,6 +13,24 @@ Class {
 }
 
 { #category : #accessing }
+PpLocationRequirement class >> gtSpotterItemsFromString: aString [
+
+	| bestMatches |
+	bestMatches := PpLocationList uniqueInstance locations
+		sorted: [ :a :b | (a name alike: aString) > (b name alike: aString) ].
+	
+	bestMatches first = aString ifFalse: [ 
+		| loc |
+		loc := PpLocation named: aString.
+		bestMatches add: loc ].
+	
+	^ bestMatches collect: [ :loc |
+		self new
+			location: loc;
+			yourself ].
+]
+
+{ #category : #accessing }
 PpLocationRequirement >> isSatisfied [
 	| currentLocation distance tolerance |
 	currentLocation := '/Applications/Utilities/CoreLocationCLI' asSuCommand

@@ -448,6 +448,29 @@ PpProject >> requirements: aCollection [
 	requirements := aCollection
 ]
 
+{ #category : #magritte }
+PpProject >> requirementsDescription [
+	<magritteDescription>
+	
+	| gtSearchSource librarySource |
+	gtSearchSource := PeGtCompositeSearch new.
+	PpProjectRequirement allSubclasses do: [ :cls |	
+			librarySource := PeGtDelegatedSearch 
+			to: cls 
+			message: #gtSpotterNewFor:.
+			
+		gtSearchSource children add: librarySource ].
+	
+	^ MAToManyRelationDescription new
+			accessor: #requirements;
+			priority: 650;
+			default: Bag new;
+			classes: PpProjectRequirement allSubclasses;
+			morphicClass: MAMorphicTokenCompletion;
+			gtSearchSource: gtSearchSource;
+			yourself
+]
+
 { #category : #'gt-views' }
 PpProject >> requirementsGtViewFor: aView [
 	<gtView>
