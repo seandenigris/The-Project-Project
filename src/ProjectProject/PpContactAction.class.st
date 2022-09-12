@@ -142,12 +142,15 @@ PpContactAction >> strategyDescription [
 { #category : #accessing }
 PpContactAction >> titleDescription [
 
-	| result parents |
+	| result |
 	result := super titleDescription.
-	parents := self parents.
-	
-	parents size = 1
-		ifTrue: [ result default: parents atRandom title ].
+	self parents ifNotEmpty: [ :parents |
+		| defTitle |
+		defTitle := String streamContents: [ :str |
+			parents
+				do: [ :proj | str << proj title ]
+				separatedBy: [ str nextPutAll: '; ' ] ].
+		result default: defTitle ].
 		
 	^ result
 ]
