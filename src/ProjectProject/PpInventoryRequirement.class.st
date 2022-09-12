@@ -18,3 +18,12 @@ PpInventoryRequirement >> item: anObject [
 
 	item := anObject
 ]
+
+{ #category : #accessing }
+PpInventoryRequirement >> printOn: aStream [
+
+	aStream
+		"nextPut: $@;"
+		print: self item;
+		nextPutAll: ' requirement'
+]
