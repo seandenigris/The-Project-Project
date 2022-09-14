@@ -7,13 +7,32 @@ Class {
 { #category : #accessing }
 PpWaitingForProject class >> gtSpotterItemsFromString: aString [
 
-	| waitee |
-	waitee := MpAddressBook uniqueInstance people 
-		detectMax: [ :e | e fullName alike: aString ].
-
-	^ { self new
-		waitee: waitee;
-		yourself }
+	| waitees waiteeMatches waiteeString titleString |
+	
+	waitees := OrderedCollection with: nil.
+	
+	aString ifNotEmpty: [
+		| parser nameParser titleParser |
+		titleParser := 're: ' asPParser, #any asPParser plus flatten 
+			==> [ :n | titleString := n second trimBoth ].
+		nameParser := 're: ' asPParser not, #any asPParser starLazy flatten 
+			==> [ :n | waiteeString := n second ].
+		parser := (nameParser, #space asPParser, titleParser)
+			/ nameParser
+			/ titleParser.
+		parser parse: aString ].
+	
+	waiteeString isEmptyOrNil ifFalse: [
+		waiteeMatches := MpAddressBook uniqueInstance contacts 
+			sorted: [ :a :b | (a fullName alike: aString) > (b fullName alike: aString) ].
+		waitees addAll: (waiteeMatches first: 7) ].
+	
+	^ waitees collect: [ :waitee |
+		| result |
+		result := self new.
+		waitee ifNotNil: [ result waitee: waitee ].
+		titleString ifNotNil: [ result title: titleString ].
+		result ].
 ]
 
 { #category : #accessing }
@@ -30,7 +49,7 @@ PpWaitingForProject >> displayStringOn: aStream [
 	
 	title ifNotNil: [ 
 		aStream 
-			nextPutAll: ' re ';
+			nextPutAll: ' re: ';
 			nextPutAll: title ].
 ]
 

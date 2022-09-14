@@ -47,6 +47,9 @@ PpStakeholder class >> project: aProject person: aPerson role: titleString [
 
 { #category : #accessing }
 PpStakeholder >> = rhs [
+	
+	(rhs isKindOf: self class) ifFalse: [ ^ false ].
+	
 	^ self project = rhs project and: [ self person = rhs person and: [ self role = rhs role ] ]
 ]
 

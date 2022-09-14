@@ -245,7 +245,7 @@ PpProject >> gtDisplayText [
 { #category : #accessing }
 PpProject >> gtSpotterText [
 
-	^ self printString
+	^ self gtDisplayText
 ]
 
 { #category : #'gt-views' }

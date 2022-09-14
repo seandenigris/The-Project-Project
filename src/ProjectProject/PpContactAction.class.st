@@ -10,9 +10,10 @@ Class {
 { #category : #accessing }
 PpContactAction class >> gtSpotterItemsFromString: aString [
 
-	| receiver result receiverString |
+	| receivers receiverString receiverMatches strategies |
 	
-	result := self new.
+	receivers := OrderedCollection with: nil.
+	strategies := OrderedCollection with: nil.
 	
 	receiverString := PpContactStrategy allSubclasses 
 		detect: [ :stratCls | 
@@ -20,16 +21,30 @@ PpContactAction class >> gtSpotterItemsFromString: aString [
 				beginsWith: stratCls label 
 				caseSensitive: false ]
 		ifFound: [ :stratCls |
-			result strategy: stratCls new.
+			strategies add: stratCls new.
 			(aString allButFirst: stratCls label size) trimLeft. ]
 		ifNone: [ aString ].
 	
-	receiverString ifNotEmpty: [ 
-		receiver := MpAddressBook uniqueInstance contacts 
-			detectMax: [ :e | e fullName alike: aString ].
-		result receiver: receiver ].
+	receiverString ifNotEmpty: [
+		receiverMatches := MpAddressBook uniqueInstance contacts 
+			sorted: [ :a :b | (a fullName alike: aString) > (b fullName alike: aString) ].
+		receivers addAll: (receiverMatches first: 7).
+		"if we want to handle a new/unknown person
+		receiverMatches first = aString ifFalse: [ 
+			| loc |
+			loc := PpInventoryItem named: aString.
+			receiverMatches add: loc ]" ].
 	
-	^ { result }
+	^ strategies flatCollect: [ :strat |
+		receivers collect: [ :rec |
+			self new
+				strategy: strat;
+				receiver: rec;
+				yourself ] ].
+				
+	"Implementation note:
+	- tried to have all e.g. receivers available, but too slow
+	- tried to have all strategies available when none specified, but too confusing"
 ]
 
 { #category : #accessing }
@@ -78,11 +93,20 @@ PpContactAction >> doIt [
 PpContactAction >> gtSpotterText [
 
 	^ String streamContents: [ :str |
+		self printStrategyOn: str.
 		str 
-			<< self strategy class label
 			<< ' action: '
 			<< self displayString ].
 		
+]
+
+{ #category : #accessing }
+PpContactAction >> printStrategyOn: aStream [
+
+	strategy ifNotNil: [ 
+		aStream 
+			nextPutAll: self strategy class label;
+			space ].
 ]
 
 { #category : #accessing }
