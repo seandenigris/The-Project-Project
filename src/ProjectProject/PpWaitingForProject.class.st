@@ -51,6 +51,10 @@ PpWaitingForProject >> displayStringOn: aStream [
 		aStream 
 			nextPutAll: ' re: ';
 			nextPutAll: title ].
+			
+	aStream 
+		nextPutAll: ' since ';
+		nextPutAll: self status timestamp asDate mmddyyyy
 ]
 
 { #category : #testing }
