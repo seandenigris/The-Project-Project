@@ -573,7 +573,9 @@ PpProject >> stakeholdersNewGtSpotterFor: aStep [
 PpProject >> status [
 	^ self log
 		ifNotEmpty: [ :lg | lg last ]
-		ifEmpty: [ self defaultStatus ]
+		ifEmpty: [ 
+			"We don't lazy initialize because it is done in #initialize"
+			nil ]
 ]
 
 { #category : #status }
