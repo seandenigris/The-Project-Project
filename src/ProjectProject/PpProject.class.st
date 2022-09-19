@@ -285,6 +285,11 @@ PpProject >> initialize [
 	self status: self defaultStatus
 ]
 
+{ #category : #magritte }
+PpProject >> inventory [
+	^ PpInventory uniqueInstance
+]
+
 { #category : #testing }
 PpProject >> isAction [
 	^ false
@@ -630,10 +635,12 @@ PpProject >> supportMaterialsDescription [
 		message: #gtSpotterNewFor:.
 	gtSearchSource children 
 		add: librarySource;
-		add: self resourceLibrary.
+		add: self resourceLibrary;
+		add: self inventory.
 		
 	classes := RlResource withAllSubclasses
 		addAll: LlLibraryItem allSubclasses;
+		addAll: PpInventoryItem withAllSubclasses;
 		yourself.
 	
 	^ MAToManyRelationDescription new
