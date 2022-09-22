@@ -62,11 +62,6 @@ PpContactAction >> completeAndWait [
 ]
 
 { #category : #accessing }
-PpContactAction >> defaultStatus [
-	^ PpActiveStatus new
-]
-
-{ #category : #accessing }
 PpContactAction >> displayStringOn: aStream [
 
 	strategy ifNotNil: [ 
