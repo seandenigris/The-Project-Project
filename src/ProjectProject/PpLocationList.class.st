@@ -87,21 +87,9 @@ PpLocationList >> gtViewLocationsOn: aView [
 ]
 
 { #category : #accessing }
-PpLocationList >> locations [
-
-	^ locations ifNil: [ locations := SortedCollection sortUsing: #name ascending ]
-]
-
-{ #category : #accessing }
-PpLocationList >> locations: anObject [
-
-	locations := anObject
-]
-
-{ #category : #accessing }
 PpLocationList >> rootChildren [
 
-	^ rootChildren
+	^ rootChildren ifNil: [ rootChildren := Set new ]
 ]
 
 { #category : #accessing }

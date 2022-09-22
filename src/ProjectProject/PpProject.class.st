@@ -1,3 +1,8 @@
+"
+# Support Materials vs. Conditions
+
+A material is *what* I want to see/have when my focus is on a project, whereas a condition is *when* I can focus on a project. See {{gtClass:PpProjectCondition|show=#gtLepiterCommentFor:}} for more details.
+"
 Class {
 	#name : #PpProject,
 	#superclass : #PpAbstractProjectContainer,
@@ -9,11 +14,10 @@ Class {
 		'note',
 		'links',
 		'tags',
-		'context',
 		'supportMaterials',
-		'requirements',
 		'log',
-		'stakeholders'
+		'stakeholders',
+		'conditions'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
@@ -144,13 +148,53 @@ PpProject >> childrenLabel [
 ]
 
 { #category : #accessing }
-PpProject >> context [
-	^ context
+PpProject >> conditions [
+
+	^ conditions ifNil: [ conditions := Bag new ]
 ]
 
 { #category : #accessing }
-PpProject >> context: anObject [
-	context := anObject
+PpProject >> conditions: aCollection [
+
+	conditions := aCollection
+]
+
+{ #category : #magritte }
+PpProject >> conditionsDescription [
+	<magritteDescription>
+	
+	| gtSearchSource librarySource |
+	gtSearchSource := PeGtCompositeSearch new.
+	PpProjectCondition allSubclasses do: [ :cls |	
+			librarySource := PeGtDelegatedSearch 
+			to: cls 
+			message: #gtSpotterNewFor:.
+			
+		gtSearchSource children add: librarySource ].
+	
+	^ MAToManyRelationDescription new
+			accessor: #conditions;
+			priority: 650;
+			default: Bag new;
+			classes: PpProjectCondition allSubclasses;
+			morphicClass: MAMorphicTokenCompletion;
+			gtSearchSource: gtSearchSource;
+			comment: 'See ', PpProjectCondition className, ' comment for more info';
+			yourself
+]
+
+{ #category : #'gt-views' }
+PpProject >> conditionsGtViewFor: aView [
+	<gtView>
+	
+	^ aView list
+		title: 'Requirements' translated;
+		priority: 25;
+		items: [ self conditions asOrderedCollection ];
+		actionButtonIcon: BrGlamorousVectorIcons inspect
+			tooltip: 'Inspect Requirements'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self conditions ];
+		actionUpdateButtonTooltip: 'Update'.
 ]
 
 { #category : #status }
@@ -442,55 +486,6 @@ PpProject >> printOn: aStream [
 ]
 
 { #category : #accessing }
-PpProject >> requirements [
-
-	^ requirements ifNil: [ requirements := Bag new ]
-]
-
-{ #category : #accessing }
-PpProject >> requirements: aCollection [
-
-	requirements := aCollection
-]
-
-{ #category : #magritte }
-PpProject >> requirementsDescription [
-	<magritteDescription>
-	
-	| gtSearchSource librarySource |
-	gtSearchSource := PeGtCompositeSearch new.
-	PpProjectRequirement allSubclasses do: [ :cls |	
-			librarySource := PeGtDelegatedSearch 
-			to: cls 
-			message: #gtSpotterNewFor:.
-			
-		gtSearchSource children add: librarySource ].
-	
-	^ MAToManyRelationDescription new
-			accessor: #requirements;
-			priority: 650;
-			default: Bag new;
-			classes: PpProjectRequirement allSubclasses;
-			morphicClass: MAMorphicTokenCompletion;
-			gtSearchSource: gtSearchSource;
-			yourself
-]
-
-{ #category : #'gt-views' }
-PpProject >> requirementsGtViewFor: aView [
-	<gtView>
-	
-	^ aView list
-		title: 'Requirements' translated;
-		priority: 25;
-		items: [ self requirements asOrderedCollection ];
-		actionButtonIcon: BrGlamorousVectorIcons inspect
-			tooltip: 'Inspect Requirements'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self requirements ];
-		actionUpdateButtonTooltip: 'Update'.
-]
-
-{ #category : #accessing }
 PpProject >> resourceLibrary [
 
 	^ RlResourceLibrary uniqueInstance
@@ -650,6 +645,7 @@ PpProject >> supportMaterialsDescription [
 			classes: classes;
 			morphicClass: MAMorphicTokenCompletion;
 			gtSearchSource: gtSearchSource;
+			comment: 'See ', PpProject className, ' comment for more info';
 			yourself
 ]
 

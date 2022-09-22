@@ -3,7 +3,7 @@ Powered by <https://github.com/sivel/speedtest-cli> (Python API)
 "
 Class {
 	#name : #PpInternetRequirement,
-	#superclass : #PpProjectRequirement,
+	#superclass : #PpProjectCondition,
 	#category : #'ProjectProject-Core-Projects'
 }
 

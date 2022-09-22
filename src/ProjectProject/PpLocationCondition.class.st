@@ -4,8 +4,8 @@ How do we know our current location?
 One way ([via howtogeek](https://www.howtogeek.com/252070/how-do-you-find-a-computers-geographic-location-using-the-command-line/)) is: `curl ipinfo.io`, which gives a general location based on IP address.
 "
 Class {
-	#name : #PpLocationRequirement,
-	#superclass : #PpProjectRequirement,
+	#name : #PpLocationCondition,
+	#superclass : #PpProjectCondition,
 	#instVars : [
 		'location'
 	],
@@ -13,16 +13,16 @@ Class {
 }
 
 { #category : #accessing }
-PpLocationRequirement class >> gtSpotterItemsFromString: aString [
+PpLocationCondition class >> gtSpotterItemsFromString: aString [
 
 	| bestMatches |
-	bestMatches := PpLocationList uniqueInstance locations
+	bestMatches := PpLocationList uniqueInstance allChildren
 		sorted: [ :a :b | (a name alike: aString) > (b name alike: aString) ].
 	
 	bestMatches first = aString ifFalse: [ 
 		| loc |
 		loc := PpLocation named: aString.
-		bestMatches add: loc ].
+		bestMatches copyWith: loc ].
 	
 	^ bestMatches collect: [ :loc |
 		self new
@@ -31,7 +31,7 @@ PpLocationRequirement class >> gtSpotterItemsFromString: aString [
 ]
 
 { #category : #accessing }
-PpLocationRequirement >> isSatisfied [
+PpLocationCondition >> isSatisfied [
 	| currentLocation distance tolerance |
 	currentLocation := '/Applications/Utilities/CoreLocationCLI' asSuCommand
 		outputDecoder: [ :str | 
@@ -44,19 +44,19 @@ PpLocationRequirement >> isSatisfied [
 ]
 
 { #category : #accessing }
-PpLocationRequirement >> location [
+PpLocationCondition >> location [
 
 	^ location
 ]
 
 { #category : #accessing }
-PpLocationRequirement >> location: anObject [
+PpLocationCondition >> location: anObject [
 
 	location := anObject
 ]
 
 { #category : #accessing }
-PpLocationRequirement >> locationDescription [
+PpLocationCondition >> locationDescription [
 	<magritteDescription>
 	
 	^ MAToOneRelationDescription new
@@ -68,12 +68,12 @@ PpLocationRequirement >> locationDescription [
 ]
 
 { #category : #accessing }
-PpLocationRequirement >> locationOptions [
+PpLocationCondition >> locationOptions [
 	^ PpLocationList uniqueInstance
 ]
 
 { #category : #accessing }
-PpLocationRequirement >> printOn: aStream [
+PpLocationCondition >> printOn: aStream [
 
 	aStream
 		nextPut: $@;
