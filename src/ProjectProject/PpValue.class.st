@@ -265,7 +265,7 @@ PpValue >> isActiveDueBy: aDate [
 
 { #category : #accessing }
 PpValue >> isComplete [
-	^ self status isKindOf: PpCompleteStatus
+	^ self status isComplete
 ]
 
 { #category : #magritte }

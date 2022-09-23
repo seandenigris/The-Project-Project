@@ -52,6 +52,7 @@ PpContactAction >> completeAndWait [
 
 	| waitingFor |
 	self status: PpCompleteStatus new.
+	self flag: 'why not #beComplete? What about children?'.
 	
 	waitingFor := PpWaitingForProject new
 		title: self title;

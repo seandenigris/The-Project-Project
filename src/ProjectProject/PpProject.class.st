@@ -73,7 +73,9 @@ PpProject >> beComplete [
 
 	self status: PpCompleteStatus new.
 	
-	self allChildren do: [ :e | e isComplete ifFalse: [ e beComplete ] ]
+	self allChildren do: [ :e | 
+		self error: 'What to do here? Mark children as done/not? What if they have other parents?'.
+		e isComplete ifFalse: [ e beComplete ] ]
 ]
 
 { #category : #accessing }
@@ -193,11 +195,6 @@ PpProject >> gtDisplayText [
 { #category : #testing }
 PpProject >> isActiveDueBy: aDate [
 	^ self isComplete not and: [ self dueDate isNotNil and: [ self dueDate < aDate ] ]
-]
-
-{ #category : #accessing }
-PpProject >> isComplete [
-	^ self status isKindOf: PpCompleteStatus
 ]
 
 { #category : #magritte }

@@ -39,8 +39,8 @@ PpWaitingForStatus >> personDescription [
 { #category : #accessing }
 PpWaitingForStatus >> printOn: aStream [
 	
-	aStream
-		nextPutAll: self class label normalizeCamelCase;
+	super printOn: aStream
+	"aStream
 		space;
-		print: person
+		print: person"
 ]

@@ -12,7 +12,10 @@ Class {
 
 { #category : #accessing }
 PpStatus class >> label [
-	^ label ifNil: [ self name copyFrom: 3 to: self name size - 'Status' size ]
+	^ label ifNil: [ 
+		| labelFromName |
+		labelFromName := self name copyFrom: 3 to: self name size - 'Status' size.
+		labelFromName normalizeCamelCase ]
 ]
 
 { #category : #accessing }
@@ -33,6 +36,11 @@ PpStatus >> hash [
 ]
 
 { #category : #testing }
+PpStatus >> isComplete [
+	^ false
+]
+
+{ #category : #testing }
 PpStatus >> isInactive [
 	^ false
 ]
@@ -46,7 +54,7 @@ PpStatus >> isInbox [
 PpStatus >> printOn: aStream [
 	
 	aStream
-		nextPutAll: self class label normalizeCamelCase;
+		nextPutAll: self class label;
 		space;
 		nextPutAll: 'Status'
 ]
