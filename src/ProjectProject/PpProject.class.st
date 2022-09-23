@@ -146,12 +146,7 @@ PpProject >> displayStringOn: aStream [
 
 { #category : #accessing }
 PpProject >> displayText [
-	^ self isComplete
-			ifTrue: [ 
-				self displayString asText
-					addAttribute: TextEmphasis struckOut;
-					yourself ]
-			ifFalse: [ self displayString ]
+	^ self textFromString: self displayString
 ]
 
 { #category : #accessing }
@@ -186,10 +181,27 @@ PpProject >> dueDateDescription [
 
 { #category : #accessing }
 PpProject >> gtDisplayText [
+	^ self gtTextFromString: self displayString
+]
+
+{ #category : #accessing }
+PpProject >> gtTextFromString: aString [
 	| result |
-	result := self displayString asRopedText.
+	result := aString asRopedText.
 	self isComplete ifTrue: [ result strikethrough ].
 	^ result.
+]
+
+{ #category : #accessing }
+PpProject >> gtTextTitleWithParents [
+	
+	| string |
+	string := String streamContents: [ :str |
+		str << self title.
+		self parents
+			select: #isProject
+			thenDo: [ :e | str << ' < ' << e title ] ].
+	^ self gtTextFromString: string
 ]
 
 { #category : #testing }
@@ -216,10 +228,26 @@ PpProject >> isNextAction [
 	^ self rootChildren allSatisfy: #isComplete
 ]
 
+{ #category : #testing }
+PpProject >> isProject [
+
+	^ true
+]
+
 { #category : #accessing }
 PpProject >> maGtFormFor: aView [
 	
 	^ (super maGtFormFor: aView)
 		priority: 5;
 		yourself
+]
+
+{ #category : #accessing }
+PpProject >> textFromString: aString [
+	^ self isComplete
+			ifTrue: [ 
+				aString asText
+					addAttribute: TextEmphasis struckOut;
+					yourself ]
+			ifFalse: [ aString ]
 ]

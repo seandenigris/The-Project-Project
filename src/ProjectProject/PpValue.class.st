@@ -286,6 +286,16 @@ PpValue >> isNextAction [
 ]
 
 { #category : #testing }
+PpValue >> isProject [
+	^ false
+]
+
+{ #category : #testing }
+PpValue >> isValue [
+	^ true
+]
+
+{ #category : #testing }
 PpValue >> isWaitingFor [
 	^ false
 ]

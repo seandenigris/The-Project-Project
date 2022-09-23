@@ -6,10 +6,12 @@ MpRelatableEntity >> gtViewAgendaOn: aView [
 	
 	self projects allChildren ifEmpty: [ ^ aView empty ].
 	
-	^ aView forward
+	^ aView columnedTree
 		title: 'Agenda' translated;
 		priority: 55;
-		object: [ self projects ];
-		view: #gtViewProjectsFor:;
-		actionUpdateButton
+		items: [ self projects rootChildren ];
+		children: #parents;
+		column: 'Item' text: [ :p | p gtTextTitleWithParents ] weight: 3;
+		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ] weight: 1;
+		actionUpdateButtonTooltip: 'Update'
 ]
