@@ -21,5 +21,5 @@ PpSendSMS class >> label [
 { #category : #accessing }
 PpSendSMS class >> priority [
 
-	^ 300
+	^ 400
 ]
