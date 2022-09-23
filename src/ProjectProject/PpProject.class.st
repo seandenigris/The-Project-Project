@@ -215,3 +215,11 @@ PpProject >> isNextAction [
 	self isComplete ifTrue: [ ^ false ].
 	^ self rootChildren allSatisfy: #isComplete
 ]
+
+{ #category : #accessing }
+PpProject >> maGtFormFor: aView [
+	
+	^ (super maGtFormFor: aView)
+		priority: 5;
+		yourself
+]
