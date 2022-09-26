@@ -329,6 +329,14 @@ PpValue >> logGtViewFor: aView [
 ]
 
 { #category : #accessing }
+PpValue >> maGtFormFor: aView [
+	
+	^ (super maGtFormFor: aView)
+		priority: 5;
+		yourself
+]
+
+{ #category : #accessing }
 PpValue >> myDependencyLinks [
 	^ self dependencyLinks select: [ :link | link includes: self ]
 ]
