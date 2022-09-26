@@ -300,6 +300,11 @@ PpValue >> isWaitingFor [
 	^ false
 ]
 
+{ #category : #magritte }
+PpValue >> library [
+	^ LlLibrary uniqueInstance
+]
+
 { #category : #accessing }
 PpValue >> log [
 
@@ -535,26 +540,29 @@ PpValue >> supportMaterials: anObject [
 PpValue >> supportMaterialsDescription [
 	<magritteDescription>
 	
-	| gtSearchSource classes librarySource |
+	| gtSearchSource classes libraryItemSource |
 	gtSearchSource := PeGtCompositeSearch new.
-	librarySource := PeGtDelegatedSearch 
+	libraryItemSource := PeGtDelegatedSearch 
 		to: LlLibraryItem 
 		message: #gtSpotterNewFor:.
 	gtSearchSource children 
-		add: librarySource;
-		add: self resourceLibrary;
-		add: self inventory.
+		add: self inventory;
+		add: self library;
+		add: libraryItemSource;
+		add: self resourceLibrary.
 		
-	classes := RlResource withAllSubclasses
+	classes := LlAuthoredWork withAllSubclasses
 		addAll: LlLibraryItem allSubclasses;
 		addAll: PpInventoryItem withAllSubclasses;
+		addAll: RlResource withAllSubclasses;
 		yourself.
 	
 	^ MAToManyRelationDescription new
 			accessor: #supportMaterials;
 			priority: 650;
-			default: Bag new;
+			default: Set new;
 			classes: classes;
+			display: #displayString;
 			morphicClass: MAMorphicTokenCompletion;
 			gtSearchSource: gtSearchSource;
 			comment: 'See ', PpProject className, ' comment for more info';
