@@ -47,9 +47,10 @@ PpInventory >> gtSearchItemsFor: aSearch [
 ]
 
 { #category : #accessing }
-PpInventory >> gtSearchNewItemFor: aStep [
+PpInventory >> gtSearchNewItemFor: aSearch [
 	<gtSearch>
-	aStep listProcessor
+	
+	^ aSearch list
 		title: 'Add item';
 		priority: 80;
 		itemName: [ :input | 'Add item: ', input ];

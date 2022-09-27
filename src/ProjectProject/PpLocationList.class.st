@@ -57,9 +57,10 @@ PpLocationList >> gtSearchLocationsFor: aSearch [
 ]
 
 { #category : #accessing }
-PpLocationList >> gtSearchNewLocationFor: aStep [
+PpLocationList >> gtSearchNewLocationFor: aSearch [
 	<gtSearch>
-	aStep listProcessor
+	
+	^ aSearch list
 		title: 'Add location';
 		priority: 80;
 		itemName: [ :input | '+ ', input, ' location ' ];

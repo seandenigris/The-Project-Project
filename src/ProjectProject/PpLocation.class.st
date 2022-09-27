@@ -101,9 +101,10 @@ PpLocation >> geoLocation: aPpGeoLocation [
 ]
 
 { #category : #accessing }
-PpLocation >> gtSearchNewLocationFor: aStep [
+PpLocation >> gtSearchNewLocationFor: aSearch [
 	<gtSearch>
-	aStep listProcessor
+	
+	^ aSearch list
 		title: 'Add location';
 		priority: 80;
 		itemName: [ :input | '+ ', input, ' location ' ];

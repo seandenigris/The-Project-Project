@@ -55,9 +55,10 @@ PpTagCollection >> gtGtSpotterTagsFor: aSearch [
 ]
 
 { #category : #accessing }
-PpTagCollection >> gtSpotterNewTagFor: aStep [
+PpTagCollection >> gtSpotterNewTagFor: aSearch [
 	<gtSearch>
-	aStep listProcessor
+	
+	^ aSearch list
 		title: 'New tag';
 		priority: 50;
 		itemName: [ :input | 'Create tag: ', input ];

@@ -53,12 +53,12 @@ PpEventLog >> addAll: aCollection [
 ]
 
 { #category : #accessing }
-PpEventLog >> gtSpotterNew: aClass on: aStep [
+PpEventLog >> gtSpotterNew: aClass on: aSearch [
 
 	| typeName |
 	typeName := (aClass name allButFirst: 'Pp' size) normalizeCamelCase.
 
-	aStep listProcessor
+	^ aSearch list
 		title: 'New ', typeName;
 		priority: 50;
 		itemName: [ :input | 'Create new ', typeName asLowercase, ': ', input ];
