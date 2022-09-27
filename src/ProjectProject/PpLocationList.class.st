@@ -46,12 +46,12 @@ PpLocationList >> allChildren [
 ]
 
 { #category : #accessing }
-PpLocationList >> gtSearchLocationsFor: aStep [
+PpLocationList >> gtSearchLocationsFor: aSearch [
 	<gtSearch>
-	^ aStep listProcessor
+	^ aSearch list
 		title: 'Locations';
 		priority: 2;
-		allCandidates: [ self allChildren ];
+		items: [ self allChildren ];
 		itemName: #displayString;
 		matchSubstrings
 ]

@@ -39,14 +39,13 @@ PpAbstractProjectContainer >> allChildrenDo: aBlock [
 ]
 
 { #category : #spotter }
-PpAbstractProjectContainer >> allChildrenGtSpotterFor: aStep [
+PpAbstractProjectContainer >> allChildrenGtSpotterFor: aSearch [
 	<gtSearch>
-	^ aStep listProcessor
+	^ aSearch list
 		priority: 5;
 		title: 'Projects';
-		allCandidates: [ self masterList allChildren ];
-		filter: GtFilterSubstrings;
-		candidatesLimit: 7;
+		items: [ self masterList allChildren ];
+		matchSubstrings;
 		itemName: #gtDisplayText
 ]
 

@@ -466,10 +466,10 @@ PpValue >> stakeholdersGtViewFor: aView [
 ]
 
 { #category : #spotter }
-PpValue >> stakeholdersNewGtSpotterFor: aStep [
+PpValue >> stakeholdersNewGtSpotterFor: aSearch [
 	<gtSearch>
 	
-	^ aStep listProcessor
+	^ aSearch list
 		title: 'New Stakeholder';
 		priority: 50;
 		itemName: [ :result | result person fullName, ' -> ', result role ];

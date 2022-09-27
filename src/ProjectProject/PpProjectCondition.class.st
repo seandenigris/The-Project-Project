@@ -20,14 +20,15 @@ Class {
 }
 
 { #category : #'spotter - instance creation' }
-PpProjectCondition class >> gtSpotterNewFor: aStep [
+PpProjectCondition class >> gtSpotterNewFor: aSearch [
 	<gtSearch>
-	
-	aStep listProcessor
+	^ aSearch list
 		title: self label;
 		priority: 50;
 		wantsToDisplayOnEmptyQuery: false;
-		filter: (PeGtSubInstancesFilter new rootClass: self; yourself)
+		filter: (PeGtSubInstancesFilter new
+				rootClass: self;
+				yourself)
 ]
 
 { #category : #testing }

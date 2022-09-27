@@ -36,12 +36,12 @@ PpInventory >> addItemNamed: aString [
 ]
 
 { #category : #accessing }
-PpInventory >> gtSearchItemsFor: aStep [
+PpInventory >> gtSearchItemsFor: aSearch [
 	<gtSearch>
-	^ aStep listProcessor
+	^ aSearch list
 		title: 'Items';
 		priority: 2;
-		allCandidates: [ self items ];
+		items: [ self items ];
 		itemName: #displayString;
 		matchSubstrings
 ]

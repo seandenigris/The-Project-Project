@@ -44,16 +44,14 @@ PpTagCollection >> ensureNamed: aString [
 ]
 
 { #category : #accessing }
-PpTagCollection >> gtGtSpotterTagsFor: aStep [
+PpTagCollection >> gtGtSpotterTagsFor: aSearch [
 	<gtSearch>
-	
-	^ aStep listProcessor
+	^ aSearch list
 		priority: 5;
 		title: 'Tags';
-		allCandidates: [ self tags ];
-		filter: GtFilterSubstrings;
-		candidatesLimit: 7;
-		itemName:[ :aTag | aTag name ].		
+		items: [ self tags ];
+		matchSubstrings;
+		itemName: [ :aTag | aTag name ]
 ]
 
 { #category : #accessing }

@@ -26,16 +26,16 @@ PpReadOnlyEventLog >> events: anObject [
 ]
 
 { #category : #accessing }
-PpReadOnlyEventLog >> gtGtSpotterEventsOn: aStep [
+PpReadOnlyEventLog >> gtGtSpotterEventsOn: aSearch [
 	"Adapted from GT superclass"
+
 	<gtSearch>
-	^ aStep listProcessor
+	^ aSearch list
 		priority: 5;
 		title: 'Events';
-		allCandidates: [ self events ];
-		filter: GtFilterSubstrings;
-		candidatesLimit: 7;
-		itemName:[ :e | e printString ];
+		items: [ self events ];
+		matchSubstrings;
+		itemName: [ :e | e printString ];
 		wantsToDisplayOnEmptyQuery: true
 ]
 
