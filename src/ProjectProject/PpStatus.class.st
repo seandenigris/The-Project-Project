@@ -1,3 +1,8 @@
+"
+# Two axes
+- Active vs. inactive - here, inactive has a temporary flavor, like GTD's ""Someday/maybe"". In short, I'm not doing it, but still track it
+- Complete vs. incomplete - complete here has a finality, signifying ""stop actively tracking this in the system"", although it will remain in the archive.
+"
 Class {
 	#name : #PpStatus,
 	#superclass : #Object,
