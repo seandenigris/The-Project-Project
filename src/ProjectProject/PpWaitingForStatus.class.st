@@ -13,6 +13,11 @@ PpWaitingForStatus >> addressBook [
 ]
 
 { #category : #accessing }
+PpWaitingForStatus >> isInactive [
+	^ true
+]
+
+{ #category : #accessing }
 PpWaitingForStatus >> person [
 
 	^ person

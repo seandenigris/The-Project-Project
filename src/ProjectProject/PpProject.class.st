@@ -206,8 +206,13 @@ PpProject >> gtTextTitleWithParents [
 ]
 
 { #category : #testing }
+PpProject >> isActive [
+	^ self status isActive
+]
+
+{ #category : #testing }
 PpProject >> isActiveDueBy: aDate [
-	^ self isComplete not and: [ self dueDate isNotNil and: [ self dueDate < aDate ] ]
+	^ self isActive and: [ self dueDate isNotNil and: [ self dueDate < aDate ] ]
 ]
 
 { #category : #magritte }
@@ -222,11 +227,9 @@ PpProject >> isCompleteDescription [
 			yourself
 ]
 
-{ #category : #accessing }
-PpProject >> isNextAction [
-	super isNextAction ifFalse: [ ^ false ].
-	self isComplete ifTrue: [ ^ false ].
-	^ self rootChildren allSatisfy: #isComplete
+{ #category : #testing }
+PpProject >> isInactive [
+	^ self status isInactive
 ]
 
 { #category : #testing }

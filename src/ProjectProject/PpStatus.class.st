@@ -36,6 +36,11 @@ PpStatus >> hash [
 ]
 
 { #category : #testing }
+PpStatus >> isActive [
+	^ false
+]
+
+{ #category : #testing }
 PpStatus >> isComplete [
 	^ false
 ]

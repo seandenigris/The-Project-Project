@@ -282,7 +282,7 @@ PpValue >> isCompleteDescription [
 
 { #category : #accessing }
 PpValue >> isNextAction [
-	^ self isAction
+	^ false
 ]
 
 { #category : #testing }
