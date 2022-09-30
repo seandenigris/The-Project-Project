@@ -74,8 +74,9 @@ PpProject >> beComplete [
 	self status: PpCompleteStatus new.
 	
 	self allChildren do: [ :e | 
-		self error: 'What to do here? Mark children as done/not? What if they have other parents?'.
-		e isComplete ifFalse: [ e beComplete ] ]
+		e isComplete ifFalse: [ 
+			self error: 'What to do here? Mark children as done/not? What if they have other parents?'.
+			e beComplete ] ]
 ]
 
 { #category : #accessing }
