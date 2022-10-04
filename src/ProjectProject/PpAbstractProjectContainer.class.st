@@ -185,8 +185,8 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 			title: desc label translated;
 			items: [ (desc read: self) asOrderedCollection ];
 			children: #rootChildren;
-			column: 'Item' text: [ :p | p gtDisplayText ];
-			column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
+			column: 'Item' text: [ :p | p gtDisplayText ] weight: 3;
+			column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ]  weight: 1;
 			itemContextMenuStencil: [ :element :item | 
 				BrGlamorousSimpleContextMenuContent new
 					items: {'Revert'
