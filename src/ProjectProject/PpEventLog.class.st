@@ -57,21 +57,19 @@ PpEventLog >> gtSpotterNew: aClass on: aSearch [
 
 	| typeName |
 	typeName := (aClass name allButFirst: 'Pp' size) normalizeCamelCase.
+	
+	"Halt now."
 
-	^ aSearch list
+	^ aSearch explicit
 		title: 'New ', typeName;
 		priority: 50;
-		itemName: [ :input | 'Create new ', typeName asLowercase, ': ', input ];
-		previewObject: [ :input | aClass fromString: input ];
+		itemName: [ :result | '+ ', result title ];
 		wantsToDisplayOnEmptyQuery: false;
-		filter: GtNullFilter
-			item: [ :filter :context | 
-				| isExisting |
-				isExisting := self events anySatisfy: [ :e | 
-					e title = context textTrimmed ].
-				isExisting ifFalse: [ 
-					filter value: context textTrimmed ] ];
-		send: [ :input :spotterStep | self events add: (aClass fromString: input) ].
+		search: [ :aContext | 
+			| input |
+			input := aContext searchQuery trimBoth.
+			{ aClass fromString: input } asAsyncStream ];
+		itemSpawnAfter: [ :anObject | self events add: anObject ]
 ]
 
 { #category : #accessing }

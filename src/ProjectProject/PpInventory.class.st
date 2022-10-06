@@ -47,23 +47,18 @@ PpInventory >> gtSearchItemsFor: aSearch [
 ]
 
 { #category : #accessing }
-PpInventory >> gtSearchNewItemFor: aSearch [
+PpInventory >> gtSpotNewItemFor: aSearch [
 	<gtSearch>
 	
-	^ aSearch list
+	^ aSearch explicit
 		title: 'Add item';
 		priority: 80;
-		itemName: [ :input | 'Add item: ', input ];
-		previewObject: [ :input | PpInventoryItem named: input trimBoth ];
-		wantsToDisplayOnEmptyQuery: false;
-		filter: GtNullFilter
-			item: [ :filter :context | 
-				| isExisting |
-				isExisting := self items anySatisfy: [ :e | 
-					e name = context textTrimmed ].
-				isExisting not  ifTrue: [ 
-					filter value: context textTrimmed ] ];
-		send: [ :newName :spotterStep | self addItemNamed: newName ]
+		itemName: [ :result | '+ ', result gtDisplayString ];
+		search: [ :aContext | 
+			| input |
+			input := aContext searchQuery trimBoth.
+			{ PpInventoryItem named: input } asAsyncStream ];
+		itemSpawnAfter: [ :anObject | self addItemNamed: anObject ]
 ]
 
 { #category : #views }
