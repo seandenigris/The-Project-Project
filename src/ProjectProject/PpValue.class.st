@@ -102,7 +102,7 @@ PpValue >> allChildren [
 PpValue >> allChildrenGtSpotterFor: aStep [
 	
 	^ (super allChildrenGtSpotterFor: aStep)
-		send: [ :result | self addChild: result ]
+		itemSpawnAfter: [ :result | self addChild: result ]
 ]
 
 { #category : #actions }
@@ -472,18 +472,15 @@ PpValue >> stakeholdersNewGtSpotterFor: aSearch [
 	^ aSearch list
 		title: 'New Stakeholder';
 		priority: 50;
+		items: [ {} ];
 		itemName: [ :result | result person fullName, ' -> ', result role ];
-		previewObject: [ :result | result 
-				project: self;
-				yourself ];
-		wantsToDisplayOnEmptyQuery: false;
 		filter: (PeGtSubInstancesFilter new
 			rootClass: PpStakeholder;
-			yourself);
+			yourself)";
 		send: [ :result :spotterStep |
 			result 
 				project: self;
-				yourself ]
+				yourself ]"
 ]
 
 { #category : #status }

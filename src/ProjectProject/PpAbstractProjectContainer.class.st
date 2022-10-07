@@ -44,7 +44,7 @@ PpAbstractProjectContainer >> allChildrenGtSpotterFor: aSearch [
 	^ aSearch list
 		priority: 5;
 		title: 'Projects';
-		items: [ self masterList allChildren ];
+		items: [ self masterList allChildren asOrderedCollection asAsyncStream ];
 		matchSubstrings;
 		itemName: #gtDisplayText
 ]
