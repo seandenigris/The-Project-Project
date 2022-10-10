@@ -13,7 +13,7 @@ Class {
 		'name',
 		'children'
 	],
-	#category : 'ProjectProject-Core'
+	#category : #'ProjectProject-Tagging'
 }
 
 { #category : #accessing }

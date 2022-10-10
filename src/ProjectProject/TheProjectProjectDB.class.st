@@ -19,6 +19,7 @@ TheProjectProjectDB class >> schema [
 			PpInventory.
 			PpLocation.
 			PpProjectList.
+			PpSystem.
 			PpTag.
 			QuoteMeDB.
 			ResourcesLiveDB.

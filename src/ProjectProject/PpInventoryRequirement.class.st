@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'item'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : #'ProjectProject-Core-Projects-Support'
 }
 
 { #category : #'spotter - instance creation' }

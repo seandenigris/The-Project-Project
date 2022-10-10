@@ -16,7 +16,7 @@ The tool one is more interesting. What if it's a tool you don't have? So then th
 Class {
 	#name : #PpProjectCondition,
 	#superclass : #Object,
-	#category : #'ProjectProject-Core-Projects'
+	#category : #'ProjectProject-Core-Projects-Support'
 }
 
 { #category : #'spotter - instance creation' }
@@ -25,7 +25,7 @@ PpProjectCondition class >> gtSpotterNewFor: aSearch [
 	^ aSearch list
 		title: self label;
 		priority: 50;
-		wantsToDisplayOnEmptyQuery: false;
+		items: [ {} asAsyncStream ];
 		filter: (PeGtSubInstancesFilter new
 				rootClass: self;
 				yourself)

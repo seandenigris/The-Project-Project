@@ -38,13 +38,17 @@ PpLocation class >> spData [
 ]
 
 { #category : #accessing }
+PpLocation >> addChild: aLocation [
+
+	^ self children add: aLocation
+]
+
+{ #category : #accessing }
 PpLocation >> addChildNamed: aString [
 
 	| child |
-	child := self class new
-		name: aString;
-		yourself.
-	^ self children add: child
+	child := self class named: aString.
+	^ self addChild: child
 ]
 
 { #category : #accessing }
@@ -103,21 +107,19 @@ PpLocation >> geoLocation: aPpGeoLocation [
 { #category : #accessing }
 PpLocation >> gtSearchNewLocationFor: aSearch [
 	<gtSearch>
-	
 	^ aSearch list
 		title: 'Add location';
 		priority: 80;
-		itemName: [ :input | '+ ', input, ' location ' ];
-		previewObject: [ :input | PpLocation named: input trimBoth ];
-		wantsToDisplayOnEmptyQuery: false;
-		filter: GtNullFilter
-			item: [ :filter :context | 
-				| isExisting |
-				isExisting := self rootChildren anySatisfy: [ :e | 
-					e name = context textTrimmed ].
-				isExisting not  ifTrue: [ 
-					filter value: context textTrimmed ] ];
-		send: [ :newName :spotterStep | self addChildNamed: newName ]
+		itemName: [ :result | '+ ' , result gtDisplayText ];
+		search: [ :context | 
+			| isExisting input |
+			input := context searchQuery trimmed.
+			isExisting := self rootChildren
+					anySatisfy: [ :e | e name = input ].
+			isExisting
+				ifFalse: [ { self class named: input } ]
+				ifTrue: [ { } ] ];
+		itemSpawnAfter: [ :result | self addChild: result ]
 ]
 
 { #category : #accessing }

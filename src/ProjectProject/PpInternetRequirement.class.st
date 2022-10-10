@@ -4,7 +4,7 @@ Powered by <https://github.com/sivel/speedtest-cli> (Python API)
 Class {
 	#name : #PpInternetRequirement,
 	#superclass : #PpProjectCondition,
-	#category : #'ProjectProject-Core-Projects'
+	#category : #'ProjectProject-Core-Projects-Support'
 }
 
 { #category : #'instance creation' }

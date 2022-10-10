@@ -1,7 +1,7 @@
 Class {
 	#name : #PpComputerRequirement,
 	#superclass : #PpProjectCondition,
-	#category : #'ProjectProject-Core-Projects'
+	#category : #'ProjectProject-Core-Projects-Support'
 }
 
 { #category : #'instance creation' }

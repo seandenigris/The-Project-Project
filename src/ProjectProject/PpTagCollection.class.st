@@ -55,21 +55,18 @@ PpTagCollection >> gtGtSpotterTagsFor: aSearch [
 { #category : #accessing }
 PpTagCollection >> gtSpotterNewTagFor: aSearch [
 	<gtSearch>
-	
 	^ aSearch list
 		title: 'New tag';
 		priority: 50;
-		itemName: [ :input | 'Create tag: ', input ];
-		previewObject: [ :input | PpTag new name: input; yourself ];
-		wantsToDisplayOnEmptyQuery: false;
-		filter: GtNullFilter
-			item: [ :filter :context | 
-				| isExisting |
-				isExisting := self tags anySatisfy: [ :e | 
-					e name = context textTrimmed ].
-				isExisting ifFalse: [ 
-					filter value: context textTrimmed ] ];
-		send: [ :newName :spotterStep | self ensureNamed: newName ]
+		itemName: [ :result | '+ ' , result gtDisplayText ];
+		search: [ :context | 
+			| isExisting input |
+			input := context searchQuery trimmed.
+			isExisting := self tags anySatisfy: [ :e | e name = input ].
+			isExisting
+				ifFalse: [ { PpTag named: input } ]
+				ifTrue: [ { } ] ];
+		itemSpawnAfter: [ :result | self addTag: result ]
 ]
 
 { #category : #accessing }

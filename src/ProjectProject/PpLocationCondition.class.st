@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'location'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : #'ProjectProject-Core-Projects-Support'
 }
 
 { #category : #accessing }

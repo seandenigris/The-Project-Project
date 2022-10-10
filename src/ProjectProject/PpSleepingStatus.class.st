@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'wakeupDate'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : #'ProjectProject-Core-Projects-Support'
 }
 
 { #category : #testing }

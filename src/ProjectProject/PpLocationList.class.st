@@ -29,11 +29,17 @@ PpLocationList class >> uniqueInstance [
 ]
 
 { #category : #accessing }
+PpLocationList >> addChild: aLocation [
+
+	^ self rootChildren add: aLocation
+]
+
+{ #category : #accessing }
 PpLocationList >> addChildNamed: aString [
 
 	| location |
 	location := PpLocation named: aString.
-	^ self rootChildren add: location
+	^ self addChild: location
 ]
 
 { #category : #accessing }
@@ -60,20 +66,20 @@ PpLocationList >> gtSearchLocationsFor: aSearch [
 PpLocationList >> gtSearchNewLocationFor: aSearch [
 	<gtSearch>
 	
+	self flag: 'looks duplicated from location class'.
 	^ aSearch list
 		title: 'Add location';
 		priority: 80;
-		itemName: [ :input | '+ ', input, ' location ' ];
-		previewObject: [ :input | PpLocation named: input trimBoth ];
-		wantsToDisplayOnEmptyQuery: false;
-		filter: GtNullFilter
-			item: [ :filter :context | 
-				| isExisting |
-				isExisting := self rootChildren anySatisfy: [ :e | 
-					e name = context textTrimmed ].
-				isExisting not  ifTrue: [ 
-					filter value: context textTrimmed ] ];
-		send: [ :newName :spotterStep | self addChildNamed: newName ]
+		itemName: [ :result | '+ ' , result gtDisplayText ];
+		search: [ :context | 
+			| isExisting input |
+			input := context searchQuery trimmed.
+			isExisting := self rootChildren
+				anySatisfy: [ :e | e name = input ].
+			isExisting 
+				ifFalse: [ { PpLocation named: input } ]
+				ifTrue: [ { } ] ];
+		itemSpawnAfter: [ :result | self addChild: result ]
 ]
 
 { #category : #views }
