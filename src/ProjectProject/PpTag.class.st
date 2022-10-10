@@ -21,11 +21,18 @@ PpTag class >> db [
 	^ PpTagCollection uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : #convenience }
 PpTag class >> ensureNamed: aString [ 
 	^ self db tags
 			detect: [ :e | e name = aString ]
 			ifNone: [ self db addTagNamed: aString ]
+]
+
+{ #category : #'instance creation' }
+PpTag class >> named: aString [ 
+	^ PpTag new
+		name: aString;
+		yourself
 ]
 
 { #category : #persistence }

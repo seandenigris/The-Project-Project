@@ -7,7 +7,7 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'ProjectProject-Core'
+	#category : #'ProjectProject-Tagging'
 }
 
 { #category : #accessing }
@@ -30,9 +30,7 @@ PpTagCollection >> addTag: aPpTag [
 { #category : #accessing }
 PpTagCollection >> addTagNamed: aString [
 	| tag |
-	tag := PpTag new
-		name: aString;
-		yourself.
+	tag := PpTag named: aString.
 	^ self addTag: tag
 ]
 
