@@ -441,7 +441,7 @@ PpValue >> stakeholdersDescription [
 		default: Set new;
 		classes: PpStakeholder withAllSubclasses;
 		display: [ :e | e person fullName ];
-		gtSearchDelegateTo: self message: #stakeholdersNewGtSpotterFor:;
+		gtSearchDelegateTo: self message: #stakeholdersSearchNewFor:;
 		yourself
 ]
 
@@ -466,7 +466,7 @@ PpValue >> stakeholdersGtViewFor: aView [
 ]
 
 { #category : #spotter }
-PpValue >> stakeholdersNewGtSpotterFor: aSearch [
+PpValue >> stakeholdersSearchNewFor: aSearch [
 	<gtSearch>
 	
 	^ aSearch list
@@ -476,11 +476,11 @@ PpValue >> stakeholdersNewGtSpotterFor: aSearch [
 		itemName: [ :result | result person fullName, ' -> ', result role ];
 		filter: (PeGtSubInstancesFilter new
 			rootClass: PpStakeholder;
-			yourself)";
-		send: [ :result :spotterStep |
+			yourself);
+		itemSpawnAfter: [ :result |
 			result 
 				project: self;
-				yourself ]"
+				yourself ]
 ]
 
 { #category : #status }
