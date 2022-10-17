@@ -23,6 +23,8 @@ BaselineOfTheProjectProject >> baseline: spec [
 				spec repository: 'github://seandenigris/Magritte' ];
 			baseline: 'Mocketry' with: [
 				spec repository: 'github://dionisiydk/Mocketry' ];
+			baseline: 'MSAL' with: [
+				spec repository: 'github://seandenigris/MSAL-Smalltalk' ];
 			baseline: 'MyPeople' with: [
 				spec repository: 'github://SeanDeNigris/My-People' ];
 			baseline: 'PharoEnhancements' with: [
@@ -44,7 +46,7 @@ BaselineOfTheProjectProject >> baseline: spec [
 			baseline: 'ObjectiveLepiter' with: [
 				spec repository: 'github://seandenigris/Objective-Lepiter' ];
 			package: #ProjectProject with: [
-				spec requires: #('BookmarkMagic' 'ExternalWebBrowser' 'Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence' "'Spec-PolyWidgets'" 'TrackingNumbers'). ]. ].
+				spec requires: #('BookmarkMagic' 'ExternalWebBrowser' 'Magritte' 'Mocketry' 'MSAL' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence' "'Spec-PolyWidgets'" 'TrackingNumbers'). ]. ].
 				
 	spec for: #GToolkit do: [ 
 		spec package: 'ProjectProject-GToolkit' with: [ spec requires: #('MyPeople' 'ObjectiveLepiter' 'ProjectProject') ] ]
