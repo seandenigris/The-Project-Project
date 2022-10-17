@@ -440,7 +440,6 @@ PpValue >> stakeholdersDescription [
 		priority: 200;
 		default: Set new;
 		classes: PpStakeholder withAllSubclasses;
-		display: [ :e | e person fullName ];
 		gtSearchDelegateTo: self message: #stakeholdersSearchNewFor:;
 		yourself
 ]
