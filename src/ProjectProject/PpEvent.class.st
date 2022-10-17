@@ -35,10 +35,12 @@ PpEvent class >> examplePointInTime [
 
 { #category : #'instance creation' }
 PpEvent class >> fromString: aString [
+	"aString format: date required, (@ time optional), any other chars are considered the title"
 
 	| tokens title date prefixSize time |
 	tokens := aString findTokens: Character separators.
 	prefixSize := 0.
+	title := nil.
 	[
 		date := Date fromString: tokens first.
 		prefixSize := tokens first size + 1.
@@ -50,7 +52,8 @@ PpEvent class >> fromString: aString [
 		on: Error 
 		do: [ aString ].
 		
-	title := (aString allButFirst: prefixSize) trimLeft.
+	prefixSize < aString size ifTrue: [
+		title := (aString allButFirst: prefixSize) trimLeft ].
 		
 	^ self new
 		title: title;

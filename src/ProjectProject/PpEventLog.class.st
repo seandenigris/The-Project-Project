@@ -68,7 +68,7 @@ PpEventLog >> gtSpotterNew: aClass [
 	^ GtSpotterProtoSearch new explicit
 		title: 'New ', typeName;
 		priority: 50;
-		itemName: [ :result | '+ ', result title ];
+		itemName: [ :result | '+ ', result gtDisplayText ];
 		wantsToDisplayOnEmptyQuery: false;
 		search: [ :aContext | 
 			| input |
