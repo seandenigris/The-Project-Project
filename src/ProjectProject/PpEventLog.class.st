@@ -53,14 +53,19 @@ PpEventLog >> addAll: aCollection [
 ]
 
 { #category : #accessing }
-PpEventLog >> gtSpotterNew: aClass on: aSearch [
+PpEventLog >> eventsNewSearches [
+	
+	^ PpEvent withAllSubclasses collect: [ :cls |
+		self gtSpotterNew: cls ]
+]
+
+{ #category : #accessing }
+PpEventLog >> gtSpotterNew: aClass [
 
 	| typeName |
 	typeName := (aClass name allButFirst: 'Pp' size) normalizeCamelCase.
 	
-	"Halt now."
-
-	^ aSearch explicit
+	^ GtSpotterProtoSearch new explicit
 		title: 'New ', typeName;
 		priority: 50;
 		itemName: [ :result | '+ ', result title ];
@@ -73,11 +78,10 @@ PpEventLog >> gtSpotterNew: aClass on: aSearch [
 ]
 
 { #category : #accessing }
-PpEventLog >> gtSpotterNewEventOn: aStep [
-	<gtSearch>
-	
-	PpEvent withAllSubclassesDo: [ :cls |
-		self gtSpotterNew: cls on: aStep ]
+PpEventLog >> gtSpotterSearchesInContext: aSpotterContext [
+	| pragmaSearches |
+	pragmaSearches := super gtSpotterSearchesInContext: aSpotterContext.
+	^ pragmaSearches merge: self eventsNewSearches asAsyncStream
 ]
 
 { #category : #removing }
