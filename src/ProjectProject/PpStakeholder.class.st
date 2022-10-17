@@ -22,7 +22,7 @@ PpStakeholder class >> gtSpotterItemsFromString: aString [
 	parser := nameParser, (#space asPParser plus, $@ asPParser, #any asPParser plus flatten ==> #third) optional.
 	nameAndRole := parser parse: aString.
 	
-	receiver := MpAddressBook uniqueInstance people 
+	receiver := MpAddressBook uniqueInstance contacts 
 		detectMax: [ :e | e fullName alike: nameAndRole first ].
 	result person: receiver.
 	nameAndRole size > 1 ifTrue: [ result role: nameAndRole second ].
