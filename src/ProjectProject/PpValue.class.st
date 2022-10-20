@@ -198,6 +198,11 @@ PpValue >> dueBy: aDate [
 ]
 
 { #category : #accessing }
+PpValue >> dueDateString [
+		^ ''
+]
+
+{ #category : #accessing }
 PpValue >> gtDisplayText [
 	| result |
 	result := self displayString asRopedText.
@@ -390,7 +395,7 @@ PpValue >> parentsGtViewFor: aView [
 		items: [ self parents ];
 		children: #parents;
 		column: 'Item' text: [ :p | p gtDisplayText ];
-		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ];
+		column: 'Due Date' text: [ :p | p dueDateString ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
 

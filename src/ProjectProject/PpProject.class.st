@@ -181,6 +181,12 @@ PpProject >> dueDateDescription [
 ]
 
 { #category : #accessing }
+PpProject >> dueDateString [
+	
+	^ self dueDateDescription readToString: self
+]
+
+{ #category : #accessing }
 PpProject >> gtDisplayText [
 	^ self gtTextFromString: self displayString
 ]
