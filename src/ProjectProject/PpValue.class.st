@@ -364,11 +364,12 @@ PpValue >> note: anObject [
 { #category : #magritte }
 PpValue >> noteDescription [
 	<magritteDescription>
+	
 	^ MAMemoDescription new
-			accessor: #note;
-			label: 'Note';
-			priority: 400;
-			yourself
+		accessor: #note;
+		label: 'Note';
+		priority: 400;
+		yourself
 ]
 
 { #category : #private }
