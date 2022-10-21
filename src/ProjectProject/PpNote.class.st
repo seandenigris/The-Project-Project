@@ -34,7 +34,6 @@ PpNote >> noteDescription [
 	
 	^ MAMemoDescription new
 			accessor: #text;
-			label: 'Text';
 			priority: 200;
 "			default: DateAndTime now;"
 			beRequired;

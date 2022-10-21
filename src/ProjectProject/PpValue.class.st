@@ -367,7 +367,6 @@ PpValue >> noteDescription [
 	
 	^ MAMemoDescription new
 		accessor: #note;
-		label: 'Note';
 		priority: 400;
 		yourself
 ]
