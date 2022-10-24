@@ -69,7 +69,7 @@ PpEventLog >> gtSpotterNew: aClass [
 		title: 'New ', typeName;
 		priority: 50;
 		itemName: [ :result | '+ ', result gtDisplayText ];
-		wantsToDisplayOnEmptyQuery: false;
+		wantsToDisplayOnEmptyQuery: true;
 		search: [ :aContext | 
 			| input |
 			input := aContext searchQuery trimBoth.
