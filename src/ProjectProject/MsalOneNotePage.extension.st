@@ -4,10 +4,11 @@ Extension { #name : #MsalOneNotePage }
 MsalOneNotePage >> asPpProject [
 
 	| result doc body |
+	
 	result := PpProject titled: self title.
-
-	doc := XMLDOMParser parse: self html.
-	body := doc findElementNamed: #body.
+	result status timestamp: self creationTimestamp.
+	
+	body := self htmlDocument findElementNamed: #body.
 	body descendantElements
 		detect: [ :el | el name = 'a' and: [ LlTweet peCanHandleFromString: (el attributeAt: #href) ] ]
 		ifFound: [ :el |
@@ -15,7 +16,7 @@ MsalOneNotePage >> asPpProject [
 			urlString := el attributeAt: #href.
 			tweet := LlTweet fromString: urlString.
 			"In iOS, sharing from the Twitter app to One Note duplicates the Tweet URL in the content and title, which doesn't seem that useful"
-			result title = urlString ifTrue: [ result title: 'Review tweet from ', result user ].
+			result title = urlString ifTrue: [ result title: 'Review tweet from ', tweet user ].
 			result supportMaterials add: tweet ].
 			
 	^ result

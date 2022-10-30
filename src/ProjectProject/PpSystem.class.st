@@ -38,6 +38,12 @@ PpSystem class >> uniqueInstance: anObject [
 ]
 
 { #category : #accessing }
+PpSystem >> inbox [
+
+	^ PpProjectList uniqueInstance
+]
+
+{ #category : #accessing }
 PpSystem >> library [
 	^ LlLibrary uniqueInstance
 ]
