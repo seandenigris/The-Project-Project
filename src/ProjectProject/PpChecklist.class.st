@@ -113,6 +113,14 @@ PpChecklist >> morphOpen [
 	win extent:  559.0@457.0
 ]
 
+{ #category : #Magritte }
+PpChecklist >> presentDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		action: #morphOpen;
+		yourself
+]
+
 { #category : #printing }
 PpChecklist >> printOn: aStream [
 	title
@@ -137,13 +145,5 @@ PpChecklist >> titleDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		accessor: #title;
-		yourself
-]
-
-{ #category : #Magritte }
-PpChecklist >> viewDescription [
-	<magritteActionDescription>
-	^ MAActionDescription new
-		action: #morphOpen;
 		yourself
 ]
