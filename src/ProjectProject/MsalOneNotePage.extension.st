@@ -3,7 +3,7 @@ Extension { #name : #MsalOneNotePage }
 { #category : #'*ProjectProject' }
 MsalOneNotePage >> asPpProject [
 
-	| result doc body |
+	| result body |
 	
 	result := PpProject titled: self title.
 	result status timestamp: self creationTimestamp.
