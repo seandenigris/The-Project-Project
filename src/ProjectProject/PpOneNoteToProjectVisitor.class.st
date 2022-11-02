@@ -2,26 +2,10 @@ Class {
 	#name : #PpOneNoteToProjectVisitor,
 	#superclass : #MsalOneNotePageVisitor,
 	#instVars : [
-		'project',
-		'note'
+		'project'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
-
-{ #category : #accessing }
-PpOneNoteToProjectVisitor >> application [
-	^ self note application
-]
-
-{ #category : #accessing }
-PpOneNoteToProjectVisitor >> note [
-	^ note
-]
-
-{ #category : #accessing }
-PpOneNoteToProjectVisitor >> note: aPage [
-	note := aPage
-]
 
 { #category : #accessing }
 PpOneNoteToProjectVisitor >> project [
@@ -34,20 +18,13 @@ PpOneNoteToProjectVisitor >> visitCreationTimetamp: aDateAndTime [
 ]
 
 { #category : #accessing }
-PpOneNoteToProjectVisitor >> visitImageElement: anXMLElement [
-	| url resource |
-	(anXMLElement attributeAt: 'data-src-type') = 'image/png' ifFalse: [ self error: 'only handles pngs' ].
+PpOneNoteToProjectVisitor >> visitImageBytes: aByteArray [
 	
-	url := (anXMLElement attributeAt: #src) asUrl.
-	
-	resource := self application
-		get: url
-		contentReader: [ :r | 
-			| file |
-			file := Tempfile withSuffix: '.png'.
-			file
-				binaryWriteStreamDo: [ :str | str nextPutAll: r contents ];
-				asRlResource ].
+	| file resource |
+	file := Tempfile withSuffix: '.png'.
+	resource := file
+		binaryWriteStreamDo: [ :str | str nextPutAll: aByteArray ];
+		asRlResource.
 				
 	self project supportMaterials add: resource.
 ]
