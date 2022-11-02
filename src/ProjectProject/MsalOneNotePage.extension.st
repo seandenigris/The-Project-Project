@@ -2,11 +2,8 @@ Extension { #name : #MsalOneNotePage }
 
 { #category : #'*ProjectProject' }
 MsalOneNotePage >> asPpProject [
-
-	| result |
-	result := PpProject titled: self title.
-	result status timestamp: self creationTimestamp.			
-	^ result
+			
+	^ (PpOneNoteToProjectVisitor visit: self) project
 ]
 
 { #category : #'*ProjectProject' }
