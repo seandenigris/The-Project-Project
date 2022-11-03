@@ -25,6 +25,11 @@ MsalOneNotePage >> moveToPpProject [
 	| project |
 	project := self asPpProject.
 	PpProjectList uniqueInstance addChild: project.
+	project supportMaterials
+		select: [ :e | e isKindOf: RlResource ]
+		thenDo: #import.
+		
 	self delete.
+	
 	^ project
 ]
