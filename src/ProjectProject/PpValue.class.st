@@ -502,7 +502,7 @@ PpValue >> status: aStatus [
 	"This guard was added because Magritte was adding duplicate statuses"
 	self status = aStatus ifTrue: [ ^ self ].
 	
-	aStatus timestamp ifNil: [ aStatus timestamp: DateAndTime now ].
+	aStatus timestamp ifNil: [ aStatus timestamp: DateAndTime now translateToUTC ].
 
 	self log add: aStatus
 ]
