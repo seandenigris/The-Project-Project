@@ -7,14 +7,6 @@ MsalOneNotePage >> asPpProject [
 ]
 
 { #category : #'*ProjectProject' }
-MsalOneNotePage >> delete [
-
-	self application delete: self url.
-	
-	"Reference: https://learn.microsoft.com/en-us/graph/api/page-delete?view=graph-rest-1.0&tabs=http"
-]
-
-{ #category : #'*ProjectProject' }
 MsalOneNotePage >> htmlBody [
 
 	^ self htmlDocument findElementNamed: #body.
