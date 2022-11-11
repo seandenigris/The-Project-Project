@@ -16,6 +16,16 @@ Class {
 	#category : #'ProjectProject-Core'
 }
 
+{ #category : #accessing }
+PpSystem class >> example [
+	<gtExample>
+	
+	^ self new
+		inbox: PpProjectList example;
+		library: LlLibrary example;
+		yourself
+]
+
 { #category : #persistence }
 PpSystem class >> restoreFrom: anObject [
 

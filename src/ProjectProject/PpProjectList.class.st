@@ -18,12 +18,15 @@ PpProjectList class >> example [
 	^ self
 		given: [ self new ]
 		when: [ :pl |
-			| multiStep |
-			multiStep := PpProject exampleComplete.
+			| multiStep child |
+			multiStep := PpProject exampleIncomplete.
+			child := PpProject exampleIncomplete 
+				title: 'finalize trip'; 
+				yourself.
 			pl
 				addChild: multiStep;
-				addChild: PpProject exampleIncomplete to: multiStep;
-				addChild: PpProject exampleIncomplete.
+				addChild: child to: multiStep;
+				addChild: PpProject exampleComplete.
 			pl ]
 		then: [ :pl | 
 			pl rootChildren should haveSize: 2.
