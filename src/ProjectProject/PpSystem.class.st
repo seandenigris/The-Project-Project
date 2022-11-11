@@ -5,7 +5,10 @@ Class {
 	#name : #PpSystem,
 	#superclass : #Object,
 	#instVars : [
-		'mediaToReview'
+		'mediaToReview',
+		'inbox',
+		'library',
+		'oneNoteInbox'
 	],
 	#classVars : [
 		'UniqueInstance'
@@ -40,12 +43,22 @@ PpSystem class >> uniqueInstance: anObject [
 { #category : #accessing }
 PpSystem >> inbox [
 
-	^ PpProjectList uniqueInstance
+	^ inbox ifNil: [ PpProjectList uniqueInstance ]
+]
+
+{ #category : #accessing }
+PpSystem >> inbox: anObject [
+	inbox := anObject
 ]
 
 { #category : #accessing }
 PpSystem >> library [
-	^ LlLibrary uniqueInstance
+	^ library ifNil: [ LlLibrary uniqueInstance ]
+]
+
+{ #category : #accessing }
+PpSystem >> library: anObject [
+	library := anObject
 ]
 
 { #category : #accessing }
@@ -101,4 +114,15 @@ PpSystem >> mediaToReviewViewOn: aView [
 		priority: 10;
 		items: [ self mediaToReview asOrderedCollection ];
 		actionUpdateButton
+]
+
+{ #category : #accessing }
+PpSystem >> oneNoteInbox [
+
+	^ oneNoteInbox value
+]
+
+{ #category : #accessing }
+PpSystem >> oneNoteInbox: aValuable [
+	oneNoteInbox := aValuable
 ]
