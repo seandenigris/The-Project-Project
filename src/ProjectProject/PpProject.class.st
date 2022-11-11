@@ -123,9 +123,7 @@ PpProject >> conditionsGtViewFor: aView [
 		title: 'Requirements' translated;
 		priority: 25;
 		items: [ self conditions asOrderedCollection ];
-		actionButtonIcon: BrGlamorousVectorIcons inspect
-			tooltip: 'Inspect Requirements'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self conditions ];
+		inspectButtonFor: [ self conditions ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
 

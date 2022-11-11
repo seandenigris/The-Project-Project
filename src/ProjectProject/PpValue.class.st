@@ -139,9 +139,7 @@ PpValue >> conditionsGtViewFor: aView [
 		title: 'Requirements' translated;
 		priority: 25;
 		items: [ self conditions asOrderedCollection ];
-		actionButtonIcon: BrGlamorousVectorIcons inspect
-			tooltip: 'Inspect Requirements'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self conditions ];
+		inspectButtonFor: [ self conditions ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
@@ -169,9 +167,7 @@ PpValue >> dependencyLinksGtViewFor: aView [
 		priority: 102;
 		items: [ 
 			self myDependencyLinks asOrderedCollection ];
-		actionButtonIcon: BrGlamorousVectorIcons inspect
-			tooltip: 'Inspect Dependency Links'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self myDependencyLinks ];
+		inspectButtonFor: [ self myDependencyLinks ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
@@ -332,9 +328,7 @@ PpValue >> logGtViewFor: aView [
 		items: [ self log ];
 		column: 'Status' text: [ :p | p gtDisplayText ];
 		column: 'Timestamp' text: [ :p | p timestamp printUS ];
-		actionButtonIcon: BrGlamorousVectorIcons inspect
-			tooltip: 'Inspect Log'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self log ];
+		inspectButtonFor: [ self log ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
@@ -463,9 +457,7 @@ PpValue >> stakeholdersGtViewFor: aView [
 		column: 'Person' 
 			text: [ :holder | holder person gtDisplayText ]
 			weight: 0.90;
-		actionButtonIcon: BrGlamorousVectorIcons inspect
-			tooltip: 'Inspect Stakeholders'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self stakeholders ];
+		inspectButtonFor: [ self stakeholders ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
