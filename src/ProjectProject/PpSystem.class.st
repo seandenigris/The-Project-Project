@@ -8,7 +8,7 @@ Class {
 		'mediaToReview',
 		'inbox',
 		'library',
-		'oneNoteInbox'
+		'msalApplication'
 	],
 	#classVars : [
 		'UniqueInstance'
@@ -127,12 +127,18 @@ PpSystem >> mediaToReviewViewOn: aView [
 ]
 
 { #category : #accessing }
-PpSystem >> oneNoteInbox [
+PpSystem >> msalApplication [
 
-	^ oneNoteInbox value
+	^ msalApplication value
 ]
 
 { #category : #accessing }
-PpSystem >> oneNoteInbox: aValuable [
-	oneNoteInbox := aValuable
+PpSystem >> msalApplication: anMsalApplication [
+	msalApplication := anMsalApplication
+]
+
+{ #category : #accessing }
+PpSystem >> oneNoteInbox [
+
+	^ self msalApplication oneNote notebooks first sections first
 ]
