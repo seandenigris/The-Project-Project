@@ -138,7 +138,7 @@ PpSystem >> msalApplication: anMsalApplication [
 ]
 
 { #category : #accessing }
-PpSystem >> oneNoteInbox [
+PpSystem >> oneNote [
 
-	^ self msalApplication oneNote notebooks first sections first
+	^ self msalApplication oneNote
 ]
