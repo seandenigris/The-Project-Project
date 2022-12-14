@@ -102,7 +102,7 @@ PpValue >> allChildren [
 PpValue >> allChildrenGtSpotterFor: aStep [
 	
 	^ (super allChildrenGtSpotterFor: aStep)
-		itemSpawnAfter: [ :result | self addChild: result ]
+		send: [ :result | self addChild: result ]
 ]
 
 { #category : #actions }
@@ -473,7 +473,7 @@ PpValue >> stakeholdersSearchNewFor: aSearch [
 		filter: (PeGtSubInstancesFilter new
 			rootClass: PpStakeholder;
 			yourself);
-		itemSpawnAfter: [ :result |
+		send: [ :result |
 			result 
 				project: self;
 				yourself ]
