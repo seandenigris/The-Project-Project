@@ -74,7 +74,7 @@ PpEventLog >> gtSpotterNew: aClass [
 			| input |
 			input := aContext searchQuery trimBoth.
 			{ aClass fromString: input } asAsyncStream ];
-		itemSpawnAfter: [ :anObject | self events add: anObject ]
+		send: [ :anObject | self events add: anObject ]
 ]
 
 { #category : #accessing }
