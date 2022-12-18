@@ -79,7 +79,7 @@ PpLocationList >> gtSearchNewLocationFor: aSearch [
 			isExisting 
 				ifFalse: [ { PpLocation named: input } ]
 				ifTrue: [ { } ] ];
-		itemSpawnAfter: [ :result | self addChild: result ]
+		send: [ :result | self addChild: result ]
 ]
 
 { #category : #views }

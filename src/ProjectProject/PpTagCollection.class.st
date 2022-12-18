@@ -66,7 +66,7 @@ PpTagCollection >> gtSpotterNewTagFor: aSearch [
 			isExisting
 				ifFalse: [ { PpTag named: input } ]
 				ifTrue: [ { } ] ];
-		itemSpawnAfter: [ :result | self addTag: result ]
+		send: [ :result | self addTag: result ]
 ]
 
 { #category : #accessing }

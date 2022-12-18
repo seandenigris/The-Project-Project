@@ -119,7 +119,7 @@ PpLocation >> gtSearchNewLocationFor: aSearch [
 			isExisting
 				ifFalse: [ { self class named: input } ]
 				ifTrue: [ { } ] ];
-		itemSpawnAfter: [ :result | self addChild: result ]
+		send: [ :result | self addChild: result ]
 ]
 
 { #category : #accessing }
