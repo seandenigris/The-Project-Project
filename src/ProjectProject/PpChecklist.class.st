@@ -90,6 +90,26 @@ PpChecklist >> itemsDescription [
 		yourself
 ]
 
+{ #category : #accessing }
+PpChecklist >> itemsGtViewOn: aView [
+	<gtView>
+	
+	^ aView list
+		title: 'Items';
+		items: [ self items ];
+		yourself
+]
+
+{ #category : #adding }
+PpChecklist >> markdownString [
+	
+	^ String streamContents: [ :str |
+		str << '# ' << self title; crlf.
+		
+		self items do: [ :itm | 
+			str crlf << itm markdownString ] ]
+]
+
 { #category : #viewing }
 PpChecklist >> morphOpen [
 	| panel win scrollpane |

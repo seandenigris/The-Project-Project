@@ -5,7 +5,7 @@ Class {
 		'isComplete',
 		'description'
 	],
-	#category : 'ProjectProject-Core-Checklists'
+	#category : #'ProjectProject-Core-Checklists'
 }
 
 { #category : #Morphic }
@@ -52,6 +52,16 @@ PpChecklistItem >> isCompleteDescription [
 		label: 'Complete?';
 		priority: 200;
 		yourself
+]
+
+{ #category : #accessing }
+PpChecklistItem >> markdownString [
+
+	| bullet |
+	bullet := self isComplete
+		ifTrue: [ '[x]' ]
+		ifFalse: [ '[ ]' ].
+	^ bullet, ' ', self description
 ]
 
 { #category : #printing }
