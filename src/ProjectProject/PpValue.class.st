@@ -476,6 +476,7 @@ PpValue >> stakeholdersSearchNewFor: aSearch [
 		send: [ :result |
 			result 
 				project: self;
+				link;
 				yourself ]
 ]
 
