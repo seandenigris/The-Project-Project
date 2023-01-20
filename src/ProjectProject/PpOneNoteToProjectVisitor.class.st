@@ -18,17 +18,9 @@ PpOneNoteToProjectVisitor >> visitCreationTimetamp: aDateAndTime [
 ]
 
 { #category : #accessing }
-PpOneNoteToProjectVisitor >> visitImageBytes: aByteArray [
-	
-	| file resource readerClass extension |
-	readerClass := ImageReadWriter readerClassFromStream: aByteArray readStream.
-	extension := readerClass typicalFileExtensions first.
-	file := Tempfile withSuffix: '.', extension.
-	resource := file
-		binaryWriteStreamDo: [ :str | str nextPutAll: aByteArray ];
-		asRlResource.
+PpOneNoteToProjectVisitor >> visitImage: anRlResource [
 				
-	self project supportMaterials add: resource.
+	self project supportMaterials add: anRlResource import.
 ]
 
 { #category : #accessing }
