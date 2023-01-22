@@ -121,19 +121,6 @@ PpEvent >> events [
 	^ self children
 ]
 
-{ #category : #accessing }
-PpEvent >> gtViewTranscriptFor: aView [
-	<gtView>
-
-	(self hasProperty: #transcript) ifFalse: [ ^ aView empty ].
-	
-	^ aView forward
-		title: 'Transcript' translated;
-		priority: 65;
-		object: [ self transcript ];
-		view: #gtLiveFor:.
-]
-
 { #category : #testing }
 PpEvent >> isInProgress [
 	
@@ -333,4 +320,17 @@ PpEvent >> transcript [
 	
 	self hasRecording ifTrue: [ ^ self ensureRecording transcript ].
 	^ self traitTranscript
+]
+
+{ #category : #accessing }
+PpEvent >> transcriptGtViewFor: aView [
+	<gtView>
+
+	(self hasProperty: #transcript) ifFalse: [ ^ aView empty ].
+	
+	^ aView forward
+		title: 'Transcript' translated;
+		priority: 65;
+		object: [ self transcript ];
+		view: #gtLiveFor:.
 ]
