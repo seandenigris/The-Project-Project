@@ -57,7 +57,7 @@ PpLocationList >> gtSearchLocationsFor: aSearch [
 	^ aSearch list
 		title: 'Locations';
 		priority: 2;
-		items: [ self allChildren ];
+		items: [ self allChildren asOrderedCollection ];
 		itemName: #displayString;
 		matchSubstrings
 ]
@@ -67,7 +67,7 @@ PpLocationList >> gtSearchNewLocationFor: aSearch [
 	<gtSearch>
 	
 	self flag: 'looks duplicated from location class'.
-	^ aSearch list
+	^ aSearch explicit
 		title: 'Add location';
 		priority: 80;
 		itemName: [ :result | '+ ' , result gtDisplayText ];

@@ -27,12 +27,18 @@ PpInventory class >> uniqueInstance [
 	^ UniqueInstance ifNil: [ UniqueInstance := self new ]
 ]
 
+{ #category : #'adding / removing' }
+PpInventory >> addItem: anItem [
+
+	^ self items add: anItem
+]
+
 { #category : #accessing }
 PpInventory >> addItemNamed: aString [
 
 	| item |
 	item := PpInventoryItem named: aString.
-	^ self items add: item
+	^ self addItem: item
 ]
 
 { #category : #accessing }
