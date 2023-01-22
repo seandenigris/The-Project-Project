@@ -64,7 +64,7 @@ PpInventory >> gtSpotNewItemFor: aSearch [
 			| input |
 			input := aContext searchQuery trimBoth.
 			{ PpInventoryItem named: input } asAsyncStream ];
-		send: [ :anObject | self addItemNamed: anObject ]
+		send: [ :anObject | self addItem: anObject ]
 ]
 
 { #category : #views }
