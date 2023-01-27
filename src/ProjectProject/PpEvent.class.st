@@ -243,6 +243,14 @@ PpEvent >> printOn: aStream [
 ]
 
 { #category : #accessing }
+PpEvent >> quLeSourceText [
+
+	| dateString |
+	dateString := self startDate monthName, ' ', self startDate dayOfMonth asString, ', ', self startDate year asString.
+	^ self title, ', ', dateString
+]
+
+{ #category : #accessing }
 PpEvent >> start [
 	(self startDate isNil or: [ self startTime isNil ]) ifTrue: [ ^ nil ].
 	
@@ -312,6 +320,7 @@ PpEvent >> titleDescription [
 	^ MAStringDescription new
 		  name: #title;
 		  accessor: #title;
+		  default: (self className allButFirst: 'Pp' size) normalizeCamelCase;
 		  yourself
 ]
 
