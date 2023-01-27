@@ -11,7 +11,7 @@ PpTMutableProjectContainer >> addChild: aPpProject [
 { #category : #spotter }
 PpTMutableProjectContainer >> childrenNewSearches [
 	
-	^ PpProject withAllSubclasses collect: [ :cls |
+	^ PpValue withAllSubclasses collect: [ :cls |
 		GtSpotterProtoSearch new list
 			title: 'New ' , cls name;
 			priority: 50;
