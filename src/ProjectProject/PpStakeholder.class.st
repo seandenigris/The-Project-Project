@@ -54,6 +54,12 @@ PpStakeholder >> = rhs [
 ]
 
 { #category : #accessing }
+PpStakeholder >> addressBook [
+
+	^ self propertyAt: #addressBook ifAbsent: [ MpAddressBook uniqueInstance ]
+]
+
+{ #category : #accessing }
 PpStakeholder >> hash [
 	^ self project hash bitXor: (self person hash bitXor: self role hash)
 ]
@@ -73,6 +79,18 @@ PpStakeholder >> person [
 PpStakeholder >> person: anObject [
 
 	person := anObject
+]
+
+{ #category : #magritte }
+PpStakeholder >> personDescription [
+	<magritteDescription>
+	
+	^ MAToOneRelationDescription new
+		accessor: #person;
+		priority: 200;
+		classes: MpRelatableEntity allSubclasses;
+		gtSearchSource: (MessageSend receiver: self selector: #addressBook); 
+		yourself
 ]
 
 { #category : #accessing }
