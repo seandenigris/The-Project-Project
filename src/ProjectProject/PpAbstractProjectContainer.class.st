@@ -63,7 +63,7 @@ PpAbstractProjectContainer >> childrenDescription [
 		beReadOnly;
 		label: 'Children';
 		priority: 100;
-		classes: PpProject withAllSubclasses;
+		classes: PpValue withAllSubclasses;
 		gtSearchSource: (MessageSend receiver: self selector: #masterList);
 		morphicClass: MAMorphicTokenCompletion;
 		initializer: [ :s | 
