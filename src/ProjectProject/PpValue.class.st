@@ -198,6 +198,12 @@ PpValue >> dueDateString [
 		^ ''
 ]
 
+{ #category : #magritte }
+PpValue >> eventLog [
+
+	^ PpEventLog uniqueInstance
+]
+
 { #category : #accessing }
 PpValue >> gtDisplayText [
 	| result |
@@ -540,7 +546,9 @@ PpValue >> supportMaterialsDescription [
 		to: LlLibraryItem 
 		message: #gtSpotterNewFor:.
 	gtSearchSource children 
+		add: self eventLog;
 		add: self inventory;
+		add: self lepiterDB;
 		add: self library;
 		add: libraryItemSource;
 		add: self resourceLibrary.
