@@ -102,6 +102,7 @@ PpValue >> allChildren [
 PpValue >> allChildrenGtSpotterFor: aStep [
 	
 	^ (super allChildrenGtSpotterFor: aStep)
+		title: 'Projects - Add Child';
 		send: [ :result | self addChild: result ]
 ]
 
@@ -380,6 +381,18 @@ PpValue >> parentLinks [
 { #category : #accessing }
 PpValue >> parents [
 	^ self parentLinks collect: #project
+]
+
+{ #category : #private }
+PpValue >> parentsGtSpotterFor: aStep [
+	<gtSearch>
+	
+	^ (super allChildrenGtSpotterFor: aStep)
+		title: 'Projects - Add Parent';
+		send: [ :result | 
+			result 
+				addChild: self;
+				yourself ]
 ]
 
 { #category : #'gt-views' }
