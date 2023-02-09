@@ -6,5 +6,5 @@ Class {
 
 { #category : #accessing }
 PpLivePlayer >> currentPosition [
-	^ DateAndTime now
+	^ DateAndTime now translateToUTC
 ]
