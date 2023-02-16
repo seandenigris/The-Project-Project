@@ -437,6 +437,12 @@ PpValue >> rootChildrenLinks [
 		link project = self ]
 ]
 
+{ #category : #private }
+PpValue >> sanitizedSupportMaterial: anObject [
+	
+	^ anObject olAsReference
+]
+
 { #category : #accessing }
 PpValue >> stakeholders [
 
@@ -570,6 +576,8 @@ PpValue >> supportMaterialsDescription [
 		addAll: LlLibraryItem allSubclasses;
 		addAll: PpInventoryItem withAllSubclasses;
 		addAll: RlResource withAllSubclasses;
+		add: OlLepiterPage;
+		add: OlLepiterSnippet;
 		yourself.
 	
 	^ MAToManyRelationDescription new
@@ -580,6 +588,7 @@ PpValue >> supportMaterialsDescription [
 			display: #displayString;
 			morphicClass: MAMorphicTokenCompletion;
 			gtSearchSource: gtSearchSource;
+			gtSearchTransform: (MessageSend receiver: self selector: #sanitizedSupportMaterial:);
 			comment: 'See ', PpProject className, ' comment for more info';
 			yourself
 ]
