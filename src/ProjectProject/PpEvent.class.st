@@ -121,6 +121,12 @@ PpEvent >> events [
 	^ self children
 ]
 
+{ #category : #accessing }
+PpEvent >> import [
+
+	PpEventLog uniqueInstance events add: self
+]
+
 { #category : #testing }
 PpEvent >> isInProgress [
 	
@@ -187,6 +193,15 @@ PpEvent >> notesDescription [
 			default: OrderedCollection new;
 			classes: { PpNote };
 			yourself
+]
+
+{ #category : #accessing }
+PpEvent >> oneNotePage [
+
+	^ self 
+		propertyAt: #oneNotePageID
+		ifPresent: [ :pageID | 
+			MsalDynabookApp uniqueInstance oneNote pageWithID: pageID ]
 ]
 
 { #category : #accessing }

@@ -1,6 +1,12 @@
 Extension { #name : #MsalOneNotePage }
 
 { #category : #'*ProjectProject' }
+MsalOneNotePage >> asPpEvent [
+			
+	^ (PpOneNoteToEventVisitor visit: self) event
+]
+
+{ #category : #'*ProjectProject' }
 MsalOneNotePage >> asPpProject [
 			
 	^ (PpOneNoteToProjectVisitor visit: self) project
