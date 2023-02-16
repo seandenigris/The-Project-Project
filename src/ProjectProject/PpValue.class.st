@@ -219,6 +219,24 @@ PpValue >> gtSpotterText [
 	^ self gtDisplayText
 ]
 
+{ #category : #accessing }
+PpValue >> gtTextFromString: aString [
+	
+	^ aString asRopedText
+]
+
+{ #category : #accessing }
+PpValue >> gtTextTitleWithParents [
+	
+	| string |
+	string := String streamContents: [ :str |
+		str << self title.
+		self parents
+			"select: #isProject
+			thenD"do: [ :e | str << ' < ' << e title ] ].
+	^ self gtTextFromString: string
+]
+
 { #category : #'gt-views' }
 PpValue >> gtViewGraphFor: aView [
 	<gtView>

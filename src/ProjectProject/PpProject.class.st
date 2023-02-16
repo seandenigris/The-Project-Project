@@ -192,21 +192,9 @@ PpProject >> gtDisplayText [
 { #category : #accessing }
 PpProject >> gtTextFromString: aString [
 	| result |
-	result := aString asRopedText.
+	result := super gtTextFromString: aString.
 	self isComplete ifTrue: [ result strikethrough ].
 	^ result.
-]
-
-{ #category : #accessing }
-PpProject >> gtTextTitleWithParents [
-	
-	| string |
-	string := String streamContents: [ :str |
-		str << self title.
-		self parents
-			select: #isProject
-			thenDo: [ :e | str << ' < ' << e title ] ].
-	^ self gtTextFromString: string
 ]
 
 { #category : #accessing }
