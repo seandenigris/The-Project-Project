@@ -50,16 +50,9 @@ PpContactAction class >> gtSpotterItemsFromString: aString [
 { #category : #accessing }
 PpContactAction >> completeAndWait [
 
-	| waitingFor |
-	self status: PpCompleteStatus new.
-	self flag: 'why not #beComplete? What about children?'.
-	
-	waitingFor := PpWaitingForProject new
-		title: self title;
-		waitee: self receiver;
-		yourself.
-			
-	self parents do: [ :p | p addChild: waitingFor ]
+	self 
+		beComplete;
+		wait
 ]
 
 { #category : #accessing }
@@ -173,4 +166,16 @@ PpContactAction >> titleDescription [
 		result default: defTitle ].
 		
 	^ result
+]
+
+{ #category : #accessing }
+PpContactAction >> wait [
+
+	| waitingFor |
+	waitingFor := PpWaitingForProject new
+		title: self title;
+		waitee: self receiver;
+		yourself.
+			
+	self parents do: [ :p | p addChild: waitingFor ]
 ]
