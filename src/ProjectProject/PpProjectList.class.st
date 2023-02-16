@@ -138,7 +138,7 @@ PpProjectList >> addChild: aProject to: parentProject [
 		dependsOn: aProject
 		in: self.
 	self dependencyLinks add: link.
-	^ self addChild: aProject
+	self addChild: aProject
 ]
 
 { #category : #magritte }
@@ -179,4 +179,14 @@ PpProjectList >> masterList [
 { #category : #magritte }
 PpProjectList >> mementoClass [
 	^ MAStraightMemento
+]
+
+{ #category : #accessing }
+PpProjectList >> removeChild: aProject from: parentProject [
+
+	| link |
+	link := self dependencyLinks detect: [ :aLink |
+		aLink project == parentProject and: [
+			aLink dependency == aProject ] ].
+	link unlink.
 ]

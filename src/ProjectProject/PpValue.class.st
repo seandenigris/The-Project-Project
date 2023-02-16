@@ -74,7 +74,8 @@ PpValue >> addChild: aPpProject [
 	aPpProject status isInbox ifTrue: [ 
 		"We assume that adding a child project indicates we are in an organizing, not a capturing phase"
 		aPpProject status: PpActiveStatus new ].
-	^ self masterList addChild: aPpProject to: self
+	self masterList addChild: aPpProject to: self.
+	^ aPpProject
 ]
 
 { #category : #convenience }
@@ -366,6 +367,13 @@ PpValue >> maGtFormFor: aView [
 ]
 
 { #category : #accessing }
+PpValue >> moveChild: childPpValue to: parentPpValue [
+
+	self removeChild: childPpValue.
+	parentPpValue addChild: childPpValue.
+]
+
+{ #category : #accessing }
 PpValue >> myDependencyLinks [
 	^ self dependencyLinks select: [ :link | link includes: self ]
 ]
@@ -436,6 +444,13 @@ PpValue >> printOn: aStream [
 		nextPutAll: self className;
 		nextPutAll: ': '.
 	aStream nextPutAll: self displayString
+]
+
+{ #category : #accessing }
+PpValue >> removeChild: aPpProject [
+	
+	self masterList removeChild: aPpProject from: self.
+	^ aPpProject
 ]
 
 { #category : #accessing }
