@@ -81,3 +81,12 @@ PpStatus >> timestamp: aDateAndTime [
 	"Translate to UTC because Pharo's Date offset support is fatally broken. See [Pharo Issue 12147: Date>>#= fooled by daylight savings time](https://pharo.fogbugz.com/default.asp?12147)"
 	timestamp := aDateAndTime translateToUTC
 ]
+
+{ #category : #accessing }
+PpStatus >> timestampDescription [
+	<magritteDescription>
+	
+	^ MADateAndTimeDescription new
+		accessor: #timestamp;
+		yourself
+]
