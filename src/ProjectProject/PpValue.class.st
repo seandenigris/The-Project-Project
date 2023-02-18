@@ -607,10 +607,11 @@ PpValue >> supportMaterialsDescription [
 		
 	classes := LlAuthoredWork withAllSubclasses
 		addAll: LlLibraryItem allSubclasses;
-		addAll: PpInventoryItem withAllSubclasses;
-		addAll: RlResource withAllSubclasses;
 		add: OlLepiterPage;
 		add: OlLepiterSnippet;
+		addAll: PpEvent withAllSubclasses;
+		addAll: PpInventoryItem withAllSubclasses;
+		addAll: RlResource withAllSubclasses;
 		yourself.
 	
 	^ MAToManyRelationDescription new
