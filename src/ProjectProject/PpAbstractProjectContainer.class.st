@@ -186,7 +186,10 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 			items: [ (desc read: self) asOrderedCollection ];
 			children: #rootChildren;
 			column: 'Item' text: [ :p | p gtDisplayText ] weight: 3;
-			column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ]  weight: 1;
+			column: 'Due Date' text: [ :p |
+				(p isKindOf: PpProject)
+					ifTrue: [ p dueDateDescription readToString: p  ]
+					ifFalse: [ '' ] ]  weight: 1;
 			actionUpdateButtonTooltip: 'Update' ].
 		
 	^ aView composite
