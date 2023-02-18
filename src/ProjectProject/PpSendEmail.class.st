@@ -17,6 +17,12 @@ PpSendEmail class >> label [
 ]
 
 { #category : #accessing }
+PpSendEmail class >> modelClass [
+
+	^ RlEmail
+]
+
+{ #category : #accessing }
 PpSendEmail class >> priority [
 
 	^ 100

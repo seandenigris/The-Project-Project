@@ -1,7 +1,7 @@
 Class {
 	#name : #PpEvent,
 	#superclass : #Object,
-	#traits : 'MATPropertyOwner + (QuTTranscriptable @ {#traitTranscript->#transcript})',
+	#traits : 'MATPropertyOwner - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript})',
 	#classTraits : 'MATPropertyOwner classTrait + QuTTranscriptable classTrait',
 	#instVars : [
 		'endDate',
@@ -76,6 +76,15 @@ PpEvent >> allEventsDo: aBlock [
 { #category : #accessing }
 PpEvent >> children [
 	^ self propertyAt: #children ifAbsentPut: [ OrderedCollection new ]
+]
+
+{ #category : #accessing }
+PpEvent >> end [
+
+	self endDate ifNil: [ ^ nil ].
+	self endTime ifNil: [ ^ nil ].
+
+	^ DateAndTime date: self endDate time: self endTime.
 ]
 
 { #category : #accessing }

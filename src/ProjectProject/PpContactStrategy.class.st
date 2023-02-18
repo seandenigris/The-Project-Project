@@ -14,6 +14,12 @@ PpContactStrategy class >> all [
 ]
 
 { #category : #accessing }
+PpContactStrategy class >> modelClass [
+
+	^ nil
+]
+
+{ #category : #accessing }
 PpContactStrategy >> = rhs [
 	^ self class = rhs class
 ]

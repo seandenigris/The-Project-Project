@@ -20,6 +20,12 @@ PpCallOnPhone class >> label [
 ]
 
 { #category : #accessing }
+PpCallOnPhone class >> modelClass [
+
+	^ PpPhoneCall
+]
+
+{ #category : #accessing }
 PpCallOnPhone class >> priority [
 
 	^ 400
