@@ -21,8 +21,10 @@ MsalOneNotePage >> htmlBody [
 { #category : #'*ProjectProject' }
 MsalOneNotePage >> moveToPpProject [
 	| project |
-	project := self asPpProject.
-	PpProjectList uniqueInstance addChild: project.
+	project := self asPpProject
+		import;
+		yourself.
+	
 	project supportMaterials
 		select: [ :e | e isKindOf: RlResource ]
 		thenDo: #import.

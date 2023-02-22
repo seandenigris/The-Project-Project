@@ -67,7 +67,7 @@ PpProjectList class >> importAppleNotesFromClipboard [
 	| lineParser lines |
 	lineParser := '- ' asPParser, '[ ] ' asPParser optional, #any asPParser plus flatten ==> #third.
 	lines := Clipboard clipboardText asString lines collect: [ :e | lineParser parse: e ].
-	lines do: [ :e | self uniqueInstance addChild: (PpProject titled: e) ]
+	lines do: [ :e | (PpProject titled: e) import ]
 ]
 
 { #category : #'world menu' }
