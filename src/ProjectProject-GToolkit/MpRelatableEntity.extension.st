@@ -12,6 +12,6 @@ MpRelatableEntity >> gtViewAgendaOn: aView [
 		items: [ self projects rootChildren ];
 		children: #parents;
 		column: 'Item' text: [ :p | p gtTextTitleWithParents ] weight: 3;
-		column: 'Due Date' text: [ :p | p dueDateDescription readToString: p ] weight: 1;
+		column: 'Due Date' text: [ :p | p dueDateString ] weight: 1;
 		actionUpdateButtonTooltip: 'Update'
 ]
