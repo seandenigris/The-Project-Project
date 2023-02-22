@@ -69,15 +69,6 @@ PpValue class >> titled: aString [
 		yourself
 ]
 
-{ #category : #accessing }
-PpValue >> addChild: aPpProject [
-	aPpProject status isInbox ifTrue: [ 
-		"We assume that adding a child project indicates we are in an organizing, not a capturing phase"
-		aPpProject status: PpActiveStatus new ].
-	self masterList addChild: aPpProject to: self.
-	^ aPpProject
-]
-
 { #category : #convenience }
 PpValue >> addToMaterialsResourceLibraryLast: anInteger [
 
@@ -104,7 +95,7 @@ PpValue >> allChildrenGtSpotterFor: aStep [
 	
 	^ (super allChildrenGtSpotterFor: aStep)
 		title: 'Projects - Add Child';
-		send: [ :result | self addChild: result ]
+		send: [ :result | self ensureChild: result ]
 ]
 
 { #category : #actions }
@@ -198,6 +189,15 @@ PpValue >> dueBy: aDate [
 { #category : #accessing }
 PpValue >> dueDateString [
 		^ ''
+]
+
+{ #category : #accessing }
+PpValue >> ensureChild: aPpProject [
+	aPpProject status isInbox ifTrue: [ 
+		"We assume that adding a child project indicates we are in an organizing, not a capturing phase"
+		aPpProject status: PpActiveStatus new ].
+	self masterList addChild: aPpProject to: self.
+	^ aPpProject
 ]
 
 { #category : #magritte }
@@ -370,7 +370,7 @@ PpValue >> maGtFormFor: aView [
 PpValue >> moveChild: childPpValue to: parentPpValue [
 
 	self removeChild: childPpValue.
-	parentPpValue addChild: childPpValue.
+	parentPpValue ensureChild: childPpValue.
 ]
 
 { #category : #accessing }
@@ -417,7 +417,7 @@ PpValue >> parentsGtSpotterFor: aStep [
 		title: 'Projects - Add Parent';
 		send: [ :result | 
 			result 
-				addChild: self;
+				ensureChild: self;
 				yourself ]
 ]
 

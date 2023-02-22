@@ -177,5 +177,5 @@ PpContactAction >> wait [
 		waitee: self receiver;
 		yourself.
 			
-	self parents do: [ :p | p addChild: waitingFor ]
+	self parents do: [ :p | p ensureChild: waitingFor ]
 ]

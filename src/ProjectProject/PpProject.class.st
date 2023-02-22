@@ -199,7 +199,7 @@ PpProject >> gtTextFromString: aString [
 
 { #category : #accessing }
 PpProject >> import [
-	PpProjectList uniqueInstance addChild: self
+	PpProjectList uniqueInstance ensureChild: self
 ]
 
 { #category : #accessing }

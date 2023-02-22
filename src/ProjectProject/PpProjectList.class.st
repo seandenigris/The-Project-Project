@@ -24,9 +24,9 @@ PpProjectList class >> example [
 				title: 'finalize trip'; 
 				yourself.
 			pl
-				addChild: multiStep;
+				ensureChild: multiStep;
 				addChild: child to: multiStep;
-				addChild: PpProject exampleComplete.
+				ensureChild: PpProject exampleComplete.
 			pl ]
 		then: [ :pl | 
 			pl rootChildren should haveSize: 2.
@@ -125,12 +125,6 @@ PpProjectList >> add [
 ]
 
 { #category : #accessing }
-PpProjectList >> addChild: aPpProject [
-	aPpProject masterList: self.
-	^ self allChildren add: aPpProject
-]
-
-{ #category : #accessing }
 PpProjectList >> addChild: aProject to: parentProject [
 	| link |
 	link := PpProjectDependency 
@@ -169,6 +163,12 @@ PpProjectList >> childrenDescription [
 { #category : #accessing }
 PpProjectList >> dependencyLinks [
 	^ dependencyLinks ifNil: [ dependencyLinks := Set new ]
+]
+
+{ #category : #accessing }
+PpProjectList >> ensureChild: aPpProject [
+	aPpProject masterList: self.
+	^ self allChildren add: aPpProject
 ]
 
 { #category : #accessing }
