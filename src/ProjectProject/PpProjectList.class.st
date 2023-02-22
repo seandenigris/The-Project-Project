@@ -126,13 +126,14 @@ PpProjectList >> add [
 
 { #category : #accessing }
 PpProjectList >> addChild: aProject to: parentProject [
+
 	| link |
 	link := PpProjectDependency 
 		project: parentProject 
 		dependsOn: aProject
 		in: self.
-	self dependencyLinks add: link.
-	self addChild: aProject
+		
+	link link
 ]
 
 { #category : #magritte }

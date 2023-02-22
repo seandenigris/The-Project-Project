@@ -21,6 +21,7 @@ PpProjectDependency class >> project: aPpProject dependsOn: anotherPpProject in:
 
 { #category : #accessing }
 PpProjectDependency >> = rhs [
+	self masterList == rhs masterList ifFalse: [ ^ false ]. "This should always be true because the domain currently has only one"
 	self project == rhs project ifFalse: [ ^ false ].
 	self dependency == rhs dependency ifFalse: [ ^ false ].
 	^ true
@@ -49,9 +50,23 @@ PpProjectDependency >> includes: aProject [
 ]
 
 { #category : #accessing }
+PpProjectDependency >> link [
+	self masterLinks
+		detect: [ :link | link = self ]
+		ifNone: [ self masterLinks add: self ].
+
+	self project
+]
+
+{ #category : #accessing }
+PpProjectDependency >> masterLinks [
+	^ self masterList dependencyLinks
+]
+
+{ #category : #accessing }
 PpProjectDependency >> masterList [
 
-	^ masterList
+	^ masterList ifNil: [ PpProjectList uniqueInstance ]
 ]
 
 { #category : #accessing }
