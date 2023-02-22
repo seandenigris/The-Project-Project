@@ -88,6 +88,8 @@ PpProjectsSnapshot >> gtViewInboxFor: aView [
 		title: 'Captured' translated;
 		priority: 15;
 		items: [ self inboxList allChildren ];
+		contextItemLabel: 'Remove'
+			action: [ Halt once];
 		"children: #rootChildren;"
 		actionUpdateButtonTooltip: 'Update'.
 ]

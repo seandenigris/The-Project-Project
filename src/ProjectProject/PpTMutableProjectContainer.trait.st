@@ -33,6 +33,18 @@ PpTMutableProjectContainer >> gtSpotterSearchesInContext: aSpotterContext [
 	^ pragmaSearches merge: self childrenNewSearches asAsyncStream
 ]
 
+{ #category : #'gt-views' }
+PpTMutableProjectContainer >> gtViewProjectsFor: aView [
+
+	| result |
+	result := super gtViewProjectsFor: aView.
+	result views do: [ :view |
+		view 
+			contextItemLabel: 'Remove'
+			action: [ :item :element | Halt once ] ].
+	^ result
+]
+
 { #category : #accessing }
 PpTMutableProjectContainer >> masterList [
 	self explicitRequirement
