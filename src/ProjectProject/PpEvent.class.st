@@ -126,6 +126,12 @@ PpEvent >> endTimeDescription [
 ]
 
 { #category : #accessing }
+PpEvent >> eventLog [
+
+	^ PpEventLog uniqueInstance
+]
+
+{ #category : #accessing }
 PpEvent >> events [
 	^ self children
 ]
@@ -133,7 +139,18 @@ PpEvent >> events [
 { #category : #accessing }
 PpEvent >> import [
 
-	PpEventLog uniqueInstance events add: self
+	self eventLog add: self
+]
+
+{ #category : #accessing }
+PpEvent >> importDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		gtIcon: BrGlamorousVectorIcons down;
+		comment: 'Import into Singleton Library';
+		action: #import;
+		enableBlock: [ :evt | (PpEventLog uniqueInstance hasEvent: evt) not ];
+		yourself
 ]
 
 { #category : #testing }
@@ -272,6 +289,12 @@ PpEvent >> quLeSourceText [
 	| dateString |
 	dateString := self startDate monthName, ' ', self startDate dayOfMonth asString, ', ', self startDate year asString.
 	^ self title, ', ', dateString
+]
+
+{ #category : #accessing }
+PpEvent >> removeFromLog [
+
+	self eventLog remove: self
 ]
 
 { #category : #accessing }

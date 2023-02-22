@@ -84,6 +84,11 @@ PpEventLog >> gtSpotterSearchesInContext: aSpotterContext [
 	^ pragmaSearches merge: self eventsNewSearches asAsyncStream
 ]
 
+{ #category : #testing }
+PpEventLog >> hasEvent: anEvent [
+	^ self events identityIncludes: anEvent
+]
+
 { #category : #removing }
 PpEventLog >> remove: anEvent [
 	^ self events remove: anEvent
