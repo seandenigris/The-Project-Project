@@ -55,7 +55,9 @@ PpProjectDependency >> link [
 		detect: [ :link | link = self ]
 		ifNone: [ self masterLinks add: self ].
 
-	self project
+	self masterList 
+		ensureChild: self project;
+		ensureChild: self dependency.
 ]
 
 { #category : #accessing }
