@@ -52,6 +52,14 @@ PpEventLog >> addAll: aCollection [
 	^ self events addAll: aCollection
 ]
 
+{ #category : #removing }
+PpEventLog >> ensure: anEvent [
+
+	(self events includes: anEvent) ifTrue: [ ^ anEvent ].
+	
+	^ self add: anEvent
+]
+
 { #category : #accessing }
 PpEventLog >> eventsNewSearches [
 	
