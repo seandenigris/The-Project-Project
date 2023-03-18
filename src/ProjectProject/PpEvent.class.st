@@ -63,6 +63,15 @@ PpEvent class >> fromString: aString [
 ]
 
 { #category : #accessing }
+PpEvent class >> on: aDate [
+
+	^ self new
+		startDate: aDate;
+		endDate: aDate;
+		yourself
+]
+
+{ #category : #accessing }
 PpEvent >> addressBook [
 	^ MpAddressBook uniqueInstance
 ]
