@@ -162,6 +162,12 @@ PpEvent >> importDescription [
 		yourself
 ]
 
+{ #category : #accessing }
+PpEvent >> initialize [
+	super initialize.
+	self ensureUUID
+]
+
 { #category : #testing }
 PpEvent >> isInProgress [
 	

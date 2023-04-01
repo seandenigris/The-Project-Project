@@ -27,6 +27,12 @@ PpInventoryItem >> displayStringOn: aStream [
 ]
 
 { #category : #accessing }
+PpInventoryItem >> initialize [
+	super initialize.
+	self ensureUUID
+]
+
+{ #category : #accessing }
 PpInventoryItem >> location [
 
 	^ location

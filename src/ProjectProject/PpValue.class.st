@@ -272,7 +272,8 @@ PpValue >> gtViewGraphFor: aView [
 PpValue >> initialize [
 
 	super initialize.
-	self status: self defaultStatus
+	self ensureUUID.
+	self status: self defaultStatus.
 ]
 
 { #category : #magritte }
