@@ -60,6 +60,12 @@ PpStakeholder >> addressBook [
 ]
 
 { #category : #accessing }
+PpStakeholder >> displayStringNoProject [
+
+	^ self role, ' => ', self person displayString
+]
+
+{ #category : #accessing }
 PpStakeholder >> hash [
 	^ self project hash bitXor: (self person hash bitXor: self role hash)
 ]

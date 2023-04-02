@@ -494,6 +494,7 @@ PpValue >> stakeholdersDescription [
 	<magritteDescription>
 	
 	^ MAToManyRelationDescription new
+		referenceDisplay: #displayStringNoProject;
 		accessor: #stakeholders;
 		priority: 200;
 		default: Set new;
