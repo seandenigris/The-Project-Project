@@ -237,15 +237,6 @@ PpEvent >> notesDescription [
 ]
 
 { #category : #accessing }
-PpEvent >> oneNotePage [
-
-	^ self 
-		propertyAt: #oneNotePageID
-		ifPresent: [ :pageID | 
-			MsalDynabookApp uniqueInstance oneNote pageWithID: pageID ]
-]
-
-{ #category : #accessing }
 PpEvent >> participants [
 	^ self maLazyInstVarUsing: self participantsDescription
 ]
