@@ -62,7 +62,7 @@ PpEvent class >> fromString: aString [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'instance creation' }
 PpEvent class >> on: aDate [
 
 	^ self new
