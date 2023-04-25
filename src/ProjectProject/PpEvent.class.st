@@ -209,7 +209,7 @@ PpEvent >> locationDescription [
 	^ MASingleOptionDescription new
 		  name: #location;
 		  accessor: #location;
-		  options: MpAddressBook default organizations;
+		  options: MpAddressBook uniqueInstance organizations asEntityCollection;
 		  yourself
 ]
 
