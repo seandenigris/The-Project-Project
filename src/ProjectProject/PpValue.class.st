@@ -141,15 +141,6 @@ PpValue >> defaultStatus [
 	^ PpActiveStatus new
 ]
 
-{ #category : #accessing }
-PpValue >> delete [
-
-	self masterList allChildren remove: self.
-	self dependencyLinks
-		select: [ :link | link includes: self ]
-		thenDo: [ :link | link unlink ]
-]
-
 { #category : #'gt-views' }
 PpValue >> dependencyLinksGtViewFor: aView [
 
@@ -452,6 +443,15 @@ PpValue >> removeChild: aPpProject [
 	
 	self masterList removeChild: aPpProject from: self.
 	^ aPpProject
+]
+
+{ #category : #accessing }
+PpValue >> removeFromMasterList [
+
+	self masterList allChildren remove: self.
+	self dependencyLinks
+		select: [ :link | link includes: self ]
+		thenDo: [ :link | link unlink ]
 ]
 
 { #category : #accessing }
