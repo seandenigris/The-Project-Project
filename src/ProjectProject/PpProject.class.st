@@ -75,7 +75,7 @@ PpProject >> beComplete [
 	
 	self allChildren do: [ :e | 
 		e isComplete ifFalse: [ 
-			self error: 'What to do here? Mark children as done/not? What if they have other parents?'.
+			self error: 'Proceed to complete children. What to do here? Mark children as done/not? What if they have other parents?'.
 			e beComplete ] ]
 ]
 
