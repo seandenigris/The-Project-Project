@@ -621,7 +621,7 @@ PpValue >> supportMaterialsDescription [
 			priority: 650;
 			default: Set new;
 			classes: classes;
-			display: #displayString;
+			referenceDisplay: #ppSupportMaterialDisplayString;
 			morphicClass: MAMorphicTokenCompletion;
 			gtSearchSource: gtSearchSource;
 			gtSearchTransform: (MessageSend receiver: self selector: #sanitizedSupportMaterial:);
