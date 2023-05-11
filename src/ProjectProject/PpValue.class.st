@@ -635,10 +635,14 @@ PpValue >> supportMaterialsGtViewFor: aView [
 	
 	self supportMaterials ifEmpty: [ ^ aView empty ].
 	
-	^ aView list
+	^ aView columnedList
 		title: 'Materials' translated;
 		priority: 25;
 		items: [ self supportMaterials asOrderedCollection ];
+		column: 'Name' translated 
+			text: #ppSupportMaterialDisplayString;
+		column: 'Type' translated 
+			text: #displayName;
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
