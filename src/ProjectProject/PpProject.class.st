@@ -255,6 +255,12 @@ PpProject >> maGtFormFor: aView [
 ]
 
 { #category : #accessing }
+PpProject >> ppTimelineStamp [
+
+	^ self log last timestamp
+]
+
+{ #category : #accessing }
 PpProject >> textFromString: aString [
 	^ self isComplete
 			ifTrue: [ 

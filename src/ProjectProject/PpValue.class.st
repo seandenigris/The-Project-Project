@@ -259,6 +259,16 @@ PpValue >> gtViewGraphFor: aView [
 		actionUpdateButton
 ]
 
+{ #category : #accessing }
+PpValue >> gtViewTimelineOn: aView [
+	<gtView>
+	^ aView explicit
+		title: 'Timeline' translated;
+		priority: 10;
+		stencil: [ self timeline ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
 { #category : #initialization }
 PpValue >> initialize [
 
@@ -671,6 +681,34 @@ PpValue >> tagsDescription [
 		"			readonly;
 "
 			yourself
+]
+
+{ #category : #accessing }
+PpValue >> timeline [
+	| points aPlotter projectAddPoints |
+	
+	points := SortedCollection sortUsing: #ppTimelineStamp ascending.
+	
+	projectAddPoints := [ :p |
+		p isComplete ifTrue: [ points add: p ].
+		points addAll: (self supportMaterials select: [ :e |
+		e isKindOf: RlEmail ]) ].
+	
+	projectAddPoints value: self.
+	
+	self allChildren do: projectAddPoints.
+	
+	points ifEmpty: [ ^ BlElement new ].
+
+	aPlotter := GtPlotter new.
+	aPlotter verticalTimeline
+		withProjectionAxis;
+		timelineData: #ppTimelineStamp;
+		projectionData: #displayString;
+		timelineFrom: (points first ppTimelineStamp - 7 days) 
+			to: (points last ppTimelineStamp + 7 days);
+		with: points.
+	^ aPlotter
 ]
 
 { #category : #accessing }

@@ -14,3 +14,9 @@ RlEmail >> asPpProject [
 	result status timestamp: self timestamp.
 	^ result
 ]
+
+{ #category : #'*ProjectProject' }
+RlEmail >> ppTimelineStamp [
+
+	^ self timestamp
+]
