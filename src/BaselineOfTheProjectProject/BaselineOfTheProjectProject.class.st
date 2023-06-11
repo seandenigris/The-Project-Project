@@ -19,6 +19,8 @@ BaselineOfTheProjectProject >> baseline: spec [
 				spec repository: 'github://seandenigris/Bookmark-Magic' ];
 			baseline: 'ExternalWebBrowser' with: [
 				spec repository: 'github://seandenigris/Pharo-Web-Browser' ];
+			baseline: 'LivingLibrary' with: [
+				spec repository: 'github://seandenigris/Living-Library' ];
 			baseline: 'Magritte' with: [
 				spec repository: 'github://seandenigris/Magritte' ];
 			baseline: 'Mocketry' with: [
@@ -31,10 +33,7 @@ BaselineOfTheProjectProject >> baseline: spec [
 				spec repository: 'github://seandenigris/Pharo-Enhancements' ];
 			baseline: 'QuoteMe' with: [
 				spec repository: 'github://seandenigris/Quote-Me' ];
-			baseline: 'ResourcesLive' with: [
-				spec
-					repository: 'github://seandenigris/Resources-Live' ];
-			baseline: 'SimplePersistence' with: [
+				baseline: 'SimplePersistence' with: [
 				spec
 					repository: 'github://seandenigris/Simple-Persistence' ];
 			baseline: 'TrackingNumbers' with: [
@@ -46,10 +45,10 @@ BaselineOfTheProjectProject >> baseline: spec [
 			baseline: 'ObjectiveLepiter' with: [
 				spec repository: 'github://seandenigris/Objective-Lepiter' ];
 			package: #ProjectProject with: [
-				spec requires: #('BookmarkMagic' 'ExternalWebBrowser' 'Magritte' 'Mocketry' 'MSAL' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence' "'Spec-PolyWidgets'" 'TrackingNumbers'). ]. ].
+				spec requires: #('BookmarkMagic' 'ExternalWebBrowser' 'LivingLibrary' 'Magritte' 'Mocketry' 'MSAL' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'SimplePersistence' "'Spec-PolyWidgets'" 'TrackingNumbers'). ]. ].
 				
 	spec for: #GToolkit do: [ 
-		spec package: 'ProjectProject-GToolkit' with: [ spec requires: #('MyPeople' 'ObjectiveLepiter' 'ProjectProject') ] ]
+		spec package: 'ProjectProject-GToolkit' with: [ spec requires: #('ObjectiveLepiter' 'ProjectProject') ] ]
 ]
 
 { #category : #accessing }
