@@ -1,8 +1,8 @@
 Class {
 	#name : #PpEvent,
 	#superclass : #Object,
-	#traits : 'MATPropertyOwner - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript})',
-	#classTraits : 'MATPropertyOwner classTrait + QuTTranscriptable classTrait',
+	#traits : 'MATPropertyOwner - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript}) + PpTMaterialSubject',
+	#classTraits : 'MATPropertyOwner classTrait + QuTTranscriptable classTrait + PpTMaterialSubject classTrait',
 	#instVars : [
 		'endDate',
 		'startDate',

@@ -1,15 +1,15 @@
 Class {
 	#name : #PpValue,
 	#superclass : #PpAbstractProjectContainer,
-	#traits : 'MATPropertyOwner + PpTMutableProjectContainer',
-	#classTraits : 'MATPropertyOwner classTrait + PpTMutableProjectContainer classTrait',
+	#traits : 'MATPropertyOwner + PpTMutableProjectContainer + PpTMaterialSubject',
+	#classTraits : 'MATPropertyOwner classTrait + PpTMutableProjectContainer classTrait + PpTMaterialSubject classTrait',
 	#instVars : [
 		'title',
 		'note',
 		'tags',
-		'supportMaterials',
 		'log',
-		'stakeholders'
+		'stakeholders',
+		'supportMaterialsvalue'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }
@@ -277,11 +277,6 @@ PpValue >> initialize [
 	self status: self defaultStatus.
 ]
 
-{ #category : #magritte }
-PpValue >> inventory [
-	^ PpInventory uniqueInstance
-]
-
 { #category : #testing }
 PpValue >> isAction [
 	^ false
@@ -327,11 +322,6 @@ PpValue >> isValue [
 { #category : #testing }
 PpValue >> isWaitingFor [
 	^ false
-]
-
-{ #category : #magritte }
-PpValue >> library [
-	^ LlLibrary uniqueInstance
 ]
 
 { #category : #accessing }
@@ -465,12 +455,6 @@ PpValue >> removeFromMasterList [
 ]
 
 { #category : #accessing }
-PpValue >> resourceLibrary [
-
-	^ RlResourceLibrary uniqueInstance
-]
-
-{ #category : #accessing }
 PpValue >> rootChildren [
 	^ self rootChildrenLinks collect: #dependency
 ]
@@ -479,12 +463,6 @@ PpValue >> rootChildren [
 PpValue >> rootChildrenLinks [
 	^ self dependencyLinks select: [ :link |
 		link project = self ]
-]
-
-{ #category : #private }
-PpValue >> sanitizedSupportMaterial: anObject [
-	
-	^ anObject olAsReference
 ]
 
 { #category : #accessing }
@@ -588,16 +566,6 @@ PpValue >> statusOptions [
 	^ self class statusOptions
 		add: self status; 
 		yourself.
-]
-
-{ #category : #accessing }
-PpValue >> supportMaterials [
-	^ self maLazyInstVarUsing: self supportMaterialsDescription
-]
-
-{ #category : #accessing }
-PpValue >> supportMaterials: anObject [
-	supportMaterials := anObject
 ]
 
 { #category : #magritte }
