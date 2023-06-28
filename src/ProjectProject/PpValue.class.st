@@ -607,23 +607,6 @@ PpValue >> supportMaterialsDescription [
 			yourself
 ]
 
-{ #category : #'gt-views' }
-PpValue >> supportMaterialsGtViewFor: aView [
-	<gtView>
-	
-	self supportMaterials ifEmpty: [ ^ aView empty ].
-	
-	^ aView columnedList
-		title: 'Materials' translated;
-		priority: 25;
-		items: [ self supportMaterials asOrderedCollection ];
-		column: 'Name' translated 
-			text: #ppSupportMaterialDisplayString;
-		column: 'Type' translated 
-			text: #displayName;
-		actionUpdateButtonTooltip: 'Update'.
-]
-
 { #category : #accessing }
 PpValue >> tags [
 	^ tags ifNil: [ tags := Bag new ]
