@@ -568,45 +568,6 @@ PpValue >> statusOptions [
 		yourself.
 ]
 
-{ #category : #magritte }
-PpValue >> supportMaterialsDescription [
-	<magritteDescription>
-	
-	| gtSearchSource classes libraryItemSource |
-	gtSearchSource := PeGtCompositeSearch new.
-	libraryItemSource := PeGtDelegatedSearch 
-		to: LlLibraryItem 
-		message: #gtSpotterNewFor:.
-	gtSearchSource children 
-		add: self eventLog;
-		add: self inventory;
-		add: self lepiterDB;
-		add: self library;
-		add: libraryItemSource;
-		add: self resourceLibrary.
-		
-	classes := LlAuthoredWork withAllSubclasses
-		addAll: LlLibraryItem allSubclasses;
-		add: OlLepiterPage;
-		add: OlLepiterSnippet;
-		addAll: PpEvent withAllSubclasses;
-		addAll: PpInventoryItem withAllSubclasses;
-		addAll: RlResource withAllSubclasses;
-		yourself.
-	
-	^ MAToManyRelationDescription new
-			accessor: #supportMaterials;
-			priority: 650;
-			default: Set new;
-			classes: classes;
-			referenceDisplay: #ppSupportMaterialDisplayString;
-			morphicClass: MAMorphicTokenCompletion;
-			gtSearchSource: gtSearchSource;
-			gtSearchTransform: (MessageSend receiver: self selector: #sanitizedSupportMaterial:);
-			comment: 'See ', PpProject className, ' comment for more info';
-			yourself
-]
-
 { #category : #accessing }
 PpValue >> tags [
 	^ tags ifNil: [ tags := Bag new ]
