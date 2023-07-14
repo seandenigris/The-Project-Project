@@ -98,6 +98,12 @@ PpValue >> allChildrenGtSpotterFor: aStep [
 		send: [ :result | self ensureChild: result ]
 ]
 
+{ #category : #'*ProjectProject' }
+PpValue >> asPpValue [
+
+	^ self
+]
+
 { #category : #actions }
 PpValue >> browseSupportMaterials [
 
