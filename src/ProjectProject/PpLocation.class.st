@@ -7,9 +7,6 @@ Class {
 		'name',
 		'children'
 	],
-	#classVars : [
-		'DB'
-	],
 	#category : #'ProjectProject-Core-Inventories'
 }
 
