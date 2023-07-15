@@ -120,6 +120,12 @@ PpLocation >> gtSearchNewLocationFor: aSearch [
 ]
 
 { #category : #accessing }
+PpLocation >> initialize [
+	super initialize.
+	self ensureUUID
+]
+
+{ #category : #accessing }
 PpLocation >> list [
 	^ PpLocationList uniqueInstance
 ]
