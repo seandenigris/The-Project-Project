@@ -83,7 +83,7 @@ PpLocation >> childrenDescription [
 { #category : #accessing }
 PpLocation >> displayStringOn: aStream [
 
-	aStream nextPutAll: name
+	aStream nextPutAll: self name
 ]
 
 { #category : #accessing }
