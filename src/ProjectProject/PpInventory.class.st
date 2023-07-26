@@ -53,7 +53,7 @@ PpInventory >> gtSearchItemsFor: aSearch [
 ]
 
 { #category : #accessing }
-PpInventory >> gtSpotNewItemFor: aSearch [
+PpInventory >> gtSearchNewItemFor: aSearch [
 	<gtSearch>
 	
 	^ aSearch explicit
