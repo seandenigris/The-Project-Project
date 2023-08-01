@@ -190,9 +190,6 @@ PpValue >> dueDateString [
 
 { #category : #accessing }
 PpValue >> ensureChild: aPpProject [
-	aPpProject status isInbox ifTrue: [ 
-		"We assume that adding a child project indicates we are in an organizing, not a capturing phase"
-		aPpProject status: PpActiveStatus new ].
 	self masterList addChild: aPpProject to: self.
 	^ aPpProject
 ]
