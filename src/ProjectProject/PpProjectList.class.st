@@ -1,8 +1,8 @@
 Class {
 	#name : #PpProjectList,
 	#superclass : #PpProjectsSnapshot,
-	#traits : 'PpTMutableProjectContainer',
-	#classTraits : 'PpTMutableProjectContainer classTrait',
+	#traits : 'PpTMutableProjectContainer + PeTEnumerable',
+	#classTraits : 'PpTMutableProjectContainer classTrait + PeTEnumerable classTrait',
 	#instVars : [
 		'dependencyLinks'
 	],
@@ -180,6 +180,12 @@ PpProjectList >> masterList [
 { #category : #magritte }
 PpProjectList >> mementoClass [
 	^ MAStraightMemento
+]
+
+{ #category : #accessing }
+PpProjectList >> privateEnumerable [
+
+	^ self allChildren
 ]
 
 { #category : #accessing }
