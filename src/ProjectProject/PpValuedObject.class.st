@@ -57,6 +57,17 @@ PpValuedObject >> lepiterPageID: anObject [
 ]
 
 { #category : #accessing }
+PpValuedObject >> masterList: aProjectList [
+	"Now that I am registered somewhere, store me"
+
+	self model 
+		propertyAt: #ppProject
+		put: self.
+		
+	^ super masterList: aProjectList
+]
+
+{ #category : #accessing }
 PpValuedObject >> model [
 	^ model
 ]
