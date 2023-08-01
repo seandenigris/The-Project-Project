@@ -21,6 +21,17 @@ PpValuedObject >> ensureLepiterPage [
 	^ self model ensureLepiterPage
 ]
 
+{ #category : #'gt inspector' }
+PpValuedObject >> gtDefaultInspectorTool [
+	^ GtPhlowCompositeTool new
+		addTool: (super gtDefaultInspectorTool
+			name: 'Model';
+			withLabelAndIconAptitude);
+		addTool: (self model gtDefaultInspectorTool
+			name: 'Project';
+			withLabelAndIconAptitude)
+]
+
 { #category : #accessing }
 PpValuedObject >> lepiterDB [
 
