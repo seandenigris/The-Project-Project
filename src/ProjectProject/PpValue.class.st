@@ -605,9 +605,9 @@ PpValue >> timeline [
 	points := SortedCollection sortUsing: #ppTimelineStamp ascending.
 	
 	projectAddPoints := [ :p |
-		p isComplete ifTrue: [ points add: p ].
-		points addAll: (self supportMaterials select: [ :e |
-		e isKindOf: RlEmail ]) ].
+		p ppTimelineStamp ifNotNil: [ points add: p ].
+		points addAll: (self supportMaterials reject: [ :e |
+			e ppTimelineStamp isNil ]) ].
 	
 	projectAddPoints value: self.
 	

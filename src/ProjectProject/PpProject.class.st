@@ -257,7 +257,9 @@ PpProject >> maGtFormFor: aView [
 { #category : #accessing }
 PpProject >> ppTimelineStamp [
 
-	^ self log last timestamp
+	^ self isComplete
+		ifTrue: [ self log last timestamp ]
+		ifFalse: [ nil ]
 ]
 
 { #category : #accessing }
