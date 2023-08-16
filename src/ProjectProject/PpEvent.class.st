@@ -213,6 +213,13 @@ PpEvent >> locationDescription [
 		  yourself
 ]
 
+{ #category : #playing }
+PpEvent >> newPlayer [
+	self hasRecording ifTrue: [ ^ self ensureRecording newPlayer ].
+	self isInProgress ifFalse: [ ^ LlNullMediaPlayer new ].
+	^ PpLivePlayer new
+]
+
 { #category : #accessing }
 PpEvent >> notes [
 	^ notes
