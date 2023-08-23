@@ -1,7 +1,7 @@
 Class {
 	#name : #PpValue,
 	#superclass : #PpAbstractProjectContainer,
-	#traits : 'MATPropertyOwner + PpTMutableProjectContainer + PpTMaterialSubject',
+	#traits : 'MATPropertyOwner + (PpTMutableProjectContainer - {#masterList}) + PpTMaterialSubject',
 	#classTraits : 'MATPropertyOwner classTrait + PpTMutableProjectContainer classTrait + PpTMaterialSubject classTrait',
 	#instVars : [
 		'title',
@@ -96,12 +96,6 @@ PpValue >> allChildrenGtSpotterFor: aStep [
 	^ (super allChildrenGtSpotterFor: aStep)
 		title: 'Projects - Add Child';
 		send: [ :result | self ensureChild: result ]
-]
-
-{ #category : #'*ProjectProject' }
-PpValue >> asPpValue [
-
-	^ self
 ]
 
 { #category : #actions }
@@ -270,6 +264,22 @@ PpValue >> gtViewTimelineOn: aView [
 		priority: 10;
 		stencil: [ self timeline ];
 		actionUpdateButtonTooltip: 'Update'.
+]
+
+{ #category : #accessing }
+PpValue >> import [
+	PpProjectList uniqueInstance ensureChild: self
+]
+
+{ #category : #accessing }
+PpValue >> importDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		gtIcon: BrGlamorousVectorIcons down;
+		comment: 'Import into Singleton Library';
+		action: #import;
+		enableBlock: [ :proj | proj masterList isNil ];
+		yourself
 ]
 
 { #category : #initialization }

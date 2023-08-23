@@ -197,22 +197,6 @@ PpProject >> gtTextFromString: aString [
 	^ result.
 ]
 
-{ #category : #accessing }
-PpProject >> import [
-	PpProjectList uniqueInstance ensureChild: self
-]
-
-{ #category : #accessing }
-PpProject >> importDescription [
-	<magritteActionDescription>
-	^ MAActionDescription new
-		gtIcon: BrGlamorousVectorIcons down;
-		comment: 'Import into Singleton Library';
-		action: #import;
-		enableBlock: [ :proj | proj masterList isNil ];
-		yourself
-]
-
 { #category : #testing }
 PpProject >> isActive [
 	^ self status isActive

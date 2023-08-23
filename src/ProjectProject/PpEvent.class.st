@@ -1,8 +1,8 @@
 Class {
 	#name : #PpEvent,
 	#superclass : #Object,
-	#traits : 'MATPropertyOwner - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript}) + PpTMaterialSubject',
-	#classTraits : 'MATPropertyOwner classTrait + QuTTranscriptable classTrait + PpTMaterialSubject classTrait',
+	#traits : 'MATPropertyOwner - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript}) + PpTMaterialSubject + PpTProjectProperty',
+	#classTraits : 'MATPropertyOwner classTrait + QuTTranscriptable classTrait + PpTMaterialSubject classTrait + PpTProjectProperty classTrait',
 	#instVars : [
 		'endDate',
 		'startDate',
@@ -190,6 +190,11 @@ PpEvent >> isPast [
 	^ self endTime 
 			ifNotNil: [ self endTime < DateAndTime now asTime ]
 			ifNil: [ false ]
+]
+
+{ #category : #testing }
+PpEvent >> isPpValuedObject [
+	^ true
 ]
 
 { #category : #accessing }

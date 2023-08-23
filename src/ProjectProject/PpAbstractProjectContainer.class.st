@@ -198,7 +198,7 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 { #category : #accessing }
 PpAbstractProjectContainer >> masterList [
 
-	^ masterList ifNil: [ PpProjectList uniqueInstance ]
+	^ masterList
 ]
 
 { #category : #accessing }

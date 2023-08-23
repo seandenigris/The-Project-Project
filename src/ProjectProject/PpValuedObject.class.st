@@ -85,5 +85,5 @@ PpValuedObject >> newLepiterPage [
 { #category : #accessing }
 PpValuedObject >> title [
 
-	^ title ifNil: [ self model name ]
+	^ title ifNil: [ self model ppProjectTitle ]
 ]

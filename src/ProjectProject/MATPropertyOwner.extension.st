@@ -1,12 +1,6 @@
 Extension { #name : #MATPropertyOwner }
 
 { #category : #'*ProjectProject' }
-MATPropertyOwner >> asPpValue [
-
-	^ PpValuedObject on: self
-]
-
-{ #category : #'*ProjectProject' }
 MATPropertyOwner >> ppTimelineStamp [
 
 	^ self
