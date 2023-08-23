@@ -1,6 +1,11 @@
 Extension { #name : #MpRelatableEntity }
 
 { #category : #'*ProjectProject' }
+MpRelatableEntity >> ppProjectTitle [
+	^ self fullName
+]
+
+{ #category : #'*ProjectProject' }
 MpRelatableEntity >> projectList [
 	^ PpProjectList uniqueInstance
 ]
