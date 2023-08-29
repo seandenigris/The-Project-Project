@@ -6,19 +6,15 @@ Trait {
 { #category : #accessing }
 PpTProjectProperty >> basicNewLinkedPpProject [
 
-	^ self linkedPpProjectClass new
+	^ self ppLinkedProjectClass new
 		title: self ppProjectTitle;
 		yourself
 ]
 
 { #category : #testing }
 PpTProjectProperty >> isPpValuedObject [
+	"If yes, self will *become* a project via a wrapper. If not, we will *link* to a related project"
 	self explicitRequirement
-]
-
-{ #category : #accessing }
-PpTProjectProperty >> linkedPpProjectClass [
-	^ PpProject
 ]
 
 { #category : #accessing }
@@ -34,6 +30,11 @@ PpTProjectProperty >> newPpProject [
 	^ self isPpValuedObject
 		ifTrue: [ PpValuedObject on: self ]
 		ifFalse: [ self newLinkedPpProject ]
+]
+
+{ #category : #accessing }
+PpTProjectProperty >> ppLinkedProjectClass [
+	^ PpProject
 ]
 
 { #category : #accessing }
