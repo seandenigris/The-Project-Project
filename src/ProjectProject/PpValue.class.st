@@ -188,6 +188,12 @@ PpValue >> ensureChild: aPpProject [
 	^ aPpProject
 ]
 
+{ #category : #accessing }
+PpValue >> ensureParent: aPpProject [
+	self masterList addChild: self to: aPpProject.
+	^ aPpProject
+]
+
 { #category : #magritte }
 PpValue >> eventLog [
 
