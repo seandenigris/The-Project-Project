@@ -11,6 +11,12 @@ PpTProjectProperty >> basicNewLinkedPpProject [
 		yourself
 ]
 
+{ #category : #accessing }
+PpTProjectProperty >> hasPpProject [
+
+	^ self properties includesKey: #ppProject
+]
+
 { #category : #testing }
 PpTProjectProperty >> isPpValuedObject [
 	"If yes, self will *become* a project via a wrapper. If not, we will *link* to a related project"
