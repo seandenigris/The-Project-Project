@@ -4,11 +4,8 @@ Trait {
 }
 
 { #category : #accessing }
-PpTProjectProperty >> basicNewLinkedPpProject [
-
-	^ self ppLinkedProjectClass new
-		title: self ppProjectTitle;
-		yourself
+PpTProjectProperty >> configureLinkedPpProject: aPpValue [
+	"Override for custom project configuration e.g. setting a backlink from the project to self."
 ]
 
 { #category : #accessing }
@@ -25,9 +22,15 @@ PpTProjectProperty >> isPpValuedObject [
 
 { #category : #accessing }
 PpTProjectProperty >> newLinkedPpProject [
-	"Override for custom project configuration e.g. setting a backlink from the project to self. This additional level of indirection is provided so you don't have to worry about aliasing"
-
-	^ self basicNewLinkedPpProject
+	
+	| result |
+	result := self ppLinkedProjectClass new
+		title: self ppProjectTitle;
+		yourself.
+		
+	self configureLinkedPpProject: result.
+	
+	^ result
 ]
 
 { #category : #accessing }
@@ -53,6 +56,14 @@ PpTProjectProperty >> ppProject [
 
 { #category : #accessing }
 PpTProjectProperty >> ppProject: aPpValue [
+
+	self ppProjectBasic: aPpValue.
+		
+	aPpValue ifNotNil: [ self configureLinkedPpProject: aPpValue ]
+]
+
+{ #category : #accessing }
+PpTProjectProperty >> ppProjectBasic: aPpValue [
 
 	self
 		propertyAt: #ppProject
