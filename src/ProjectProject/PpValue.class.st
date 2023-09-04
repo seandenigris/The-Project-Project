@@ -385,6 +385,13 @@ PpValue >> moveChild: childPpValue to: parentPpValue [
 ]
 
 { #category : #accessing }
+PpValue >> moveFromParent: oldPpValue to: newPpValue [
+
+	oldPpValue removeChild: self.
+	newPpValue ensureChild: self.
+]
+
+{ #category : #accessing }
 PpValue >> myDependencyLinks [
 	^ self dependencyLinks select: [ :link | link includes: self ]
 ]
