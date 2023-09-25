@@ -183,7 +183,7 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 	tabs := (self magritteAllDescriptionsFor: #childrenDescription) collect: [ :desc | 
 		aView columnedTree
 			title: desc label translated;
-			items: [ (desc read: self) asOrderedCollection ];
+			items: [ (desc read: self) asSortedCollection: #title ascending ];
 			children: [ :p | p rootChildren sorted: #title ascending ];
 			column: 'Item' text: [ :p | p gtDisplayText ] weight: 3;
 			column: 'Due Date' text: [ :p | p dueDateString ]  weight: 1;
