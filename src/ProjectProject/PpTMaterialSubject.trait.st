@@ -67,7 +67,7 @@ PpTMaterialSubject >> supportMaterialsDescription [
 	^ MAToManyRelationDescription new
 			accessor: #supportMaterials;
 			priority: 650;
-			default: Set new;
+			default: IdentitySet new;
 			classes: classes;
 			referenceDisplay: #ppSupportMaterialDisplayString;
 			morphicClass: MAMorphicTokenCompletion;
