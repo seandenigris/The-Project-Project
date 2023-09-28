@@ -42,11 +42,6 @@ PpProject class >> fromString: aString [
 ]
 
 { #category : #accessing }
-PpProject class >> inactiveStatus [
-	^ PpInactiveStatus new
-]
-
-{ #category : #accessing }
 PpProject class >> label [
 	^ (self name allButFirst: 'Pp' size) normalizeCamelCase
 ]
@@ -56,27 +51,11 @@ PpProject class >> peCanHandleFromString: aString [
 	^ true
 ]
 
-{ #category : #accessing }
-PpProject class >> statusOptions [
-	^ PpStatus allSubclasses collect: #new
-]
-
 { #category : #'instance creation' }
 PpProject class >> titled: aString [
 	^ self new
 		title: aString;
 		yourself
-]
-
-{ #category : #accessing }
-PpProject >> beComplete [
-
-	self status: PpCompleteStatus new.
-	
-	self allChildren do: [ :e | 
-		e isComplete ifFalse: [ 
-			self error: 'Proceed to complete children. What to do here? Mark children as done/not? What if they have other parents?'.
-			e beComplete ] ]
 ]
 
 { #category : #accessing }
@@ -198,30 +177,8 @@ PpProject >> gtTextFromString: aString [
 ]
 
 { #category : #testing }
-PpProject >> isActive [
-	^ self status isActive
-]
-
-{ #category : #testing }
 PpProject >> isActiveDueBy: aDate [
 	^ self isActive and: [ self dueDate isNotNil and: [ self dueDate < aDate ] ]
-]
-
-{ #category : #magritte }
-PpProject >> isCompleteDescription [
-	<magritteDescription>
-	
-	^ MABooleanDescription new
-			accessor: #isComplete;
-			label: 'Complete';
-			priority: 150;
-			beReadOnly;
-			yourself
-]
-
-{ #category : #testing }
-PpProject >> isInactive [
-	^ self status isInactive
 ]
 
 { #category : #testing }

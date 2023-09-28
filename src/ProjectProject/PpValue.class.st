@@ -98,6 +98,17 @@ PpValue >> allChildrenGtSpotterFor: aStep [
 		send: [ :result | self ensureChild: result ]
 ]
 
+{ #category : #accessing }
+PpValue >> beComplete [
+
+	self status: PpCompleteStatus new.
+	
+	self allChildren do: [ :e | 
+		e isComplete ifFalse: [ 
+			self error: 'Proceed to complete children. What to do here? Mark children as done/not? What if they have other parents?'.
+			e beComplete ] ]
+]
+
 { #category : #actions }
 PpValue >> browseSupportMaterials [
 
@@ -302,6 +313,11 @@ PpValue >> isAction [
 ]
 
 { #category : #testing }
+PpValue >> isActive [
+	^ self status isActive
+]
+
+{ #category : #testing }
 PpValue >> isActiveDueBy: aDate [
 	^ false
 ]
@@ -321,6 +337,11 @@ PpValue >> isCompleteDescription [
 			priority: 150;
 			beReadOnly;
 			yourself
+]
+
+{ #category : #testing }
+PpValue >> isInactive [
+	^ self status isInactive
 ]
 
 { #category : #accessing }
