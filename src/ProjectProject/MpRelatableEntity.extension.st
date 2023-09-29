@@ -1,6 +1,14 @@
 Extension { #name : #MpRelatableEntity }
 
 { #category : #'*ProjectProject' }
+MpRelatableEntity >> ppProject [
+
+	^ self
+		propertyAt: #ppProject
+		ifAbsentPut: [ PpValuedObject on: self ]
+]
+
+{ #category : #'*ProjectProject' }
 MpRelatableEntity >> ppProjectTitle [
 	^ self fullName
 ]
