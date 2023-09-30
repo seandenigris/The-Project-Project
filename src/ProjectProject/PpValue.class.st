@@ -163,7 +163,7 @@ PpValue >> dependencyLinksGtViewFor: aView [
 		items: [ 
 			self myDependencyLinks asOrderedCollection ];
 		inspectButtonFor: [ self myDependencyLinks ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #printing }
@@ -280,7 +280,7 @@ PpValue >> gtViewTimelineOn: aView [
 		title: 'Timeline' translated;
 		priority: 10;
 		stencil: [ self timeline ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #accessing }
@@ -387,7 +387,7 @@ PpValue >> logGtViewFor: aView [
 		column: 'Status' text: [ :p | p gtDisplayText ];
 		column: 'Timestamp' text: [ :p | p timestamp printUS ];
 		inspectButtonFor: [ self log ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #accessing }
@@ -474,7 +474,7 @@ PpValue >> parentsGtViewFor: aView [
 		children: #parents;
 		column: 'Item' text: [ :p | p gtDisplayText ];
 		column: 'Due Date' text: [ :p | p dueDateString ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #printing }
@@ -553,7 +553,7 @@ PpValue >> stakeholdersGtViewFor: aView [
 			text: [ :holder | holder person gtDisplayText ]
 			weight: 0.90;
 		inspectButtonFor: [ self stakeholders ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #spotter }

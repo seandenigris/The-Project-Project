@@ -146,7 +146,7 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 			children: #rootChildren;
 			column: 'Item' text: #gtDisplayText;
 			column: 'Parents' text: [ :p | p parents displayString ];
-			actionUpdateButtonTooltip: 'Update'.
+			actionUpdateButton.
 		
 		aView columnedTree
 			title: '@Phone' translated;
@@ -156,7 +156,7 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 			children: #rootChildren;
 			column: 'Item' text: #gtDisplayText;
 			column: 'Parents' text: [ :p | p parents displayString ];
-			actionUpdateButtonTooltip: 'Update'.
+			actionUpdateButton.
 			
 		aView columnedTree
 			title: '@Email' translated;
@@ -166,7 +166,7 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 			children: #rootChildren;
 			column: 'Item' text: #gtDisplayText;
 			column: 'Parents' text: [ :p | p parents displayString ];
-			actionUpdateButtonTooltip: 'Update' }.
+			actionUpdateButton }.
 		
 	^ aView composite
 		title: 'Next Actions' translated;
@@ -187,7 +187,7 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 			children: [ :p | p rootChildren sorted: #title ascending ];
 			column: 'Item' text: [ :p | p gtDisplayText ] weight: 3;
 			column: 'Due Date' text: [ :p | p dueDateString ]  weight: 1;
-			actionUpdateButtonTooltip: 'Update' ].
+			actionUpdateButton ].
 		
 	^ aView composite
 		  title: self childrenLabel translated;

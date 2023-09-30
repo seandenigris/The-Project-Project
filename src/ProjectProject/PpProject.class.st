@@ -103,7 +103,7 @@ PpProject >> conditionsGtViewFor: aView [
 		priority: 25;
 		items: [ self conditions asOrderedCollection ];
 		inspectButtonFor: [ self conditions ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #status }

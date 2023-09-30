@@ -91,7 +91,7 @@ PpProjectsSnapshot >> gtViewInboxFor: aView [
 		contextItemLabel: 'Remove'
 			action: [ Halt once];
 		"children: #rootChildren;"
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #views }
@@ -102,7 +102,7 @@ PpProjectsSnapshot >> gtViewWaitingForFor: aView [
 		title: 'W/F' translated;
 		priority: 20;
 		items: [ self waitingForList allChildren ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #accessing }

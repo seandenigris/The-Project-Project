@@ -48,7 +48,7 @@ PpReadOnlyEventLog >> gtViewEventsOn: aView [
 		items: [ self events ];
 		column: 'Date' text: [ :e | e startDate ifNil: [ '' ] ] width: 125;
 		column: 'Event' text: [ :e | e displayString ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #accessing }
@@ -58,7 +58,7 @@ PpReadOnlyEventLog >> gtViewTimelineOn: aView [
 		title: 'Timeline' translated;
 		priority: 10;
 		stencil: [ self timeline ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #accessing }

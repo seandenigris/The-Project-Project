@@ -13,5 +13,5 @@ MpRelatableEntity >> gtViewAgendaOn: aView [
 		children: #parents;
 		column: 'Item' text: [ :p | p gtTextTitleWithParents ] weight: 3;
 		column: 'Due Date' text: [ :p | p dueDateString ] weight: 1;
-		actionUpdateButtonTooltip: 'Update'
+		actionUpdateButton
 ]

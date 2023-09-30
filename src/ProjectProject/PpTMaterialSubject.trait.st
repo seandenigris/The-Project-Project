@@ -92,5 +92,5 @@ PpTMaterialSubject >> supportMaterialsGtViewFor: aView [
 		column: 'Type' translated 
 			text: #displayName;
 		inspectButtonFor: [ self supportMaterials ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
