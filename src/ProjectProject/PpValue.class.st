@@ -135,18 +135,6 @@ PpValue >> childrenLabel [
 	^ 'Steps'
 ]
 
-{ #category : #'gt-views' }
-PpValue >> conditionsGtViewFor: aView [
-	<gtView>
-	
-	^ aView list
-		title: 'Requirements' translated;
-		priority: 25;
-		items: [ self conditions asOrderedCollection ];
-		inspectButtonFor: [ self conditions ];
-		actionUpdateButtonTooltip: 'Update'.
-]
-
 { #category : #status }
 PpValue >> defaultStatus [
 	^ PpActiveStatus new
