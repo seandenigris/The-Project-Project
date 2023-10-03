@@ -90,7 +90,7 @@ PpTMaterialSubject >> supportMaterialsGtViewFor: aView [
 		column: 'Name' translated 
 			text: #ppSupportMaterialDisplayString;
 		column: 'Type' translated 
-			text: #displayName;
+			text: #typeDisplayName;
 		inspectButtonFor: [ self supportMaterials ];
 		actionUpdateButton.
 ]
