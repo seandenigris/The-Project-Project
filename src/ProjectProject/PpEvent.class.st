@@ -1,8 +1,8 @@
 Class {
 	#name : #PpEvent,
 	#superclass : #Object,
-	#traits : 'MATPropertyOwner - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript}) + PpTMaterialSubject + PpTProjectProperty',
-	#classTraits : 'MATPropertyOwner classTrait + QuTTranscriptable classTrait + PpTMaterialSubject classTrait + PpTProjectProperty classTrait',
+	#traits : 'DbTDomainObject - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript}) + PpTMaterialSubject + PpTProjectProperty',
+	#classTraits : 'DbTDomainObject classTrait + QuTTranscriptable classTrait + PpTMaterialSubject classTrait + PpTProjectProperty classTrait',
 	#instVars : [
 		'endDate',
 		'startDate',

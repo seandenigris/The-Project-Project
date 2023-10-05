@@ -1,8 +1,8 @@
 Class {
 	#name : #PpValue,
 	#superclass : #PpAbstractProjectContainer,
-	#traits : 'MATPropertyOwner + (PpTMutableProjectContainer - {#masterList}) + PpTMaterialSubject',
-	#classTraits : 'MATPropertyOwner classTrait + PpTMutableProjectContainer classTrait + PpTMaterialSubject classTrait',
+	#traits : 'DbTDomainObject + (PpTMutableProjectContainer - {#masterList}) + PpTMaterialSubject',
+	#classTraits : 'DbTDomainObject classTrait + PpTMutableProjectContainer classTrait + PpTMaterialSubject classTrait',
 	#instVars : [
 		'title',
 		'note',

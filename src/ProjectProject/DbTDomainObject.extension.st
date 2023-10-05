@@ -1,7 +1,7 @@
-Extension { #name : #MATPropertyOwner }
+Extension { #name : #DbTDomainObject }
 
 { #category : #'*ProjectProject' }
-MATPropertyOwner >> ppTimelineStamp [
+DbTDomainObject >> ppTimelineStamp [
 
 	^ self
 		propertyAt: #ppTimelineStamp
@@ -10,7 +10,7 @@ MATPropertyOwner >> ppTimelineStamp [
 ]
 
 { #category : #'*ProjectProject' }
-MATPropertyOwner >> ppTimelineStamp: aValuable [
+DbTDomainObject >> ppTimelineStamp: aValuable [
 	"aValuable - aDateAndTime or returns one" 
 
 	^ self
