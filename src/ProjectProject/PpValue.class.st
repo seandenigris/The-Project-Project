@@ -1,15 +1,14 @@
 Class {
 	#name : #PpValue,
 	#superclass : #PpAbstractProjectContainer,
-	#traits : 'DbTDomainObject + (PpTMutableProjectContainer - {#masterList}) + PpTMaterialSubject',
-	#classTraits : 'DbTDomainObject classTrait + PpTMutableProjectContainer classTrait + PpTMaterialSubject classTrait',
+	#traits : 'DbTDomainObject + (PpTMutableProjectContainer - {#masterList})',
+	#classTraits : 'DbTDomainObject classTrait + PpTMutableProjectContainer classTrait',
 	#instVars : [
 		'title',
 		'note',
 		'tags',
 		'log',
-		'stakeholders',
-		'supportMaterialsvalue'
+		'stakeholders'
 	],
 	#category : #'ProjectProject-Core-Projects'
 }

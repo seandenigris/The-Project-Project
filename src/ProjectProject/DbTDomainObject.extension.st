@@ -1,6 +1,17 @@
 Extension { #name : #DbTDomainObject }
 
 { #category : #'*ProjectProject' }
+DbTDomainObject >> eventLog [
+
+	^ PpEventLog uniqueInstance
+]
+
+{ #category : #'*ProjectProject' }
+DbTDomainObject >> inventory [
+	^ PpInventory uniqueInstance
+]
+
+{ #category : #'*ProjectProject' }
 DbTDomainObject >> ppTimelineStamp [
 
 	^ self
@@ -16,4 +27,80 @@ DbTDomainObject >> ppTimelineStamp: aValuable [
 	^ self
 		propertyAt: #ppTimelineStamp
 		put: aValuable
+]
+
+{ #category : #'*ProjectProject' }
+DbTDomainObject >> sanitizedSupportMaterial: anObject [
+	
+	^ anObject olAsReference
+]
+
+{ #category : #'*ProjectProject' }
+DbTDomainObject >> supportMaterials [
+	^ self maLazyPropertyUsing: self supportMaterialsDescription
+]
+
+{ #category : #'*ProjectProject' }
+DbTDomainObject >> supportMaterials: aCollection [
+
+	^ self
+		propertyAt: #supportMaterials
+		put: aCollection
+]
+
+{ #category : #'*ProjectProject' }
+DbTDomainObject >> supportMaterialsDescription [
+	<magritteDescription>
+	
+	| gtSearchSource classes libraryItemSource |
+	gtSearchSource := PeGtCompositeSearch new.
+	libraryItemSource := PeGtDelegatedSearch 
+		to: LlLibraryItem 
+		message: #gtSpotterNewFor:.
+	gtSearchSource children 
+		add: self eventLog;
+		add: self inventory;
+		add: self lepiterDB;
+		add: self library;
+		add: libraryItemSource;
+		add: self resourceLibrary.
+		
+	classes := LlAuthoredWork withAllSubclasses
+		addAll: LlLibraryItem allSubclasses;
+		add: OlLepiterPage;
+		add: OlLepiterSnippet;
+		addAll: PpEvent withAllSubclasses;
+		addAll: PpInventoryItem withAllSubclasses;
+		addAll: RlResource withAllSubclasses;
+		yourself.
+	
+	^ MAToManyRelationDescription new
+			accessor: #supportMaterials;
+			priority: 650;
+			default: IdentitySet new;
+			classes: classes;
+			referenceDisplay: #ppSupportMaterialDisplayString;
+			morphicClass: MAMorphicTokenCompletion;
+			gtSearchSource: gtSearchSource;
+			gtSearchTransform: (MessageSend receiver: self selector: #sanitizedSupportMaterial:);
+			comment: 'See ', PpProject className, ' comment for more info';
+			yourself
+]
+
+{ #category : #'*ProjectProject' }
+DbTDomainObject >> supportMaterialsGtViewFor: aView [
+	<gtView>
+	
+	self supportMaterials ifEmpty: [ ^ aView empty ].
+	
+	^ aView columnedList
+		title: 'Materials' translated;
+		priority: 25;
+		items: [ self supportMaterials asOrderedCollection ];
+		column: 'Name' translated 
+			text: #ppSupportMaterialDisplayString;
+		column: 'Type' translated 
+			text: #typeDisplayName;
+		inspectButtonFor: [ self supportMaterials ];
+		actionUpdateButton.
 ]

@@ -1,8 +1,8 @@
 Class {
 	#name : #PpEvent,
 	#superclass : #Object,
-	#traits : 'DbTDomainObject - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript}) + PpTMaterialSubject + PpTProjectProperty',
-	#classTraits : 'DbTDomainObject classTrait + QuTTranscriptable classTrait + PpTMaterialSubject classTrait + PpTProjectProperty classTrait',
+	#traits : 'DbTDomainObject - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript}) + PpTProjectProperty',
+	#classTraits : 'DbTDomainObject classTrait + QuTTranscriptable classTrait + PpTProjectProperty classTrait',
 	#instVars : [
 		'endDate',
 		'startDate',
