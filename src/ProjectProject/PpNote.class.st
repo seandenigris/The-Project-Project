@@ -11,6 +11,14 @@ Class {
 	#category : #'ProjectProject-Core'
 }
 
+{ #category : #accessing }
+PpNote class >> fromString: aString [
+
+	^ self new
+		text: aString;
+		yourself
+]
+
 { #category : #'todo list' }
 PpNote class >> showTodoList [
 	<script>
@@ -28,16 +36,11 @@ PpNote >> defaultTimestamp [
 	^ DateAndTime now translateToUTC
 ]
 
-{ #category : #magritte }
-PpNote >> noteDescription [
-	<magritteDescription>
-	
-	^ MAMemoDescription new
-			accessor: #text;
-			priority: 200;
-"			default: DateAndTime now;"
-			beRequired;
-			yourself
+{ #category : #accessing }
+PpNote >> initialize [
+
+	super initialize.
+	self timestamp: self defaultTimestamp
 ]
 
 { #category : #printing }
@@ -57,6 +60,18 @@ PpNote >> text [
 { #category : #accessing }
 PpNote >> text: anObject [
 	text := anObject
+]
+
+{ #category : #magritte }
+PpNote >> textDescription [
+	<magritteDescription>
+	
+	^ MAMemoDescription new
+			accessor: #text;
+			priority: 200;
+"			default: DateAndTime now;"
+			beRequired;
+			yourself
 ]
 
 { #category : #accessing }

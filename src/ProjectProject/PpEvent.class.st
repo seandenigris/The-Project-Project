@@ -244,6 +244,7 @@ PpEvent >> notesDescription [
 			label: 'Notes';
 			priority: 200;
 			default: OrderedCollection new;
+			gtSearchDelegateTo: PpNote message: #peGtSpotterNewInstanceFor:;
 			classes: { PpNote };
 			yourself
 ]
