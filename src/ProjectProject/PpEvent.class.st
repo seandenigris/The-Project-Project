@@ -88,6 +88,14 @@ PpEvent >> children [
 ]
 
 { #category : #accessing }
+PpEvent >> date: aDate [
+
+	self
+		startDate: aDate;
+		endDate: aDate
+]
+
+{ #category : #accessing }
 PpEvent >> end [
 
 	self endDate ifNil: [ ^ nil ].
