@@ -104,7 +104,7 @@ PpLocation >> geoLocation: aPpGeoLocation [
 { #category : #accessing }
 PpLocation >> gtSearchNewLocationFor: aSearch [
 	<gtSearch>
-	^ aSearch list
+	^ aSearch explicit
 		title: 'Add location';
 		priority: 80;
 		itemName: [ :result | '+ ' , result gtDisplayText ];
