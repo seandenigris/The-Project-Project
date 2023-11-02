@@ -81,6 +81,17 @@ PpLocation >> childrenDescription [
 ]
 
 { #category : #accessing }
+PpLocation >> childrenGtViewOn: aView [
+	<gtView>
+	^ aView tree
+		title: 'Children' translated;
+		priority: 5;
+		items: [ self children ];
+		children: #children;
+		actionUpdateButton
+]
+
+{ #category : #accessing }
 PpLocation >> displayStringOn: aStream [
 
 	aStream nextPutAll: self name
