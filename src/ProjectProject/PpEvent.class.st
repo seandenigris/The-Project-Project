@@ -300,7 +300,7 @@ PpEvent >> printOn: aStream [
 	self participants ifNotNil: [ :people |
 		aStream nextPutAll: ' with '.
 		people
-			do: [ :e | aStream print: e name ]
+			do: [ :e | aStream nextPutAll: e fullName ]
 			separatedBy: [ aStream nextPutAll: ', ' ] ].
 		notes isEmptyOrNil ifFalse: [ 
 			aStream
