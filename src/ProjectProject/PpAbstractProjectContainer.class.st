@@ -144,6 +144,12 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 			priority: 10;
 			items: [ self nextActionsList allChildren ];
 			children: #rootChildren;
+			column: '' stencil: [ :proj |
+				BrCheckbox new 
+					aptitude: BrGlamorousCheckboxAptitude;
+					checked: (proj isCompleteDescription read: proj);
+					whenCheckedDo: [ proj isCompleteDescription write: true to: proj ];
+					whenUncheckedDo: [ proj isCompleteDescription write: false to: proj ] ] width: 50;
 			column: 'Item' text: #gtDisplayText;
 			column: 'Parents' text: [ :p | p parents displayString ];
 			actionUpdateButton.
@@ -154,6 +160,12 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 			items: [ self nextActionsList allChildren select: [ :e |
 				(e isKindOf: PpContactAction) and: [ e strategy isKindOf: PpCallOnPhone ] ] ];
 			children: #rootChildren;
+			column: '' stencil: [ :proj |
+				BrCheckbox new 
+					aptitude: BrGlamorousCheckboxAptitude;
+					checked: (proj isCompleteDescription read: proj);
+					whenCheckedDo: [ proj isCompleteDescription write: true to: proj ];
+					whenUncheckedDo: [ proj isCompleteDescription write: false to: proj ] ] width: 50;
 			column: 'Item' text: #gtDisplayText;
 			column: 'Parents' text: [ :p | p parents displayString ];
 			actionUpdateButton.
@@ -164,7 +176,12 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 			items: [ self nextActionsList allChildren select: [ :e |
 				(e isKindOf: PpContactAction) and: [ e strategy isKindOf: PpSendEmail ] ] ];
 			children: #rootChildren;
-			column: 'Item' text: #gtDisplayText;
+			column: '' stencil: [ :proj |
+				BrCheckbox new 
+					aptitude: BrGlamorousCheckboxAptitude;
+					checked: (proj isCompleteDescription read: proj);
+					whenCheckedDo: [ proj isCompleteDescription write: true to: proj ];
+					whenUncheckedDo: [ proj isCompleteDescription write: false to: proj ] ] width: 50;column: 'Item' text: #gtDisplayText;
 			column: 'Parents' text: [ :p | p parents displayString ];
 			actionUpdateButton }.
 		
@@ -185,6 +202,12 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 			title: desc label translated;
 			items: [ (desc read: self) asSortedCollection: #title ascending ];
 			children: [ :p | p rootChildren sorted: #title ascending ];
+			column: '' stencil: [ :proj |
+				BrCheckbox new 
+					aptitude: BrGlamorousCheckboxAptitude;
+					checked: (proj isCompleteDescription read: proj);
+					whenCheckedDo: [ proj isCompleteDescription write: true to: proj ];
+					whenUncheckedDo: [ proj isCompleteDescription write: false to: proj ] ] width: 50;
 			column: 'Item' text: [ :p | p gtDisplayText ] weight: 3;
 			column: 'Due Date' text: [ :p | p dueDateString ]  weight: 1;
 			actionUpdateButton ].

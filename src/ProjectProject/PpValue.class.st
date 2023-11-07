@@ -314,6 +314,23 @@ PpValue >> isComplete [
 	^ self status isComplete
 ]
 
+{ #category : #accessing }
+PpValue >> isComplete: aBoolean [
+
+	aBoolean = self isComplete ifTrue: [ ^ self ].
+
+	aBoolean ifTrue: [ 
+		self beComplete.
+		^ self ].
+	
+	self log size = 1 
+		ifTrue: [ self log removeLast ]
+		ifFalse: [ 
+			| previousStatus |
+			previousStatus := self log at: self log size - 1.
+			self status: previousStatus class new ].
+]
+
 { #category : #magritte }
 PpValue >> isCompleteDescription [
 	<magritteDescription>
