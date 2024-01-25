@@ -4,11 +4,6 @@ Trait {
 }
 
 { #category : #accessing }
-PpTProjectProperty >> configureLinkedPpProject: aPpValue [
-	"Override for custom project configuration e.g. setting a backlink from the project to self."
-]
-
-{ #category : #accessing }
 PpTProjectProperty >> hasPpProject [
 
 	^ self properties includesKey: #ppProject
@@ -28,7 +23,7 @@ PpTProjectProperty >> newLinkedPpProject [
 		title: self ppProjectTitle;
 		yourself.
 		
-	self configureLinkedPpProject: result.
+	self ppProjectConfigureLinked: result.
 	
 	^ result
 ]
@@ -56,10 +51,12 @@ PpTProjectProperty >> ppProject [
 
 { #category : #accessing }
 PpTProjectProperty >> ppProject: aPpValue [
-
-	self ppProjectBasic: aPpValue.
 		
-	aPpValue ifNotNil: [ self configureLinkedPpProject: aPpValue ]
+	aPpValue 
+		ifNotNil: [ self ppProjectConfigureLinked: aPpValue ]
+		ifNil: [ self ppProjectOnRemove ].
+		
+	self ppProjectBasic: aPpValue.
 ]
 
 { #category : #accessing }
@@ -68,6 +65,16 @@ PpTProjectProperty >> ppProjectBasic: aPpValue [
 	self
 		propertyAt: #ppProject
 		putRemovingNil: aPpValue
+]
+
+{ #category : #accessing }
+PpTProjectProperty >> ppProjectConfigureLinked: aPpValue [
+	"Override for custom project configuration e.g. setting a backlink from the project to self."
+]
+
+{ #category : #accessing }
+PpTProjectProperty >> ppProjectOnRemove [
+	"Override for custom projects e.g. removing a backlink from the project to self."
 ]
 
 { #category : #accessing }
