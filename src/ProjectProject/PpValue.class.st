@@ -100,12 +100,12 @@ PpValue >> allChildrenGtSpotterFor: aStep [
 { #category : #accessing }
 PpValue >> beComplete [
 
-	self status: PpCompleteStatus new.
+	self isComplete ifFalse: [ self status: PpCompleteStatus new ].
 	
 	self allChildren do: [ :e | 
 		e isComplete ifFalse: [ 
-			self error: 'Proceed to complete children. What to do here? Mark children as done/not? What if they have other parents?'.
-			e beComplete ] ]
+			self error: 'Proceed to complete children. What to do here? Mark children as done/not? What if they have other parents?' ].
+		e beComplete ]
 ]
 
 { #category : #actions }
@@ -305,7 +305,7 @@ PpValue >> isComplete [
 
 { #category : #accessing }
 PpValue >> isComplete: aBoolean [
-
+	
 	aBoolean = self isComplete ifTrue: [ ^ self ].
 
 	aBoolean 
@@ -321,7 +321,6 @@ PpValue >> isCompleteDescription [
 			accessor: #isComplete;
 			label: 'Complete';
 			priority: 150;
-			beReadOnly;
 			yourself
 ]
 
