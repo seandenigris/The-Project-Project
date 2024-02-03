@@ -200,34 +200,23 @@ PpValue >> eventLog [
 
 { #category : #accessing }
 PpValue >> gtDisplayText [
-	| result |
-	result := self displayString asRopedText.
-	self isComplete ifTrue: [ result strikethrough ].
-	^ result.
+	
+	^ self gtTextFromString: self displayString
 ]
 
 { #category : #accessing }
 PpValue >> gtSpotterText [
 
-	^ self gtDisplayText
+	^ self titleWithAncestorsGtText
 ]
 
 { #category : #accessing }
 PpValue >> gtTextFromString: aString [
 	
-	^ aString asRopedText
-]
-
-{ #category : #accessing }
-PpValue >> gtTextTitleWithParents [
-	
-	| string |
-	string := String streamContents: [ :str |
-		str << self title.
-		self parents
-			"select: #isProject
-			thenD"do: [ :e | str << ' < ' << e title ] ].
-	^ self gtTextFromString: string
+	| result |
+	result := aString asRopedText.
+	self isComplete ifTrue: [ result strikethrough ].
+	^ result.
 ]
 
 { #category : #'gt-views' }
@@ -686,4 +675,19 @@ PpValue >> titleDescription [
 			default: '';
 			beRequired;
 			yourself
+]
+
+{ #category : #accessing }
+PpValue >> titleWithAncestors [
+	^ String
+		streamContents: [ :str | 
+			str << self title.
+			self parents do: [ :e | str << ' < ' << e titleWithAncestors ]	"select: #isProject
+			thenD" ]
+]
+
+{ #category : #accessing }
+PpValue >> titleWithAncestorsGtText [
+	
+	^ self gtTextFromString: self titleWithAncestors
 ]

@@ -46,7 +46,7 @@ PpAbstractProjectContainer >> allChildrenGtSpotterFor: aSearch [
 		title: 'Projects';
 		items: [ self masterList allChildren asOrderedCollection asAsyncStream ];
 		matchSubstrings;
-		itemName: #gtDisplayText
+		itemName: #gtSpotterText
 ]
 
 { #category : #accessing }
