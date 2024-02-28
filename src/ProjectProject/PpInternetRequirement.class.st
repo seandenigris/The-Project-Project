@@ -19,13 +19,13 @@ PpInternetRequirement >> isConnected [
 	pySource := 'import speedtest
 s = speedtest.Speedtest()'.
 
-	[ 
+	^ [ 
 		PBApplication uniqueInstance newCommandSourceFactory
 			source: pySource;
 			sendAndWait.
-		^ true ]
- 	on: PBPythonError
- 	do: [ :e | ^ false ].
+		true ]
+ 	on: PharoLinkRemoteError
+ 	do: [ :e | false ].
 ]
 
 { #category : #accessing }
@@ -38,8 +38,8 @@ s = speedtest.Speedtest()
 s.download()'.
 
 	downloadBitsPerSecond := PBApplication uniqueInstance newCommandSourceFactory
-	source: pySource;
-	sendAndWait.
+		sourceWithResult: pySource;
+		sendAndWait.
 	
 	"Picked at random"
 	oneHundredGb := 100 * 1000 * 1000.
