@@ -111,7 +111,7 @@ PpEvent >> endDate [
 
 { #category : #accessing }
 PpEvent >> endDate: aDate [
-	endDate := aDate
+	endDate := aDate translateToUTC
 ]
 
 { #category : #'magritte-accessing' }
@@ -352,7 +352,7 @@ PpEvent >> startDate [
 
 { #category : #accessing }
 PpEvent >> startDate: aDate [
-	startDate := aDate
+	startDate := aDate translateToUTC
 ]
 
 { #category : #'magritte-accessing' }
