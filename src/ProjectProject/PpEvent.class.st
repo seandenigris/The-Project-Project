@@ -145,7 +145,19 @@ PpEvent >> endTimeDescription [
 { #category : #accessing }
 PpEvent >> eventLog [
 
-	^ PpEventLog uniqueInstance
+	^ self
+		propertyAt: #eventLog
+		ifAbsent: [ PpEventLog uniqueInstance ]
+]
+
+{ #category : #accessing }
+PpEvent >> eventLog: anEventLog [
+
+	self eventLog = anEventLog ifTrue: [ ^ self ].
+
+	^ self
+		propertyAt: #eventLog
+		putRemovingNil: anEventLog
 ]
 
 { #category : #accessing }

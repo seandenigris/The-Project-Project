@@ -44,12 +44,13 @@ PpEventLog class >> uniqueInstance: anObject [
 
 { #category : #removing }
 PpEventLog >> add: anEvent [
+	anEvent eventLog: self.
 	^ self events add: anEvent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PpEventLog >> addAll: aCollection [ 
-	^ self events addAll: aCollection
+	^ aCollection do: [ :e | self add: e ]
 ]
 
 { #category : #removing }
