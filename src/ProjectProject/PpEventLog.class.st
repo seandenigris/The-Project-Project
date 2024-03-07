@@ -100,5 +100,6 @@ PpEventLog >> hasEvent: anEvent [
 
 { #category : #removing }
 PpEventLog >> remove: anEvent [
+	anEvent eventLog: nil.
 	^ self events remove: anEvent
 ]
