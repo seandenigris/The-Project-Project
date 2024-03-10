@@ -96,6 +96,12 @@ PpEvent >> date: aDate [
 ]
 
 { #category : #accessing }
+PpEvent >> duration [
+
+	^ self end - self start
+]
+
+{ #category : #accessing }
 PpEvent >> end [
 
 	self endDate ifNil: [ ^ nil ].
