@@ -247,12 +247,17 @@ PpEvent >> newPlayer [
 
 { #category : #accessing }
 PpEvent >> notes [
-	^ notes
+	^ self maLazyInstVarUsing: self notesDescription
 ]
 
 { #category : #accessing }
 PpEvent >> notes: anObject [
 	notes := anObject
+]
+
+{ #category : #accessing }
+PpEvent >> notesAdd: convertibleToNote [
+	^ self notes add: convertibleToNote asPpNote
 ]
 
 { #category : #magritte }
