@@ -49,6 +49,11 @@ DbTDomainObject >> supportMaterials: aCollection [
 ]
 
 { #category : #'*ProjectProject' }
+DbTDomainObject >> supportMaterialsAdd: anObject [
+	^ self supportMaterials add: anObject
+]
+
+{ #category : #'*ProjectProject' }
 DbTDomainObject >> supportMaterialsDescription [
 	<magritteDescription>
 	
