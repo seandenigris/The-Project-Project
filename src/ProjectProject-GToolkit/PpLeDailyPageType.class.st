@@ -113,6 +113,11 @@ PpLeDailyPageType >> saveEmptyPages [
 ]
 
 { #category : #accessing }
+PpLeDailyPageType >> shouldAppearInIndexOrDailyNotes [
+	^ true
+]
+
+{ #category : #accessing }
 PpLeDailyPageType >> title [
 
 	^ self date
