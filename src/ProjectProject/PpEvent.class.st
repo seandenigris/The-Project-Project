@@ -30,7 +30,7 @@ PpEvent class >> examplePointInTime [
 				title: 'Meeting';
 				startDate: '4/5/2021' asDate; 	
 				yourself ]
-		then: [ :evt | evt startDate should equal: '4/5/2021' asDate ]
+		then: [ :evt | evt startDate should equal: '4/5/2021' asDate translateToUTC ]
 ]
 
 { #category : #'instance creation' }
