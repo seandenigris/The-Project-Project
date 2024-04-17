@@ -1,6 +1,8 @@
 Class {
 	#name : #PpReadOnlyEventLog,
 	#superclass : #Object,
+	#traits : 'PeTEnumerable',
+	#classTraits : 'PeTEnumerable classTrait',
 	#instVars : [
 		'events'
 	],
@@ -59,6 +61,17 @@ PpReadOnlyEventLog >> gtViewTimelineOn: aView [
 		priority: 10;
 		stencil: [ self timeline ];
 		actionUpdateButton.
+]
+
+{ #category : #testing }
+PpReadOnlyEventLog >> hasEvent: anEvent [
+	^ self events identityIncludes: anEvent
+]
+
+{ #category : #accessing }
+PpReadOnlyEventLog >> privateEnumerable [
+
+	^ self events
 ]
 
 { #category : #accessing }
