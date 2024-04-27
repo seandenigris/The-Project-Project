@@ -199,23 +199,20 @@ PpEvent >> isInProgress [
 	
 	self isPast ifTrue: [ ^ false ].
 	self startDate ifNil: [ ^ false ].
-	self startDate > Date today ifTrue: [ ^ false ].
-	self startTime ifNotNil: [ :st | st > Time now ifTrue: [ ^ false ] ].
+	self startDate > self today ifTrue: [ ^ false ].
+	self startTime ifNotNil: [ :st | st > self now asTime ifTrue: [ ^ false ] ].
 	^ true
 ]
 
 { #category : #testing }
 PpEvent >> isPast [
-	self endDate 
-		ifNil: [ 
-			self startDate < Date today ifTrue: [ ^ true ].
-			self startDate > Date today ifTrue: [ ^ false ] ]
-		ifNotNil: [ :ed |
-			ed < Date today ifTrue: [ ^ true ].
-			ed > Date today ifTrue: [ ^ false ] ].
-	^ self endTime 
-			ifNotNil: [ self endTime < DateAndTime now asTime ]
-			ifNil: [ false ]
+	self endDate
+		ifNil: [ self startDate < self today ifTrue: [ ^ true ].
+			self startDate > self today ifTrue: [ ^ false ] ]
+		ifNotNil: [ :ed | 
+			ed < self today ifTrue: [ ^ true ].
+			ed > self today ifTrue: [ ^ false ] ].
+	^ self endTime ifNotNil: [ self endTime < self now asTime ] ifNil: [ false ]
 ]
 
 { #category : #testing }
@@ -278,6 +275,11 @@ PpEvent >> notesDescription [
 			gtSearchDelegateTo: PpNote message: #peGtSpotterNewInstanceFor:;
 			classes: { PpNote };
 			yourself
+]
+
+{ #category : #testing }
+PpEvent >> now [
+	^ DateAndTime now translateToUTC
 ]
 
 { #category : #accessing }
@@ -419,6 +421,11 @@ PpEvent >> titleDescription [
 		  accessor: #title;
 		  default: (self className allButFirst: 'Pp' size) normalizeCamelCase;
 		  yourself
+]
+
+{ #category : #testing }
+PpEvent >> today [
+	^ Date today translateToUTC
 ]
 
 { #category : #accessing }
