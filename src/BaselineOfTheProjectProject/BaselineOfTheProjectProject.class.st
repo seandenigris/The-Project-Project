@@ -44,12 +44,12 @@ BaselineOfTheProjectProject >> baseline: spec [
 			"package: #'Spec-PolyWidgets' with: [
 				spec
 					repository: 'http://smalltalkhub.com/mc/SeanDeNigris/SeansOutbox/main/' ];"
-			baseline: 'ObjectiveLepiter' with: [
-				spec repository: 'github://seandenigris/Objective-Lepiter' ];
 			package: #ProjectProject with: [
 				spec requires: #('BookmarkMagic' 'DynabookFoundation' 'ExternalWebBrowser' 'LivingLibrary' 'Magritte' 'Mocketry' 'MSAL' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'SimplePersistence' "'Spec-PolyWidgets'" 'TrackingNumbers'). ]. ].
 				
 	spec for: #GToolkit do: [ 
+		spec baseline: 'ObjectiveLepiter' with: [
+			spec repository: 'github://seandenigris/Objective-Lepiter' ].
 		spec package: 'ProjectProject-GToolkit' with: [ spec requires: #('ObjectiveLepiter' 'ProjectProject') ] ]
 ]
 
