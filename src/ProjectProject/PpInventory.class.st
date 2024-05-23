@@ -1,6 +1,8 @@
 Class {
 	#name : #PpInventory,
 	#superclass : #Object,
+	#traits : 'PeTEnumerable',
+	#classTraits : 'PeTEnumerable classTrait',
 	#instVars : [
 		'items'
 	],
@@ -30,7 +32,7 @@ PpInventory class >> uniqueInstance [
 { #category : #'adding / removing' }
 PpInventory >> addItem: anItem [
 
-	^ self items add: anItem
+	^ self ensureItem: anItem
 ]
 
 { #category : #accessing }
@@ -39,6 +41,15 @@ PpInventory >> addItemNamed: aString [
 	| item |
 	item := PpInventoryItem named: aString.
 	^ self addItem: item
+]
+
+{ #category : #accessing }
+PpInventory >> ensureItem: anItem [
+
+	(self items identityIncludes: anItem)
+		ifFalse: [ self items add: anItem ].
+		
+	^ anItem
 ]
 
 { #category : #accessing }
@@ -86,4 +97,10 @@ PpInventory >> gtViewItemsOn: aView [
 { #category : #accessing }
 PpInventory >> items [
 	^ items ifNil: [ items := SortedCollection sortUsing: #name ascending ]
+]
+
+{ #category : #accessing }
+PpInventory >> privateEnumerable [
+
+	^ self items
 ]

@@ -1,6 +1,8 @@
 Class {
 	#name : #PpLocationList,
 	#superclass : #Object,
+	#traits : 'PeTEnumerable',
+	#classTraits : 'PeTEnumerable classTrait',
 	#instVars : [
 		'locations',
 		'rootChildren'
@@ -91,6 +93,12 @@ PpLocationList >> gtViewLocationsOn: aView [
 		items: [ self rootChildren ];
 		children: #children;
 		actionUpdateButton
+]
+
+{ #category : #accessing }
+PpLocationList >> privateEnumerable [
+
+	^ self allChildren
 ]
 
 { #category : #accessing }

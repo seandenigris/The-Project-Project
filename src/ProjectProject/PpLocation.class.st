@@ -1,10 +1,7 @@
 Class {
 	#name : #PpLocation,
-	#superclass : #Object,
-	#traits : 'DbTDomainObject',
-	#classTraits : 'DbTDomainObject classTrait',
+	#superclass : #PpAbstractLocation,
 	#instVars : [
-		'name',
 		'children'
 	],
 	#category : #'ProjectProject-Core-Inventories'
@@ -81,6 +78,15 @@ PpLocation >> childrenDescription [
 ]
 
 { #category : #accessing }
+PpLocation >> childrenForItemsView [
+
+	^ OrderedCollection new
+		addAll: self items;
+		addAll: self children;
+		yourself
+]
+
+{ #category : #accessing }
 PpLocation >> childrenGtViewOn: aView [
 	<gtView>
 	^ aView tree
@@ -94,12 +100,19 @@ PpLocation >> childrenGtViewOn: aView [
 { #category : #accessing }
 PpLocation >> displayStringOn: aStream [
 
-	aStream nextPutAll: self name
+	aStream nextPutAll: self fullName
 ]
 
 { #category : #accessing }
 PpLocation >> distanceFrom: rhs [
 	^ self geoLocation distanceFrom: rhs geoLocation
+]
+
+{ #category : #accessing }
+PpLocation >> fullName [
+	^ String streamContents: [ :s |
+			self parent ifNotNil: [ :p | s << p fullName; space ].
+			s << self name ]
 ]
 
 { #category : #accessing }
@@ -137,6 +150,36 @@ PpLocation >> initialize [
 ]
 
 { #category : #accessing }
+PpLocation >> items [
+		
+	^ self inventory items select: [ : item |
+		item location = self ]
+]
+
+{ #category : #accessing }
+PpLocation >> itemsAll [
+		
+	^ self children
+		inject: self items
+		into: [ :res :loc |
+			res
+				addAll: loc items;
+				yourself ]
+]
+
+{ #category : #accessing }
+PpLocation >> itemsGtViewOn: aView [
+	<gtView>
+	^ aView tree
+		title: 'Items' translated;
+		priority: 15;
+		items: [ self childrenForItemsView ];
+		itemText: #displayString;
+		children: #childrenForItemsView;
+		actionUpdateButton
+]
+
+{ #category : #accessing }
 PpLocation >> list [
 	^ PpLocationList uniqueInstance
 ]
@@ -151,6 +194,14 @@ PpLocation >> name [
 PpLocation >> name: anObject [
 
 	name := anObject
+]
+
+{ #category : #accessing }
+PpLocation >> parent [
+
+	^ self list allChildren 
+		detect: [ :e | e children includes: self ]
+		ifNone: [ nil ]
 ]
 
 { #category : #accessing }
