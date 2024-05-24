@@ -104,25 +104,10 @@ PpLocation >> displayStringOn: aStream [
 ]
 
 { #category : #accessing }
-PpLocation >> distanceFrom: rhs [
-	^ self geoLocation distanceFrom: rhs geoLocation
-]
-
-{ #category : #accessing }
 PpLocation >> fullName [
 	^ String streamContents: [ :s |
 			self parent ifNotNil: [ :p | s << p fullName; space ].
 			s << self name ]
-]
-
-{ #category : #accessing }
-PpLocation >> geoLocation [
-	^ self propertyAt: #geoLocation ifAbsent: [ nil ]
-]
-
-{ #category : #accessing }
-PpLocation >> geoLocation: aPpGeoLocation [
-	^ self propertyAt: #geoLocation put: aPpGeoLocation
 ]
 
 { #category : #accessing }
@@ -141,12 +126,6 @@ PpLocation >> gtSearchNewLocationFor: aSearch [
 				ifFalse: [ { self class named: input } ]
 				ifTrue: [ { } ] ];
 		send: [ :result | self addChild: result ]
-]
-
-{ #category : #accessing }
-PpLocation >> initialize [
-	super initialize.
-	self ensureUUID
 ]
 
 { #category : #accessing }
@@ -180,36 +159,11 @@ PpLocation >> itemsGtViewOn: aView [
 ]
 
 { #category : #accessing }
-PpLocation >> list [
-	^ PpLocationList uniqueInstance
-]
-
-{ #category : #accessing }
-PpLocation >> name [
-
-	^ name
-]
-
-{ #category : #accessing }
-PpLocation >> name: anObject [
-
-	name := anObject
-]
-
-{ #category : #accessing }
 PpLocation >> parent [
 
 	^ self list allChildren 
 		detect: [ :e | e children includes: self ]
 		ifNone: [ nil ]
-]
-
-{ #category : #accessing }
-PpLocation >> printOn: aStream [
-
-	aStream
-		nextPutAll: name;
-		nextPutAll: ' location'
 ]
 
 { #category : #accessing }
