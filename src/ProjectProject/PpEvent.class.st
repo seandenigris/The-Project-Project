@@ -88,6 +88,11 @@ PpEvent >> children [
 ]
 
 { #category : #accessing }
+PpEvent >> date [
+	^ self startDate
+]
+
+{ #category : #accessing }
 PpEvent >> date: aDate [
 
 	self
