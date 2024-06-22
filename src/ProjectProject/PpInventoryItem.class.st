@@ -121,6 +121,9 @@ PpInventoryItem >> printOn: aStream [
 PpInventoryItem >> replacementGtViewFor: aView [
 	<gtView>
 	
+	(self respondsTo: #replacementStringWithSeparator)
+		ifFalse: [ ^ aView empty ].
+	
 	^ aView textEditor
 		title: 'Replacement';
 		priority: 62;
