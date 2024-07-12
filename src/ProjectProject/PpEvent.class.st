@@ -103,6 +103,8 @@ PpEvent >> date: aDate [
 { #category : #accessing }
 PpEvent >> duration [
 
+	self end ifNil: [ ^ 0 ].
+
 	^ self end - self start
 ]
 
