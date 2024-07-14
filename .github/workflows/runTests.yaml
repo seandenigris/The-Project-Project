@@ -19,4 +19,4 @@ jobs:
     with:
       project-name: TheProjectProject
       #runners: "[ 'ubuntu-latest' 'macos-14' ]"
-      smalltalks: "[ 'Pharo64-11' 'GToolkit64-release' ]"
+      #smalltalks: "[ 'Pharo64-11' 'GToolkit64-release' ]"
