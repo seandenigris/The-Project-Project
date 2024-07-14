@@ -1,6 +1,5 @@
-# Adapted from https://github.com/seandenigris/Pharo-Enhancements/blob/master/.github/workflows/ci.yaml
-
 name: CI
+# Adapted from https://github.com/seandenigris/Pharo-Enhancements/blob/master/.github/workflows/ci.yaml
 
 # Controls when the action will run. 
 on:
@@ -18,6 +17,6 @@ jobs:
   test-and-release:
     uses: seandenigris/Pharo-Enhancements/.github/workflows/ci_reusable.yaml@master
     with:
-      project-name: PharoEnhancements
+      project-name: TheProjectProject
       #runners: "[ 'ubuntu-latest' 'macos-14' ]"
       smalltalks: "[ 'Pharo64-11' 'GToolkit64-release' ]"
