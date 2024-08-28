@@ -15,42 +15,42 @@ BaselineOfTheProjectProject >> baseline: spec [
 
 	spec for: #'common' do: [
 		spec 
-			baseline: 'BookmarkMagic' with: [
+			baseline: #'BookmarkMagic' with: [
 				spec repository: 'github://seandenigris/Bookmark-Magic' ];
-			baseline: 'DynabookFoundation' with: [
+			baseline: #'DynabookFoundation' with: [
 				spec repository: 'github://seandenigris/Dynabook-Foundation' ];
-			baseline: 'ExternalWebBrowser' with: [
+			baseline: #'ExternalWebBrowser' with: [
 				spec repository: 'github://seandenigris/Pharo-Web-Browser' ];
-			baseline: 'LivingLibrary' with: [
+			baseline: #'LivingLibrary' with: [
 				spec repository: 'github://seandenigris/Living-Library' ];
-			baseline: 'Magritte' with: [
+			baseline: #'Magritte' with: [
 				spec repository: 'github://seandenigris/Magritte' ];
-			baseline: 'Mocketry' with: [
+			baseline: #'Mocketry' with: [
 				spec repository: 'github://dionisiydk/Mocketry' ];
-			baseline: 'MSAL' with: [
+			baseline: #'MSAL' with: [
 				spec repository: 'github://seandenigris/MSAL-Smalltalk' ];
-			baseline: 'MyPeople' with: [
+			baseline: #'MyPeople' with: [
 				spec repository: 'github://SeanDeNigris/My-People' ];
-			baseline: 'PharoEnhancements' with: [
+			baseline: #'PharoEnhancements' with: [
 				spec repository: 'github://seandenigris/Pharo-Enhancements' ];
-			baseline: 'QuoteMe' with: [
+			baseline: #'QuoteMe' with: [
 				spec repository: 'github://seandenigris/Quote-Me' ];
-				baseline: 'SimplePersistence' with: [
+				baseline: #'SimplePersistence' with: [
 				spec
 					repository: 'github://seandenigris/Simple-Persistence' ];
-			baseline: 'TrackingNumbers' with: [
+			baseline: #'TrackingNumbers' with: [
 				spec repository: 'github://seandenigris/Tracking-St' ].
 		spec
 			"package: #'Spec-PolyWidgets' with: [
 				spec
 					repository: 'http://smalltalkhub.com/mc/SeanDeNigris/SeansOutbox/main/' ];"
 			package: #ProjectProject with: [
-				spec requires: #('BookmarkMagic' 'DynabookFoundation' 'ExternalWebBrowser' 'LivingLibrary' 'Magritte' 'Mocketry' 'MSAL' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'SimplePersistence' "'Spec-PolyWidgets'" 'TrackingNumbers'). ]. ].
+				spec requires: #(#'BookmarkMagic' #'DynabookFoundation' #'ExternalWebBrowser' #'LivingLibrary' #'Magritte' #'Mocketry' #'MSAL' #'MyPeople' #'PharoEnhancements' #'QuoteMe' #'SimplePersistence' "'Spec-PolyWidgets'" #'TrackingNumbers'). ]. ].
 				
 	spec for: #GToolkit do: [ 
-		spec baseline: 'ObjectiveLepiter' with: [
+		spec baseline: #'ObjectiveLepiter' with: [
 			spec repository: 'github://seandenigris/Objective-Lepiter' ].
-		spec package: 'ProjectProject-GToolkit' with: [ spec requires: #('ObjectiveLepiter' 'ProjectProject') ] ]
+		spec package: #'ProjectProject-GToolkit' with: [ spec requires: #(#'ObjectiveLepiter' #'ProjectProject') ] ]
 ]
 
 { #category : #accessing }
