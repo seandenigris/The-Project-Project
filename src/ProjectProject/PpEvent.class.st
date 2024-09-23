@@ -100,6 +100,18 @@ PpEvent >> date: aDate [
 		endDate: aDate
 ]
 
+{ #category : #'as yet unclassified' }
+PpEvent >> documentsImportAllFrom: aFolder [
+
+	| nonHiddenFiles |
+	nonHiddenFiles := aFolder allFiles reject: [ :e | e base isEmpty ].
+	^ nonHiddenFiles collect: [ :file | 
+		PpEventDocumentImport new
+			event: self;
+			file: file;
+			yourself ]
+]
+
 { #category : #accessing }
 PpEvent >> duration [
 
@@ -453,4 +465,19 @@ PpEvent >> transcriptGtViewFor: aView [
 		priority: 65;
 		object: [ self transcript ];
 		view: #gtLiveFor:.
+]
+
+{ #category : #'as yet unclassified' }
+PpEvent >> worksGtViewOn: aView [
+	<gtView>
+
+	| works |
+	works := self library works select: [ :w | w copies anySatisfy: [ :copy | copy source = self ] ].
+	works ifEmpty: [ ^ aView empty ].
+	
+	^ aView list
+		title: 'Works' translated;
+		priority: 60;
+		items: [ works ];
+		actionUpdateButton
 ]
