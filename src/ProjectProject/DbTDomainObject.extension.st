@@ -30,6 +30,12 @@ DbTDomainObject >> ppTimelineStamp: aValuable [
 ]
 
 { #category : #'*ProjectProject' }
+DbTDomainObject >> projectList [
+
+	^ PpProjectList uniqueInstance
+]
+
+{ #category : #'*ProjectProject' }
 DbTDomainObject >> sanitizedSupportMaterial: anObject [
 	
 	^ anObject olAsReference
@@ -74,6 +80,7 @@ DbTDomainObject >> supportMaterialsDescription [
 		add: self lepiterDB;
 		add: self library;
 		add: libraryItemSource;
+		add: self projectList;
 		add: self resourceLibrary.
 		
 	classes := LlAuthoredWork withAllSubclasses
@@ -83,6 +90,7 @@ DbTDomainObject >> supportMaterialsDescription [
 		addAll: PpEvent withAllSubclasses;
 		addAll: PpInventoryItem withAllSubclasses;
 		addAll: RlResource withAllSubclasses;
+		addAll: PpValue withAllSubclasses;
 		yourself.
 	
 	^ MAToManyRelationDescription new
