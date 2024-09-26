@@ -17,6 +17,8 @@ BaselineOfTheProjectProject >> baseline: spec [
 		spec 
 			baseline: #'BookmarkMagic' with: [
 				spec repository: 'github://seandenigris/Bookmark-Magic' ];
+			baseline: #'ComputerWorld' with: [
+				spec repository: 'github://seandenigris/Computer-World' ];
 			baseline: #'DynabookFoundation' with: [
 				spec repository: 'github://seandenigris/Dynabook-Foundation' ];
 			baseline: #'ExternalWebBrowser' with: [
@@ -45,7 +47,7 @@ BaselineOfTheProjectProject >> baseline: spec [
 				spec
 					repository: 'http://smalltalkhub.com/mc/SeanDeNigris/SeansOutbox/main/' ];"
 			package: #ProjectProject with: [
-				spec requires: #(#'BookmarkMagic' #'DynabookFoundation' #'ExternalWebBrowser' #'LivingLibrary' #'Magritte' #'Mocketry' #'MSAL' #'MyPeople' #'PharoEnhancements' #'QuoteMe' #'SimplePersistence' "'Spec-PolyWidgets'" #'TrackingNumbers'). ]. ].
+				spec requires: #(#'BookmarkMagic' #'ComputerWorld' #'DynabookFoundation' #'ExternalWebBrowser' #'LivingLibrary' #'Magritte' #'Mocketry' #'MSAL' #'MyPeople' #'PharoEnhancements' #'QuoteMe' #'SimplePersistence' "'Spec-PolyWidgets'" #'TrackingNumbers'). ]. ].
 				
 	spec for: #GToolkit do: [ 
 		spec baseline: #'ObjectiveLepiter' with: [
