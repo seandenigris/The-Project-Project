@@ -182,7 +182,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-26T21:52:40.640096-04:00"
+						"dateAndTimeString" : "2024-09-26T20:25:23.951526-04:00"
 					}
 				},
 				"uid" : {
@@ -192,7 +192,41 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Since eml files are not generally well-supported by OS's (e.g. preview issues in Mac), we can bundle them into appropriate monolith files with better support. For example, on Mac we can turn them into an mbox file that can programmatically be imported into Mail.app. See {{gtMethod:CwMacMail>>#importEmlFilesIn:}}."
+				"string" : "Since eml files are not generally well-supported by OS's (e.g. preview issues in Mac), what if we bundle them into appropriate monolith files with better support. For example, what if we combine certain eml's of interest into an mbox file? Would it be easier to deal with in Mail.app?"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-09-26T20:23:52.678769-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-09-26T20:25:47.49108-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "KQ5Wm3DfDQCL7fe+B6Q7PA=="
+				},
+				"code" : "PBApplication uniqueInstance installModule: ''"
 			}
 		]
 	},
