@@ -44,7 +44,7 @@ DbTDomainObject >> sanitizedSupportMaterial: anObject [
 { #category : #'*ProjectProject' }
 DbTDomainObject >> supportEmailsImportFromMailClient [
 
-	Smalltalk tools mailClient new selectedMessagesImport do: [ :msg | self supportMaterialsAdd: msg ].
+	RlEmail allFromMailClientSelectionImport do: [ :msg | self supportMaterialsAdd: msg ].
 ]
 
 { #category : #'*ProjectProject' }
