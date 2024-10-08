@@ -422,6 +422,17 @@ PpValue >> noteDescription [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PpValue >> parentInsertTitled: aString as: aClass [
+
+	| newParent |
+	newParent := aClass titled: aString.
+	self masterList ensureChild: newParent.
+	self parents do: [ :p | 
+		p addChild: newParent.
+		self moveFromParent: p to: newParent ].
+]
+
 { #category : #private }
 PpValue >> parentLinks [
 	^ self dependencyLinks select: [ :link |
