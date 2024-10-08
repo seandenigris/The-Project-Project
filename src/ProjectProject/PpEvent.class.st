@@ -145,6 +145,7 @@ PpEvent >> endDateDescription [
 	<magritteDescription>
 	^ MADateDescription new
 		  accessor: #endDate;
+		  default: self startDate;
 		  yourself
 ]
 
