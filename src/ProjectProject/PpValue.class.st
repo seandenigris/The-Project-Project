@@ -122,6 +122,13 @@ PpValue >> browseSupportMaterials [
 	folder open
 ]
 
+{ #category : #accessing }
+PpValue >> child: childPpValue moveTo: parentPpValue [
+
+	self removeChild: childPpValue.
+	parentPpValue ensureChild: childPpValue.
+]
+
 { #category : #magritte }
 PpValue >> childrenDescription [
 	
@@ -381,13 +388,6 @@ PpValue >> maGtFormFor: aView [
 	^ (super maGtFormFor: aView)
 		priority: 5;
 		yourself
-]
-
-{ #category : #accessing }
-PpValue >> moveChild: childPpValue to: parentPpValue [
-
-	self removeChild: childPpValue.
-	parentPpValue ensureChild: childPpValue.
 ]
 
 { #category : #accessing }
