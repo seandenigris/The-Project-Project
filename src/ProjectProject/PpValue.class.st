@@ -429,7 +429,7 @@ PpValue >> parentInsertTitled: aString as: aClass [
 	newParent := aClass titled: aString.
 	self masterList ensureChild: newParent.
 	self parents do: [ :p | 
-		p addChild: newParent.
+		p ensureChild: newParent.
 		self moveFromParent: p to: newParent ].
 ]
 
