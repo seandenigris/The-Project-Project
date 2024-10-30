@@ -444,6 +444,12 @@ PpValue >> parents [
 	^ self parentLinks collect: #project
 ]
 
+{ #category : #accessing }
+PpValue >> parentsDescription [
+
+	"This is another case where we'd like to use gtSearchSource, but there is no parents collection to operate on"
+]
+
 { #category : #private }
 PpValue >> parentsGtSpotterFor: aStep [
 	<gtSearch>
