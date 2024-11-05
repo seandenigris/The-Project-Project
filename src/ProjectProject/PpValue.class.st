@@ -487,6 +487,15 @@ PpValue >> printOn: aStream [
 	aStream nextPutAll: self displayString
 ]
 
+{ #category : #'as yet unclassified' }
+PpValue >> pullUp [
+
+	self parents do: [ :aParent |
+		aParent removeChild: self.
+		aParent parents do: [ :grandparent |
+			grandparent ensureChild: self ] ]
+]
+
 { #category : #accessing }
 PpValue >> removeChild: aPpProject [
 	
