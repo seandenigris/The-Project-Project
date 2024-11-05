@@ -439,6 +439,13 @@ PpValue >> parentLinks [
 		link dependency = self ]
 ]
 
+{ #category : #private }
+PpValue >> parentRemove: aPpValue [
+
+	aPpValue removeChild: self.
+	^ aPpValue
+]
+
 { #category : #accessing }
 PpValue >> parents [
 	^ self parentLinks collect: #project
