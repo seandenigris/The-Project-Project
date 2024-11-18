@@ -8,7 +8,8 @@ Class {
 		'whatIsIt',
 		'isActionable',
 		'needsProject',
-		'shouldDoIt'
+		'shouldDoIt',
+		'isComplete'
 	],
 	#category : #ProjectProject
 }
@@ -32,11 +33,8 @@ PpClarify >> childrenNewSearches [
 { #category : #'as yet unclassified' }
 PpClarify >> didIt [
 
-	| project |
-	project := PpProject titled: self outcome.
-	self masterList ensureChild: project.
-	self stuff value do: [ :e | project supportMaterialsAdd: e ].
-	project ensureChild: (self nextAction beComplete; yourself).
+	self setUpProjects.
+	self nextAction beComplete
 ]
 
 { #category : #accessing }
@@ -55,9 +53,34 @@ PpClarify >> isActionableDescription [
 	
 	^ MABooleanDescription new
 		accessor: #isActionable;
-		priority: 200;
+		label: 'Commit to action?';
+		
+		priority: 300;
 		default: false;
-		comment: 'Will I commit to take action?';
+		comment: 'Is there an action to which I will commit?';
+		yourself
+]
+
+{ #category : #accessing }
+PpClarify >> isComplete [
+	^ isComplete
+]
+
+{ #category : #accessing }
+PpClarify >> isComplete: anObject [
+	isComplete := anObject
+]
+
+{ #category : #accessing }
+PpClarify >> isCompleteDescription [
+	<magritteDescription>
+	
+	^ MABooleanDescription new
+		accessor: #isComplete;
+		priority: 150;
+		label: 'Is it complete for me?';
+		default: false;
+		comment: 'Is it complete for me';
 		yourself
 ]
 
@@ -83,6 +106,7 @@ PpClarify >> needsProjectDescription [
 	
 	^ MABooleanDescription new
 		accessor: #needsProject;
+		label: 'Action will complete?';
 		priority: 500;
 		default: false;
 		comment: 'Will this action achieve the outcome?';
@@ -126,9 +150,19 @@ PpClarify >> outcomeDescription [
 	
 	^ MAStringDescription new
 		accessor: #outcome;
-		priority: 300;
+		priority: 200;
 		comment: 'What does "Done" look like?';
 		yourself
+]
+
+{ #category : #'as yet unclassified' }
+PpClarify >> setUpProjects [
+
+	| project |
+	project := PpProject titled: self outcome.
+	self masterList ensureChild: project.
+	self stuff value do: [ :e | project supportMaterialsAdd: e ].
+	project ensureChild: self nextAction.
 ]
 
 { #category : #accessing }
@@ -147,6 +181,7 @@ PpClarify >> shouldDoItDescription [
 	
 	^ MABooleanDescription new
 		accessor: #shouldDoIt;
+		label: 'Action < 2 min?';
 		priority: 600;
 		default: false;
 		comment: 'Will this take less than 2 minutes?';
@@ -161,6 +196,13 @@ PpClarify >> stuff [
 { #category : #accessing }
 PpClarify >> stuff: anObject [
 	stuff := anObject
+]
+
+{ #category : #'as yet unclassified' }
+PpClarify >> wait [
+
+	self nextAction: PpWaitingForProject new.
+	self setUpProjects.
 ]
 
 { #category : #accessing }
