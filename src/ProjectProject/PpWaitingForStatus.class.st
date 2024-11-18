@@ -17,6 +17,13 @@ PpWaitingForStatus >> isInactive [
 	^ true
 ]
 
+{ #category : #'as yet unclassified' }
+PpWaitingForStatus >> onAddedTo: aPpProject [
+	"Hook for subclass override if needed"
+	
+	aPpProject waitee: self person
+]
+
 { #category : #accessing }
 PpWaitingForStatus >> person [
 

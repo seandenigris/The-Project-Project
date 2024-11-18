@@ -60,6 +60,11 @@ PpStatus >> isInbox [
 	^ false
 ]
 
+{ #category : #'as yet unclassified' }
+PpStatus >> onAddedTo: aPpValue [
+	"Hook for subclass override if needed"
+]
+
 { #category : #accessing }
 PpStatus >> printOn: aStream [
 	

@@ -609,6 +609,7 @@ PpValue >> status: aStatus [
 	self status = aStatus ifTrue: [ ^ self ].
 	
 	aStatus timestamp ifNil: [ aStatus timestamp: DateAndTime now translateToUTC ].
+	aStatus onAddedTo: self.
 
 	self log add: aStatus
 ]
