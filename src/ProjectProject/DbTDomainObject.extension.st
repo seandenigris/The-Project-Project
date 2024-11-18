@@ -70,7 +70,7 @@ DbTDomainObject >> supportMaterialsDescription [
 	<magritteDescription>
 	
 	| gtSearchSource classes libraryItemSource |
-	gtSearchSource := PeGtCompositeSearch new.
+	gtSearchSource := PeGtCollectedSearch new.
 	libraryItemSource := PeGtDelegatedSearch 
 		to: LlLibraryItem 
 		message: #gtSpotterNewFor:.

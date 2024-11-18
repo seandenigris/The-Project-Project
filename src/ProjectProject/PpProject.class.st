@@ -75,7 +75,7 @@ PpProject >> conditionsDescription [
 	<magritteDescription>
 	
 	| gtSearchSource librarySource |
-	gtSearchSource := PeGtCompositeSearch new.
+	gtSearchSource := PeGtCollectedSearch new.
 	PpProjectCondition allSubclasses do: [ :cls |	
 			librarySource := PeGtDelegatedSearch 
 			to: cls 
