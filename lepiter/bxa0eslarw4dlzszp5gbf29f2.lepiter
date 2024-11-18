@@ -1,0 +1,562 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "2e57341a-24e3-0d00-8ffc-90c80cd46ac9"
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "capturing"
+	},
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-12T22:09:38.01745-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-12T22:11:30.981905-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "XD/hVCTjDQCUsDi3DNRqyQ=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "Clear RAM by quarantining items \"until you have a few moments to decide what they are and what, if anything, you’re going to do about them\" ([Allen, 87.1/562](calibre://view-book/_hex_-43616c696272655f4c696272617279/122/EPUB?open_at=epubcfi%28/28/2/4/50/4/4/2/1:0%29))"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-12T22:04:37.669833-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-12T22:04:39.066584-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "hJHDVCTjDQCUnRd3DNRqyQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Why"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-11-12T21:50:33.463746-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-11-12T21:59:14.221214-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "Ofs0GiTjDQCP/UH6DNRqyQ=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "that has your attention ([Allen, 82/562](calibre://view-book/_hex_-43616c696272655f4c696272617279/122/EPUB?open_at=epubcfi%28/28/2/4/16/1:620%29))"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-11-12T21:53:03.527171-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-11-12T21:59:17.543323-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "CMdjKyTjDQCRi9GEDNRqyQ=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "that you have to do or decide about ([Allen, 85/562](calibre://view-book/_hex_-43616c696272655f4c696272617279/122/EPUB?open_at=epubcfi%28/28/2/4/40/1:6%29))"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-11-12T21:58:53.210463-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-11-12T21:59:47.72496-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "NIc7QCTjDQCTS5kaDNRqyQ=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "that you think ought to be different than it currently is and that you have any level of internal commitment to changing ([Allen, 87.1/562](calibre://view-book/_hex_-43616c696272655f4c696272617279/122/EPUB?open_at=epubcfi%28/28/2/4/50/4/4/2/1:0%29))"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-11-12T22:00:24.485857-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-11-12T22:00:38.261623-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "MD+sRSTjDQCUTsX8DNRqyQ=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "that you attach a “should,” “need to,” or “ought to” to an item ([Allen, 87.1/562](calibre://view-book/_hex_-43616c696272655f4c696272617279/122/EPUB?open_at=epubcfi%28/28/2/4/50/4/4/2/1:0%29))"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-12T21:52:58.394178-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-12T22:04:21.621979-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "W3YVKyTjDQCRgemNDNRqyQ=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "Must capture *everything*:"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-12T21:57:47.951955-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-12T22:08:42.082942-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "ssFXPCTjDQCSEVYwDNRqyQ=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "Must process and review it in the near future ([Allen, 85/562](calibre://view-book/_hex_-43616c696272655f4c696272617279/122/EPUB?open_at=epubcfi%28/28/2/4/40/1:6%29)) or becomes like a garbage can that never gets dumped  ([Allen, 90.4/562](calibre://view-book/_hex_-43616c696272655f4c696272617279/122/EPUB?open_at=epubcfi%28/28/2/4/84/1:54%29))"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-12T22:06:17.640352-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-12T22:06:18.223219-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "e3QZVCTjDQCUhLEqDNRqyQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "What"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-12T22:06:36.193955-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-12T22:07:10.511103-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "VxnUWyTjDQCVVDq2DNRqyQ=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "Get it all out of your head ([Allen, 90.4/562](calibre://view-book/_hex_-43616c696272655f4c696272617279/122/EPUB?open_at=epubcfi%28/28/2/4/84/1:54%29))"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-11-12T22:12:23.498882-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-11-12T22:13:28.714964-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "B4qHcCTjDQCaCWpPDNRqyQ=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "A challenge here is that each technology (e.g. email, SMS, Discord) presents its own location. **How can we integrate/unify these?** Something like Mac Mail.app's unified inbox"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-12T22:07:16.099526-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-12T22:07:30.576872-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "ZgA1XiTjDQCWGOK2DNRqyQ=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "Minimize capture locations  ([Allen, 90.4/562](calibre://view-book/_hex_-43616c696272655f4c696272617279/122/EPUB?open_at=epubcfi%28/28/2/4/84/1:54%29))"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-12T22:06:29.961921-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-12T22:06:35.93656-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "YvZ0WyTjDQCU0KmJDNRqyQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "How (factors for success)"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-13T20:40:29.611928-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-13T20:41:05.51986-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Yq+3RTfjDQCApYJbAPTtZw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Saying \"yes, I'll do it\" without capturing the commitment is unacceptable behavior"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-11-12T21:48:15.204634-05:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-11-12T21:48:55.673046-05:00"
+		}
+	}
+}
