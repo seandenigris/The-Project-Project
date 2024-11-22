@@ -724,3 +724,14 @@ PpValue >> titleWithAncestorsGtText [
 	
 	^ self gtTextFromString: self titleWithAncestors
 ]
+
+{ #category : #accessing }
+PpValue >> waitee: aPerson [
+
+	self stakeholders 
+		detect: [ :e | e role = #waitee ]
+		ifFound: [ :e | e person: aPerson ]
+		ifNone: [ (PpStakeholder project: self person: aPerson role: #waitee) link ]
+		
+	"Not sure if this makes sense for aPpValue, but subclasses need it for WaitingForStatuses"
+]
