@@ -114,7 +114,7 @@ DbTDomainObject >> supportMaterialsGtViewFor: aView [
 	
 	^ aView columnedList
 		title: 'Materials' translated;
-		priority: 25;
+		priority: 60;
 		items: [ self supportMaterials asOrderedCollection ];
 		column: 'Name' translated 
 			text: #ppSupportMaterialDisplayString;
