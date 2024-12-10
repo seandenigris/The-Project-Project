@@ -36,6 +36,13 @@ PpTProjectProperty >> newPpProject [
 		ifFalse: [ self newLinkedPpProject ]
 ]
 
+{ #category : #'as yet unclassified' }
+PpTProjectProperty >> postCopyProjectProperty [
+	"Send after super postCopy"
+	
+	self ppProjectBasic: nil
+]
+
 { #category : #accessing }
 PpTProjectProperty >> ppLinkedProjectClass [
 	^ PpProject
