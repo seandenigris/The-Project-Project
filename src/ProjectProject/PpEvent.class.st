@@ -17,6 +17,33 @@ Class {
 	#category : #'ProjectProject-Core-Events'
 }
 
+{ #category : #'as yet unclassified' }
+PpEvent class >> exampleCopy [
+	<gtExample>
+
+	| e1 s1 u1 e2 l1 t1 p1 |
+	e1 := PpEvent new.
+	s1 := {1. 2. 3}.
+	l1 := 'abcd'.
+	u1 := e1 uuid.
+	t1 := e1 transcript.
+	p1 := e1 ppProject.
+	e1 
+		supportMaterials: s1;
+		lepiterPageID: l1.
+	e2 := e1 copy.
+	self assert: e1 uuid equals: u1.
+	self assert: e2 uuid ~= u1.
+	self assert: s1 equals: e1 supportMaterials.
+	self assert: s1 ~= e2 supportMaterials.
+	self assert: l1 equals: e1 lepiterPageID.
+	self assert: l1 ~= e2 lepiterPageID.
+	self assert: t1 equals: e1 transcript.
+	self assert: t1 ~= e2 transcript.
+	self assert: p1 equals: e1 ppProject.
+	self assert: p1 ~= e2 ppProject.
+]
+
 { #category : #examples }
 PpEvent class >> examplePointInTime [
 	<gtExample>
@@ -324,6 +351,18 @@ PpEvent >> participantsDescription [
 			classes: MpRelatableEntity allSubclasses;
 			gtSearchSource: (MessageSend receiver: self selector: #addressBook);
 			yourself
+]
+
+{ #category : #'as yet unclassified' }
+PpEvent >> postCopy [
+
+	super postCopy.
+	
+	self 
+		postCopyProperties;
+		postCopyDbDomainObject;
+		postCopyTranscriptable;
+		postCopyProjectProperty
 ]
 
 { #category : #accessing }
