@@ -148,14 +148,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-25T21:10:52.044558-04:00"
+						"dateAndTimeString" : "2025-02-24T22:02:14.352755-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "xIaDJF3fDQCS2P8hDGCXDA=="
 				},
-				"code" : "Smalltalk tools mailClient new selectedMessagesImport collect: [ :msg | msg importWork ]."
+				"code" : "Smalltalk tools mailClient new selectedMessagesImport collect: [ :msg | msg workEnsured ]."
 			},
 			{
 				"__type" : "textSnippet",
