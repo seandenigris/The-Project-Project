@@ -168,12 +168,13 @@ PpEvent >> endDate: aDate [
 
 { #category : #'magritte-accessing' }
 PpEvent >> endDateDescription [
-
 	<magritteDescription>
-	^ MADateDescription new
-		  accessor: #endDate;
-		  default: self startDate;
-		  yourself
+
+		^ MADateDescription new
+		accessor: #endDate;
+		priority: 400;
+		default: self startDate;
+		yourself
 ]
 
 { #category : #accessing }
@@ -188,11 +189,12 @@ PpEvent >> endTime: aTime [
 
 { #category : #'magritte-accessing' }
 PpEvent >> endTimeDescription [
-
 	<magritteDescription>
+	
 	^ MATimeDescription new
-		  accessor: #endTime;
-		  yourself
+		accessor: #endTime;
+		priority: 500;
+		yourself
 ]
 
 { #category : #accessing }
@@ -279,13 +281,14 @@ PpEvent >> location: aString [
 
 { #category : #'magritte-accessing' }
 PpEvent >> locationDescription [
-
 	<magritteDescription>
+
 	^ MASingleOptionDescription new
-		  name: #location;
-		  accessor: #location;
-		  options: MpAddressBook uniqueInstance organizations asEntityCollection;
-		  yourself
+		name: #location;
+		accessor: #location;
+		priority: 600;
+		options: MpAddressBook uniqueInstance organizations asEntityCollection;
+		yourself
 ]
 
 { #category : #playing }
@@ -317,7 +320,7 @@ PpEvent >> notesDescription [
 	^ MAToManyRelationDescription new
 			accessor: #notes;
 			label: 'Notes';
-			priority: 200;
+			priority: 700;
 			default: OrderedCollection new;
 			gtSearchDelegateTo: PpNote message: #peGtSpotterNewInstanceFor:;
 			classes: { PpNote };
@@ -345,7 +348,7 @@ PpEvent >> participantsDescription [
 	
 	^ MAToManyRelationDescription new
 			accessor: #participants;
-			priority: 100;
+			priority: 625;
 			kind: MpEntityCollection;
 			default: MpEntityCollection new;
 			classes: MpRelatableEntity allSubclasses;
@@ -433,6 +436,7 @@ PpEvent >> startDateDescription [
 	<magritteDescription>
 	^ MADateDescription new
 		accessor: #startDate;
+		priority: 200;
 		yourself
 ]
 
@@ -448,11 +452,12 @@ PpEvent >> startTime: aTime [
 
 { #category : #'magritte-accessing' }
 PpEvent >> startTimeDescription [
-
 	<magritteDescription>
-	^ MATimeDescription new
-		  accessor: #startTime;
-		  yourself
+
+		^ MATimeDescription new
+		accessor: #startTime;
+		priority: 300;
+		yourself
 ]
 
 { #category : #accessing }
@@ -478,6 +483,7 @@ PpEvent >> titleDescription [
 	^ MAStringDescription new
 		  name: #title;
 		  accessor: #title;
+		  priority: 100;
 		  default: (self className allButFirst: 'Pp' size) normalizeCamelCase;
 		  yourself
 ]
