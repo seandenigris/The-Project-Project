@@ -391,6 +391,25 @@ PpValue >> maGtFormFor: aView [
 ]
 
 { #category : #accessing }
+PpValue >> milestones [
+	| points supportStones childStones |
+	
+	points := SortedCollection sortUsing: #ppTimelineStamp descending.
+	
+	supportStones := self supportMaterials reject: [ :e |
+		e ppTimelineStamp isNil ].
+	
+	childStones := self rootChildren flatCollect: #milestones.
+	
+	self ppTimelineStamp ifNotNil: [ points add: self log last ].
+	
+	^ points
+		addAll: supportStones;
+		addAll: childStones;
+		yourself
+]
+
+{ #category : #accessing }
 PpValue >> moveFromParent: oldPpValue to: newPpValue [
 
 	oldPpValue removeChild: self.

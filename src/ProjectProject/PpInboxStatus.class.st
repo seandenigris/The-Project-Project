@@ -8,3 +8,9 @@ Class {
 PpInboxStatus >> isInbox [
 	^ true
 ]
+
+{ #category : #'as yet unclassified' }
+PpInboxStatus >> ppTimelineStamp [
+	
+	^ self timestamp
+]

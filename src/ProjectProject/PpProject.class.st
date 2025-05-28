@@ -198,9 +198,9 @@ PpProject >> maGtFormFor: aView [
 { #category : #accessing }
 PpProject >> ppTimelineStamp [
 
-	^ self isComplete
-		ifTrue: [ self log last timestamp ]
-		ifFalse: [ nil ]
+	^ self log 
+		ifNotEmpty: [ self log last timestamp ]
+		ifEmpty: [ nil ]
 ]
 
 { #category : #'as yet unclassified' }
