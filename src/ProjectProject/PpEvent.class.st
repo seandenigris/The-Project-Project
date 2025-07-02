@@ -371,10 +371,7 @@ PpEvent >> postCopy [
 { #category : #accessing }
 PpEvent >> printOn: aStream [
 	self title 
-		ifNotNil: [ :str |
-			aStream
-				nextPutAll: str;
-				space ]
+		ifNotNil: [ :str | aStream nextPutAll: str ]
 		ifNil: [ aStream nextPutAll: (self className allButFirst: 'Pp' size) normalizeCamelCase ].
 	self startDate ifNotNil: [ :sDate |
 		aStream
