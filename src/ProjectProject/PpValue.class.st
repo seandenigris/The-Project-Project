@@ -146,6 +146,20 @@ PpValue >> defaultStatus [
 	^ PpActiveStatus new
 ]
 
+{ #category : #accessing }
+PpValue >> delete [
+
+	self removeFromMasterList.
+	self lepiterPageEnsureRemoved
+]
+
+{ #category : #accessing }
+PpValue >> deleteAll [
+
+	self rootChildren do: #deleteAll.
+	self delete
+]
+
 { #category : #'gt-views' }
 PpValue >> dependencyLinksGtViewFor: aView [
 
@@ -520,6 +534,13 @@ PpValue >> pullUp [
 		aParent removeChild: self.
 		aParent parents do: [ :grandparent |
 			grandparent ensureChild: self ] ]
+]
+
+{ #category : #accessing }
+PpValue >> removeAllFromMasterList [
+
+	self rootChildren do: [ :aChild | aChild removeAllFromMasterList ].
+	self removeFromMasterList
 ]
 
 { #category : #accessing }
