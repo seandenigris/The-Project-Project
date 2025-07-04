@@ -25,10 +25,10 @@ PpValuedObject >> ensureLepiterPage [
 PpValuedObject >> gtDefaultInspectorTool [
 	^ GtPhlowCompositeTool new
 		addTool: (super gtDefaultInspectorTool
-			name: 'Model';
+			name: 'Project';
 			withLabelAndIconAptitude);
 		addTool: (self model gtDefaultInspectorTool
-			name: 'Project';
+			name: 'Model';
 			withLabelAndIconAptitude)
 ]
 
