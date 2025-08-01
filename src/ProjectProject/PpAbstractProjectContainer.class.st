@@ -193,8 +193,8 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 
 { #category : #'gt-views' }
 PpAbstractProjectContainer >> gtViewProjectsFor: aView [
-
 	<gtView>
+	
 	| tabs |
 	
 	tabs := (self magritteAllDescriptionsFor: #childrenDescription) collect: [ :desc | 
@@ -217,7 +217,7 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView [
 		  priority: 20;
 		  views: tabs
 		  
-	"Implementation note: At first, we filtered out empty lists (i.e. returned empty views, but it had the side effect of caching the item list, which prevented refreshing; not sure whether empty tabs should be hidden anway"
+	"Implementation note: At first, we filtered out empty lists (by returning 'empty' views, but it had the side effect of caching the item list, which prevented refreshing; not sure whether empty tabs should be hidden anyway"
 ]
 
 { #category : #accessing }
