@@ -7,7 +7,7 @@
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Filtering"
+		"title" : "Filtering (WIP)"
 	},
 	"children" : {
 		"__type" : "snippets",
@@ -193,6 +193,40 @@
 					"uidString" : "aOQ0SrT2DQCgY2IUBDi35Q=="
 				},
 				"code" : "aModelUsingAdd := GtFilterItemsModel new.\rfElement := aModelUsingAdd asFiltersElement."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-01T21:27:33.997862-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-01T21:27:49.542437-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "t6IRhLn3DQCuqqeqCEIpAQ=="
+				},
+				"code" : "te := BlTextElement new"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -676,7 +710,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-07-13T20:42:49.462963-04:00"
+			"dateAndTimeString" : "2025-08-01T20:55:45.334794-04:00"
 		}
 	}
 }
