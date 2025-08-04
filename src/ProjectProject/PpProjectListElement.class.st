@@ -4,7 +4,9 @@ Class {
 	#instVars : [
 		'filterModel',
 		'listElement',
-		'model'
+		'model',
+		'phlowContext',
+		'phlowView'
 	],
 	#category : #'ProjectProject-UI-Bloc'
 }
@@ -26,48 +28,84 @@ PpProjectListElement >> buildElement [
 ]
 
 { #category : #'as yet unclassified' }
-PpProjectListElement >> buildFilterModel [
-
-	| toggleModel |
-	toggleModel := GtFilterShortListModel new.
-	toggleModel name: 'Completion'.
-	toggleModel
-		items: {'Incomplete'.
-				'All'.
-				'Complete'};
-		selectFirstItem.
-
-	^ GtFilterItemsModel new items: { toggleModel }	"{GtSmaCCVariableFilter availableFilters first{;
-		availableFiltersBuilder: GtSmaCCVariableFilter"
+PpProjectListElement >> filterElement [
+	
+	^ self filterModel asFiltersElement
 ]
 
 { #category : #'as yet unclassified' }
-PpProjectListElement >> filterElement [
-	filterModel
-		ifNil: [ 
-			filterModel := self buildFilterModel.
-			filterModel weak
-				when: GtFiltersModelAnnouncement
-				send: #updateFilters
-				to: self ].
-	^ filterModel asFiltersElement
+PpProjectListElement >> filterModel [
+
+	| toggleModel |
+	
+	filterModel ifNotNil: [ ^ filterModel ].
+			
+	toggleModel := GtFilterShortListModel new.
+	toggleModel name: 'Complete?'.
+	toggleModel
+		items: {
+			'Incomplete'.
+			'All'.
+			'Complete'};
+		selectFirstItem.
+		
+	self phlowContext at: #completionFilter put: false.
+		
+	filterModel := GtFilterItemsModel new 
+		items: { toggleModel }";
+		availableFiltersBuilder: GtSmaCCVariableFilter".
+		
+	filterModel weak
+		when: GtFiltersModelAnnouncement
+		send: #updateFilters
+		to: self.
+		
+	^ filterModel
 ]
 
 { #category : #'as yet unclassified' }
 PpProjectListElement >> listElement [
-
+	| filter desc view |
+	
 	listElement ifNotNil: [ ^ listElement ].
 
-	^ listElement := (self model gtViewProjectsFor: GtPhlowView empty) asElement
-		padding:
-			(BlInsets
-				top: 10
-				left: 0
-				bottom: 0
-				right: 0);
-		constraintsDo: [ :c | 
-			c horizontal matchParent.
-			c vertical matchParent ].
+	filter := [ :aCol | 
+		| filtered |
+		filtered := aCol
+				select: [ :proj | proj isComplete = (self phlowContext at: #completionFilter) ].
+		filtered sorted: #title ascending ].
+
+	desc := self model childrenDescription.
+
+	view := self phlowView columnedTree
+			title: desc label translated;
+			items: [ filter value: (desc read: self model) ];
+			children: [ :p | filter value: p rootChildren ];
+			column: ''
+				stencil: [ :proj | 
+					BrCheckbox new
+						aptitude: BrGlamorousCheckboxAptitude;
+						checked: (proj isCompleteDescription read: proj);
+						whenCheckedDo: [ proj isCompleteDescription write: true to: proj ];
+						whenUncheckedDo: [ proj isCompleteDescription write: false to: proj ] ]
+				width: 50;
+			column: 'Item'
+				text: [ :p | p gtDisplayText ]
+				weight: 3;
+			column: 'Due Date'
+				text: [ :p | p dueDateString ]
+				weight: 1;
+			actionUpdateButton.
+
+	^ listElement := view asElement
+			padding: (BlInsets
+					top: 10
+					left: 0
+					bottom: 0
+					right: 0);
+			constraintsDo: [ :c | 
+				c horizontal matchParent.
+				c vertical matchParent ]
 ]
 
 { #category : #accessing }
@@ -80,8 +118,42 @@ PpProjectListElement >> model: anObject [
 	model := anObject.
 ]
 
+{ #category : #accessing }
+PpProjectListElement >> phlowContext [
+	^ phlowContext
+]
+
+{ #category : #accessing }
+PpProjectListElement >> phlowContext: anObject [
+	phlowContext := anObject
+]
+
+{ #category : #accessing }
+PpProjectListElement >> phlowView [
+	^ phlowView
+]
+
+{ #category : #accessing }
+PpProjectListElement >> phlowView: anObject [
+	phlowView := anObject
+]
+
 { #category : #'as yet unclassified' }
 PpProjectListElement >> updateFilters [
 
-	self listElement text: (filterModel items atRandom selectedItem string, ' on ', DateAndTime now printString) asRopedText
+	self filterModel items atRandom selectedItem string = 'Complete'
+		ifTrue: [ self phlowContext at: #completionFilter put: true ].
+		
+	self filterModel items atRandom selectedItem string = 'Incomplete'
+		ifTrue: [ self phlowContext at: #completionFilter put: false ].
+		
+	self updateList
+]
+
+{ #category : #'as yet unclassified' }
+PpProjectListElement >> updateList [
+	| oldList |
+	oldList := self listElement.
+	listElement := nil.
+	self replaceChild: oldList with: self listElement
 ]

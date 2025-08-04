@@ -26,6 +26,114 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-02T19:59:01.58555-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-02T19:59:08.100886-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "FwdEZcz3DQCLSIb0DL2MvA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "We have implemented {{gtClass:PpProjectListElement}}.  We can create one like this:"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-02T19:59:11.180113-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-02T20:22:19.511187-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "n27WZcz3DQCL39OuDL2MvA=="
+				},
+				"code" : "PpProjectListElement new\r\tmodel: PpProjectList uniqueInstance;\r\tphlowContext: GtPhlowContext new;\r\tbuildElement;\r\tyourself"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-02T19:55:50.665453-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-02T19:59:01.588153-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "y87iWcz3DQCJSpmgDL2MvA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Below is a log of how we got there."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2025-07-13T20:42:44.451047-04:00"
 					}
 				},
@@ -37,7 +145,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-01T20:51:41.280282-04:00"
+						"dateAndTimeString" : "2025-08-02T19:55:49.975213-04:00"
 					}
 				},
 				"uid" : {
@@ -47,7 +155,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Let's use GT Coder filters as inspiration. Drilling in on one of its filters leads to {{gtClass:GtFilterItemsElement}}. How do we use it? It doesn't seem to be used directly, but its references tab shows an example method with two intriguing classes: {{gtClass:GtFilterModelExamples}} and {{gtClass:GtFiltersItemsViewModel}}. Let's explore the examples class first."
+				"string" : "Let's use GT Coder's filters as inspiration. Drilling in on one of its filters leads to {{gtClass:GtFilterItemsElement}}. How do we use it? It doesn't seem to be used directly, but its references tab shows an example method with two intriguing classes: {{gtClass:GtFilterModelExamples}} and {{gtClass:GtFiltersItemsViewModel}}. Let's explore the examples class first."
 			},
 			{
 				"__type" : "textSnippet",
@@ -111,7 +219,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-01T18:00:08.284628-04:00"
+						"dateAndTimeString" : "2025-08-02T19:44:44.124797-04:00"
 					}
 				},
 				"uid" : {
@@ -121,7 +229,41 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:GtFilterShortListModel}} sounds promising for toggling complete projects"
+				"string" : "{{gtClass:GtFilterShortListModel}} sounds promising for toggling [in]complete projects. Let's explore how we might use it. First we create a list:"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-02T19:42:56.75271-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-02T19:43:49.763755-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "CtfBK8z3DQC5W88DDL2MvA=="
+				},
+				"code" : "toggleModel := GtFilterShortListModel new.\r\ttoggleModel name: 'Complete?'.\r\ttoggleModel\r\t\titems: { 'Incomplete'. 'All'. 'Complete'. };\r\t\tselectFirstItem."
 			},
 			{
 				"__type" : "textSnippet",
@@ -137,7 +279,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T18:17:19.322903-04:00"
+						"dateAndTimeString" : "2025-08-02T19:44:14.232629-04:00"
 					}
 				},
 				"editEmail" : {
@@ -148,17 +290,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T18:17:27.864813-04:00"
+						"dateAndTimeString" : "2025-08-02T19:45:18.982484-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "EaPDV7H2DQCXNdkoCrzgtA=="
+					"uidString" : "NBZgMMz3DQC50KpADL2MvA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Let's explore how we might use this..."
+				"string" : "Inspecting the above looks good visually. Further adapting the example, we add it to a container."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -185,82 +327,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T22:01:49.797294-04:00"
+						"dateAndTimeString" : "2025-08-02T19:47:00.029591-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "aOQ0SrT2DQCgY2IUBDi35Q=="
 				},
-				"code" : "aModelUsingAdd := GtFilterItemsModel new.\rfElement := aModelUsingAdd asFiltersElement."
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-01T21:27:33.997862-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-01T21:27:49.542437-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "t6IRhLn3DQCuqqeqCEIpAQ=="
-				},
-				"code" : "te := BlTextElement new"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T22:10:57.625109-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-20T14:42:48.857603-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "jvVRm7T2DQCh3Bl2BDi35Q=="
-				},
-				"code" : "toggleModel := GtFilterShortListModel new.\r\ttoggleModel name: 'Side'.\r\ttoggleModel\r\t\titems: { 'Incomplete'. 'All'. 'Complete'. };\r\t\tselectFirstItem.\r\raModelUsingAdd\r\taddFilterModel: toggleModel."
+				"code" : "containerModel := GtFilterItemsModel new\r\taddFilterModel: toggleModel;\r\tyourself."
 			},
 			{
 				"__type" : "textSnippet",
@@ -324,7 +398,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T21:18:36.06412-04:00"
+						"dateAndTimeString" : "2025-08-02T19:51:25.214746-04:00"
 					}
 				},
 				"uid" : {
@@ -361,14 +435,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T20:44:54.911357-04:00"
+						"dateAndTimeString" : "2025-08-02T19:52:03.603832-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "tmt6YrP2DQCPOfXnCkcdYw=="
 				},
-				"code" : "aModel weak\r\twhen: GtFiltersModelAnnouncement\r\tdo: [ Halt now ]\r\t\"send: #updateFilters\r\tto: self\".\raModel asFiltersElement"
+				"code" : "containerModel weak\r\twhen: GtFiltersModelAnnouncement\r\tdo: [ Halt now ].\rcontainerModel asFiltersElement"
 			},
 			{
 				"__type" : "textSnippet",
@@ -395,7 +469,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T21:19:37.482874-04:00"
+						"dateAndTimeString" : "2025-08-02T19:51:46.801538-04:00"
 					}
 				},
 				"uid" : {
@@ -405,7 +479,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "There are no references to that announcement outside of SmaCC, so apparently that is not the only way... Okay {{gtMethod:GtFiltersItemsViewModel>>subscribeToFiltersModel}} subscribes to each subclass separately, and converts them to its own announcement types, which are ultimately acted upon by {{gtClass:GtFilterItemsElement}}"
+				"string" : "That works (ie we get the halt if we change the list's selected item. However, there are no references to that announcement outside of SmaCC, so apparently that is not the only way... Okay {{gtMethod:GtFiltersItemsViewModel>>subscribeToFiltersModel}} subscribes to each subclass separately, and converts them to its own announcement types, which are ultimately acted upon by {{gtClass:GtFilterItemsElement}}. Going back and reading the class comment of {{gtClass:GtFiltersModelUpdated}}, this actually sounds like what we need because it only fires when the search results change."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -432,17 +506,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-20T14:45:42.582702-04:00"
+						"dateAndTimeString" : "2025-08-02T19:52:10.404089-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "L569TLT2DQCg3gRLBDi35Q=="
 				},
-				"code" : "aModelUsingAdd weak\r\twhen: GtFiltersModelUpdated\r\tdo: [ :ex | GtTranscript default \r\t\tcrShow: 'ex obj: ';\r\t\tshowObject: ex ]\r\t\"send: #updateFilters\r\tto: self\"."
+				"code" : "containerModel weak\r\twhen: GtFiltersModelUpdated\r\tdo: [ :ex | Halt now.\"GtTranscript default \r\t\tcrShow: 'ex obj: ';\r\t\tshowObject: ex\" ]."
 			},
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -455,7 +529,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T21:52:31.037358-04:00"
+						"dateAndTimeString" : "2025-08-02T19:52:38.778552-04:00"
 					}
 				},
 				"editEmail" : {
@@ -466,48 +540,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T21:52:31.856905-04:00"
+						"dateAndTimeString" : "2025-08-02T19:53:51.871998-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "5cVcWbT2DQChBbyJBDi35Q=="
+					"uidString" : "n9dyTsz3DQCC3JbSDL2MvA=="
 				},
-				"code" : "aModelUsingAdd\r\taddFilterModel: aBoolModel;\r\tyourself."
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
+				"paragraphStyle" : {
+					"__type" : "textStyle"
 				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T22:11:19.946582-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-19T22:11:19.946582-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "O4umnLT2DQCiN22mBDi35Q=="
-				},
-				"code" : ""
+				"string" : "That halt fires as well. Presumably we would see a difference when we get deeper into the implementation and try to add a filter - the latter announcement should avoid an unneeded notification before the filter is configured."
 			},
 			{
 				"__type" : "textSnippet",
@@ -586,43 +629,6 @@
 							"code" : "aBoolModel := GtFilterBooleanModel new.\raBoolModel switchedOn: true.\raBoolModel name: 'Complete'."
 						},
 						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-07-13T20:51:19.633266-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-07-13T20:52:38.308398-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "5lJ7yzr2DQCh5ueQB6yOPQ=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : "Now let us compose it like in the first example above:"
-						},
-						{
 							"__type" : "pharoSnippet",
 							"children" : {
 								"__type" : "snippets",
@@ -677,7 +683,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-01T17:52:01.903671-04:00"
+						"dateAndTimeString" : "2025-08-02T19:55:36.353383-04:00"
 					}
 				},
 				"uid" : {
@@ -687,7 +693,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "We originally thought this sounded promising for toggling complete projects, but its implementation is incomplete per on Discord. {{gtExample:GtFilterModelExamples>>#booleanModel}} \nLet's adapt it."
+				"string" : "We originally thought this sounded promising for toggling complete projects, but it didn't properly fire announcements and its implementation is incomplete per Juraj Kubelka [on Discord](https://discord.com/channels/729445214812504107/755319168504692778/1396444125611429909). {{gtExample:GtFilterModelExamples>>#booleanModel}} "
 			}
 		]
 	},

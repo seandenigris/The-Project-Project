@@ -192,32 +192,19 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 ]
 
 { #category : #'gt-views' }
-PpAbstractProjectContainer >> gtViewProjectsFor: aView [
+PpAbstractProjectContainer >> gtViewProjectsFor: aView inContext: aContext [
 	<gtView>
 	
-	| tabs |
-	
-	tabs := (self magritteAllDescriptionsFor: #childrenDescription) collect: [ :desc | 
-		aView columnedTree
-			title: desc label translated;
-			items: [ (desc read: self) asSortedCollection: #title ascending ];
-			children: [ :p | p rootChildren sorted: #title ascending ];
-			column: '' stencil: [ :proj |
-				BrCheckbox new 
-					aptitude: BrGlamorousCheckboxAptitude;
-					checked: (proj isCompleteDescription read: proj);
-					whenCheckedDo: [ proj isCompleteDescription write: true to: proj ];
-					whenUncheckedDo: [ proj isCompleteDescription write: false to: proj ] ] width: 50;
-			column: 'Item' text: [ :p | p gtDisplayText ] weight: 3;
-			column: 'Due Date' text: [ :p | p dueDateString ]  weight: 1;
-			actionUpdateButton ].
-		
-	^ aView composite
-		  title: self childrenLabel translated;
-		  priority: 20;
-		  views: tabs
-		  
-	"Implementation note: At first, we filtered out empty lists (by returning 'empty' views, but it had the side effect of caching the item list, which prevented refreshing; not sure whether empty tabs should be hidden anyway"
+	^ aView explicit
+		title: self childrenLabel translated;
+		priority: 20;
+		stencil: [ 
+			PpProjectListElement new
+				model: self;
+				phlowView: aView;
+				phlowContext: aContext;
+				buildElement;
+				yourself ]
 ]
 
 { #category : #accessing }
