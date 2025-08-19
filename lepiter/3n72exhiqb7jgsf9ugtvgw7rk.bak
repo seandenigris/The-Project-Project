@@ -74,14 +74,122 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-02T20:22:19.511187-04:00"
+						"dateAndTimeString" : "2025-08-02T20:33:35.544888-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "n27WZcz3DQCL39OuDL2MvA=="
 				},
-				"code" : "PpProjectListElement new\r\tmodel: PpProjectList uniqueInstance;\r\tphlowContext: GtPhlowContext new;\r\tbuildElement;\r\tyourself"
+				"code" : "PpProjectListElement new\r\tmodel: PpProjectList uniqueInstance;\r\tphlowView: GtPhlowView empty;\r\tphlowContext: GtPhlowContext new;\r\tbuildElement;\r\tyourself"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-04T20:59:25.720061-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-04T21:02:32.117967-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Jq72ePX3DQCeGiXrAXFfMw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Next area of interest: how do we have additional filters in the add menu? The examples send {{gtMethod:GtFiltersModel>>#availableFiltersBuilder:}}, so let's see what gets passed as an argument. Checking the senders, it seems we need an object that responds to `availableFilters`, like these:"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-04T21:02:34.967656-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-04T21:02:42.541432-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "cF4+hPX3DQCjYuHHAXFfMw=="
+				},
+				"code" : "#availableFilters gtImplementors"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-04T21:05:27.40988-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-04T21:06:10.394177-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "G6GFjvX3DQCjqZVtAXFfMw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Each case seems to end up with a collection of filter models. Some are created directly, and others through various convoluted mechanisms like "
 			},
 			{
 				"__type" : "textSnippet",
@@ -108,7 +216,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-02T19:59:01.588153-04:00"
+						"dateAndTimeString" : "2025-08-04T21:05:26.696556-04:00"
 					}
 				},
 				"uid" : {

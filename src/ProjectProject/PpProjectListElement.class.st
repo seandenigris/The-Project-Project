@@ -36,24 +36,15 @@ PpProjectListElement >> filterElement [
 { #category : #'as yet unclassified' }
 PpProjectListElement >> filterModel [
 
-	| toggleModel |
-	
 	filterModel ifNotNil: [ ^ filterModel ].
 			
-	toggleModel := GtFilterShortListModel new.
-	toggleModel name: 'Complete?'.
-	toggleModel
-		items: {
-			'Incomplete'.
-			'All'.
-			'Complete'};
-		selectFirstItem.
-		
-	self phlowContext at: #completionFilter put: false.
+	self phlowContext 
+		at: #completionFilter 
+		put: PpProjectCompletionFilter matchingAll.
 		
 	filterModel := GtFilterItemsModel new 
-		items: { toggleModel }";
-		availableFiltersBuilder: GtSmaCCVariableFilter".
+		items: { PpProjectCompletionFilter filterDescriptor };
+		availableFiltersBuilder: PpProjectFilter.
 		
 	filterModel weak
 		when: GtFiltersModelAnnouncement
@@ -71,9 +62,12 @@ PpProjectListElement >> listElement [
 
 	filter := [ :aCol | 
 		| filtered |
-		filtered := aCol
-				select: [ :proj | proj isComplete = (self phlowContext at: #completionFilter) ].
-		filtered sorted: #title ascending ].
+		filtered := self phlowContext 
+			at: #completionFilter
+			ifPresent: [ :aFilter | aCol select: [ :proj | aFilter matches: proj ] ]
+			ifAbsent: [ aCol ].
+
+	filtered sorted: #title ascending ].
 
 	desc := self model childrenDescription.
 
@@ -141,12 +135,10 @@ PpProjectListElement >> phlowView: anObject [
 { #category : #'as yet unclassified' }
 PpProjectListElement >> updateFilters [
 
-	self filterModel items atRandom selectedItem string = 'Complete'
-		ifTrue: [ self phlowContext at: #completionFilter put: true ].
-		
-	self filterModel items atRandom selectedItem string = 'Incomplete'
-		ifTrue: [ self phlowContext at: #completionFilter put: false ].
-		
+	self phlowContext 
+		at: #completionFilter 
+		put: self filterModel items atRandom asSearchFilter.
+
 	self updateList
 ]
 
