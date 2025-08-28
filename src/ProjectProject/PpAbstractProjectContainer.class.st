@@ -204,7 +204,8 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView inContext: aContext [
 				phlowView: aView;
 				phlowContext: aContext;
 				buildElement;
-				yourself ]
+				yourself ];
+		actionUpdateButton
 ]
 
 { #category : #accessing }
