@@ -674,6 +674,23 @@ PpValue >> statusOptions [
 		yourself.
 ]
 
+{ #category : #'as yet unclassified' }
+PpValue >> supportEmails [
+
+	^ self supportMaterials select: [ :mat | mat isKindOf: RlEmail ]
+]
+
+{ #category : #'as yet unclassified' }
+PpValue >> supportEmailsOpenInMacMail [
+
+	| folder |
+	folder := Tempfile new
+		ensureCreateDirectory;
+		yourself.
+	self supportEmails do: [ :email | email fileCopyTo: folder ].
+	CwMacMail new importEmlFilesIn: folder.
+]
+
 { #category : #accessing }
 PpValue >> tags [
 	^ tags ifNil: [ tags := Bag new ]

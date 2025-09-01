@@ -203,19 +203,6 @@ PpProject >> ppTimelineStamp [
 		ifEmpty: [ nil ]
 ]
 
-{ #category : #'as yet unclassified' }
-PpProject >> supportEmailsOpenInMacMail [
-
-	| folder |
-	folder := Tempfile new
-		ensureCreateDirectory;
-		yourself.
-	self supportMaterials 
-		select: [ :mat | mat isKindOf: RlEmail ]
-		thenDo: [ :email | email fileCopyTo: folder ].
-	CwMacMail new importEmlFilesIn: folder.
-]
-
 { #category : #accessing }
 PpProject >> textFromString: aString [
 	^ self isComplete
