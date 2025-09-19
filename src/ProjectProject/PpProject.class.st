@@ -195,6 +195,14 @@ PpProject >> maGtFormFor: aView [
 		yourself
 ]
 
+{ #category : #copying }
+PpProject >> postCopy [
+
+	super postCopy.
+	
+	self conditions: self conditions copy.
+]
+
 { #category : #accessing }
 PpProject >> ppTimelineStamp [
 

@@ -519,6 +519,23 @@ PpValue >> parentsGtViewFor: aView [
 		actionUpdateButton.
 ]
 
+{ #category : #'as yet unclassified' }
+PpValue >> postCopy [
+
+	super postCopy.
+	
+	self postCopyDbDomainObject.
+	
+	self
+		stakeholders: self stakeholders copy;
+		tags: self tags copy;
+		log: nil.
+		
+	self status: self defaultStatus.
+	
+	self masterList ifNotNil: [ :aList | aList ensureChild: self ].
+]
+
 { #category : #printing }
 PpValue >> printOn: aStream [
 	aStream 
