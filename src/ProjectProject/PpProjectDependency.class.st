@@ -21,9 +21,15 @@ PpProjectDependency class >> project: aPpProject dependsOn: anotherPpProject in:
 
 { #category : #accessing }
 PpProjectDependency >> = rhs [
+
+	self species = rhs species ifFalse: [ ^ false ].
+	
 	self masterList == rhs masterList ifFalse: [ ^ false ]. "This should always be true because the domain currently has only one"
+	
 	self project == rhs project ifFalse: [ ^ false ].
+	
 	self dependency == rhs dependency ifFalse: [ ^ false ].
+	
 	^ true
 ]
 
