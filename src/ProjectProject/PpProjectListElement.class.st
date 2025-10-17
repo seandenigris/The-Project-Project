@@ -40,7 +40,7 @@ PpProjectListElement >> filterModel [
 			
 	self phlowContext 
 		at: #completionFilter 
-		put: PpProjectCompletionFilter matchingAll.
+		put: PpProjectCompletionFilter matchingIncomplete.
 		
 	filterModel := GtFilterItemsModel new 
 		items: { PpProjectCompletionFilter filterDescriptor };

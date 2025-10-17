@@ -21,11 +21,10 @@ PpProjectCompletionFilter class >> filterDescriptor [
 				ifNone: [ self matchingAll ] ];
 		named: 'Complete?';
 		order: 18;
-		items: (GtFilterModelAllItem new 
-					label: 'All';
-					withAll: { 
-						PpFilterCompleteItem new. 
-						PpFilterIncompleteItem new } );
+		items: { 
+			PpFilterIncompleteItem new.
+			GtFilterModelAllItem default.
+			PpFilterCompleteItem new };
 		selectFirstItem.
 		
 	"Adapted from GtSearchSubclassResponsibilityMethodsFilter>>#globalFilterDescriptor2"
