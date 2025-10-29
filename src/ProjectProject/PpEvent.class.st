@@ -248,9 +248,10 @@ PpEvent >> isInProgress [
 	
 	self isPast ifTrue: [ ^ false ].
 	self startDate ifNil: [ ^ false ].
-	self startDate > self today ifTrue: [ ^ false ].
-	self startTime ifNotNil: [ :st | st > self now asTime ifTrue: [ ^ false ] ].
-	^ true
+	self startDate = self today ifTrue: [ 
+		self startTime ifNotNil: [ :st | 
+			st > self now asTime ifTrue: [ ^ false ] ] ].
+	^ self startDate < self today
 ]
 
 { #category : #testing }
