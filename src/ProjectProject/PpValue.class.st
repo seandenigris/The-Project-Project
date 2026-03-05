@@ -207,21 +207,24 @@ PpValue >> dueDateString [
 PpValue >> emailsGtViewFor: aView [
 	<gtView>
 	
-	| emails |
+	| emails result |
 	emails := self supportMaterials select: [ :e | e isKindOf: RlEmail ].
 	emails ifEmpty: [ ^ aView empty ].
 	
-	^ (aView 
+	result := (aView 
 		maColumnedListOf: RlEmail
 		descriptionsSelect: [ :desc | desc definingContext methodClass = RlEmail ]
-		thenContainerDo: [ :aContainer | 
+		containerDo: [ :aContainer | 
 			(aContainer childNamed: 'timestamp')
-				display: [ :dt | dt asDate mmddyyyy ] ])
+				display: [ :dt | dt asDate mmddyyyy ].
+			(aContainer childNamed: 'sender')
+				referenceDisplay: #displayString ])
 		title: 'Emails' translated;
 		priority: 20;
 		items: [ emails asSortedCollection: #date descending ];
 		inspectButtonFor: [ emails ];
 		actionUpdateButton.
+	^ result
 ]
 
 { #category : 'accessing' }
