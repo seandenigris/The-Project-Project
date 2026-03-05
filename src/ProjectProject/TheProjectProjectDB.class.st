@@ -1,15 +1,17 @@
 Class {
-	#name : #TheProjectProjectDB,
-	#superclass : #SpFileDatabase,
-	#category : 'ProjectProject-Persistence'
+	#name : 'TheProjectProjectDB',
+	#superclass : 'SpFileDatabase',
+	#category : 'ProjectProject-Persistence',
+	#package : 'ProjectProject',
+	#tag : 'Persistence'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TheProjectProjectDB class >> backupDirectoryParent [
 	^ FileLocator dynabookData / 'The Project Project'
 ]
 
-{ #category : #'loading/saving' }
+{ #category : 'loading/saving' }
 TheProjectProjectDB class >> schema [
 
 	^ {

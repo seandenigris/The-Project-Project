@@ -1,32 +1,34 @@
 Class {
-	#name : #PpArchitecturalItem,
-	#superclass : #PpInventoryItem,
+	#name : 'PpArchitecturalItem',
+	#superclass : 'PpInventoryItem',
 	#instVars : [
 		'needsReplacement',
 		'dimensions',
 		'material',
 		'hasLintel'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpArchitecturalItem class >> isAbstract [
 		
 	^ self == PpArchitecturalItem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> dimensions [
 	^ dimensions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> dimensions: anObject [
 	dimensions := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpArchitecturalItem >> displayStringOn: aStream [
 
 	self name isEmptyOrNil
@@ -34,17 +36,17 @@ PpArchitecturalItem >> displayStringOn: aStream [
 		ifTrue: [ self printSummaryOn: aStream ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> hasLintel [
 	^ hasLintel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> hasLintel: anObject [
 	hasLintel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> hasLintelDescription [
 	<magritteDescription>
 	
@@ -54,33 +56,33 @@ PpArchitecturalItem >> hasLintelDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> location [
 	
 	^ location ifNil: [ location := PpLocationBorder new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> material [
 	^ material
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> material: anObject [
 	material := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> needsReplacement [
 	^ needsReplacement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> needsReplacement: anObject [
 	needsReplacement := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpArchitecturalItem >> needsReplacementDescription [
 	<magritteDescription>
 	
@@ -90,7 +92,7 @@ PpArchitecturalItem >> needsReplacementDescription [
 		yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpArchitecturalItem >> printDimensionsOn: aStream [
 
 	self dimensions ifNotNil: [ :dims |
@@ -101,7 +103,7 @@ PpArchitecturalItem >> printDimensionsOn: aStream [
 			nextPutAll: '" ' ].
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpArchitecturalItem >> printSummaryOn: aStream [
 
 	self printDimensionsOn: aStream.
@@ -113,7 +115,7 @@ PpArchitecturalItem >> printSummaryOn: aStream [
 		nextPutAll: self typeString.
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpArchitecturalItem >> typeString [
 
 	self subclassResponsibility

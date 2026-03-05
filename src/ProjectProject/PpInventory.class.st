@@ -1,6 +1,6 @@
 Class {
-	#name : #PpInventory,
-	#superclass : #Object,
+	#name : 'PpInventory',
+	#superclass : 'Object',
 	#traits : 'PeTEnumerable',
 	#classTraits : 'PeTEnumerable classTrait',
 	#instVars : [
@@ -9,33 +9,35 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpInventory class >> restoreFrom: anObject [
 
 	UniqueInstance := anObject
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpInventory class >> spData [
 
 	^ UniqueInstance
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpInventory class >> uniqueInstance [
 	^ UniqueInstance ifNil: [ UniqueInstance := self new ]
 ]
 
-{ #category : #'adding / removing' }
+{ #category : 'adding / removing' }
 PpInventory >> addItem: anItem [
 
 	^ self ensureItem: anItem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventory >> addItemNamed: aString [
 
 	| item |
@@ -43,7 +45,7 @@ PpInventory >> addItemNamed: aString [
 	^ self addItem: item
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventory >> ensureItem: anItem [
 
 	(self items identityIncludes: anItem)
@@ -52,7 +54,7 @@ PpInventory >> ensureItem: anItem [
 	^ anItem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventory >> gtSearchItemsFor: aSearch [
 	<gtSearch>
 	^ aSearch list
@@ -63,7 +65,7 @@ PpInventory >> gtSearchItemsFor: aSearch [
 		matchSubstrings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventory >> gtSearchNewItemFor: aSearch [
 	<gtSearch>
 	
@@ -78,7 +80,7 @@ PpInventory >> gtSearchNewItemFor: aSearch [
 		send: [ :anObject | self addItem: anObject ]
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 PpInventory >> gtViewItemsOn: aView [
 	<gtView>
 	^ aView columnedList
@@ -94,12 +96,12 @@ PpInventory >> gtViewItemsOn: aView [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventory >> items [
 	^ items ifNil: [ items := SortedCollection sortUsing: #name ascending ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventory >> privateEnumerable [
 
 	^ self items

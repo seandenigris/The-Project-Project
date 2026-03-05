@@ -1,59 +1,61 @@
 Class {
-	#name : #PpAbstractLocation,
-	#superclass : #Object,
+	#name : 'PpAbstractLocation',
+	#superclass : 'Object',
 	#traits : 'DbTDomainObject',
 	#classTraits : 'DbTDomainObject classTrait',
 	#instVars : [
 		'name'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractLocation >> displayStringOn: aStream [
 
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractLocation >> distanceFrom: rhs [
 	^ self geoLocation distanceFrom: rhs geoLocation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractLocation >> geoLocation [
 	^ self propertyAt: #geoLocation ifAbsent: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractLocation >> geoLocation: aPpGeoLocation [
 	^ self propertyAt: #geoLocation put: aPpGeoLocation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractLocation >> initialize [
 	super initialize.
 	self ensureUUID
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractLocation >> list [
 	^ PpLocationList uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractLocation >> name [
 
 	^ name ifNil: [ '' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractLocation >> name: anObject [
 
 	name := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractLocation >> nameDescription [
 	<magritteDescription>
 	
@@ -63,7 +65,7 @@ PpAbstractLocation >> nameDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractLocation >> printOn: aStream [
 
 	self printFromDisplayStringOn: aStream

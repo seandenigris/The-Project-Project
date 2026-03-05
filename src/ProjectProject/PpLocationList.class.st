@@ -1,6 +1,6 @@
 Class {
-	#name : #PpLocationList,
-	#superclass : #Object,
+	#name : 'PpLocationList',
+	#superclass : 'Object',
 	#traits : 'PeTEnumerable',
 	#classTraits : 'PeTEnumerable classTrait',
 	#instVars : [
@@ -10,33 +10,35 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpLocationList class >> restoreFrom: anObject [
 
 	UniqueInstance := anObject
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpLocationList class >> spData [
 
 	^ UniqueInstance
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpLocationList class >> uniqueInstance [
 	^ UniqueInstance ifNil: [ UniqueInstance := self new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationList >> addChild: aLocation [
 
 	^ self rootChildren add: aLocation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationList >> addChildNamed: aString [
 
 	| location |
@@ -44,7 +46,7 @@ PpLocationList >> addChildNamed: aString [
 	^ self addChild: location
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationList >> allChildren [
 
 	| roots branches |
@@ -53,7 +55,7 @@ PpLocationList >> allChildren [
 	^ (roots addAll: branches; yourself) asSet.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationList >> gtSearchLocationsFor: aSearch [
 	<gtSearch>
 	^ aSearch list
@@ -64,7 +66,7 @@ PpLocationList >> gtSearchLocationsFor: aSearch [
 		matchSubstrings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationList >> gtSearchNewLocationFor: aSearch [
 	<gtSearch>
 	
@@ -84,7 +86,7 @@ PpLocationList >> gtSearchNewLocationFor: aSearch [
 		send: [ :result | self addChild: result ]
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 PpLocationList >> gtViewLocationsOn: aView [
 	<gtView>
 	^ aView tree
@@ -95,19 +97,19 @@ PpLocationList >> gtViewLocationsOn: aView [
 		actionUpdateButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationList >> privateEnumerable [
 
 	^ self allChildren
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationList >> rootChildren [
 
 	^ rootChildren ifNil: [ rootChildren := Set new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationList >> rootChildren: anObject [
 
 	rootChildren := anObject

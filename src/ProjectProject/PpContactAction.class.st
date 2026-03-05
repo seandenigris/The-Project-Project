@@ -1,13 +1,15 @@
 Class {
-	#name : #PpContactAction,
-	#superclass : #PpAction,
+	#name : 'PpContactAction',
+	#superclass : 'PpAction',
 	#instVars : [
 		'strategy'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction class >> gtSpotterItemsFromString: aString [
 
 	| receivers receiverString receiverMatches strategies |
@@ -47,7 +49,7 @@ PpContactAction class >> gtSpotterItemsFromString: aString [
 	- tried to have all strategies available when none specified, but too confusing"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> completeAndWait [
 
 	self 
@@ -55,7 +57,7 @@ PpContactAction >> completeAndWait [
 		wait
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> displayStringOn: aStream [
 
 	strategy ifNotNil: [ 
@@ -70,7 +72,7 @@ PpContactAction >> displayStringOn: aStream [
 			nextPutAll: ttl ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> doIt [
 	CwMacMail new
 		newMessageTo: self receiver fullName 
@@ -78,7 +80,7 @@ PpContactAction >> doIt [
 		re: self title asFollows: ''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> gtSpotterText [
 
 	^ String streamContents: [ :str |
@@ -89,7 +91,7 @@ PpContactAction >> gtSpotterText [
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> printStrategyOn: aStream [
 
 	strategy ifNotNil: [ 
@@ -98,7 +100,7 @@ PpContactAction >> printStrategyOn: aStream [
 			space ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> receiver [
 
 	^ self stakeholders 
@@ -107,7 +109,7 @@ PpContactAction >> receiver [
 		ifNone: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> receiver: aPerson [
 
 	^ self stakeholders 
@@ -116,7 +118,7 @@ PpContactAction >> receiver: aPerson [
 		ifNone: [ (PpStakeholder project: self person: aPerson role: #receiver) link ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> receiverDescription [
 	<magritteDescription>
 	
@@ -128,19 +130,19 @@ PpContactAction >> receiverDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> strategy [
 
 	^ strategy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> strategy: anObject [
 
 	strategy := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> strategyDescription [
 	<magritteDescription>
 	^ MASingleOptionDescription new
@@ -152,7 +154,7 @@ PpContactAction >> strategyDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> titleDescription [
 
 	| result |
@@ -168,7 +170,7 @@ PpContactAction >> titleDescription [
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpContactAction >> wait [
 
 	| waitingFor |

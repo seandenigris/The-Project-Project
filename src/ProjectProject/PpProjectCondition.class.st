@@ -14,12 +14,14 @@ The location condition is pretty straightforward.
 The tool one is more interesting. What if it's a tool you don't have? So then there's an additional step: get the tool, but how to model the condition? Maybe it's to check to see if you have the tool or to buy the tool or whatever. So that's actually another project with its own conditions e.g. I have to look at work for a tool, so work is the location condition, but I'm doing the actual job at home, so home is that location condition.
 "
 Class {
-	#name : #PpProjectCondition,
-	#superclass : #Object,
-	#category : #'ProjectProject-Core-Projects-Support'
+	#name : 'PpProjectCondition',
+	#superclass : 'Object',
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #'spotter - instance creation' }
+{ #category : 'spotter - instance creation' }
 PpProjectCondition class >> gtSpotterNewFor: aSearch [
 	<gtSearch>
 	^ aSearch list
@@ -31,13 +33,13 @@ PpProjectCondition class >> gtSpotterNewFor: aSearch [
 				yourself)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpProjectCondition class >> label [
 
 	^ (self name allButFirst: 'Pp' size) allButLast: 'Requirement' size
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpProjectCondition class >> peCanHandleFromString: aString [
 	^ self ~= PpProjectCondition
 ]

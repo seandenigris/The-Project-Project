@@ -1,36 +1,38 @@
 Class {
-	#name : #PpWindow,
-	#superclass : #PpArchitecturalItem,
+	#name : 'PpWindow',
+	#superclass : 'PpArchitecturalItem',
 	#instVars : [
 		'type'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWindow >> location [
 
 	^ location
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWindow >> replacementStringWithSeparator: aString [
 
 	^ String streamContents: [ :aStream |
 		self printSummaryOn: aStream ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWindow >> type [
 	^ type
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWindow >> type: anObject [
 	type := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWindow >> typeString [
 
 	^ String streamContents: [ :aStream |

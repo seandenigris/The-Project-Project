@@ -1,18 +1,19 @@
 Class {
-	#name : #PpTimeline,
-	#superclass : #Object,
+	#name : 'PpTimeline',
+	#superclass : 'Object',
 	#instVars : [
 		'project'
 	],
-	#category : #ProjectProject
+	#category : 'ProjectProject',
+	#package : 'ProjectProject'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTimeline >> project [
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTimeline >> project: anObject [
 	project := anObject
 ]

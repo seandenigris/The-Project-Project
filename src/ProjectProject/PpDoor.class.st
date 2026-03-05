@@ -1,22 +1,24 @@
 Class {
-	#name : #PpDoor,
-	#superclass : #PpAbstractDoor,
+	#name : 'PpDoor',
+	#superclass : 'PpAbstractDoor',
 	#instVars : [
 		'isExterior',
 		'visionPanel',
 		'frameNeedsReplacement'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpDoor >> displayStringOn: aStream [
 
 	super displayStringOn: aStream.
 	self displayVisionPanelOn: aStream
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpDoor >> displayVisionPanelOn: aStream [
 
 	self visionPanel ifNotNil: [ :vp |
@@ -25,39 +27,39 @@ PpDoor >> displayVisionPanelOn: aStream [
 			display: vp ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> frameNeedsReplacement [
 	^ frameNeedsReplacement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> frameNeedsReplacement: anObject [
 	frameNeedsReplacement := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> fringes [
 
 	^ #('weatherstripping' 'hinges' 'closer')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> glass [
 
 	^ '1/4" safety laminated'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> isExterior [
 	^ isExterior
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> isExterior: anObject [
 	isExterior := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> replacementStringWithSeparator: aString [
 
 	^ String streamContents: [ :aStream |
@@ -69,7 +71,7 @@ PpDoor >> replacementStringWithSeparator: aString [
 			ifTrue: [ aStream nextPutAll: ' and new buck' ]. ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> typeString [
 
 	^ String streamContents: [ :aStream |
@@ -80,17 +82,17 @@ PpDoor >> typeString [
 		aStream nextPutAll: 'door' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> visionPanel [
 	^ visionPanel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> visionPanel: anObject [
 	visionPanel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoor >> visionPanelDo: aBlock [
 	
 	visionPanel ifNil: [ visionPanel := PpVisionPanel new ].

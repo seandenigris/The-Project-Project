@@ -1,26 +1,27 @@
 Class {
-	#name : #PpEventDocumentImport,
-	#superclass : #Object,
+	#name : 'PpEventDocumentImport',
+	#superclass : 'Object',
 	#instVars : [
 		'event',
 		'file',
 		'work',
 		'materialName'
 	],
-	#category : #ProjectProject
+	#category : 'ProjectProject',
+	#package : 'ProjectProject'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> event [
 	^ event
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> event: anObject [
 	event := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> eventDescription [
 	<magritteDescription>
 	
@@ -32,13 +33,13 @@ PpEventDocumentImport >> eventDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> eventLog [
 
 	^ PpEventLog uniqueInstance
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpEventDocumentImport >> execute [
 
 	| resource material |
@@ -60,17 +61,17 @@ PpEventDocumentImport >> execute [
 	self event supportMaterials add: material
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> file [
 	^ file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> file: anObject [
 	file := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> fileDescription [
 	<magritteDescription>
 	
@@ -81,30 +82,30 @@ PpEventDocumentImport >> fileDescription [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpEventDocumentImport >> fileOpenGtActionFor: anAction [
 	<gtAction>
 	
 	^ self file gtActionWebBrowseFor: anAction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> library [
 
 	^ LlLibrary uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> materialName [
 	^ materialName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> materialName: anObject [
 	materialName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> materialNameDescription [
 	<magritteDescription>
 	
@@ -114,17 +115,17 @@ PpEventDocumentImport >> materialNameDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> work [
 	^ work
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> work: anObject [
 	work := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventDocumentImport >> workDescription [
 	<magritteDescription>
 	

@@ -4,15 +4,17 @@ How do we know our current location?
 One way ([via howtogeek](https://www.howtogeek.com/252070/how-do-you-find-a-computers-geographic-location-using-the-command-line/)) is: `curl ipinfo.io`, which gives a general location based on IP address.
 "
 Class {
-	#name : #PpLocationCondition,
-	#superclass : #PpProjectCondition,
+	#name : 'PpLocationCondition',
+	#superclass : 'PpProjectCondition',
 	#instVars : [
 		'location'
 	],
-	#category : #'ProjectProject-Core-Projects-Support'
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationCondition class >> gtSpotterItemsFromString: aString [
 
 	| bestMatches |
@@ -30,7 +32,7 @@ PpLocationCondition class >> gtSpotterItemsFromString: aString [
 			yourself ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationCondition >> isSatisfied [
 	| currentLocation distance tolerance |
 	currentLocation := '/Applications/Utilities/CoreLocationCLI' asSuCommand
@@ -43,19 +45,19 @@ PpLocationCondition >> isSatisfied [
 	^ distance < tolerance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationCondition >> location [
 
 	^ location
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationCondition >> location: anObject [
 
 	location := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationCondition >> locationDescription [
 	<magritteDescription>
 	
@@ -67,12 +69,12 @@ PpLocationCondition >> locationDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationCondition >> locationOptions [
 	^ PpLocationList uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationCondition >> printOn: aStream [
 
 	aStream

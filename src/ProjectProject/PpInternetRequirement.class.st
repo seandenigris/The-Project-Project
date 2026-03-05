@@ -2,17 +2,19 @@
 Powered by <https://github.com/sivel/speedtest-cli> (Python API)
 "
 Class {
-	#name : #PpInternetRequirement,
-	#superclass : #PpProjectCondition,
-	#category : #'ProjectProject-Core-Projects-Support'
+	#name : 'PpInternetRequirement',
+	#superclass : 'PpProjectCondition',
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpInternetRequirement class >> fromString: aString [
 	^ self new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInternetRequirement >> isConnected [
 
 	| pySource |
@@ -28,7 +30,7 @@ s = speedtest.Speedtest()'.
  	do: [ :e | false ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInternetRequirement >> isHighSpeed [
 
 	| downloadBitsPerSecond oneHundredGb pySource |

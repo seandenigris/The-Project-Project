@@ -1,43 +1,45 @@
 Class {
-	#name : #PpLocation,
-	#superclass : #PpAbstractLocation,
+	#name : 'PpLocation',
+	#superclass : 'PpAbstractLocation',
 	#instVars : [
 		'children'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation class >> list [
 	^ PpLocationList uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation class >> named: aString [
 	^ self new
 		name: aString;
 		yourself
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpLocation class >> restoreFrom: anObject [
 
 	PpLocationList restoreFrom:anObject.
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpLocation class >> spData [
 
 	^ PpLocationList spData
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> addChild: aLocation [
 
 	^ self children add: aLocation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> addChildNamed: aString [
 
 	| child |
@@ -45,7 +47,7 @@ PpLocation >> addChildNamed: aString [
 	^ self addChild: child
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> allChildren [
 
 	| roots branches |
@@ -54,17 +56,17 @@ PpLocation >> allChildren [
 	^ (roots, branches) asSet.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> children [
 	^ self maLazyInstVarUsing: self childrenDescription
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpLocation >> children: aCollection [ 
 	children := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> childrenDescription [
 	<magritteDescription>
 	
@@ -77,7 +79,7 @@ PpLocation >> childrenDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> childrenForItemsView [
 
 	^ OrderedCollection new
@@ -86,7 +88,7 @@ PpLocation >> childrenForItemsView [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> childrenGtViewOn: aView [
 	<gtView>
 	^ aView tree
@@ -97,20 +99,20 @@ PpLocation >> childrenGtViewOn: aView [
 		actionUpdateButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> displayStringOn: aStream [
 
 	aStream nextPutAll: self fullName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> fullName [
 	^ String streamContents: [ :s |
 			self parent ifNotNil: [ :p | s << p fullName; space ].
 			s << self name ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> gtSearchNewLocationFor: aSearch [
 	<gtSearch>
 	^ aSearch explicit
@@ -128,14 +130,14 @@ PpLocation >> gtSearchNewLocationFor: aSearch [
 		send: [ :result | self addChild: result ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> items [
 		
 	^ self inventory items select: [ : item |
 		item location = self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> itemsAll [
 		
 	^ self children
@@ -146,7 +148,7 @@ PpLocation >> itemsAll [
 				yourself ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> itemsGtViewOn: aView [
 	<gtView>
 	^ aView tree
@@ -158,7 +160,7 @@ PpLocation >> itemsGtViewOn: aView [
 		actionUpdateButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> parent [
 
 	^ self list allChildren 
@@ -166,7 +168,7 @@ PpLocation >> parent [
 		ifNone: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocation >> rootChildren [
 	^ self children
 ]

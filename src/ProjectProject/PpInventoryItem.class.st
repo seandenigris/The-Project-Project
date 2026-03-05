@@ -1,16 +1,18 @@
 Class {
-	#name : #PpInventoryItem,
-	#superclass : #Object,
+	#name : 'PpInventoryItem',
+	#superclass : 'Object',
 	#traits : 'DbTDomainObject',
 	#classTraits : 'DbTDomainObject classTrait',
 	#instVars : [
 		'name',
 		'location'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem class >> named: aString [ 
 
 	^ self new
@@ -18,13 +20,13 @@ PpInventoryItem class >> named: aString [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem class >> replacementStringSeparator [
 
 	^ "'; '"String crlf, '- '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> displayStringOn: aStream [
 	
 	name ifNotNil: [ aStream nextPutAll: name ].
@@ -35,13 +37,13 @@ PpInventoryItem >> displayStringOn: aStream [
 			nextPutAll: self location fullName ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> import [
 		
 	self inventory addItem: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> importDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -52,25 +54,25 @@ PpInventoryItem >> importDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> initialize [
 	super initialize.
 	self ensureUUID
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> location [
 
 	^ location
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> location: anObject [
 
 	location := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> locationDescription [
 	<magritteDescription>
 	
@@ -82,19 +84,19 @@ PpInventoryItem >> locationDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> name [
 
 	^ self maLazyInstVarUsing: self nameDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> name: anObject [
 
 	name := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> nameDescription [
 	<magritteDescription>
 	
@@ -105,19 +107,19 @@ PpInventoryItem >> nameDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> photos [
 
 	^ self supportMaterials select: [ :e | e isKindOf: RlPicture ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> printOn: aStream [
 	
 	self printFromDisplayStringOn: aStream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> replacementGtViewFor: aView [
 	<gtView>
 	
@@ -132,19 +134,19 @@ PpInventoryItem >> replacementGtViewFor: aView [
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> replacementString [
 
 	^ self replacementStringWithSeparator: self class replacementStringSeparator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> replacementStringOldFormat [
 
 	^ self replacementStringWithSeparator: ', '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryItem >> replacementStringWithSeparator: aString [
 	self subclassResponsibility
 ]

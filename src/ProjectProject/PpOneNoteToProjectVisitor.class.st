@@ -1,29 +1,31 @@
 Class {
-	#name : #PpOneNoteToProjectVisitor,
-	#superclass : #MsalOneNotePageVisitor,
+	#name : 'PpOneNoteToProjectVisitor',
+	#superclass : 'MsalOneNotePageVisitor',
 	#instVars : [
 		'project'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOneNoteToProjectVisitor >> project [
 	^ project ifNil: [ project := PpProject new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOneNoteToProjectVisitor >> visitCreationTimetamp: aDateAndTime [
 	self project status timestamp: aDateAndTime.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOneNoteToProjectVisitor >> visitImage: anRlResource [
 				
 	self project supportMaterials add: anRlResource import.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOneNoteToProjectVisitor >> visitTitle: aString [
 
 	self project title: aString

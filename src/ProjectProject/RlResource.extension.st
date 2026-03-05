@@ -1,6 +1,6 @@
-Extension { #name : #RlResource }
+Extension { #name : 'RlResource' }
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 RlResource >> ppSupportMaterialDisplayString [
 
 	^ self name ifNil: [ self displayString ]

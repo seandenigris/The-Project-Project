@@ -1,20 +1,22 @@
 Class {
-	#name : #PpAction,
-	#superclass : #PpProject,
-	#category : #'ProjectProject-Core-Projects'
+	#name : 'PpAction',
+	#superclass : 'PpProject',
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAction >> defaultStatus [
 	^ PpActiveStatus new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpAction >> isAction [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAction >> isNextAction [
 	
 	self isComplete ifTrue: [ ^ false ].

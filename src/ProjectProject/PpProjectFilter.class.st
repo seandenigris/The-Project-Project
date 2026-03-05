@@ -1,10 +1,12 @@
 Class {
-	#name : #PpProjectFilter,
-	#superclass : #GtSearchFilter,
-	#category : #'ProjectProject-UI-Bloc'
+	#name : 'PpProjectFilter',
+	#superclass : 'GtSearchFilter',
+	#category : 'ProjectProject-UI-Bloc',
+	#package : 'ProjectProject',
+	#tag : 'UI-Bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectFilter class >> availableFilters [
 
 	^ {

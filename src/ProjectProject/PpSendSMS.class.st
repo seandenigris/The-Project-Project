@@ -7,18 +7,20 @@
 - Open to misunderstanding
 "
 Class {
-	#name : #PpSendSMS,
-	#superclass : #PpContactStrategy,
-	#category : #'ProjectProject-Core-Projects-Support'
+	#name : 'PpSendSMS',
+	#superclass : 'PpContactStrategy',
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSendSMS class >> label [
 
 	^ 'Text'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSendSMS class >> priority [
 
 	^ 400

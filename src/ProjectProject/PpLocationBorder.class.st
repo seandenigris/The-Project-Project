@@ -1,13 +1,15 @@
 Class {
-	#name : #PpLocationBorder,
-	#superclass : #PpAbstractLocation,
+	#name : 'PpLocationBorder',
+	#superclass : 'PpAbstractLocation',
 	#instVars : [
 		'locations'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationBorder >> childrenDescription [
 	<magritteDescription>
 	
@@ -20,7 +22,7 @@ PpLocationBorder >> childrenDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationBorder >> display: aSelector on: aStream [
 		
 	aStream nextPutAll: 'between '.
@@ -30,7 +32,7 @@ PpLocationBorder >> display: aSelector on: aStream [
 		separatedBy: [ aStream nextPutAll: ' and ' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationBorder >> displayStringOn: aStream [
 
 	name ifNotNil: [ 
@@ -40,24 +42,24 @@ PpLocationBorder >> displayStringOn: aStream [
 	self display: #fullName on: aStream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationBorder >> fullName [
 
 	^ String streamContents: [ :aStream |
 		self display: #fullName on: aStream ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationBorder >> locations [
 	^ locations ifNil: [ locations := IdentitySet new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationBorder >> locations: anObject [
 	locations := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLocationBorder >> name [
 
 	name ifNotNil: [ ^ name ].

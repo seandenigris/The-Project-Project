@@ -1,6 +1,6 @@
 Class {
-	#name : #PpOverheadDoor,
-	#superclass : #PpAbstractDoor,
+	#name : 'PpOverheadDoor',
+	#superclass : 'PpAbstractDoor',
 	#instVars : [
 		'model',
 		'sections',
@@ -10,10 +10,12 @@ Class {
 		'finish',
 		'motor'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor class >> ndOtherSpecifications [
 
 	^ #(
@@ -26,27 +28,27 @@ PpOverheadDoor class >> ndOtherSpecifications [
 		'Include new trim and weatherstripping').
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> finish [
 	^ finish
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> finish: anObject [
 	finish := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> jambMaterial [
 	^ jambMaterial
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> jambMaterial: anObject [
 	jambMaterial := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> jambMaterialDescription [
 	<magritteDescription>
 	
@@ -57,17 +59,17 @@ PpOverheadDoor >> jambMaterialDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> material [
 	^ material
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> material: anObject [
 	material := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> materialDescription [
 	<magritteDescription>
 	
@@ -78,27 +80,27 @@ PpOverheadDoor >> materialDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> model [
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> model: anObject [
 	model := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> motor [
 	^ motor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> motor: anObject [
 	motor := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> motorDo: aBlock [
 	
 	motor ifNil: [ motor := PpOverheadDoorMotor forDoor: self ].
@@ -106,27 +108,27 @@ PpOverheadDoor >> motorDo: aBlock [
 	aBlock value: self motor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> otherSpecifications [
 	^ otherSpecifications
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> otherSpecifications: anObject [
 	otherSpecifications := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> panels [
 	^ panels
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> panels: anObject [
 	panels := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> printDimensionsOn: aStream [
 
 	self dimensions ifNotNil: [ :dims |
@@ -141,7 +143,7 @@ PpOverheadDoor >> printDimensionsOn: aStream [
 			nextPutAll: '" ' ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> replacementGtViewFor: aView [
 	<gtView>
 	
@@ -152,7 +154,7 @@ PpOverheadDoor >> replacementGtViewFor: aView [
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> replacementStringWithSeparator: aString [
 
 	^ String streamContents: [ :aStream |
@@ -180,17 +182,17 @@ PpOverheadDoor >> replacementStringWithSeparator: aString [
 				nextPutAll: filledSpec ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> sections [
 	^ sections
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> sections: anObject [
 	sections := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoor >> typeString [
 
 	^ 'overhead door'

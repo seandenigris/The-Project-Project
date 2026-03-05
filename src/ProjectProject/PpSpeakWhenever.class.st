@@ -1,16 +1,18 @@
 Class {
-	#name : #PpSpeakWhenever,
-	#superclass : #PpContactStrategy,
-	#category : #'ProjectProject-Core-Projects-Support'
+	#name : 'PpSpeakWhenever',
+	#superclass : 'PpContactStrategy',
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSpeakWhenever class >> label [
 
 	^ 'Speak to'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSpeakWhenever class >> priority [
 
 	^ 300

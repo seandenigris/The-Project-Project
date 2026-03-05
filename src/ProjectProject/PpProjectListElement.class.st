@@ -1,6 +1,6 @@
 Class {
-	#name : #PpProjectListElement,
-	#superclass : #BrVerticalPane,
+	#name : 'PpProjectListElement',
+	#superclass : 'BrVerticalPane',
 	#instVars : [
 		'filterModel',
 		'listElement',
@@ -8,10 +8,12 @@ Class {
 		'phlowContext',
 		'phlowView'
 	],
-	#category : #'ProjectProject-UI-Bloc'
+	#category : 'ProjectProject-UI-Bloc',
+	#package : 'ProjectProject',
+	#tag : 'UI-Bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectListElement >> buildElement [
 	self matchParent.
 	self
@@ -27,13 +29,13 @@ PpProjectListElement >> buildElement [
 	"self updateList"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectListElement >> filterElement [
 	
 	^ self filterModel asFiltersElement
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectListElement >> filterModel [
 
 	filterModel ifNotNil: [ ^ filterModel ].
@@ -54,7 +56,7 @@ PpProjectListElement >> filterModel [
 	^ filterModel
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectListElement >> listElement [
 	| filter desc view |
 	
@@ -102,37 +104,37 @@ PpProjectListElement >> listElement [
 				c vertical matchParent ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectListElement >> model [
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectListElement >> model: anObject [
 	model := anObject.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectListElement >> phlowContext [
 	^ phlowContext
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectListElement >> phlowContext: anObject [
 	phlowContext := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectListElement >> phlowView [
 	^ phlowView
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectListElement >> phlowView: anObject [
 	phlowView := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectListElement >> updateFilters [
 
 	self phlowContext 
@@ -142,7 +144,7 @@ PpProjectListElement >> updateFilters [
 	self updateList
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectListElement >> updateList [
 	| oldList |
 	oldList := self listElement.

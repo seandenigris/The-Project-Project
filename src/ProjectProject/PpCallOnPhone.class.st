@@ -8,24 +8,26 @@
 - no written record
 "
 Class {
-	#name : #PpCallOnPhone,
-	#superclass : #PpContactStrategy,
-	#category : #'ProjectProject-Core-Projects-Support'
+	#name : 'PpCallOnPhone',
+	#superclass : 'PpContactStrategy',
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpCallOnPhone class >> label [
 
 	^ 'Call'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpCallOnPhone class >> modelClass [
 
 	^ PpPhoneCall
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpCallOnPhone class >> priority [
 
 	^ 400

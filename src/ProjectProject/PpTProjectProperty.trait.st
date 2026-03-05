@@ -1,21 +1,23 @@
 Trait {
-	#name : #PpTProjectProperty,
-	#category : #'ProjectProject-Core-Projects'
+	#name : 'PpTProjectProperty',
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTProjectProperty >> hasPpProject [
 
 	^ self properties includesKey: #ppProject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpTProjectProperty >> isPpValuedObject [
 	"If yes, self will *become* a project via a wrapper. If not, we will *link* to a related project"
 	self explicitRequirement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTProjectProperty >> newLinkedPpProject [
 	
 	| result |
@@ -28,7 +30,7 @@ PpTProjectProperty >> newLinkedPpProject [
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTProjectProperty >> newPpProject [
 
 	^ self isPpValuedObject
@@ -36,19 +38,19 @@ PpTProjectProperty >> newPpProject [
 		ifFalse: [ self newLinkedPpProject ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpTProjectProperty >> postCopyProjectProperty [
 	"Send after super postCopy"
 	
 	self ppProjectBasic: nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTProjectProperty >> ppLinkedProjectClass [
 	^ PpProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTProjectProperty >> ppProject [
 
 	^ self
@@ -56,7 +58,7 @@ PpTProjectProperty >> ppProject [
 		ifAbsentPut: [ self newPpProject ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTProjectProperty >> ppProject: aPpValue [
 		
 	aPpValue 
@@ -66,7 +68,7 @@ PpTProjectProperty >> ppProject: aPpValue [
 	self ppProjectBasic: aPpValue.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTProjectProperty >> ppProjectBasic: aPpValue [
 
 	self
@@ -74,17 +76,17 @@ PpTProjectProperty >> ppProjectBasic: aPpValue [
 		putRemovingNil: aPpValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTProjectProperty >> ppProjectConfigureLinked: aPpValue [
 	"Override for custom project configuration e.g. setting a backlink from the project to self."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTProjectProperty >> ppProjectOnRemove [
 	"Override for custom projects e.g. removing a backlink from the project to self."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTProjectProperty >> ppProjectTitle [
 	"#title is set as the default for convenience. Override as needed"
 

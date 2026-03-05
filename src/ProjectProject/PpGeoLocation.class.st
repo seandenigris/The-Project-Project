@@ -1,14 +1,16 @@
 Class {
-	#name : #PpGeoLocation,
-	#superclass : #Object,
+	#name : 'PpGeoLocation',
+	#superclass : 'Object',
 	#instVars : [
 		'latitude',
 		'longitude'
 	],
-	#category : #'ProjectProject-Core'
+	#category : 'ProjectProject-Core',
+	#package : 'ProjectProject',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpGeoLocation class >> fromCoreLocationCLIOutput: aString [
 
 	| latLong |
@@ -19,7 +21,7 @@ PpGeoLocation class >> fromCoreLocationCLIOutput: aString [
 		yourself.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpGeoLocation >> distanceFrom: aPpGeoLocation [ 
 	^ PBApplication uniqueInstance 
 		sendSource: 'from geopy.distance import geodesic
@@ -33,36 +35,36 @@ geodesic(here, there).feet'
 			#r_long -> aPpGeoLocation longitude }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpGeoLocation >> geoLocation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpGeoLocation >> latitude [
 
 	^ latitude
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpGeoLocation >> latitude: anObject [
 
 	latitude := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpGeoLocation >> longitude [
 
 	^ longitude
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpGeoLocation >> longitude: anObject [
 
 	longitude := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpGeoLocation >> showInGoogleMaps [
 	| urlTemplate urlString |
 	urlString := 'https://www.google.com/maps/search/?api=1'.

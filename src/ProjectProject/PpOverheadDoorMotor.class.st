@@ -1,14 +1,16 @@
 Class {
-	#name : #PpOverheadDoorMotor,
-	#superclass : #PpInventoryItem,
+	#name : 'PpOverheadDoorMotor',
+	#superclass : 'PpInventoryItem',
 	#instVars : [
 		'model',
 		'otherSpecifications'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoorMotor class >> forDoor: anOverheadDoor [
 
 	^ self new
@@ -17,7 +19,7 @@ PpOverheadDoorMotor class >> forDoor: anOverheadDoor [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoorMotor class >> ndOtherSpecifications [
 
 	^ #(
@@ -29,27 +31,27 @@ PpOverheadDoorMotor class >> ndOtherSpecifications [
 		'(1) Remote control')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoorMotor >> model [
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoorMotor >> model: anObject [
 	model := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoorMotor >> otherSpecifications [
 	^ otherSpecifications
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoorMotor >> otherSpecifications: anObject [
 	otherSpecifications := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOverheadDoorMotor >> replacementStringWithSeparator: aString [
 
 	^ String streamContents: [ :aStream |

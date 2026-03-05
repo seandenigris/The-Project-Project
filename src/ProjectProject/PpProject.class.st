@@ -4,16 +4,18 @@
 A material is *what* I want to see/have when my focus is on a project, whereas a condition is *when* I can focus on a project. See {{gtClass:PpProjectCondition|show=#gtLepiterCommentFor:}} for more details.
 "
 Class {
-	#name : #PpProject,
-	#superclass : #PpValue,
+	#name : 'PpProject',
+	#superclass : 'PpValue',
 	#instVars : [
 		'dueDate',
 		'conditions'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpProject class >> exampleComplete [
 	<gtExample>
 	^ self
@@ -22,7 +24,7 @@ PpProject class >> exampleComplete [
 		then: [ :p | p isComplete should equal: true ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpProject class >> exampleIncomplete [
 	<gtExample>
 	^ self
@@ -36,41 +38,41 @@ PpProject class >> exampleIncomplete [
 			p dueDate should equal: Date tomorrow ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpProject class >> fromString: aString [
 	^ self titled: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject class >> label [
 	^ (self name allButFirst: 'Pp' size) normalizeCamelCase
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpProject class >> peCanHandleFromString: aString [
 	^ true
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpProject class >> titled: aString [
 	^ self new
 		title: aString;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> conditions [
 
 	^ conditions ifNil: [ conditions := Bag new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> conditions: aCollection [
 
 	conditions := aCollection
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProject >> conditionsDescription [
 	<magritteDescription>
 	
@@ -94,7 +96,7 @@ PpProject >> conditionsDescription [
 			yourself
 ]
 
-{ #category : #'gt-views' }
+{ #category : 'gt-views' }
 PpProject >> conditionsGtViewFor: aView [
 	<gtView>
 	
@@ -106,12 +108,12 @@ PpProject >> conditionsGtViewFor: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #status }
+{ #category : 'status' }
 PpProject >> defaultStatus [
 	^ PpInboxStatus new
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpProject >> displayStringOn: aStream [
 
 	self title ifNotNil: [ aStream nextPutAll: self title ].
@@ -122,29 +124,29 @@ PpProject >> displayStringOn: aStream [
 			nextPut: $) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> displayText [
 	^ self textFromString: self displayString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> dueBy: aDate [
 	
 	^ self newFromChildrenBlock: [ 
 		self activeChildrenList rootChildren ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> dueDate [
 	^ dueDate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> dueDate: anObject [
 	dueDate := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProject >> dueDateDescription [
 	<magritteDescription>
 	
@@ -157,18 +159,18 @@ PpProject >> dueDateDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> dueDateString [
 	
 	^ self dueDateDescription readToString: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> gtDisplayText [
 	^ self gtTextFromString: self displayString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> gtTextFromString: aString [
 	| result |
 	result := super gtTextFromString: aString.
@@ -176,18 +178,18 @@ PpProject >> gtTextFromString: aString [
 	^ result.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpProject >> isActiveDueBy: aDate [
 	^ self isActive and: [ self dueDate isNotNil and: [ self dueDate < aDate ] ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpProject >> isProject [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> maGtFormFor: aView [
 	
 	^ (super maGtFormFor: aView)
@@ -195,7 +197,7 @@ PpProject >> maGtFormFor: aView [
 		yourself
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 PpProject >> postCopy [
 
 	super postCopy.
@@ -203,7 +205,7 @@ PpProject >> postCopy [
 	self conditions: self conditions copy.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> ppTimelineStamp [
 
 	^ self log 
@@ -211,7 +213,7 @@ PpProject >> ppTimelineStamp [
 		ifEmpty: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProject >> textFromString: aString [
 	^ self isComplete
 			ifTrue: [ 

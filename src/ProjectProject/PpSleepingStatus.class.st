@@ -1,13 +1,15 @@
 Class {
-	#name : #PpSleepingStatus,
-	#superclass : #PpStatus,
+	#name : 'PpSleepingStatus',
+	#superclass : 'PpStatus',
 	#instVars : [
 		'wakeupDate'
 	],
-	#category : #'ProjectProject-Core-Projects-Support'
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpSleepingStatus >> isActive [
 	
 	self wakeupDate ifNil: [ ^ false ].
@@ -15,24 +17,24 @@ PpSleepingStatus >> isActive [
 	^ DateAndTime now >= self wakeupDate
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpSleepingStatus >> isInactive [
 	^ self isActive not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSleepingStatus >> wakeupDate [
 
 	^ wakeupDate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSleepingStatus >> wakeupDate: anObject [
 
 	wakeupDate := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSleepingStatus >> wakeupDateDescription [
 	<magritteDescription>
 	

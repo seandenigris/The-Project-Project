@@ -1,22 +1,23 @@
 Class {
-	#name : #PpNotePageMoveToPpProject,
-	#superclass : #MsalNotePageHandler,
-	#category : #ProjectProject
+	#name : 'PpNotePageMoveToPpProject',
+	#superclass : 'MsalNotePageHandler',
+	#category : 'ProjectProject',
+	#package : 'ProjectProject'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpNotePageMoveToPpProject class >> canHandleNote: aPage [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpNotePageMoveToPpProject >> displayStringOn: aStream [
 
 	aStream << 'Move to PpProject'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpNotePageMoveToPpProject >> execute [
 
 	self note

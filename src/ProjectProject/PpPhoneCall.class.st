@@ -2,18 +2,20 @@
 PpPhoneCall new maEdit
 "
 Class {
-	#name : #PpPhoneCall,
-	#superclass : #PpEvent,
-	#category : #'ProjectProject-Core-Events'
+	#name : 'PpPhoneCall',
+	#superclass : 'PpEvent',
+	#category : 'ProjectProject-Core-Events',
+	#package : 'ProjectProject',
+	#tag : 'Core-Events'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpPhoneCall class >> example [
 	<gtExample>
 	^ self examplePointInTime
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 PpPhoneCall >> asPpProject [
 
 	| result strategy |

@@ -1,25 +1,27 @@
 Class {
-	#name : #PpOneNoteToEventVisitor,
-	#superclass : #MsalOneNotePageVisitor,
+	#name : 'PpOneNoteToEventVisitor',
+	#superclass : 'MsalOneNotePageVisitor',
 	#instVars : [
 		'event'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOneNoteToEventVisitor >> event [
 	^ event ifNil: [ event := PpEvent new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOneNoteToEventVisitor >> visitCreationTimetamp: aDateAndTime [
 	self event 
 		startDate: aDateAndTime asDate;
 		startTime: aDateAndTime asTime.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOneNoteToEventVisitor >> visitID: aString [
 
 	self event
@@ -27,7 +29,7 @@ PpOneNoteToEventVisitor >> visitID: aString [
 		put: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOneNoteToEventVisitor >> visitModificationTimestampUTC: aDateAndTime [
 
 	| localOffset localStamp |
@@ -38,7 +40,7 @@ PpOneNoteToEventVisitor >> visitModificationTimestampUTC: aDateAndTime [
 		endTime: localStamp asTime.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpOneNoteToEventVisitor >> visitTitle: aString [
 
 	self event title: aString

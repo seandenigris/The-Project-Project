@@ -1,6 +1,6 @@
 Class {
-	#name : #PpValue,
-	#superclass : #PpAbstractProjectContainer,
+	#name : 'PpValue',
+	#superclass : 'PpAbstractProjectContainer',
 	#traits : 'DbTDomainObject + (PpTMutableProjectContainer - {#masterList})',
 	#classTraits : 'DbTDomainObject classTrait + PpTMutableProjectContainer classTrait',
 	#instVars : [
@@ -10,10 +10,12 @@ Class {
 		'log',
 		'stakeholders'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpValue class >> exampleComplete [
 	<gtExample>
 	^ self
@@ -22,7 +24,7 @@ PpValue class >> exampleComplete [
 		then: [ :p | p isComplete should equal: true ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpValue class >> exampleIncomplete [
 	<gtExample>
 	^ self
@@ -36,39 +38,39 @@ PpValue class >> exampleIncomplete [
 			p dueDate should equal: Date tomorrow ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpValue class >> fromString: aString [
 	^ self titled: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue class >> inactiveStatus [
 	^ PpInactiveStatus new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue class >> label [
 	^ (self name allButFirst: 'Pp' size) normalizeCamelCase
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpValue class >> peCanHandleFromString: aString [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue class >> statusOptions [
 	^ PpStatus allSubclasses collect: #new
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpValue class >> titled: aString [
 	^ self new
 		title: aString;
 		yourself
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 PpValue >> addToMaterialsResourceLibraryLast: anInteger [
 
 	| resources |
@@ -76,12 +78,12 @@ PpValue >> addToMaterialsResourceLibraryLast: anInteger [
 	^ self supportMaterials addAll: resources.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> addressBook [
 	^ MpAddressBook uniqueInstance
 ]
 
-{ #category : #enumeration }
+{ #category : 'enumeration' }
 PpValue >> allChildren [
 	| roots branches |
 	roots := self rootChildren.
@@ -89,7 +91,7 @@ PpValue >> allChildren [
 	^ (roots, branches) asSet.
 ]
 
-{ #category : #spotter }
+{ #category : 'spotter' }
 PpValue >> allChildrenGtSpotterFor: aStep [
 	
 	^ (super allChildrenGtSpotterFor: aStep)
@@ -97,7 +99,7 @@ PpValue >> allChildrenGtSpotterFor: aStep [
 		send: [ :result | self ensureChild: result ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> beComplete [
 
 	self isComplete ifFalse: [ self status: PpCompleteStatus new ].
@@ -108,7 +110,7 @@ PpValue >> beComplete [
 		e beComplete ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PpValue >> browseSupportMaterials [
 
 	| folder template |
@@ -122,45 +124,45 @@ PpValue >> browseSupportMaterials [
 	folder open
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> child: childPpValue moveTo: parentPpValue [
 
 	self removeChild: childPpValue.
 	parentPpValue ensureChild: childPpValue.
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpValue >> childrenDescription [
 	
 	self flag: 'The problem is the child''s due date. See https://github.com/seandenigris/The-Project-Project/issues/15'.
 	^ super childrenDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> childrenLabel [
 	^ 'Steps'
 ]
 
-{ #category : #status }
+{ #category : 'status' }
 PpValue >> defaultStatus [
 	^ PpActiveStatus new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> delete [
 
 	self removeFromMasterList.
 	self lepiterPageEnsureRemoved
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> deleteAll [
 
 	self rootChildren do: #deleteAll.
 	self delete
 ]
 
-{ #category : #'gt-views' }
+{ #category : 'gt-views' }
 PpValue >> dependencyLinksGtViewFor: aView [
 
 	<gtView>
@@ -174,13 +176,13 @@ PpValue >> dependencyLinksGtViewFor: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpValue >> displayStringOn: aStream [
 
 	self title ifNotNil: [ aStream nextPutAll: self title ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> displayText [
 	^ self isComplete
 			ifTrue: [ 
@@ -190,48 +192,48 @@ PpValue >> displayText [
 			ifFalse: [ self displayString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> dueBy: aDate [
 	
 	^ self newFromChildrenBlock: [ {} ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> dueDateString [
 		^ ''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> ensureChild: aPpProject [
 	self masterList addChild: aPpProject to: self.
 	^ aPpProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> ensureParent: aPpProject [
 	self masterList addChild: self to: aPpProject.
 	^ aPpProject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpValue >> eventLog [
 
 	^ PpEventLog uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> gtDisplayText [
 	
 	^ self gtTextFromString: self displayString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> gtSpotterText [
 
 	^ self titleWithAncestorsGtText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> gtTextFromString: aString [
 	
 	| result |
@@ -240,7 +242,7 @@ PpValue >> gtTextFromString: aString [
 	^ result.
 ]
 
-{ #category : #'gt-views' }
+{ #category : 'gt-views' }
 PpValue >> gtViewGraphFor: aView [
 	<gtView>
 	| nodes |
@@ -270,7 +272,7 @@ PpValue >> gtViewGraphFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> gtViewTimelineOn: aView [
 	<gtView>
 	^ aView explicit
@@ -280,12 +282,12 @@ PpValue >> gtViewTimelineOn: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> import [
 	PpProjectList uniqueInstance ensureChild: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> importDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -296,7 +298,7 @@ PpValue >> importDescription [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PpValue >> initialize [
 
 	super initialize.
@@ -304,27 +306,27 @@ PpValue >> initialize [
 	self status: self defaultStatus.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpValue >> isAction [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpValue >> isActive [
 	^ self status isActive
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpValue >> isActiveDueBy: aDate [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> isComplete [
 	^ self status isComplete
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> isComplete: aBoolean [
 	
 	aBoolean = self isComplete ifTrue: [ ^ self ].
@@ -334,7 +336,7 @@ PpValue >> isComplete: aBoolean [
 		ifFalse: [ self log removeLast ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpValue >> isCompleteDescription [
 	<magritteDescription>
 	
@@ -345,44 +347,44 @@ PpValue >> isCompleteDescription [
 			yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpValue >> isInactive [
 	^ self status isInactive
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> isNextAction [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpValue >> isProject [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpValue >> isValue [
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpValue >> isWaitingFor [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> log [
 
 	^ log ifNil: [ log := OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> log: aCollection [
 
 	log := aCollection
 ]
 
-{ #category : #'gt-views' }
+{ #category : 'gt-views' }
 PpValue >> logGtViewFor: aView [
 	<gtView>
 	
@@ -396,7 +398,7 @@ PpValue >> logGtViewFor: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> maGtFormFor: aView [
 	
 	^ (super maGtFormFor: aView)
@@ -404,7 +406,7 @@ PpValue >> maGtFormFor: aView [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> milestones [
 	| points supportStones childStones |
 	
@@ -423,29 +425,29 @@ PpValue >> milestones [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> moveFromParent: oldPpValue to: newPpValue [
 
 	oldPpValue removeChild: self.
 	newPpValue ensureChild: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> myDependencyLinks [
 	^ self dependencyLinks select: [ :link | link includes: self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> note [
 	^ note
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> note: anObject [
 	note := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpValue >> noteDescription [
 	<magritteDescription>
 	
@@ -455,7 +457,7 @@ PpValue >> noteDescription [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpValue >> parentInsertTitled: aString as: aClass [
 
 	| newParent |
@@ -466,31 +468,25 @@ PpValue >> parentInsertTitled: aString as: aClass [
 		self moveFromParent: p to: newParent ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PpValue >> parentLinks [
 	^ self dependencyLinks select: [ :link |
 		link dependency = self ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PpValue >> parentRemove: aPpValue [
 
 	aPpValue removeChild: self.
 	^ aPpValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> parents [
 	^ self parentLinks collect: #project
 ]
 
-{ #category : #accessing }
-PpValue >> parentsDescription [
-
-	"This is another case where we'd like to use gtSearchSource, but there is no parents collection to operate on"
-]
-
-{ #category : #private }
+{ #category : 'private' }
 PpValue >> parentsGtSpotterFor: aStep [
 	<gtSearch>
 	
@@ -502,7 +498,7 @@ PpValue >> parentsGtSpotterFor: aStep [
 				yourself ]
 ]
 
-{ #category : #'gt-views' }
+{ #category : 'gt-views' }
 PpValue >> parentsGtViewFor: aView [
 	<gtView>
 	
@@ -519,7 +515,7 @@ PpValue >> parentsGtViewFor: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpValue >> postCopy [
 
 	super postCopy.
@@ -536,7 +532,7 @@ PpValue >> postCopy [
 	self masterList ifNotNil: [ :aList | aList ensureChild: self ].
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpValue >> printOn: aStream [
 	aStream 
 		nextPutAll: self className;
@@ -544,7 +540,7 @@ PpValue >> printOn: aStream [
 	aStream nextPutAll: self displayString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpValue >> pullUp [
 
 	self parents do: [ :aParent |
@@ -553,21 +549,21 @@ PpValue >> pullUp [
 			grandparent ensureChild: self ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> removeAllFromMasterList [
 
 	self rootChildren do: [ :aChild | aChild removeAllFromMasterList ].
 	self removeFromMasterList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> removeChild: aPpProject [
 	
 	self masterList removeChild: aPpProject from: self.
 	^ aPpProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> removeFromMasterList [
 
 	self masterList allChildren remove: self.
@@ -576,30 +572,30 @@ PpValue >> removeFromMasterList [
 		thenDo: [ :link | link unlink ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> rootChildren [
 	^ self rootChildrenLinks collect: #dependency
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PpValue >> rootChildrenLinks [
 	^ self dependencyLinks select: [ :link |
 		link project = self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> stakeholders [
 
 	^ self maLazyInstVarUsing: self stakeholdersDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> stakeholders: aSet [
 
 	stakeholders := aSet
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> stakeholdersDescription [
 	<magritteDescription>
 	
@@ -613,7 +609,7 @@ PpValue >> stakeholdersDescription [
 		yourself
 ]
 
-{ #category : #'gt-views' }
+{ #category : 'gt-views' }
 PpValue >> stakeholdersGtViewFor: aView [
 	<gtView>
 	
@@ -631,7 +627,7 @@ PpValue >> stakeholdersGtViewFor: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #spotter }
+{ #category : 'spotter' }
 PpValue >> stakeholdersSearchNewFor: aSearch [
 	<gtSearch>
 	
@@ -650,7 +646,7 @@ PpValue >> stakeholdersSearchNewFor: aSearch [
 				yourself ]
 ]
 
-{ #category : #status }
+{ #category : 'status' }
 PpValue >> status [
 	^ self log
 		ifNotEmpty: [ :lg | lg last ]
@@ -659,7 +655,7 @@ PpValue >> status [
 			nil ]
 ]
 
-{ #category : #status }
+{ #category : 'status' }
 PpValue >> status: aStatus [
 	
 	"This guard was added because Magritte was adding duplicate statuses"
@@ -671,7 +667,7 @@ PpValue >> status: aStatus [
 	self log add: aStatus
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpValue >> statusDescription [
 	<magritteDescription>
 	^ MASingleOptionDescription new
@@ -683,7 +679,7 @@ PpValue >> statusDescription [
 		yourself
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpValue >> statusOptions [
 
 	^ self class statusOptions
@@ -691,13 +687,13 @@ PpValue >> statusOptions [
 		yourself.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpValue >> supportEmails [
 
 	^ self supportMaterials select: [ :mat | mat isKindOf: RlEmail ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpValue >> supportEmailsOpenInMacMail [
 
 	| folder |
@@ -708,17 +704,17 @@ PpValue >> supportEmailsOpenInMacMail [
 	CwMacMail new importEmlFilesIn: folder.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> tags [
 	^ tags ifNil: [ tags := Bag new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> tags: anObject [
 	tags := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpValue >> tagsDescription [
 	<magritteDescription>
 	^ MAMultipleOptionDescription new
@@ -735,7 +731,7 @@ PpValue >> tagsDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> timeline [
 	| points aPlotter projectAddPoints |
 	
@@ -763,17 +759,17 @@ PpValue >> timeline [
 	^ aPlotter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> title [
 	^ self maLazyInstVarUsing: self titleDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> title: anObject [
 	title := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpValue >> titleDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -784,7 +780,7 @@ PpValue >> titleDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> titleWithAncestors [
 	^ String
 		streamContents: [ :str | 
@@ -793,13 +789,13 @@ PpValue >> titleWithAncestors [
 			thenD" ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> titleWithAncestorsGtText [
 	
 	^ self gtTextFromString: self titleWithAncestors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpValue >> waitee: aPerson [
 
 	self stakeholders 

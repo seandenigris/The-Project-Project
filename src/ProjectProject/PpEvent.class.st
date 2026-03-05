@@ -1,6 +1,6 @@
 Class {
-	#name : #PpEvent,
-	#superclass : #Object,
+	#name : 'PpEvent',
+	#superclass : 'Object',
 	#traits : 'DbTDomainObject - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript}) + PpTProjectProperty',
 	#classTraits : 'DbTDomainObject classTrait + QuTTranscriptable classTrait + PpTProjectProperty classTrait',
 	#instVars : [
@@ -14,10 +14,12 @@ Class {
 		'location',
 		'transcript'
 	],
-	#category : #'ProjectProject-Core-Events'
+	#category : 'ProjectProject-Core-Events',
+	#package : 'ProjectProject',
+	#tag : 'Core-Events'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpEvent class >> exampleCopy [
 	<gtExample>
 
@@ -44,7 +46,7 @@ PpEvent class >> exampleCopy [
 	self assert: p1 ~= e2 ppProject.
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpEvent class >> examplePointInTime [
 	<gtExample>
 	^ self
@@ -60,7 +62,7 @@ PpEvent class >> examplePointInTime [
 		then: [ :evt | evt startDate should equal: '4/5/2021' asDate translateToUTC ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpEvent class >> fromString: aString [
 	"aString format: {date}? (@ {time})?, any other chars are considered the title"
 
@@ -89,7 +91,7 @@ PpEvent class >> fromString: aString [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpEvent class >> on: aDate [
 
 	^ self new
@@ -98,28 +100,28 @@ PpEvent class >> on: aDate [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> addressBook [
 	^ MpAddressBook uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> allEventsDo: aBlock [
 	aBlock value: self.
 	self children do: [ :child | child allEventsDo: aBlock ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> children [
 	^ self propertyAt: #children ifAbsentPut: [ OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> date [
 	^ self startDate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> date: aDate [
 
 	self
@@ -127,7 +129,7 @@ PpEvent >> date: aDate [
 		endDate: aDate
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpEvent >> documentsImportAllFrom: aFolder [
 
 	| nonHiddenFiles |
@@ -139,7 +141,7 @@ PpEvent >> documentsImportAllFrom: aFolder [
 			yourself ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> duration [
 
 	self end ifNil: [ ^ 0 ].
@@ -147,7 +149,7 @@ PpEvent >> duration [
 	^ self end - self start
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> end [
 
 	self endDate ifNil: [ ^ nil ].
@@ -156,17 +158,17 @@ PpEvent >> end [
 	^ DateAndTime date: self endDate time: self endTime.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> endDate [
 	^ self maLazyInstVarUsing: self endDateDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> endDate: aDate [
 	endDate := aDate translateToUTC
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 PpEvent >> endDateDescription [
 	<magritteDescription>
 
@@ -177,17 +179,17 @@ PpEvent >> endDateDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> endTime [
 	^ self maLazyInstVarUsing: self endTimeDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> endTime: aTime [
 	endTime := aTime
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 PpEvent >> endTimeDescription [
 	<magritteDescription>
 	
@@ -197,7 +199,7 @@ PpEvent >> endTimeDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> eventLog [
 
 	^ self
@@ -205,7 +207,7 @@ PpEvent >> eventLog [
 		ifAbsent: [ PpEventLog uniqueInstance ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> eventLog: anEventLog [
 
 	self eventLog = anEventLog ifTrue: [ ^ self ].
@@ -215,18 +217,18 @@ PpEvent >> eventLog: anEventLog [
 		putRemovingNil: anEventLog
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> events [
 	^ self children
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> import [
 
 	self eventLog add: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> importDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -237,13 +239,13 @@ PpEvent >> importDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> initialize [
 	super initialize.
 	self ensureUUID
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpEvent >> isInProgress [
 	
 	self isPast ifTrue: [ ^ false ].
@@ -254,7 +256,7 @@ PpEvent >> isInProgress [
 	^ self startDate < self today
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpEvent >> isPast [
 	self endDate
 		ifNil: [ self startDate < self today ifTrue: [ ^ true ].
@@ -265,22 +267,22 @@ PpEvent >> isPast [
 	^ self endTime ifNotNil: [ self endTime < self now asTime ] ifNil: [ false ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpEvent >> isPpValuedObject [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> location [
 	^ self maLazyInstVarUsing: self locationDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> location: aString [
 	location := aString
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 PpEvent >> locationDescription [
 	<magritteDescription>
 
@@ -292,29 +294,29 @@ PpEvent >> locationDescription [
 		yourself
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 PpEvent >> newPlayer [
 	self hasRecording ifTrue: [ ^ self ensureRecording newPlayer ].
 	self isInProgress ifFalse: [ ^ LlNullMediaPlayer new ].
 	^ PpLivePlayer new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> notes [
 	^ self maLazyInstVarUsing: self notesDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> notes: anObject [
 	notes := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> notesAdd: convertibleToNote [
 	^ self notes add: convertibleToNote asPpNote
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpEvent >> notesDescription [
 	<magritteDescription>
 	
@@ -328,22 +330,22 @@ PpEvent >> notesDescription [
 			yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpEvent >> now [
 	^ DateAndTime now translateToUTC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> participants [
 	^ self maLazyInstVarUsing: self participantsDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> participants: anObject [
 	participants := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpEvent >> participantsDescription [
 	<magritteDescription>
 	
@@ -357,7 +359,7 @@ PpEvent >> participantsDescription [
 			yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpEvent >> postCopy [
 
 	super postCopy.
@@ -369,7 +371,7 @@ PpEvent >> postCopy [
 		postCopyProjectProperty
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> printOn: aStream [
 	self title 
 		ifNotNil: [ :str | aStream nextPutAll: str ]
@@ -395,7 +397,7 @@ PpEvent >> printOn: aStream [
 				separatedBy: [ aStream crlf ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> quLeSourceText [
 
 	| dateString |
@@ -403,13 +405,13 @@ PpEvent >> quLeSourceText [
 	^ self title, ', ', dateString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> removeFromLog [
 
 	self eventLog remove: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> start [
 	(self startDate isNil or: [ self startTime isNil ]) ifTrue: [ ^ nil ].
 	
@@ -418,17 +420,17 @@ PpEvent >> start [
 		time: self startTime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> startDate [
 	^ self maLazyInstVarUsing: self startDateDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> startDate: aDate [
 	startDate := aDate translateToUTC
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 PpEvent >> startDateDescription [
 
 	<magritteDescription>
@@ -438,17 +440,17 @@ PpEvent >> startDateDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> startTime [
 	^ self maLazyInstVarUsing: self startTimeDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> startTime: aTime [
 	startTime := aTime
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 PpEvent >> startTimeDescription [
 	<magritteDescription>
 
@@ -458,23 +460,23 @@ PpEvent >> startTimeDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> tags [
 
 	^ self propertyAt: #tags ifAbsentPut: PpTagCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> title [
 	^ self maLazyInstVarUsing: self titleDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> title: aString [
 	title := aString
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 PpEvent >> titleDescription [
 
 	<magritteDescription>
@@ -486,19 +488,19 @@ PpEvent >> titleDescription [
 		  yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpEvent >> today [
 	^ Date today translateToUTC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> transcript [
 	
 	self hasRecording ifTrue: [ ^ self ensureRecording transcript ].
 	^ self traitTranscript
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEvent >> transcriptGtViewFor: aView [
 	<gtView>
 
@@ -511,7 +513,7 @@ PpEvent >> transcriptGtViewFor: aView [
 		view: #gtLiveFor:.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpEvent >> worksGtViewOn: aView [
 	<gtView>
 

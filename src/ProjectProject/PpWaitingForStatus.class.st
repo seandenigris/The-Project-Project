@@ -1,42 +1,44 @@
 Class {
-	#name : #PpWaitingForStatus,
-	#superclass : #PpStatus,
+	#name : 'PpWaitingForStatus',
+	#superclass : 'PpStatus',
 	#instVars : [
 		'person'
 	],
-	#category : #'ProjectProject-Core-Projects-Support'
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForStatus >> addressBook [
 	^ MpAddressBook uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForStatus >> isInactive [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpWaitingForStatus >> onAddedTo: aPpProject [
 	"Hook for subclass override if needed"
 	
 	aPpProject waitee: self person
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForStatus >> person [
 
 	^ person
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForStatus >> person: anObject [
 
 	person := anObject
 ]
 
-{ #category : #'magritte-descriptions' }
+{ #category : 'magritte-descriptions' }
 PpWaitingForStatus >> personDescription [
 	<magritteDescription>
 	
@@ -48,7 +50,7 @@ PpWaitingForStatus >> personDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForStatus >> printOn: aStream [
 	
 	super printOn: aStream

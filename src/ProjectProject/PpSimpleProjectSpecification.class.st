@@ -1,10 +1,12 @@
 Class {
-	#name : #PpSimpleProjectSpecification,
-	#superclass : #TestCase,
-	#category : 'ProjectProject-Specification'
+	#name : 'PpSimpleProjectSpecification',
+	#superclass : 'TestCase',
+	#category : 'ProjectProject-Specification',
+	#package : 'ProjectProject',
+	#tag : 'Specification'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpSimpleProjectSpecification >> testOutcomeWithoutAction [
 	
 ]

@@ -1,17 +1,17 @@
-Extension { #name : #DbTDomainObject }
+Extension { #name : 'DbTDomainObject' }
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> eventLog [
 
 	^ PpEventLog uniqueInstance
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> inventory [
 	^ PpInventory uniqueInstance
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> ppTimelineStamp [
 
 	^ self
@@ -20,7 +20,7 @@ DbTDomainObject >> ppTimelineStamp [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> ppTimelineStamp: aValuable [
 	"aValuable - aDateAndTime or returns one" 
 
@@ -29,30 +29,30 @@ DbTDomainObject >> ppTimelineStamp: aValuable [
 		put: aValuable
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> projectList [
 
 	^ PpProjectList uniqueInstance
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> sanitizedSupportMaterial: anObject [
 	
 	^ anObject olAsReference
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> supportEmailsImportFromMailClient [
 
 	^ RlEmail allFromMailClientSelectionImport do: [ :msg | self supportMaterialsAdd: msg ].
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> supportMaterials [
 	^ self maLazyPropertyUsing: self supportMaterialsDescription
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> supportMaterials: aCollection [
 
 	^ self
@@ -60,12 +60,12 @@ DbTDomainObject >> supportMaterials: aCollection [
 		put: aCollection
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> supportMaterialsAdd: anObject [
 	^ self supportMaterials add: anObject
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> supportMaterialsDescription [
 	<magritteDescription>
 	
@@ -106,7 +106,7 @@ DbTDomainObject >> supportMaterialsDescription [
 			yourself
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 DbTDomainObject >> supportMaterialsGtViewFor: aView [
 	<gtView>
 	

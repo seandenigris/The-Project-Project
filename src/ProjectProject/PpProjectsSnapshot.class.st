@@ -1,28 +1,30 @@
 Class {
-	#name : #PpProjectsSnapshot,
-	#superclass : #PpAbstractProjectContainer,
+	#name : 'PpProjectsSnapshot',
+	#superclass : 'PpAbstractProjectContainer',
 	#instVars : [
 		'children'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectsSnapshot >> allChildren [
 	^ children ifNil: [ children := Array new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectsSnapshot >> allChildren: aCollection [
 	children := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectsSnapshot >> asOrderedCollection [
 	^ self rootChildren
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectsSnapshot >> childrenDescription [
 	
 	^ super childrenDescription
@@ -30,12 +32,12 @@ PpProjectsSnapshot >> childrenDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectsSnapshot >> childrenLabel [
 	^ 'Projects'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectsSnapshot >> dueBy: aDate [
 	"For a list, we want to search recursively so that we don't miss a child buried way down that is due"
 	^ self newFromChildrenBlock: [ 
@@ -48,7 +50,7 @@ PpProjectsSnapshot >> dueBy: aDate [
 				result ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectsSnapshot >> gtViewGraphFor: aView [
 	<gtView>
 	| nodes |
@@ -80,7 +82,7 @@ PpProjectsSnapshot >> gtViewGraphFor: aView [
 			m ]
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 PpProjectsSnapshot >> gtViewInboxFor: aView [
 
 	<gtView>
@@ -94,7 +96,7 @@ PpProjectsSnapshot >> gtViewInboxFor: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 PpProjectsSnapshot >> gtViewWaitingForFor: aView [
 
 	<gtView>
@@ -105,13 +107,13 @@ PpProjectsSnapshot >> gtViewWaitingForFor: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectsSnapshot >> inboxList [
 	^ self newFromChildrenBlock: [ 
 		self allChildren select: [ :e | e status isInbox ] ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectsSnapshot >> maGtFormFor: aView [
 	"Deprioritize this view because it is not very useful and super slow"
 	
@@ -119,14 +121,14 @@ PpProjectsSnapshot >> maGtFormFor: aView [
 		priority: 105
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectsSnapshot >> rootChildren [
 	^ self allChildren select: [ :c | 
 		self dependencyLinks noneSatisfy: [ :link |
 			(self allChildren identityIncludes: link project) and: [ link dependency = c ] ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectsSnapshot >> waitingForList [
 	^ self newFromChildrenBlock: [ 
 		self allChildren select: [ :e | e isWaitingFor ] ]

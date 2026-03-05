@@ -1,24 +1,24 @@
-Extension { #name : #MsalOneNotePage }
+Extension { #name : 'MsalOneNotePage' }
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 MsalOneNotePage >> asPpEvent [
 			
 	^ (PpOneNoteToEventVisitor visit: self) event
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 MsalOneNotePage >> asPpProject [
 			
 	^ (PpOneNoteToProjectVisitor visit: self) project
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 MsalOneNotePage >> htmlBody [
 
 	^ self htmlDocument findElementNamed: #body.
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 MsalOneNotePage >> moveToPpProject [
 	| project |
 	project := self asPpProject

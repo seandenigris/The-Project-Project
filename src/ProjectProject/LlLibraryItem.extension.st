@@ -1,6 +1,6 @@
-Extension { #name : #LlLibraryItem }
+Extension { #name : 'LlLibraryItem' }
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 LlLibraryItem >> ppSupportMaterialDisplayString [
 
 	^ self name ifNil: [ self displayString ]

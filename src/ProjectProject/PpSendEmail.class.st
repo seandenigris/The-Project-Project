@@ -5,24 +5,26 @@
 - receiver can deal with at their convenience
 "
 Class {
-	#name : #PpSendEmail,
-	#superclass : #PpContactStrategy,
-	#category : #'ProjectProject-Core-Projects-Support'
+	#name : 'PpSendEmail',
+	#superclass : 'PpContactStrategy',
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSendEmail class >> label [
 
 	^ 'Email'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSendEmail class >> modelClass [
 
 	^ RlEmail
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSendEmail class >> priority [
 
 	^ 100

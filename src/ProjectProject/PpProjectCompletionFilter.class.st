@@ -1,14 +1,16 @@
 Class {
-	#name : #PpProjectCompletionFilter,
-	#superclass : #PpProjectFilter,
+	#name : 'PpProjectCompletionFilter',
+	#superclass : 'PpProjectFilter',
 	#instVars : [
 		'matchesComplete',
 		'matchesIncomplete'
 	],
-	#category : #'ProjectProject-UI-Bloc'
+	#category : 'ProjectProject-UI-Bloc',
+	#package : 'ProjectProject',
+	#tag : 'UI-Bloc'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpProjectCompletionFilter class >> filterDescriptor [
 
 	^ GtFilterShortListModel new
@@ -30,7 +32,7 @@ PpProjectCompletionFilter class >> filterDescriptor [
 	"Adapted from GtSearchSubclassResponsibilityMethodsFilter>>#globalFilterDescriptor2"
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpProjectCompletionFilter class >> matchingAll [
 
 	^ self matchingComplete
@@ -38,7 +40,7 @@ PpProjectCompletionFilter class >> matchingAll [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpProjectCompletionFilter class >> matchingComplete [
 
 	^ self new
@@ -46,7 +48,7 @@ PpProjectCompletionFilter class >> matchingComplete [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpProjectCompletionFilter class >> matchingIncomplete [
 
 	^ self new
@@ -54,7 +56,7 @@ PpProjectCompletionFilter class >> matchingIncomplete [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectCompletionFilter >> matches: anObject [
 
 	self matchesAll ifTrue: [ ^ true ].
@@ -64,31 +66,31 @@ PpProjectCompletionFilter >> matches: anObject [
 	self matchesIncomplete ifTrue: [ ^ anObject isComplete not ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectCompletionFilter >> matchesAll [
 
 	^ self matchesComplete and: [ self matchesIncomplete ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectCompletionFilter >> matchesComplete [
 
 	^ matchesComplete ifNil: [ ^ false ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectCompletionFilter >> matchesComplete: aBoolean [
 
 	matchesComplete := aBoolean
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectCompletionFilter >> matchesIncomplete [
 
 	^ matchesIncomplete ifNil: [ ^ false ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpProjectCompletionFilter >> matchesIncomplete: aBoolean [
 
 	matchesIncomplete := aBoolean

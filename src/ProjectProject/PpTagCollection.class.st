@@ -1,47 +1,49 @@
 Class {
-	#name : #PpTagCollection,
-	#superclass : #Object,
+	#name : 'PpTagCollection',
+	#superclass : 'Object',
 	#instVars : [
 		'tags'
 	],
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'ProjectProject-Tagging'
+	#category : 'ProjectProject-Tagging',
+	#package : 'ProjectProject',
+	#tag : 'Tagging'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection class >> uniqueInstance [
 
 	^ UniqueInstance ifNil: [ UniqueInstance := self new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection class >> uniqueInstance: anObject [
 
 	^ UniqueInstance := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection >> addTag: aPpTag [
 	^ self tags add: aPpTag
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection >> addTagNamed: aString [
 	| tag |
 	tag := PpTag named: aString.
 	^ self addTag: tag
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection >> ensureNamed: aString [ 
 	^ self tags
 			detect: [ :e | e name = aString ]
 			ifNone: [ self addTagNamed: aString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection >> gtGtSpotterTagsFor: aSearch [
 	<gtSearch>
 	^ aSearch list
@@ -52,7 +54,7 @@ PpTagCollection >> gtGtSpotterTagsFor: aSearch [
 		itemName: [ :aTag | aTag name ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection >> gtSpotterNewTagFor: aSearch [
 	<gtSearch>
 	^ aSearch list
@@ -69,29 +71,29 @@ PpTagCollection >> gtSpotterNewTagFor: aSearch [
 		send: [ :result | self addTag: result ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection >> includes: aPpTag [ 
 	^ self tags includes: aPpTag
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection >> printOn: aStream [
 	aStream nextPutAll: 'Tags: '.
 	self tags printElementsOn: aStream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection >> tags [
 
 	^ tags ifNil: [ tags := SortedCollection sortUsing: #name ascending  ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection >> tags: aCollection [
 	tags := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTagCollection >> viewListOn: aView [
 
 	<gtView>

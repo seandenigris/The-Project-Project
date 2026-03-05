@@ -1,6 +1,6 @@
 Class {
-	#name : #PpZoomMeeting,
-	#superclass : #PpEvent,
+	#name : 'PpZoomMeeting',
+	#superclass : 'PpEvent',
 	#instVars : [
 		'recordingFolder',
 		'id',
@@ -9,10 +9,12 @@ Class {
 		'chatLog',
 		'playlist'
 	],
-	#category : #'ProjectProject-Core-Events'
+	#category : 'ProjectProject-Core-Events',
+	#package : 'ProjectProject',
+	#tag : 'Core-Events'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpZoomMeeting class >> allFromRecordingsFolder [
 	| rootFolder |
 	rootFolder := FileLocator documents / 'Zoom'.
@@ -22,13 +24,13 @@ PpZoomMeeting class >> allFromRecordingsFolder [
 			yourself ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpZoomMeeting class >> example [
 	<gtExample>
 	^ self examplePointInTime
 ]
 
-{ #category : #importing }
+{ #category : 'importing' }
 PpZoomMeeting class >> importAllRecorded [
 	
 	^ self allFromRecordingsFolder do: [ :evt |
@@ -42,31 +44,31 @@ PpZoomMeeting class >> importAllRecorded [
 		evt recordingFolder delete ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> audio [
 
 	^ audio
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> audio: anObject [
 
 	audio := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> chatLog [
 
 	^ chatLog
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> chatLog: anObject [
 
 	chatLog := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> folderNameParser [
 	| token time titleToken date idToken |
 	token := #space asPParser negate plus flatten.
@@ -77,37 +79,37 @@ PpZoomMeeting >> folderNameParser [
 	^ (date , #space asPParser , time , titleToken , idToken) end
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> id [
 
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> id: anObject [
 
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> playlist [
 
 	^ playlist
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> playlist: anObject [
 
 	playlist := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> recordingFolder [
 
 	^ recordingFolder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> recordingFolder: aFileReference [
 	recordingFolder := aFileReference.
 	self folderNameParser parse: recordingFolder basename.
@@ -117,13 +119,13 @@ PpZoomMeeting >> recordingFolder: aFileReference [
 	self recordingFolder / 'playback.m3u' ifExists: [ :f | self playlist: f asRlResource ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> video [
 
 	^ video
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpZoomMeeting >> video: anObject [
 
 	video := anObject

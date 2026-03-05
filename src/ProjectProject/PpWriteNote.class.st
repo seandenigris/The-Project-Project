@@ -6,18 +6,20 @@
 - receiver can deal with at their convenience
 "
 Class {
-	#name : #PpWriteNote,
-	#superclass : #PpContactStrategy,
-	#category : #'ProjectProject-Core-Projects-Support'
+	#name : 'PpWriteNote',
+	#superclass : 'PpContactStrategy',
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWriteNote class >> label [
 
 	^ 'Write to'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWriteNote class >> priority [
 
 	^ 200

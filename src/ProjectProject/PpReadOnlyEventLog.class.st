@@ -1,33 +1,35 @@
 Class {
-	#name : #PpReadOnlyEventLog,
-	#superclass : #Object,
+	#name : 'PpReadOnlyEventLog',
+	#superclass : 'Object',
 	#traits : 'PeTEnumerable',
 	#classTraits : 'PeTEnumerable classTrait',
 	#instVars : [
 		'events'
 	],
-	#category : #'ProjectProject-Core-Events'
+	#category : 'ProjectProject-Core-Events',
+	#package : 'ProjectProject',
+	#tag : 'Core-Events'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpReadOnlyEventLog >> allEventsDo: aBlock [
 
 	^ self events do: [ :e | e allEventsDo: aBlock ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpReadOnlyEventLog >> events [
 
 	^ events ifNil: [ events := SortedCollection sortUsing: #startDate descending undefinedFirst, #startTime descending undefinedFirst ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpReadOnlyEventLog >> events: anObject [
 
 	events := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpReadOnlyEventLog >> gtGtSpotterEventsOn: aSearch [
 	"Adapted from GT superclass"
 
@@ -41,7 +43,7 @@ PpReadOnlyEventLog >> gtGtSpotterEventsOn: aSearch [
 		wantsToDisplayOnEmptyQuery: true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpReadOnlyEventLog >> gtViewEventsOn: aView [
 	<gtView>
 	^ aView columnedList
@@ -53,7 +55,7 @@ PpReadOnlyEventLog >> gtViewEventsOn: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpReadOnlyEventLog >> gtViewTimelineOn: aView [
 	<gtView>
 	^ aView explicit
@@ -63,18 +65,18 @@ PpReadOnlyEventLog >> gtViewTimelineOn: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpReadOnlyEventLog >> hasEvent: anEvent [
 	^ self events identityIncludes: anEvent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpReadOnlyEventLog >> privateEnumerable [
 
 	^ self events
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpReadOnlyEventLog >> select: aBlock [
 	| evts |
 	evts := self events select: aBlock.

@@ -1,9 +1,11 @@
 Trait {
-	#name : #PpTMutableProjectContainer,
-	#category : #'ProjectProject-Core-Projects-Support'
+	#name : 'PpTMutableProjectContainer',
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #spotter }
+{ #category : 'spotter' }
 PpTMutableProjectContainer >> childrenNewSearches [
 	
 	^ PpValue withAllSubclasses collect: [ :cls |
@@ -21,19 +23,19 @@ PpTMutableProjectContainer >> childrenNewSearches [
 	- first tried to have all subclasses under one heading, but then realized that there are multiple axes for classes like PpContactAction - class, strategy and receiver, so suggesting multiple receivers under its own category seems more helpful"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTMutableProjectContainer >> ensureChild: aPpProject [
 	self subclassResponsibility
 ]
 
-{ #category : #spotter }
+{ #category : 'spotter' }
 PpTMutableProjectContainer >> gtSpotterSearchesInContext: aSpotterContext [
 	| pragmaSearches |
 	pragmaSearches := super gtSpotterSearchesInContext: aSpotterContext.
 	^ pragmaSearches merge: self childrenNewSearches asAsyncStream
 ]
 
-{ #category : #'gt-views' }
+{ #category : 'gt-views' }
 PpTMutableProjectContainer >> gtViewProjectsFor: aView [
 
 	| result |
@@ -45,7 +47,7 @@ PpTMutableProjectContainer >> gtViewProjectsFor: aView [
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpTMutableProjectContainer >> masterList [
 	self explicitRequirement
 ]

@@ -1,6 +1,6 @@
-Extension { #name : #RlEmail }
+Extension { #name : 'RlEmail' }
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 RlEmail >> asPpProject [
 
 	| result |
@@ -15,7 +15,7 @@ RlEmail >> asPpProject [
 	^ result
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 RlEmail >> ppTimelineStamp [
 
 	^ self timestamp

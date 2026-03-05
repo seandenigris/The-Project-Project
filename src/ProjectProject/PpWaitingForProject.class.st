@@ -1,10 +1,12 @@
 Class {
-	#name : #PpWaitingForProject,
-	#superclass : #PpProject,
-	#category : #'ProjectProject-Core-Projects'
+	#name : 'PpWaitingForProject',
+	#superclass : 'PpProject',
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForProject class >> gtSpotterItemsFromString: aString [
 
 	| waitees waiteeMatches waiteeString titleString |
@@ -35,12 +37,12 @@ PpWaitingForProject class >> gtSpotterItemsFromString: aString [
 		result ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForProject >> defaultStatus [
 	^ PpWaitingForStatus new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForProject >> displayStringOn: aStream [
 
 	aStream nextPutAll: 'W/F: '.
@@ -57,12 +59,12 @@ PpWaitingForProject >> displayStringOn: aStream [
 		nextPutAll: self status timestamp asDate mmddyyyy
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpWaitingForProject >> isWaitingFor [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForProject >> titleDescription [
 
 	| result parents |
@@ -75,7 +77,7 @@ PpWaitingForProject >> titleDescription [
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForProject >> waitee [
 
 	^ self stakeholders 
@@ -84,7 +86,7 @@ PpWaitingForProject >> waitee [
 		ifNone: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWaitingForProject >> waiteeDescription [
 	<magritteDescription>
 	

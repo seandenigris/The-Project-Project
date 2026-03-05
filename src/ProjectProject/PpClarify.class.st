@@ -1,6 +1,6 @@
 Class {
-	#name : #PpClarify,
-	#superclass : #Object,
+	#name : 'PpClarify',
+	#superclass : 'Object',
 	#instVars : [
 		'stuff',
 		'outcome',
@@ -11,10 +11,11 @@ Class {
 		'shouldDoIt',
 		'isComplete'
 	],
-	#category : #ProjectProject
+	#category : 'ProjectProject',
+	#package : 'ProjectProject'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpClarify >> childrenNewSearches [
 
 	self flag: 'copy/pasted. See implementors'.
@@ -30,24 +31,24 @@ PpClarify >> childrenNewSearches [
 			send: [ :result | self nextAction: result. result ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpClarify >> didIt [
 
 	self setUpProjects.
 	self nextAction beComplete
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> isActionable [
 	^ isActionable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> isActionable: anObject [
 	isActionable := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> isActionableDescription [
 	<magritteDescription>
 	
@@ -61,17 +62,17 @@ PpClarify >> isActionableDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> isComplete [
 	^ isComplete
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> isComplete: anObject [
 	isComplete := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> isCompleteDescription [
 	<magritteDescription>
 	
@@ -84,23 +85,23 @@ PpClarify >> isCompleteDescription [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpClarify >> masterList [
 
 	^ PpProjectList uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> needsProject [
 	^ needsProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> needsProject: anObject [
 	needsProject := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> needsProjectDescription [
 	<magritteDescription>
 	
@@ -113,17 +114,17 @@ PpClarify >> needsProjectDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> nextAction [
 	^ nextAction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> nextAction: anObject [
 	nextAction := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> nextActionDescription [
 	<magritteDescription>
 	
@@ -134,17 +135,17 @@ PpClarify >> nextActionDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> outcome [
 	^ outcome
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> outcome: anObject [
 	outcome := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> outcomeDescription [
 	<magritteDescription>
 	
@@ -155,7 +156,7 @@ PpClarify >> outcomeDescription [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpClarify >> setUpProjects [
 
 	| project |
@@ -165,17 +166,17 @@ PpClarify >> setUpProjects [
 	project ensureChild: self nextAction.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> shouldDoIt [
 	^ shouldDoIt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> shouldDoIt: anObject [
 	shouldDoIt := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> shouldDoItDescription [
 	<magritteDescription>
 	
@@ -188,34 +189,34 @@ PpClarify >> shouldDoItDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> stuff [
 	^ stuff
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> stuff: anObject [
 	stuff := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpClarify >> wait [
 
 	self nextAction: PpWaitingForProject new.
 	self setUpProjects.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> whatIsIt [
 	^ whatIsIt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> whatIsIt: anObject [
 	whatIsIt := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpClarify >> whatIsItDescription [
 	<magritteDescription>
 	

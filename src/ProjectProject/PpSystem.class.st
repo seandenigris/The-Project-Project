@@ -2,8 +2,8 @@
 If we keep this object, we can bring the projects list under it as well. Still not sure if ""Media to Review"" warrants a whole new domain concept, but ""project per item to review"" seems a bit heavyweight.
 "
 Class {
-	#name : #PpSystem,
-	#superclass : #Object,
+	#name : 'PpSystem',
+	#superclass : 'Object',
 	#instVars : [
 		'mediaToReview',
 		'inbox',
@@ -13,10 +13,12 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'ProjectProject-Core'
+	#category : 'ProjectProject-Core',
+	#package : 'ProjectProject',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem class >> example [
 	<gtExample>
 	
@@ -26,64 +28,64 @@ PpSystem class >> example [
 		yourself
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpSystem class >> restoreFrom: anObject [
 
 	UniqueInstance := anObject.
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpSystem class >> spData [
 
 	^ UniqueInstance.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem class >> uniqueInstance [
 
 	^ UniqueInstance ifNil: [ UniqueInstance := self new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem class >> uniqueInstance: anObject [
 
 	^ UniqueInstance := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> inbox [
 
 	^ inbox ifNil: [ PpProjectList uniqueInstance ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> inbox: anObject [
 	inbox := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> library [
 	^ library ifNil: [ LlLibrary uniqueInstance ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> library: anObject [
 	library := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> mediaToReview [
 
 	^ mediaToReview ifNil: [ mediaToReview := Set new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> mediaToReview: anObject [
 
 	mediaToReview := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> mediaToReviewDescription [
 	<magritteDescription>
 	
@@ -115,7 +117,7 @@ PpSystem >> mediaToReviewDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> mediaToReviewViewOn: aView [
 	<gtView>
 	
@@ -126,18 +128,18 @@ PpSystem >> mediaToReviewViewOn: aView [
 		actionUpdateButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> msalApplication [
 
 	^ msalApplication value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> msalApplication: anMsalApplication [
 	msalApplication := anMsalApplication
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSystem >> oneNote [
 
 	^ self msalApplication oneNote

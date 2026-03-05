@@ -1,15 +1,17 @@
 Class {
-	#name : #PpProjectDependency,
-	#superclass : #Object,
+	#name : 'PpProjectDependency',
+	#superclass : 'Object',
 	#instVars : [
 		'project',
 		'dependency',
 		'masterList'
 	],
-	#category : #'ProjectProject-Core-Projects-Support'
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency class >> project: aPpProject dependsOn: anotherPpProject in: aPpProjectList [
 
 	^ self new
@@ -19,7 +21,7 @@ PpProjectDependency class >> project: aPpProject dependsOn: anotherPpProject in:
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> = rhs [
 
 	self species = rhs species ifFalse: [ ^ false ].
@@ -33,29 +35,29 @@ PpProjectDependency >> = rhs [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> dependency [
 
 	^ dependency
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> dependency: anObject [
 
 	dependency := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> hash [
 	^ self project hash bitXor: self dependency hash
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> includes: aProject [
 	^ self project = aProject or: [ self dependency = aProject ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> link [
 	self masterLinks
 		detect: [ :link | link = self ]
@@ -66,24 +68,24 @@ PpProjectDependency >> link [
 		ensureChild: self dependency.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> masterLinks [
 	^ self masterList dependencyLinks
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> masterList [
 
 	^ masterList ifNil: [ PpProjectList uniqueInstance ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> masterList: anObject [
 
 	masterList := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> printOn: aStream [
 
 	aStream 
@@ -94,19 +96,19 @@ PpProjectDependency >> printOn: aStream [
 		nextPut: $"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> project [
 
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> project: anObject [
 
 	project := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectDependency >> unlink [
 	self masterList dependencyLinks remove: self
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #PpDoubleLeafDoor,
-	#superclass : #PpDoor,
-	#category : #'ProjectProject-Core-Inventories'
+	#name : 'PpDoubleLeafDoor',
+	#superclass : 'PpDoor',
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpDoubleLeafDoor >> printSummaryOn: aStream [
 
 	aStream 

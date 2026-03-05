@@ -1,6 +1,6 @@
-Extension { #name : #String }
+Extension { #name : 'String' }
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 String >> asPpNote [
 
 	^ PpNote fromString: self

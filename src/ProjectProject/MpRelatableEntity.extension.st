@@ -1,6 +1,6 @@
-Extension { #name : #MpRelatableEntity }
+Extension { #name : 'MpRelatableEntity' }
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 MpRelatableEntity >> ppProject [
 
 	^ self
@@ -8,17 +8,17 @@ MpRelatableEntity >> ppProject [
 		ifAbsentPut: [ PpValuedObject on: self ]
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 MpRelatableEntity >> ppProjectTitle [
 	^ self fullName
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 MpRelatableEntity >> projectList [
 	^ PpProjectList uniqueInstance
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 MpRelatableEntity >> projects [
 	^ self projectList agendaFor: self
 ]

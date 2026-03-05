@@ -8,18 +8,20 @@
 - no written record
 "
 Class {
-	#name : #PpSpeakInPerson,
-	#superclass : #PpContactStrategy,
-	#category : #'ProjectProject-Core-Projects-Support'
+	#name : 'PpSpeakInPerson',
+	#superclass : 'PpContactStrategy',
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSpeakInPerson class >> label [
 
 	^ 'Meet'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpSpeakInPerson class >> priority [
 
 	^ 500

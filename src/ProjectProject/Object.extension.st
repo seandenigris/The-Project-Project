@@ -1,11 +1,11 @@
-Extension { #name : #Object }
+Extension { #name : 'Object' }
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 Object >> ppProjectTitle [
 	^ self displayString
 ]
 
-{ #category : #'*ProjectProject' }
+{ #category : '*ProjectProject' }
 Object >> ppSupportMaterialDisplayString [
 
 	^ self displayString

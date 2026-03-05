@@ -1,13 +1,15 @@
 Class {
-	#name : #PpEventLog,
-	#superclass : #PpReadOnlyEventLog,
+	#name : 'PpEventLog',
+	#superclass : 'PpReadOnlyEventLog',
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'ProjectProject-Core-Events'
+	#category : 'ProjectProject-Core-Events',
+	#package : 'ProjectProject',
+	#tag : 'Core-Events'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpEventLog class >> example [
 	<gtExample>
 	^ self
@@ -18,42 +20,42 @@ PpEventLog class >> example [
 		then: [ :result | result events should haveSize: 1 ]
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpEventLog class >> restoreFrom: anObject [
 
 	uniqueInstance := anObject.
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpEventLog class >> spData [
 
 	^ uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventLog class >> uniqueInstance [
 
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventLog class >> uniqueInstance: anObject [
 
 	uniqueInstance := anObject
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PpEventLog >> add: anEvent [
 	anEvent eventLog: self.
 	^ self events add: anEvent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventLog >> addAll: aCollection [ 
 	^ aCollection do: [ :e | self add: e ]
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PpEventLog >> ensure: anEvent [
 
 	(self events includes: anEvent) ifTrue: [ ^ anEvent ].
@@ -61,14 +63,14 @@ PpEventLog >> ensure: anEvent [
 	^ self add: anEvent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventLog >> eventsNewSearches [
 	
 	^ PpEvent withAllSubclasses collect: [ :cls |
 		self gtSpotterNew: cls ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventLog >> gtSpotterNew: aClass [
 
 	| typeName |
@@ -86,14 +88,14 @@ PpEventLog >> gtSpotterNew: aClass [
 		send: [ :anObject | self events add: anObject ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpEventLog >> gtSpotterSearchesInContext: aSpotterContext [
 	| pragmaSearches |
 	pragmaSearches := super gtSpotterSearchesInContext: aSpotterContext.
 	^ pragmaSearches merge: self eventsNewSearches asAsyncStream
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PpEventLog >> remove: anEvent [
 	anEvent eventLog: nil.
 	^ self events remove: anEvent

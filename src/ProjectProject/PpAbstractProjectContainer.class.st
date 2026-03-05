@@ -1,25 +1,27 @@
 Class {
-	#name : #PpAbstractProjectContainer,
-	#superclass : #Object,
+	#name : 'PpAbstractProjectContainer',
+	#superclass : 'Object',
 	#instVars : [
 		'masterList'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> activeChildrenList [
 	^ self newFromChildrenBlock: [ self rootChildren reject: [ :e | e isComplete ] ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpAbstractProjectContainer >> activeDescription [
 	"<magritteAltFor: #childrenDescription>"
 	
 	^ self filteredProjectsDescription: #activeChildrenList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> agendaFor: anMpPerson [
 	^ self newFromChildrenBlock: [ 
 		self allChildren select: [ :e | 
@@ -27,18 +29,18 @@ PpAbstractProjectContainer >> agendaFor: anMpPerson [
 				holder person == anMpPerson ] ] ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> allChildren [
 	self subclassResponsibility
 ]
 
-{ #category : #enumeration }
+{ #category : 'enumeration' }
 PpAbstractProjectContainer >> allChildrenDo: aBlock [
 	aBlock value: self.
 	self rootChildren do: [ :child | child allChildrenDo: aBlock ]
 ]
 
-{ #category : #spotter }
+{ #category : 'spotter' }
 PpAbstractProjectContainer >> allChildrenGtSpotterFor: aSearch [
 	<gtSearch>
 	^ aSearch list
@@ -49,12 +51,12 @@ PpAbstractProjectContainer >> allChildrenGtSpotterFor: aSearch [
 		itemName: #gtSpotterText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> allChildrenList [
 	^ self newFromChildrenBlock: [ self allChildren ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpAbstractProjectContainer >> childrenDescription [
 	<magritteDescription>
 	
@@ -73,48 +75,48 @@ PpAbstractProjectContainer >> childrenDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> childrenLabel [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> completeChildrenList [
 	^ self newFromChildrenBlock: [ self rootChildren select: [ :e | e isComplete ] ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpAbstractProjectContainer >> completeDescription [
 	"<magritteAltFor: #childrenDescription>"
 	
 	^ self filteredProjectsDescription: #completeChildrenList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> dependencyLinks [
 	^ self masterList 
 		ifNil: [ #() ]
 		ifNotNil: [ :ml | ml dependencyLinks ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> dueBy: aDate [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> dueToday [
 	^ self dueBy: Date today
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpAbstractProjectContainer >> dueTodayDescription [
 	"<magritteAltFor: #childrenDescription>"
 	
 	^ self filteredProjectsDescription: #dueToday
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpAbstractProjectContainer >> filteredProjectsDescription: aSelector [
 	| label |
 	label := aSelector normalizeCamelCase capitalized.
@@ -133,7 +135,7 @@ PpAbstractProjectContainer >> filteredProjectsDescription: aSelector [
 		yourself
 ]
 
-{ #category : #'gt-views' }
+{ #category : 'gt-views' }
 PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 	<gtView>
 	
@@ -191,7 +193,7 @@ PpAbstractProjectContainer >> gtViewNextActionsFor: aView [
 		views: tabs
 ]
 
-{ #category : #'gt-views' }
+{ #category : 'gt-views' }
 PpAbstractProjectContainer >> gtViewProjectsFor: aView inContext: aContext [
 	<gtView>
 	
@@ -208,31 +210,31 @@ PpAbstractProjectContainer >> gtViewProjectsFor: aView inContext: aContext [
 		actionUpdateButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> masterList [
 
 	^ masterList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> masterList: anObject [
 
 	masterList := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> neverDoing [
 	^ self newFromChildrenBlock: [ self activeChildrenList allChildren select: [ :e | e status = PpProject inactiveStatus ] ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpAbstractProjectContainer >> neverDoingDescription [
 	"<magritteAltFor: #childrenDescription>"
 	
 	^ self filteredProjectsDescription: #neverDoing
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PpAbstractProjectContainer >> newFromChildrenBlock: aBlock [
 	^ PpProjectsSnapshot new
 		allChildren: aBlock value asArray;
@@ -240,18 +242,18 @@ PpAbstractProjectContainer >> newFromChildrenBlock: aBlock [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> nextActionsList [
 	^ self newFromChildrenBlock: [ 
 		self allChildren select: #isNextAction ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> overdue [
 	^ self dueBy: Date yesterday
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpAbstractProjectContainer >> overdueDescription [
 	"<magritteAltFor: #childrenDescription>
 	<magritteDescription>"
@@ -259,7 +261,21 @@ PpAbstractProjectContainer >> overdueDescription [
 	^ self filteredProjectsDescription: #overdue
 ]
 
-{ #category : #accessing }
+{ #category : 'magritte' }
+PpAbstractProjectContainer >> parentsDescription [
+	<magritteDescription>
+	"This is another case where we'd like to use gtSearchSource, but there is no parents collection to operate on"
+	
+	^ MAToManyRelationDescription new
+		accessor: #parents;
+		beReadOnly;
+		label: 'Parents';
+		priority: 100;
+		classes: PpValue withAllSubclasses;
+		yourself
+]
+
+{ #category : 'accessing' }
 PpAbstractProjectContainer >> rootChildren [
 	self subclassResponsibility
 ]

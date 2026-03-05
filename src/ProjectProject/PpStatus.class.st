@@ -4,18 +4,20 @@
 - Complete vs. incomplete - complete here has a finality, signifying ""stop actively tracking this in the system"", although it will remain in the archive.
 "
 Class {
-	#name : #PpStatus,
-	#superclass : #Object,
+	#name : 'PpStatus',
+	#superclass : 'Object',
 	#instVars : [
 		'timestamp'
 	],
 	#classInstVars : [
 		'label'
 	],
-	#category : #'ProjectProject-Core-Projects-Support'
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStatus class >> label [
 	^ label ifNil: [ 
 		| labelFromName |
@@ -23,49 +25,49 @@ PpStatus class >> label [
 		labelFromName normalizeCamelCase ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStatus class >> label: aString [
 	label := aString
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PpStatus >> = rhs [
 
 	^ self class = rhs class and: [ self timestamp = rhs timestamp ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PpStatus >> hash [
 
 	^ self class hash bitXor: self timestamp hash
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpStatus >> isActive [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpStatus >> isComplete [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpStatus >> isInactive [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpStatus >> isInbox [
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpStatus >> onAddedTo: aPpValue [
 	"Hook for subclass override if needed"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStatus >> printOn: aStream [
 	
 	aStream
@@ -74,20 +76,20 @@ PpStatus >> printOn: aStream [
 		nextPutAll: 'Status'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStatus >> timestamp [
 
 	^ timestamp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStatus >> timestamp: aDateAndTime [
 
 	"Translate to UTC because Pharo's Date offset support is fatally broken. See [Pharo Issue 12147: Date>>#= fooled by daylight savings time](https://pharo.fogbugz.com/default.asp?12147)"
 	timestamp := aDateAndTime translateToUTC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStatus >> timestampDescription [
 	<magritteDescription>
 	

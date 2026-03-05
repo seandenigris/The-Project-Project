@@ -1,13 +1,15 @@
 Class {
-	#name : #PpInventoryRequirement,
-	#superclass : #PpProjectCondition,
+	#name : 'PpInventoryRequirement',
+	#superclass : 'PpProjectCondition',
 	#instVars : [
 		'item'
 	],
-	#category : #'ProjectProject-Core-Projects-Support'
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #'spotter - instance creation' }
+{ #category : 'spotter - instance creation' }
 PpInventoryRequirement class >> gtSpotterItemsFromString: aString [
 
 	| bestMatches |
@@ -25,19 +27,19 @@ PpInventoryRequirement class >> gtSpotterItemsFromString: aString [
 			yourself ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryRequirement >> item [
 
 	^ item
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryRequirement >> item: anObject [
 
 	item := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpInventoryRequirement >> printOn: aStream [
 
 	aStream

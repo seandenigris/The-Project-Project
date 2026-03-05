@@ -1,40 +1,42 @@
 Class {
-	#name : #PpVisionPanel,
-	#superclass : #Object,
+	#name : 'PpVisionPanel',
+	#superclass : 'Object',
 	#instVars : [
 		'dimensions',
 		'alignment'
 	],
-	#category : #'ProjectProject-Core-Inventories'
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpVisionPanel >> alignment [
 	^ alignment ifNil: [ #center ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpVisionPanel >> alignment: anObject [
 	alignment := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpVisionPanel >> beSide [
 
 	self alignment: #side
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpVisionPanel >> dimensions [
 	^ dimensions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpVisionPanel >> dimensions: anObject [
 	dimensions := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpVisionPanel >> displayStringOn: aStream [
 
 	aStream
@@ -50,19 +52,19 @@ PpVisionPanel >> displayStringOn: aStream [
 	aStream nextPutAll: ' panel'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpVisionPanel >> isCenter [
 
 	^ self alignment = #center
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpVisionPanel >> isSide [
 
 	^ self alignment = #side
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpVisionPanel >> printOn: aStream [
 
 	self printFromDisplayStringOn: aStream

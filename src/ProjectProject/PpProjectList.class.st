@@ -1,6 +1,6 @@
 Class {
-	#name : #PpProjectList,
-	#superclass : #PpProjectsSnapshot,
+	#name : 'PpProjectList',
+	#superclass : 'PpProjectsSnapshot',
 	#traits : 'PpTMutableProjectContainer + PeTEnumerable',
 	#classTraits : 'PpTMutableProjectContainer classTrait + PeTEnumerable classTrait',
 	#instVars : [
@@ -9,10 +9,12 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'ProjectProject-Core-Projects'
+	#category : 'ProjectProject-Core-Projects',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpProjectList class >> example [
 	<gtExample>
 	^ self
@@ -33,7 +35,7 @@ PpProjectList class >> example [
 			pl allChildren should haveSize: 3 ]
 ]
 
-{ #category : #UI }
+{ #category : 'UI' }
 PpProjectList class >> exampleBrowser [
 	| projects browser |
 	projects := self uniqueInstance.
@@ -56,7 +58,7 @@ PpProjectList class >> exampleBrowser [
 	browser openOn: projects.
 ]
 
-{ #category : #importing }
+{ #category : 'importing' }
 PpProjectList class >> importAppleNotesFromClipboard [
 	"Captures lists from Apple notes of the form:
 		- do something
@@ -70,7 +72,7 @@ PpProjectList class >> importAppleNotesFromClipboard [
 	lines do: [ :e | (PpProject titled: e) import ]
 ]
 
-{ #category : #'world menu' }
+{ #category : 'world menu' }
 PpProjectList class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #Projects)
@@ -87,35 +89,35 @@ PpProjectList class >> menuCommandOn: aBuilder [
 					(self iconNamed: #toolsIcon) ]
 ]
 
-{ #category : #UI }
+{ #category : 'UI' }
 PpProjectList class >> openBrowser [
 	<script>
 	
 	PpProjectBrowser openOn: self uniqueInstance
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpProjectList class >> restoreFrom: anObject [
 
 	uniqueInstance := anObject.
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 PpProjectList class >> spData [
 	^ self uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList class >> uniqueInstance: anObject [
 	uniqueInstance := anObject
 ]
 
-{ #category : #UI }
+{ #category : 'UI' }
 PpProjectList >> add [
 	PpProject new asMagritteMorph
 		addButtons;
@@ -124,7 +126,7 @@ PpProjectList >> add [
 		openInWorld
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> addChild: aProject to: parentProject [
 
 	| link |
@@ -136,7 +138,7 @@ PpProjectList >> addChild: aProject to: parentProject [
 	link link
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> addDescription [
 	<magritteActionDescription>
 	
@@ -148,12 +150,12 @@ PpProjectList >> addDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> allChildren [
 	^ children ifNil: [ children := Set new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> childrenDescription [
 	
 	^ super childrenDescription
@@ -161,34 +163,34 @@ PpProjectList >> childrenDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> dependencyLinks [
 	^ dependencyLinks ifNil: [ dependencyLinks := Set new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> ensureChild: aPpProject [
 	aPpProject masterList: self.
 	^ self allChildren add: aPpProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> masterList [
 	^ self
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpProjectList >> mementoClass [
 	^ MAStraightMemento
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> privateEnumerable [
 
 	^ self allChildren
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpProjectList >> removeChild: aProject from: parentProject [
 
 	| link |

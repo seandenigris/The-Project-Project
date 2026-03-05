@@ -1,6 +1,6 @@
 Class {
-	#name : #PpStakeholder,
-	#superclass : #Object,
+	#name : 'PpStakeholder',
+	#superclass : 'Object',
 	#traits : 'DbTDomainObject',
 	#classTraits : 'DbTDomainObject classTrait',
 	#instVars : [
@@ -8,10 +8,12 @@ Class {
 		'person',
 		'role'
 	],
-	#category : #'ProjectProject-Core-Projects-Support'
+	#category : 'ProjectProject-Core-Projects-Support',
+	#package : 'ProjectProject',
+	#tag : 'Core-Projects-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder class >> gtSpotterItemsFromString: aString [
 
 	| receiver result nameParser parser nameAndRole |
@@ -30,12 +32,12 @@ PpStakeholder class >> gtSpotterItemsFromString: aString [
 	^ { result }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder class >> peCanHandleFromString: aString [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder class >> project: aProject person: aPerson role: titleString [
 
 	^ self new
@@ -45,7 +47,7 @@ PpStakeholder class >> project: aProject person: aPerson role: titleString [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> = rhs [
 	
 	(rhs isKindOf: self class) ifFalse: [ ^ false ].
@@ -53,41 +55,41 @@ PpStakeholder >> = rhs [
 	^ self project = rhs project and: [ self person = rhs person and: [ self role = rhs role ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> addressBook [
 
 	^ self propertyAt: #addressBook ifAbsent: [ MpAddressBook uniqueInstance ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> displayStringNoProject [
 
 	^ self role, ' => ', self person displayString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> hash [
 	^ self project hash bitXor: (self person hash bitXor: self role hash)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> link [
 	self project stakeholders add: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> person [
 
 	^ person
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> person: anObject [
 
 	person := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 PpStakeholder >> personDescription [
 	<magritteDescription>
 	
@@ -99,7 +101,7 @@ PpStakeholder >> personDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> printOn: aStream [
 
 	aStream
@@ -110,31 +112,31 @@ PpStakeholder >> printOn: aStream [
 		print: self person
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> project [
 
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> project: anObject [
 
 	project := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> role [
 
 	^ role ifNil: [ #stakeholder ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> role: anObject [
 
 	role := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpStakeholder >> unlink [
 	self project stakeholders remove: self
 ]

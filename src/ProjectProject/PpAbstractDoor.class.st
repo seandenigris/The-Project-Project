@@ -1,10 +1,12 @@
 Class {
-	#name : #PpAbstractDoor,
-	#superclass : #PpArchitecturalItem,
-	#category : #'ProjectProject-Core-Inventories'
+	#name : 'PpAbstractDoor',
+	#superclass : 'PpArchitecturalItem',
+	#category : 'ProjectProject-Core-Inventories',
+	#package : 'ProjectProject',
+	#tag : 'Core-Inventories'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PpAbstractDoor class >> isAbstract [
 		
 	^ self == PpAbstractDoor
