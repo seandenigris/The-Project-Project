@@ -203,6 +203,27 @@ PpValue >> dueDateString [
 		^ ''
 ]
 
+{ #category : 'as yet unclassified' }
+PpValue >> emailsGtViewFor: aView [
+	<gtView>
+	
+	| emails |
+	emails := self supportMaterials select: [ :e | e isKindOf: RlEmail ].
+	emails ifEmpty: [ ^ aView empty ].
+	
+	^ (aView 
+		maColumnedListOf: RlEmail
+		descriptionsSelect: [ :desc | desc definingContext methodClass = RlEmail ]
+		thenContainerDo: [ :aContainer | 
+			(aContainer childNamed: 'timestamp')
+				display: [ :dt | dt asDate mmddyyyy ] ])
+		title: 'Emails' translated;
+		priority: 20;
+		items: [ emails asSortedCollection: #date descending ];
+		inspectButtonFor: [ emails ];
+		actionUpdateButton.
+]
+
 { #category : 'accessing' }
 PpValue >> ensureChild: aPpProject [
 	self masterList addChild: aPpProject to: self.
