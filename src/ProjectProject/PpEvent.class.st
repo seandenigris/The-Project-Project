@@ -297,7 +297,7 @@ PpEvent >> locationDescription [
 { #category : 'playing' }
 PpEvent >> newPlayer [
 	self hasRecording ifTrue: [ ^ self ensureRecording newPlayer ].
-	self isInProgress ifFalse: [ ^ LlNullMediaPlayer new ].
+	self isInProgress ifFalse: [ ^ RlNullMediaPlayer new ].
 	^ PpLivePlayer new
 ]
 
