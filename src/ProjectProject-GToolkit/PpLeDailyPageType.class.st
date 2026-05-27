@@ -1,13 +1,14 @@
 Class {
-	#name : #PpLeDailyPageType,
-	#superclass : #LePageType,
+	#name : 'PpLeDailyPageType',
+	#superclass : 'LePageType',
 	#instVars : [
 		'date'
 	],
-	#category : #'ProjectProject-GToolkit'
+	#category : 'ProjectProject-GToolkit',
+	#package : 'ProjectProject-GToolkit'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PpLeDailyPageType class >> date: aDate page: anLePage [
 
 	^ self new
@@ -16,7 +17,7 @@ PpLeDailyPageType class >> date: aDate page: anLePage [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpLeDailyPageType class >> example [
 	<gtExample>
 	^ self exampleEmptyPage
@@ -25,7 +26,7 @@ PpLeDailyPageType class >> example [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PpLeDailyPageType class >> exampleEmptyPage [
 	<gtExample>
 	
@@ -47,13 +48,13 @@ PpLeDailyPageType class >> exampleEmptyPage [
 	^ page
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PpLeDailyPageType class >> initialize [
 
 	self updatePrimaryDBPageTypes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLeDailyPageType class >> leJsonV4AttributeMapping [
 
 	^ super leJsonV4AttributeMapping
@@ -61,44 +62,44 @@ PpLeDailyPageType class >> leJsonV4AttributeMapping [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLeDailyPageType class >> leJsonV4Name [
 
 	^ 'ppDailyPage'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLeDailyPageType >> asContentUIModel [
 	^ LePageViewModel new pageModel: self page
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLeDailyPageType >> databaseKey [
 
 	^ self date mmddyyyy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLeDailyPageType >> date [
 	^ date
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLeDailyPageType >> date: aDate [
 	date := aDate translateToUTC
 ]
 
-{ #category : #'api - testing' }
+{ #category : 'api - testing' }
 PpLeDailyPageType >> isPpDailyPageType [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLeDailyPageType >> pageElementClass [
 	^ PeLePageElement"QuLeTranscriptPageElement"
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PpLeDailyPageType >> printOn: aStream [
 
 	aStream
@@ -106,18 +107,18 @@ PpLeDailyPageType >> printOn: aStream [
 		<< self date mmddyyyy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLeDailyPageType >> saveEmptyPages [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLeDailyPageType >> shouldAppearInIndexOrDailyNotes [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpLeDailyPageType >> title [
 
 	^ self date

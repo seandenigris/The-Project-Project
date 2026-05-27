@@ -1,6 +1,6 @@
-Extension { #name : #LePage }
+Extension { #name : 'LePage' }
 
-{ #category : #'*ProjectProject-GToolkit' }
+{ #category : '*ProjectProject-GToolkit' }
 LePage class >> journalOn: aDate [
 
 	| type result |

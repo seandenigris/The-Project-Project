@@ -39,18 +39,21 @@ PpProjectListElement >> filterElement [
 PpProjectListElement >> filterModel [
 
 	filterModel ifNotNil: [ ^ filterModel ].
-			
-	self phlowContext 
-		at: #completionFilter 
-		put: PpProjectCompletionFilter matchingIncomplete.
 		
 	filterModel := GtFilterItemsModel new 
-		items: { PpProjectCompletionFilter filterDescriptor };
-		availableFiltersBuilder: PpProjectFilter.
+		items: { 
+			PpProjectCompletionFilter filterDescriptor.
+			PpProjectStatusFilter filterDescriptor };
+		availableFiltersBuilder: PpProjectFilter;
+		yourself.
+		
+	self phlowContext 
+		at: #projectFilters
+		put: filterModel.
 		
 	filterModel weak
 		when: GtFiltersModelAnnouncement
-		send: #updateFilters
+		send: #updateFilters:
 		to: self.
 		
 	^ filterModel
@@ -65,8 +68,10 @@ PpProjectListElement >> listElement [
 	filter := [ :aCol | 
 		| filtered |
 		filtered := self phlowContext 
-			at: #completionFilter
-			ifPresent: [ :aFilter | aCol select: [ :proj | aFilter matches: proj ] ]
+			at: #projectFilters
+			ifPresent: [ :filters | 
+				aCol select: [ :proj | 
+					filters items allSatisfy: [ :aFilter | "aFilter matches: proj" true ] ] ]
 			ifAbsent: [ aCol ].
 
 	filtered sorted: #title ascending ].
@@ -136,11 +141,13 @@ PpProjectListElement >> phlowView: anObject [
 
 { #category : 'as yet unclassified' }
 PpProjectListElement >> updateFilters [
+Halt now.
+	self updateList
+]
 
-	self phlowContext 
-		at: #completionFilter 
-		put: self filterModel items atRandom asSearchFilter.
-
+{ #category : 'as yet unclassified' }
+PpProjectListElement >> updateFilters: anObject [
+Halt now.
 	self updateList
 ]
 

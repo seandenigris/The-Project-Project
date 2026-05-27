@@ -1,6 +1,6 @@
-Extension { #name : #LeTextSnippet }
+Extension { #name : 'LeTextSnippet' }
 
-{ #category : #'*ProjectProject-GToolkit' }
+{ #category : '*ProjectProject-GToolkit' }
 LeTextSnippet >> asPpProject: aClass [
 
 	| result |

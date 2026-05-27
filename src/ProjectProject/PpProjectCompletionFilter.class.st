@@ -15,6 +15,7 @@ PpProjectCompletionFilter class >> filterDescriptor [
 
 	^ GtFilterShortListModel new
 		creator: [ :anItem |
+		Halt now.
 			anItem
 				ifSome: [ :aValue | 
 					aValue 
@@ -80,7 +81,7 @@ PpProjectCompletionFilter >> matchesComplete [
 
 { #category : 'as yet unclassified' }
 PpProjectCompletionFilter >> matchesComplete: aBoolean [
-
+Halt now.
 	matchesComplete := aBoolean
 ]
 

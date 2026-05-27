@@ -1,6 +1,6 @@
-Extension { #name : #PpEvent }
+Extension { #name : 'PpEvent' }
 
-{ #category : #'*ProjectProject-GToolkit' }
+{ #category : '*ProjectProject-GToolkit' }
 PpEvent class >> exampleTranscriptEmptyPage [
 	<gtExample>
 	^ self
@@ -18,7 +18,7 @@ PpEvent class >> exampleTranscriptEmptyPage [
 		then: [ :page | page "children should haveSize: 1" ]
 ]
 
-{ #category : #'*ProjectProject-GToolkit' }
+{ #category : '*ProjectProject-GToolkit' }
 PpEvent >> newLepiterPage [
 	^ LePage quTranscriptOwner: self
 ]

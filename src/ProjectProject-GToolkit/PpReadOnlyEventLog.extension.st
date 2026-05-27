@@ -1,6 +1,6 @@
-Extension { #name : #PpReadOnlyEventLog }
+Extension { #name : 'PpReadOnlyEventLog' }
 
-{ #category : #'*ProjectProject-GToolkit' }
+{ #category : '*ProjectProject-GToolkit' }
 PpReadOnlyEventLog >> timeline [
 	| points aPlotter |
 	points := self events select: [ :e | e startDate isNotNil ].

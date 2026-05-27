@@ -1,16 +1,17 @@
 Class {
-	#name : #PpFilterIncompleteItem,
-	#superclass : #GtFilterModelItem,
-	#category : #'ProjectProject-GToolkit'
+	#name : 'PpFilterIncompleteItem',
+	#superclass : 'GtFilterModelItem',
+	#category : 'ProjectProject-GToolkit',
+	#package : 'ProjectProject-GToolkit'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpFilterIncompleteItem >> itemValue [
 
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpFilterIncompleteItem >> label [
 
 	^ 'Incomplete'

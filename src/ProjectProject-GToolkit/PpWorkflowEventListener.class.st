@@ -1,13 +1,14 @@
 Class {
-	#name : #PpWorkflowEventListener,
-	#superclass : #BlEventListener,
+	#name : 'PpWorkflowEventListener',
+	#superclass : 'BlEventListener',
 	#instVars : [
 		'pageID'
 	],
-	#category : #'ProjectProject-GToolkit'
+	#category : 'ProjectProject-GToolkit',
+	#package : 'ProjectProject-GToolkit'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpWorkflowEventListener >> clickEvent: anEvent [
 
 	| page |
@@ -15,7 +16,7 @@ PpWorkflowEventListener >> clickEvent: anEvent [
 	anEvent currentTarget phlow spawnObject: page
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpWorkflowEventListener >> mouseEnterEvent: anEvent [
 	| anAnimation |
 	anAnimation := (BlTransformAnimation scale: 2.0 @ 2.0)
@@ -24,7 +25,7 @@ PpWorkflowEventListener >> mouseEnterEvent: anEvent [
 	anEvent currentTarget addAnimation: anAnimation
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PpWorkflowEventListener >> mouseLeaveEvent: anEvent [
 	| anAnimation |
 	anAnimation := (BlTransformAnimation scale: 1.0 @ 1.0)
@@ -33,12 +34,12 @@ PpWorkflowEventListener >> mouseLeaveEvent: anEvent [
 	anEvent currentTarget addAnimation: anAnimation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWorkflowEventListener >> pageID [
 	^ pageID
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PpWorkflowEventListener >> pageID: anObject [
 	pageID := anObject
 ]

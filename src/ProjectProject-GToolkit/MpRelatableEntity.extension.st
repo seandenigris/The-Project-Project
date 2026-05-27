@@ -1,6 +1,6 @@
-Extension { #name : #MpRelatableEntity }
+Extension { #name : 'MpRelatableEntity' }
 
-{ #category : #'*ProjectProject-GToolkit' }
+{ #category : '*ProjectProject-GToolkit' }
 MpRelatableEntity >> gtViewAgendaOn: aView [
 	<gtView>
 	

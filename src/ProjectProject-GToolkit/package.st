@@ -1,1 +1,1 @@
-Package { #name : #'ProjectProject-GToolkit' }
+Package { #name : 'ProjectProject-GToolkit' }

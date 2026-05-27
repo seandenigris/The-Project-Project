@@ -1,18 +1,18 @@
 Class {
-	#name : 'PpFilterCompleteItem',
+	#name : 'PpFilterStatusItem',
 	#superclass : 'GtFilterModelItem',
 	#category : 'ProjectProject-GToolkit',
 	#package : 'ProjectProject-GToolkit'
 }
 
 { #category : 'as yet unclassified' }
-PpFilterCompleteItem >> itemValue [
+PpFilterStatusItem >> itemValue [
 
-	^ true
+	^ PpReadReviewStatus
 ]
 
 { #category : 'as yet unclassified' }
-PpFilterCompleteItem >> label [
+PpFilterStatusItem >> label [
 
-	^ 'Complete'
+	^ 'Read / Review'
 ]
