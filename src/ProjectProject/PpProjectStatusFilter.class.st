@@ -13,7 +13,13 @@ Class {
 PpProjectStatusFilter class >> filterDescriptor [
 
 	^ GtFilterShortListModel new
-		creator: [ :anItem | self new ];
+		creator: [ :anItem |
+			anItem
+				ifSome: [ :aValue | 
+					self new
+						status: aValue;
+						yourself ]
+				ifNone: [ self new ] ];
 		named: 'Status';
 		order: 19;
 		items: { 

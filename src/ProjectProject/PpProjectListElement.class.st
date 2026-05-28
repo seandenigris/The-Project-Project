@@ -53,7 +53,7 @@ PpProjectListElement >> filterModel [
 		
 	filterModel weak
 		when: GtFiltersModelAnnouncement
-		send: #updateFilters:
+		send: #updateFilters
 		to: self.
 		
 	^ filterModel
@@ -71,7 +71,7 @@ PpProjectListElement >> listElement [
 			at: #projectFilters
 			ifPresent: [ :filters | 
 				aCol select: [ :proj | 
-					filters items allSatisfy: [ :aFilter | "aFilter matches: proj" true ] ] ]
+					filters items allSatisfy: [ :aFilterModel | aFilterModel asSearchFilter matches: proj ] ] ]
 			ifAbsent: [ aCol ].
 
 	filtered sorted: #title ascending ].
@@ -141,13 +141,6 @@ PpProjectListElement >> phlowView: anObject [
 
 { #category : 'as yet unclassified' }
 PpProjectListElement >> updateFilters [
-Halt now.
-	self updateList
-]
-
-{ #category : 'as yet unclassified' }
-PpProjectListElement >> updateFilters: anObject [
-Halt now.
 	self updateList
 ]
 
