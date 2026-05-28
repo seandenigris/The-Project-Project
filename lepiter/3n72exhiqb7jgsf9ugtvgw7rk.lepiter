@@ -116,7 +116,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2026-05-27T11:21:54.981299-04:00"
+									"dateAndTimeString" : "2026-05-27T22:06:57.958268-04:00"
 								}
 							},
 							"uid" : {
@@ -126,7 +126,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "3. Create a class-side `#filterDescriptor` method that returns a {{gtClass:GtFilterModel}}. This will bridge the gap between the filter GUI and your filter implementation. See senders in the image for inspiration."
+							"string" : "3. Create a class-side `#filterDescriptor` method that returns a {{gtClass:GtFilterModel}}. This will bridge the gap between your filter implementation and the filter GUI. See senders in the image for inspiration."
 						},
 						{
 							"__type" : "textSnippet",
@@ -164,6 +164,43 @@
 								"__type" : "textStyle"
 							},
 							"string" : "4. Include your filterDescriptor in a {{gtClass:GtFilterItemsModel}}."
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2026-05-27T22:07:13.156063-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2026-05-27T22:09:56.378332-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "K3lcfgkLSWaUXNnFaG+rmw=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "5. Select matching domain objects with something like the following:\n```smalltalk\naCol select: [ :proj | \r\taGtFilterItemsModel items allSatisfy: [ :aFilterModel | \n\t\taFilterModel asSearchFilter matches: proj ] ]\n```"
 						},
 						{
 							"__type" : "textSnippet",
