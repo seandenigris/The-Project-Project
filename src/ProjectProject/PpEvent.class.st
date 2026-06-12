@@ -252,7 +252,7 @@ PpEvent >> isInProgress [
 	self startDate ifNil: [ ^ false ].
 	self startDate = self today ifTrue: [ 
 		self startTime ifNotNil: [ :st | 
-			st > self now asTime ifTrue: [ ^ false ] ] ].
+			^ st <= self now asTime ] ].
 	^ self startDate < self today
 ]
 
