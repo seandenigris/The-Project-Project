@@ -296,7 +296,7 @@ PpEvent >> locationDescription [
 
 { #category : 'playing' }
 PpEvent >> newPlayer [
-	self hasRecording ifTrue: [ ^ self ensureRecording newPlayer ].
+	self recordingExists ifTrue: [ ^ self recordingEnsure newPlayer ].
 	self isInProgress ifFalse: [ ^ RlNullMediaPlayer new ].
 	^ PpLivePlayer new
 ]
@@ -496,7 +496,7 @@ PpEvent >> today [
 { #category : 'accessing' }
 PpEvent >> transcript [
 	
-	self hasRecording ifTrue: [ ^ self ensureRecording transcript ].
+	self recordingExists ifTrue: [ ^ self recordingEnsure transcript ].
 	^ self traitTranscript
 ]
 
