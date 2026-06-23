@@ -80,22 +80,6 @@ PpInventory >> gtSearchNewItemFor: aSearch [
 		send: [ :anObject | self addItem: anObject ]
 ]
 
-{ #category : 'views' }
-PpInventory >> gtViewItemsOn: aView [
-	<gtView>
-	^ aView columnedList
-		title: 'Items' translated;
-		priority: 5;
-		items: [ self items ];
-		column: 'Name' text: #name;
-		column: 'Location' text: [ :e | 
-			e location
-				ifNotNil: #displayString
-				ifNil: [ '' ] ];
-		actionUpdateButton;
-		yourself
-]
-
 { #category : 'accessing' }
 PpInventory >> items [
 	^ items ifNil: [ items := SortedCollection sortUsing: #name ascending ]
