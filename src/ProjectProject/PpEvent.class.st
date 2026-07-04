@@ -504,7 +504,7 @@ PpEvent >> transcript [
 PpEvent >> transcriptGtViewFor: aView [
 	<gtView>
 
-	(self hasProperty: #transcript) ifFalse: [ ^ aView empty ].
+	(self hasTranscript) ifFalse: [ ^ aView empty ].
 	
 	^ aView forward
 		title: 'Transcript' translated;
