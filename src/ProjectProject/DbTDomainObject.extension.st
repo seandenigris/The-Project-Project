@@ -100,7 +100,7 @@ DbTDomainObject >> supportMaterialsDescription [
 			classes: classes;
 			referenceDisplay: #ppSupportMaterialDisplayString;
 			morphicClass: MAMorphicTokenCompletion;
-			gtSearchSource: gtSearchSource;
+			gtSearchSource: [ gtSearchSource ];
 			gtSearchTransform: (MessageSend receiver: self selector: #sanitizedSupportMaterial:);
 			comment: 'See ', PpProject className, ' comment for more info';
 			yourself
