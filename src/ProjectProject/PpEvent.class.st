@@ -1,8 +1,8 @@
 Class {
 	#name : 'PpEvent',
 	#superclass : 'Object',
-	#traits : 'DbTDomainObject - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript}) + PpTProjectProperty',
-	#classTraits : 'DbTDomainObject classTrait + QuTTranscriptable classTrait + PpTProjectProperty classTrait',
+	#traits : 'DbTDomainObject - {#editLepiterPageDescription} + (QuTTranscriptable @ {#traitTranscript->#transcript}) + DbTProjectProperty',
+	#classTraits : 'DbTDomainObject classTrait + QuTTranscriptable classTrait + DbTProjectProperty classTrait',
 	#instVars : [
 		'endDate',
 		'startDate',
@@ -267,11 +267,6 @@ PpEvent >> isPast [
 	^ self endTime ifNotNil: [ self endTime < self now asTime ] ifNil: [ false ]
 ]
 
-{ #category : 'testing' }
-PpEvent >> isPpValuedObject [
-	^ true
-]
-
 { #category : 'accessing' }
 PpEvent >> location [
 	^ self maLazyInstVarUsing: self locationDescription
@@ -369,6 +364,11 @@ PpEvent >> postCopy [
 		postCopyDbDomainObject;
 		postCopyTranscriptable;
 		postCopyProjectProperty
+]
+
+{ #category : 'testing' }
+PpEvent >> ppIsValuedObject [
+	^ true
 ]
 
 { #category : 'accessing' }
