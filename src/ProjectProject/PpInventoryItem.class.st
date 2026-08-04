@@ -1,8 +1,8 @@
 Class {
 	#name : 'PpInventoryItem',
 	#superclass : 'Object',
-	#traits : 'DbTDomainObject',
-	#classTraits : 'DbTDomainObject classTrait',
+	#traits : 'DbTDomainObject + DbTProjectProperty',
+	#classTraits : 'DbTDomainObject classTrait + DbTProjectProperty classTrait',
 	#instVars : [
 		'name',
 		'location'
@@ -113,6 +113,12 @@ PpInventoryItem >> photos [
 	^ self supportMaterials select: [ :e | e isKindOf: RlPicture ]
 ]
 
+{ #category : 'testing' }
+PpInventoryItem >> ppIsValuedObject [
+
+	^ true
+]
+
 { #category : 'accessing' }
 PpInventoryItem >> printOn: aStream [
 	
@@ -149,4 +155,10 @@ PpInventoryItem >> replacementStringOldFormat [
 { #category : 'accessing' }
 PpInventoryItem >> replacementStringWithSeparator: aString [
 	self subclassResponsibility
+]
+
+{ #category : 'as yet unclassified' }
+PpInventoryItem >> title [
+
+	^ self displayString
 ]
