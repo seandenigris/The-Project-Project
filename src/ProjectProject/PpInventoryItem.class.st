@@ -120,6 +120,12 @@ PpInventoryItem >> ppIsValuedObject [
 ]
 
 { #category : 'accessing' }
+PpInventoryItem >> ppProjectTitle [
+
+	^ self displayString
+]
+
+{ #category : 'accessing' }
 PpInventoryItem >> printOn: aStream [
 	
 	self printFromDisplayStringOn: aStream
