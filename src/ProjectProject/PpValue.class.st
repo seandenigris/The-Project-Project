@@ -801,11 +801,14 @@ PpValue >> titleDescription [
 
 { #category : 'accessing' }
 PpValue >> titleWithAncestors [
-	^ String
-		streamContents: [ :str | 
-			str << self title.
-			self parents do: [ :e | str << ' < ' << e titleWithAncestors ]	"select: #isProject
-			thenD" ]
+	^ String streamContents: [ :str | 
+		| parentCol |
+		str << self title.
+		parentCol := self parents.
+		parentCol ifNotEmpty: [ str << ' < ' ].
+		parentCol 
+			do: [ :e | str << e titleWithAncestors ]
+			separatedBy: [ str << ', ' ] ]
 ]
 
 { #category : 'accessing' }
