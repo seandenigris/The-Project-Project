@@ -148,7 +148,7 @@ PpValue >> defaultStatus [
 	^ PpActiveStatus new
 ]
 
-{ #category : 'accessing' }
+{ #category : 'deleting' }
 PpValue >> delete [
 
 	self removeFromMasterList.
@@ -587,7 +587,8 @@ PpValue >> removeFromMasterList [
 	self masterList allChildren remove: self.
 	self dependencyLinks
 		select: [ :link | link includes: self ]
-		thenDo: [ :link | link unlink ]
+		thenDo: [ :link | link unlink ].
+	self masterList: nil
 ]
 
 { #category : 'accessing' }
