@@ -248,13 +248,7 @@ PpValue >> eventLog [
 { #category : 'accessing' }
 PpValue >> gtDisplayText [
 	
-	^ self gtTextFromString: self displayString
-]
-
-{ #category : 'accessing' }
-PpValue >> gtSpotterText [
-
-	^ self titleWithAncestorsGtText
+	^ self gtTextFromString: self titleWithAncestors
 ]
 
 { #category : 'accessing' }

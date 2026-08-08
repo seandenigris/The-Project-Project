@@ -23,7 +23,7 @@ PpClarify >> childrenNewSearches [
 		GtSpotterProtoSearch new list
 			title: 'New ' , cls name;
 			priority: 50;
-			itemName: #gtSpotterText;
+			itemName: #gtDisplayText;
 			items: [ {} asAsyncStream ];
 			filter: (PeGtInstancesFilter new
 					rootClass: cls;
