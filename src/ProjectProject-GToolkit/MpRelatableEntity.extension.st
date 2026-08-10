@@ -1,7 +1,7 @@
 Extension { #name : 'MpRelatableEntity' }
 
 { #category : '*ProjectProject-GToolkit' }
-MpRelatableEntity >> gtViewAgendaOn: aView [
+MpRelatableEntity >> agendaGtViewOn: aView [
 	<gtView>
 	
 	self projects allChildren ifEmpty: [ ^ aView empty ].
