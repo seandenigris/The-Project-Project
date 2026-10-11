@@ -18,7 +18,26 @@ PpChecklist class >> addFromClipboard [
 	"This is an easy way to create a new checklist, because one can make the list anywhere text can be typed (e.g. a playground, text editor, browser URL bar lol). Just put each item on a separate line and copy to the system clipboard"
 	
 	<script>
-	^ self pad add: (self new addAllFromClipboard)
+	^ self pad add: (self fromString: Clipboard clipboardText asString)
+]
+
+{ #category : 'adding' }
+PpChecklist class >> fromString: aString [
+
+	| lines result |
+	result := PpChecklist new.
+	lines := aString lines.
+	
+	result title: lines first.
+	
+	lines allButFirst do: [ :e |
+		| item |
+		item := PpChecklistItem new
+			description: e trimBoth;
+			yourself.
+		result items add: item ].
+		
+	^ result
 ]
 
 { #category : 'world menu' }
@@ -52,20 +71,6 @@ PpChecklist class >> restoreFrom: anObject [
 { #category : 'persistence' }
 PpChecklist class >> spData [
 	^ self pad
-]
-
-{ #category : 'adding' }
-PpChecklist >> addAllFromClipboard [
-	| itemsString lines |
-	itemsString := Clipboard clipboardText asString.
-	lines := itemsString lines.
-	self title: lines first.
-	lines allButFirst do: [ :e |
-		| item |
-		item := PpChecklistItem new
-			description: e trimBoth;
-			yourself.
-		self items add: item ]
 ]
 
 { #category : 'adding' }
